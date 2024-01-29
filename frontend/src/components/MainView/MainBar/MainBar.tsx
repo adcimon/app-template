@@ -1,0 +1,77 @@
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import { AccountMenu } from './AccountMenu/AccountMenu';
+import { NotificationsMenu } from './NotificationsMenu/NotificationsMenu';
+import { AppStateType } from '../../../states/AppState';
+
+interface IMainBarProps {
+	height?: string;
+	appState: AppStateType;
+	setAppState: (state: AppStateType) => void;
+}
+
+export const MainBar: React.FC<IMainBarProps> = (props: IMainBarProps): JSX.Element => {
+	const render = () => {
+		return (
+			<>
+				<AppBar
+					position='fixed'
+					sx={{
+						height: props.height,
+						justifyContent: 'center',
+					}}>
+					<Toolbar>
+						{/* Left */}
+						<Box
+							sx={{
+								alignItems: 'center',
+								display: 'flex',
+								flexGrow: '1',
+							}}>
+							<img
+								src='/images/logo_white.png'
+								style={{
+									height: 'auto',
+									minWidth: '32px',
+									width: '32px',
+								}}
+							/>
+						</Box>
+						{/* Center */}
+						<Box
+							sx={{
+								alignItems: 'center',
+								display: 'flex',
+								flexGrow: '1',
+								justifyContent: 'center',
+							}}>
+							{/* Empty */}
+						</Box>
+						{/* Right */}
+						<Box
+							sx={{
+								alignItems: 'center',
+								display: 'flex',
+								flexGrow: '1',
+								gap: '10px',
+								justifyContent: 'flex-end',
+							}}>
+							<NotificationsMenu
+								appState={props.appState}
+								setAppState={props.setAppState}
+							/>
+							<AccountMenu
+								appState={props.appState}
+								setAppState={props.setAppState}
+							/>
+						</Box>
+					</Toolbar>
+				</AppBar>
+			</>
+		);
+	};
+
+	return render();
+};

@@ -1,0 +1,36 @@
+import * as React from 'react';
+import Chip from '@mui/material/Chip';
+import Typography from '@mui/material/Typography';
+
+interface INavigationItemProps {
+	label?: string;
+	icon?: React.ReactElement<any, string | React.JSXElementConstructor<any>>;
+	disabled?: boolean;
+	onClick?: React.MouseEventHandler<HTMLDivElement>;
+}
+
+export const NavigationItem: React.FC<INavigationItemProps> = (props: INavigationItemProps): JSX.Element => {
+	const render = () => {
+		return (
+			<>
+				<Chip
+					label={<Typography color='primary.contrastText'>{props.label}</Typography>}
+					icon={props.icon}
+					disabled={props.disabled}
+					onClick={props.onClick}
+					sx={{
+						backgroundColor: 'transparent',
+						'& .MuiChip-icon': {
+							color: 'primary.contrastText',
+						},
+						'&:hover': {
+							backgroundColor: 'primary.dark',
+						},
+					}}
+				/>
+			</>
+		);
+	};
+
+	return render();
+};
