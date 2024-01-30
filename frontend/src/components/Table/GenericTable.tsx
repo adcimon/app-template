@@ -18,6 +18,7 @@ import { ConfirmationDialog } from '../Dialog/ConfirmationDialog';
 import { GenericDialog } from '../Dialog/GenericDialog';
 
 interface IGenericTableProps {
+	title?: React.ReactNode;
 	items: any[];
 	head?: () => React.ReactNode[];
 	row?: (item: any) => React.ReactNode[];
@@ -153,70 +154,81 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 	const render = () => {
 		return (
 			<>
-				<Card>
-					<Box
-						sx={{
-							overflowX: 'auto',
-						}}>
-						<Table>
-							<TableHead>
-								<TableRow>
-									{props.head
-										? props.head().map((node: React.ReactNode, index: number) => {
-												return <TableCell key={index}>{node}</TableCell>;
-										  })
-										: null}
-								</TableRow>
-							</TableHead>
-							<TableBody>
-								{applyPagination(props.items, state.page, state.rowsPerPage).map(
-									(item: any, index: number) => {
-										return (
-											<TableRow
-												key={index}
-												onClick={() => handleClickRow(item)}
-												hover
-												sx={{
-													cursor: 'pointer',
-												}}>
-												{props.row
-													? props.row(item).map((node: React.ReactNode, index: number) => {
-															return <TableCell key={index}>{node}</TableCell>;
-													  })
-													: null}
-											</TableRow>
-										);
-									},
-								)}
-							</TableBody>
-						</Table>
-					</Box>
-					<Stack
-						direction='row'
-						sx={{
-							alignItems: 'center',
-							justifyContent: props.onCreate ? 'space-between' : 'flex-end',
-						}}>
-						{props.onCreate && (
-							<IconButton
-								onClick={handleAdd}
-								sx={{
-									marginLeft: '10px',
-								}}>
-								<AddIcon fontSize='inherit' />
-							</IconButton>
-						)}
-						<TablePagination
-							component='div'
-							count={props.items.length}
-							onPageChange={handlePageChange}
-							onRowsPerPageChange={handleRowsPerPageChange}
-							page={state.page}
-							rowsPerPage={state.rowsPerPage}
-							rowsPerPageOptions={[5, 10, 25]}
-						/>
-					</Stack>
-				</Card>
+				<Stack
+					direction='column'
+					spacing={2}
+					sx={{
+						alignContent: 'center',
+						justifyContent: 'center',
+					}}>
+					{props.title && <Box>{props.title}</Box>}
+					<Card>
+						<Box
+							sx={{
+								overflowX: 'auto',
+							}}>
+							<Table>
+								<TableHead>
+									<TableRow>
+										{props.head
+											? props.head().map((node: React.ReactNode, index: number) => {
+													return <TableCell key={index}>{node}</TableCell>;
+											  })
+											: null}
+									</TableRow>
+								</TableHead>
+								<TableBody>
+									{applyPagination(props.items, state.page, state.rowsPerPage).map(
+										(item: any, index: number) => {
+											return (
+												<TableRow
+													key={index}
+													onClick={() => handleClickRow(item)}
+													hover
+													sx={{
+														cursor: 'pointer',
+													}}>
+													{props.row
+														? props
+																.row(item)
+																.map((node: React.ReactNode, index: number) => {
+																	return <TableCell key={index}>{node}</TableCell>;
+																})
+														: null}
+												</TableRow>
+											);
+										},
+									)}
+								</TableBody>
+							</Table>
+						</Box>
+						<Stack
+							direction='row'
+							sx={{
+								alignItems: 'center',
+								justifyContent: props.onCreate ? 'space-between' : 'flex-end',
+							}}>
+							{props.onCreate && (
+								<IconButton
+									onClick={handleAdd}
+									sx={{
+										marginLeft: '10px',
+									}}>
+									<AddIcon fontSize='inherit' />
+								</IconButton>
+							)}
+							<TablePagination
+								component='div'
+								count={props.items.length}
+								onPageChange={handlePageChange}
+								onRowsPerPageChange={handleRowsPerPageChange}
+								page={state.page}
+								rowsPerPage={state.rowsPerPage}
+								rowsPerPageOptions={[5, 10, 25]}
+							/>
+						</Stack>
+					</Card>
+				</Stack>
 				<GenericDialog
 					open={state.openItemDialog}
 					onClose={handleCloseDialog}>
