@@ -93,7 +93,7 @@ export const NotificationItem: React.FC<INotificationItemProps> = (props: INotif
 									variant='body2'
 									sx={{
 										color: 'text.secondary',
-										fontSize: '12px',
+										fontSize: '0.75rem',
 										marginTop: '5px',
 									}}>
 									{props.notification.description}
@@ -103,7 +103,7 @@ export const NotificationItem: React.FC<INotificationItemProps> = (props: INotif
 									variant='body2'
 									sx={{
 										color: 'text.secondary',
-										fontSize: '12px',
+										fontSize: '0.75rem',
 										marginTop: '5px',
 									}}>
 									{props.notification.date}

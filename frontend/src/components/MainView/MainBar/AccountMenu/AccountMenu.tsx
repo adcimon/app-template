@@ -145,7 +145,7 @@ export const AccountMenu: React.FC<IAccountMenuProps> = (props: IAccountMenuProp
 							variant='body2'
 							color='primary.contrastText'
 							sx={{
-								fontSize: '12px',
+								fontSize: '0.75rem',
 								maxWidth: '80px',
 							}}>
 							{props.appState.user.name || <Skeleton width={50} />}

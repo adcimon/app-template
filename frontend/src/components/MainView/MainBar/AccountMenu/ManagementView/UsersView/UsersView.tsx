@@ -90,7 +90,7 @@ export const UsersView: React.FC<IUsersViewProps> = (props: IUsersViewProps): JS
 							variant='body2'
 							sx={{
 								color: 'text.secondary',
-								fontSize: '12px',
+								fontSize: '0.75rem',
 								marginTop: '5px',
 							}}>
 							{item.id}
@@ -164,7 +164,7 @@ export const UsersView: React.FC<IUsersViewProps> = (props: IUsersViewProps): JS
 							variant='body2'
 							sx={{
 								color: 'text.secondary',
-								fontSize: '12px',
+								fontSize: '0.75rem',
 								marginTop: '5px',
 							}}>
 							{state?.user?.id}
