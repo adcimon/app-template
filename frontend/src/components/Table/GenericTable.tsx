@@ -160,6 +160,7 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 					sx={{
 						alignContent: 'center',
 						justifyContent: 'center',
+						width: '100%',
 					}}>
 					{props.title && <Box>{props.title}</Box>}
 					<Card>
