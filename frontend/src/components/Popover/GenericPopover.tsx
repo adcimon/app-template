@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Theme, useTheme, useMediaQuery } from '@mui/material';
 import { SxProps } from '@mui/system';
+import { Theme, useTheme, useMediaQuery } from '@mui/material';
 import Popover, { PopoverOrigin } from '@mui/material/Popover';
 import { GenericDialog } from '../Dialog/GenericDialog';
 
