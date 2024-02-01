@@ -135,7 +135,7 @@ export const SettingsView: React.FC<ISettingsViewProps> = (props: ISettingsViewP
 							value={state.tab}
 							onChange={handleTabChange}
 							variant='scrollable'
-							scrollButtons={true}
+							scrollButtons
 							allowScrollButtonsMobile>
 							<Tab
 								label={
