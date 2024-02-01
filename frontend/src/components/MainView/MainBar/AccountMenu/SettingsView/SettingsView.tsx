@@ -74,10 +74,9 @@ export const SettingsView: React.FC<ISettingsViewProps> = (props: ISettingsViewP
 							direction='row'
 							spacing={3}
 							sx={{
-								bottom: '-22px',
+								bottom: '-180px',
 								left: '32px',
-								position: 'absolute',
-								paddingTop: '0px',
+								position: 'relative',
 								zIndex: '10',
 							}}>
 							<UserAvatar
@@ -125,40 +124,45 @@ export const SettingsView: React.FC<ISettingsViewProps> = (props: ISettingsViewP
 							</Stack>
 						</Stack>
 					</Box>
-					<Tabs
-						value={state.tab}
-						onChange={handleTabChange}
+					<Stack
+						direction='row'
 						sx={{
-							'& .MuiTabs-flexContainer': {
-								justifyContent: 'flex-end',
-								marginRight: '30px',
-							},
+							justifyContent: 'flex-end',
+							paddingX: '20px',
+							width: '100%',
 						}}>
-						<Tab
-							label={
-								<>
-									<Stack
-										direction='row'
-										spacing={0.5}>
-										<AccountBoxIcon />
-										<Typography>Profile</Typography>
-									</Stack>
-								</>
-							}
-						/>
-						<Tab
-							label={
-								<>
-									<Stack
-										direction='row'
-										spacing={0.5}>
-										<SettingsSuggestIcon />
-										<Typography>Preferences</Typography>
-									</Stack>
-								</>
-							}
-						/>
-					</Tabs>
+						<Tabs
+							value={state.tab}
+							onChange={handleTabChange}
+							variant='scrollable'
+							scrollButtons={true}
+							allowScrollButtonsMobile>
+							<Tab
+								label={
+									<>
+										<Stack
+											direction='row'
+											spacing={0.5}>
+											<AccountBoxIcon />
+											<Typography>Profile</Typography>
+										</Stack>
+									</>
+								}
+							/>
+							<Tab
+								label={
+									<>
+										<Stack
+											direction='row'
+											spacing={0.5}>
+											<SettingsSuggestIcon />
+											<Typography>Preferences</Typography>
+										</Stack>
+									</>
+								}
+							/>
+						</Tabs>
+					</Stack>
 				</Card>
 			</>
 		);
