@@ -9,7 +9,7 @@ export function UserCognitoToDto(user: any): UserDto {
 		values[attribute.Name] = attribute.Value;
 	});
 
-	dto.id = user['Username'];
+	dto.id = user.Username;
 	dto.name = values.name || '';
 	dto.surname = values.family_name || '';
 	dto.birthdate = values.birthdate || '';

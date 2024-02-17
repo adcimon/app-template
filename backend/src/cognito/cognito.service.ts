@@ -182,6 +182,7 @@ export class CognitoService implements OnModuleInit {
 		const users: any[] = [];
 		while (true) {
 			const command = new AWS.ListUsersCommand(params);
+
 			const response: any = await this.client.send(command);
 			const fetchedUsers: any[] = response.Users;
 
