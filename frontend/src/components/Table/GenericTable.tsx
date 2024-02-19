@@ -17,6 +17,9 @@ import Typography from '@mui/material/Typography';
 import { ConfirmationDialog } from '../Dialog/ConfirmationDialog';
 import { GenericDialog } from '../Dialog/GenericDialog';
 
+const RowsPerPageRange = [5, 10, 25] as const;
+type RowsPerPageType = (typeof RowsPerPageRange)[number];
+
 interface IGenericTableProps {
 	title?: React.ReactNode;
 	items: any[];
@@ -24,6 +27,7 @@ interface IGenericTableProps {
 	row?: (item: any) => React.ReactNode[];
 	dialog?: React.ReactNode;
 	validate?: () => boolean;
+	rowsPerPage?: RowsPerPageType;
 	onSelect?: (item: any) => void;
 	onDeselect?: () => void;
 	onCreate?: () => Promise<boolean>;
@@ -225,7 +229,7 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 								onRowsPerPageChange={handleRowsPerPageChange}
 								page={state.page}
 								rowsPerPage={state.rowsPerPage}
-								rowsPerPageOptions={[5, 10, 25]}
+								rowsPerPageOptions={Array.from(RowsPerPageRange)}
 							/>
 						</Stack>
 					</Card>
