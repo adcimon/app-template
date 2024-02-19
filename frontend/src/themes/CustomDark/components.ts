@@ -171,6 +171,7 @@ export function createComponents(config: any) {
 			styleOverrides: {
 				input: {
 					'&::placeholder': {
+						color: palette.text.secondary,
 						opacity: 1,
 					},
 				},
