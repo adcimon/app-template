@@ -43,7 +43,7 @@ export const UsersView: React.FC<IUsersViewProps> = (props: IUsersViewProps): JS
 
 	const getUsers = async () => {
 		try {
-			const users: any = await props.appState.backendClient?.getUsers();
+			const users: any = await props.appState.backendClient?.usersClient.getUsers();
 			setState({
 				...state,
 				users: users,

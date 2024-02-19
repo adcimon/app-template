@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { IBackendClient } from '../components/BackendManager/IBackendClient';
+import { IBackendClient } from '../clients/backend/backendClient';
 
 export enum AppViewType {
 	SignIn,

@@ -21,7 +21,7 @@ export const AppView: React.FC<IAppViewProps> = (props: IAppViewProps): JSX.Elem
 
 	const autoAuth = async () => {
 		try {
-			await props.appState.backendClient?.getMyUser();
+			await props.appState.backendClient?.usersClient.getMyUser();
 			props.setAppState({
 				...props.appState,
 				appView: AppViewType.Main,

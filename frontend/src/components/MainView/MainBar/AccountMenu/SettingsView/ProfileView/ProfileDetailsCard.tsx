@@ -56,13 +56,13 @@ export const ProfileDetailsCard: React.FC<IProfileDetailsCardProps> = (
 
 	const handleSave = async () => {
 		try {
-			const user: any = await props.appState.backendClient?.updateMyUser(
-				state.name,
-				state.surname,
-				state.birthdate,
-				state.country,
-				state.timezone,
-			);
+			const user: any = await props.appState.backendClient?.usersClient.updateMyUser({
+				name: state.name,
+				surname: state.surname,
+				birthdate: state.birthdate,
+				country: state.country,
+				timezone: state.timezone,
+			});
 			props.setAppState({
 				...props.appState,
 				user: user,

@@ -60,7 +60,7 @@ export const UserAvatar: React.FC<IUserAvatarProps> = (props: IUserAvatarProps):
 	const handleAccept = async () => {
 		const update = async () => {
 			try {
-				const user: any = await props.appState.backendClient?.updateMyAvatar(state.avatar);
+				const user: any = await props.appState.backendClient?.usersClient.updateMyAvatar(state.avatar);
 				props.setAppState({
 					...props.appState,
 					user: user,

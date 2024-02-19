@@ -5,7 +5,7 @@ import { PasswordInterceptor } from '../interceptors/password.interceptor';
 import { ResponseInterceptor } from '../interceptors/response.interceptor';
 import { ValidationPipe } from '../validation/validation.pipe';
 import { UsersSchema } from './users.schema';
-import { UserDto } from '../dtos/user.dto';
+import { UserDto } from './user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -32,14 +32,13 @@ export class UsersController {
 		@Request() request,
 		@Body(new ValidationPipe(UsersSchema.UpdateMyUserSchema)) body: any,
 	): Promise<UserDto> {
-		return await this.usersService.updateMyUser(
-			request.accessToken,
-			body.name,
-			body.surname,
-			body.birthdate,
-			body.country,
-			body.timezone,
-		);
+		return await this.usersService.updateMyUser(request.accessToken, {
+			name: body.name,
+			surname: body.surname,
+			birthdate: body.birthdate,
+			country: body.country,
+			timezone: body.timezone,
+		});
 	}
 
 	@Patch('/me/email')

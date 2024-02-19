@@ -1,4 +1,4 @@
-import { UserDto } from '../dtos/user.dto';
+import { UserDto } from '../users/user.dto';
 
 export function UserCognitoToDto(user: any): UserDto {
 	const dto: UserDto = new UserDto();

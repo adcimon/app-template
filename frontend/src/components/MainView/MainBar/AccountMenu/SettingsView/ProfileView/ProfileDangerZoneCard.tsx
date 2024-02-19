@@ -43,7 +43,7 @@ export const ProfileDangerZoneCard: React.FC<IProfileDangerZoneCardProps> = (
 
 	const handleAcceptDeleteAccount = async () => {
 		try {
-			await props.appState.backendClient?.signDown(state.password);
+			await props.appState.backendClient?.authClient.signDown(state.password);
 			props.setAppState({
 				...props.appState,
 				appView: AppViewType.SignIn,

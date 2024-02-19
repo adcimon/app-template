@@ -6,8 +6,8 @@ import { ResponseInterceptor } from '../interceptors/response.interceptor';
 import { ValidationPipe } from '../validation/validation.pipe';
 import { AuthSchema } from './auth.schema';
 import { StatusDto } from '../dtos/status.dto';
-import { CredentialsDto } from '../dtos/credentials.dto';
-import { UserDto } from '../dtos/user.dto';
+import { CredentialsDto } from './credentials.dto';
+import { UserDto } from '../users/user.dto';
 
 @Controller('auth')
 export class AuthController {

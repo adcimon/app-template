@@ -113,7 +113,7 @@ export const AccountMenu: React.FC<IAccountMenuProps> = (props: IAccountMenuProp
 
 	const handleAcceptSignOut = async () => {
 		try {
-			await props.appState.backendClient?.signOut();
+			await props.appState.backendClient?.authClient.signOut();
 		} catch (error: any) {
 			// Ignore errors.
 		} finally {

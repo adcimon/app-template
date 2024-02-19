@@ -1,6 +1,6 @@
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
-import { UserDto } from '../dtos/user.dto';
+import { UserDto } from '../users/user.dto';
 import { UnauthorizedException } from '../exceptions/unauthorized.exception';
 
 @Injectable()

@@ -1,7 +1,7 @@
 import React from 'react';
 import axios, { AxiosInstance } from 'axios';
 import { AppViewType, AppStateType } from '../../states/AppState';
-import { IBackendClient } from './IBackendClient';
+import { IBackendClient, newBackendClient } from '../../clients/backend/backendClient';
 
 interface IBackendManagerProps {
 	children?: React.ReactNode;
@@ -136,9 +136,10 @@ export const BackendManager: React.FC<IBackendManagerProps> = (props: IBackendMa
 		}
 	};
 
-	const httpDelete = async (endpoint: string, useAuthorization: boolean = false) => {
+	const httpDelete = async (endpoint: string, data: object, useAuthorization: boolean = false) => {
 		const call = async () => {
 			const config = getHttpConfig(useAuthorization);
+			config.data = data;
 			return await instance?.delete(endpoint, config);
 		};
 		try {
@@ -148,11 +149,16 @@ export const BackendManager: React.FC<IBackendManagerProps> = (props: IBackendMa
 		}
 	};
 
+	const cancelRequests = () => {
+		controller?.abort();
+		createInstance();
+	};
+
 	const handleError = async (call: any, error: any) => {
 		if (error?.code === 'unauthorized') {
 			// Try to refresh the access token.
 			try {
-				await client.refreshToken();
+				await client.authClient.refreshToken();
 			} catch (err: any) {}
 
 			// Call the API endpoint again.
@@ -176,148 +182,7 @@ export const BackendManager: React.FC<IBackendManagerProps> = (props: IBackendMa
 		}
 	};
 
-	const client: IBackendClient = (() => {
-		return {
-			cancelRequests: () => {
-				controller?.abort();
-				createInstance();
-			},
-			signUp: async (email: string, password: string): Promise<any> => {
-				return httpPost('/auth/signup', {
-					email,
-					password: btoa(password),
-				});
-			},
-			signDown: async (password: string): Promise<any> => {
-				const response: any = await httpPost(
-					'/auth/signdown',
-					{
-						password: btoa(password),
-					},
-					true,
-				);
-
-				localStorage.removeItem('accessToken');
-				localStorage.removeItem('refreshToken');
-
-				return response;
-			},
-			signIn: async (email: string, password: string): Promise<any> => {
-				const response: any = await httpPost('/auth/signin', {
-					email,
-					password: btoa(password),
-				});
-
-				const accessToken: string = response.accessToken;
-				localStorage.setItem('accessToken', accessToken);
-				const refreshToken: string = response.refreshToken;
-				localStorage.setItem('refreshToken', refreshToken);
-
-				return response;
-			},
-			signOut: async (): Promise<any> => {
-				const response: any = await httpPost('/auth/signout', {}, true);
-
-				localStorage.removeItem('accessToken');
-				localStorage.removeItem('refreshToken');
-
-				return response;
-			},
-			refreshToken: async (): Promise<any> => {
-				const response: any = await httpPost('/auth/refresh-token', {
-					refreshToken: localStorage.getItem('refreshToken'),
-				});
-
-				const accessToken: string = response.accessToken;
-				localStorage.setItem('accessToken', accessToken);
-
-				return response;
-			},
-			forgotPassword: async (email: string): Promise<any> => {
-				return httpPost('/auth/forgot-password', {
-					email,
-				});
-			},
-			changePassword: async (email: string, code: string, password: string): Promise<any> => {
-				return httpPost('/auth/change-password', {
-					email,
-					code,
-					password: btoa(password),
-				});
-			},
-			verifyEmail: async (code: string): Promise<any> => {
-				return httpPost(
-					'/auth/verify-email',
-					{
-						code,
-					},
-					true,
-				);
-			},
-			getUsers: async (): Promise<any> => {
-				return httpGet('/users', true);
-			},
-			getMyUser: async (): Promise<any> => {
-				return httpGet('/users/me', true);
-			},
-			updateMyUser: async (
-				name: string,
-				surname: string,
-				birthdate: string,
-				country: string,
-				timezone: string,
-			): Promise<any> => {
-				return httpPatch(
-					'/users/me',
-					{
-						name,
-						surname,
-						birthdate,
-						country,
-						timezone,
-					},
-					true,
-				);
-			},
-			updateMyEmail: async (email: string): Promise<any> => {
-				return httpPatch(
-					'/users/me/email',
-					{
-						email,
-					},
-					true,
-				);
-			},
-			updateMyPhone: async (phone: string): Promise<any> => {
-				return httpPatch(
-					'/users/me/phone',
-					{
-						phone,
-					},
-					true,
-				);
-			},
-			updateMyPassword: async (currentPassword: string, newPassword: string): Promise<any> => {
-				return httpPatch(
-					'/users/me/password',
-					{
-						currentPassword: btoa(currentPassword),
-						newPassword: btoa(newPassword),
-					},
-					true,
-				);
-			},
-			updateMyAvatar: async (avatar: string): Promise<any> => {
-				return httpPatch(
-					'/users/me/avatar',
-					{
-						avatar,
-					},
-					true,
-				);
-			},
-		};
-	})();
+	const client: IBackendClient = newBackendClient(httpGet, httpPost, httpPatch, httpPut, httpDelete, cancelRequests);
 
 	const render = () => {
 		return <>{props.appState.backendClient && props.children}</>;

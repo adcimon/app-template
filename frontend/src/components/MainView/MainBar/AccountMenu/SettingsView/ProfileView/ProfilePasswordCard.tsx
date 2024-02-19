@@ -55,7 +55,7 @@ export const ProfilePasswordCard: React.FC<IProfilePasswordCardProps> = (
 
 	const handleAcceptChange = async () => {
 		try {
-			await props.appState.backendClient?.updateMyPassword(state.currentPassword, state.newPassword);
+			await props.appState.backendClient?.usersClient.updateMyPassword(state.currentPassword, state.newPassword);
 			toast.success('Password changed');
 		} catch (error: any) {
 			toast.error(error.message);
