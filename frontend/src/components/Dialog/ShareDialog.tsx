@@ -79,7 +79,11 @@ export const ShareDialog: React.FC<IShareDialogProps> = (props: IShareDialogProp
 										backgroundColor: 'primary.main',
 										transform: 'scale(0.9)',
 									}}>
-									<ShareIcon />
+									<ShareIcon
+										sx={{
+											color: 'white',
+										}}
+									/>
 								</IconButton>
 								<Typography variant='h5'>Share</Typography>
 							</Stack>
@@ -99,7 +103,10 @@ export const ShareDialog: React.FC<IShareDialogProps> = (props: IShareDialogProp
 					sx={props.sx}>
 					<Stack
 						direction='column'
-						spacing={3}>
+						spacing={3}
+						sx={{
+							marginTop: '5px',
+						}}>
 						<CopyField
 							inputRef={copyFieldRef}
 							label={props.label}
