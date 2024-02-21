@@ -10,7 +10,7 @@ import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { ConfirmationDialog } from '../../../../../Dialog/ConfirmationDialog';
-import { PasswordField } from '../../../../../PasswordField/PasswordField';
+import { PasswordField } from '../../../../../Field/PasswordField';
 import { AppStateType } from '../../../../../../states/AppState';
 
 interface IProfilePasswordCardProps {

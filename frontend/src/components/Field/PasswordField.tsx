@@ -32,12 +32,16 @@ export const PasswordField: React.FC<TextFieldProps> = (props: TextFieldProps): 
 		return (
 			<>
 				<TextField
+					inputRef={props.inputRef}
 					label={props.label}
 					placeholder={props.placeholder}
 					type={state.showPassword ? 'text' : 'password'}
 					value={props.value}
 					onChange={props.onChange}
+					onFocus={props.onFocus}
 					onMouseLeave={handleMouseLeave}
+					helperText={props.helperText}
+					disabled={props.disabled}
 					required={props.required}
 					autoFocus={props.autoFocus}
 					fullWidth={props.fullWidth}

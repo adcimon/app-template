@@ -9,7 +9,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { Copyright } from '../Copyright/Copyright';
 import { Logo } from '../Logo/Logo';
-import { PasswordField } from '../PasswordField/PasswordField';
+import { PasswordField } from '../Field/PasswordField';
 import { PrivacyPolicyDialog } from '../Dialog/PrivacyPolicyDialog';
 import { TermsOfServiceDialog } from '../Dialog/TermsOfServiceDialog';
 import { AppViewType, AppStateType } from '../../states/AppState';
