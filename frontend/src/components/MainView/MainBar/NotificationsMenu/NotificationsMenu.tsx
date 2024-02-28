@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import { GenericPopover } from '../../../Popover/GenericPopover';
 import { NotificationItem } from './NotificationItem';
@@ -55,18 +56,22 @@ export const NotificationsMenu: React.FC<INotificationsMenuProps> = (props: INot
 	const render = () => {
 		return (
 			<>
-				<IconButton
-					ref={ref}
-					onClick={handleClick}
-					sx={{
-						color: 'white',
-					}}>
-					<Badge
-						badgeContent={state?.notifications.length}
-						color='error'>
-						<NotificationsIcon />
-					</Badge>
-				</IconButton>
+				<Tooltip
+					title='Notifications'
+					placement='bottom'>
+					<IconButton
+						ref={ref}
+						onClick={handleClick}
+						sx={{
+							color: 'white',
+						}}>
+						<Badge
+							badgeContent={state?.notifications.length}
+							color='error'>
+							<NotificationsIcon />
+						</Badge>
+					</IconButton>
+				</Tooltip>
 				<GenericPopover
 					anchorEl={ref}
 					open={state.open}
