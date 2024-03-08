@@ -30,7 +30,7 @@ export const GenericDialog: React.FC<IGenericDialogProps> = (props: IGenericDial
 				position: 'absolute',
 				width: '100%',
 				'& .MuiDialogContent-root': {
-					padding: '0',
+					paddingY: '0',
 				},
 		  }
 		: undefined;
