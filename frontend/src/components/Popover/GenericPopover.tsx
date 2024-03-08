@@ -41,7 +41,7 @@ export const GenericPopover: React.FC<IGenericPopoverProps> = (props: IGenericPo
 						open={props.open}
 						onClose={props.onClose}
 						sx={{
-							paddingX: '0px',
+							paddingX: '0',
 						}}>
 						{props.children}
 					</GenericDialog>
