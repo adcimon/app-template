@@ -48,7 +48,7 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 		openItemDialog: false,
 		openDeleteDialog: false,
 		page: 0,
-		rowsPerPage: 5,
+		rowsPerPage: props.rowsPerPage || 5,
 		item: null,
 	});
 
@@ -236,15 +236,8 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 				</Stack>
 				<GenericDialog
 					open={state.openItemDialog}
-					onClose={handleCloseDialog}>
-					<Box
-						sx={{
-							margin: -1.5,
-							padding: 2,
-						}}>
-						<Stack
-							direction='column'
-							spacing={3}>
+					title={
+						<>
 							<Stack
 								direction='row'
 								sx={{
@@ -265,9 +258,14 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 									</IconButton>
 								)}
 							</Stack>
-							{props.dialog}
-						</Stack>
-					</Box>
+						</>
+					}
+					onClose={handleCloseDialog}>
+					<Stack
+						direction='column'
+						spacing={2}>
+						{props.dialog}
+					</Stack>
 					<DialogActions>
 						{props.onUpdate && (
 							<Button
