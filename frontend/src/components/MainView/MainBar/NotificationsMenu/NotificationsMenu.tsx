@@ -58,7 +58,19 @@ export const NotificationsMenu: React.FC<INotificationsMenuProps> = (props: INot
 			<>
 				<Tooltip
 					title='Notifications'
-					placement='bottom'>
+					placement='bottom'
+					slotProps={{
+						popper: {
+							modifiers: [
+								{
+									name: 'offset',
+									options: {
+										offset: [0, -10],
+									},
+								},
+							],
+						},
+					}}>
 					<IconButton
 						ref={ref}
 						onClick={handleClick}
