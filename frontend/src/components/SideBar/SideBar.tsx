@@ -1,12 +1,14 @@
 import * as React from 'react';
 import { Theme, useTheme, useMediaQuery } from '@mui/material';
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 
 interface ISideBarProps {
 	open: boolean;
 	title?: React.ReactNode;
+	responsive?: boolean;
+	height?: number | string;
+	width?: number | string;
 	onClose?: (event: {}, reason: 'backdropClick' | 'escapeKeyDown') => void;
 	children?: React.ReactNode;
 }
@@ -16,37 +18,37 @@ export const SideBar: React.FC<ISideBarProps> = (props: ISideBarProps): JSX.Elem
 	const responsive = useMediaQuery(theme.breakpoints.down('md'));
 
 	const render = () => {
+		const isResponsive: boolean = (props.responsive ?? false) && responsive;
 		return (
 			<>
 				<Drawer
-					anchor={responsive ? 'bottom' : 'right'}
+					anchor={isResponsive ? 'bottom' : 'right'}
 					open={props.open}
-					onClose={props.onClose}>
-					<Box
-						sx={{
+					onClose={props.onClose}
+					sx={{
+						'& .MuiDrawer-paper': {
 							borderLeftColor: 'rgba(145, 158, 171, 0.2)',
 							borderLeftStyle: 'solid',
 							borderLeftWidth: '1px',
-							height: responsive ? '350px' : '100%',
-							width: responsive ? '100%' : '480px',
-						}}>
-						{props.title && (
-							<>
-								<Box
-									sx={{
-										padding: '15px',
-									}}>
-									{props.title}
-								</Box>
-								<Divider />
-							</>
-						)}
+							height: isResponsive ? props.height || '350px' : '100%',
+							width: isResponsive ? '100%' : props.width || '480px',
+						},
+					}}>
+					{props.title && (
 						<Box
 							sx={{
 								padding: '15px',
 							}}>
-							{props.children}
+							{props.title}
 						</Box>
+					)}
+					<Box
+						sx={{
+							overflowY: 'auto',
+							paddingBottom: '15px',
+							paddingX: '15px',
+						}}>
+						{props.children}
 					</Box>
 				</Drawer>
 			</>
