@@ -168,50 +168,44 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 					}}>
 					{props.title && <Box>{props.title}</Box>}
 					<Card>
-						<Box
-							sx={{
-								overflowX: 'auto',
-							}}>
-							<Table>
-								<TableHead>
-									<TableRow>
-										{props.head
-											? props.head().map((node: React.ReactNode, index: number) => {
-													return <TableCell key={index}>{node}</TableCell>;
-											  })
-											: null}
-									</TableRow>
-								</TableHead>
-								<TableBody>
-									{applyPagination(props.items, state.page, state.rowsPerPage).map(
-										(item: any, index: number) => {
-											return (
-												<TableRow
-													key={index}
-													onClick={() => handleClickRow(item)}
-													hover
-													sx={{
-														cursor: 'pointer',
-													}}>
-													{props.row
-														? props
-																.row(item)
-																.map((node: React.ReactNode, index: number) => {
-																	return <TableCell key={index}>{node}</TableCell>;
-																})
-														: null}
-												</TableRow>
-											);
-										},
-									)}
-								</TableBody>
-							</Table>
-						</Box>
+						<Table>
+							<TableHead>
+								<TableRow>
+									{props.head
+										? props.head().map((node: React.ReactNode, index: number) => {
+												return <TableCell key={index}>{node}</TableCell>;
+										  })
+										: null}
+								</TableRow>
+							</TableHead>
+							<TableBody>
+								{applyPagination(props.items, state.page, state.rowsPerPage).map(
+									(item: any, index: number) => {
+										return (
+											<TableRow
+												key={index}
+												onClick={() => handleClickRow(item)}
+												hover
+												sx={{
+													cursor: 'pointer',
+												}}>
+												{props.row
+													? props.row(item).map((node: React.ReactNode, index: number) => {
+															return <TableCell key={index}>{node}</TableCell>;
+													  })
+													: null}
+											</TableRow>
+										);
+									},
+								)}
+							</TableBody>
+						</Table>
 						<Stack
 							direction='row'
 							sx={{
 								alignItems: 'center',
 								justifyContent: props.onCreate ? 'space-between' : 'flex-end',
+								width: '100%',
 							}}>
 							{props.onCreate && (
 								<IconButton
