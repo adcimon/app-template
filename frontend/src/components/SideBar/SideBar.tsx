@@ -24,6 +24,9 @@ export const SideBar: React.FC<ISideBarProps> = (props: ISideBarProps): JSX.Elem
 					onClose={props.onClose}>
 					<Box
 						sx={{
+							borderLeftColor: 'rgba(145, 158, 171, 0.2)',
+							borderLeftStyle: 'solid',
+							borderLeftWidth: '1px',
 							height: responsive ? '350px' : '100%',
 							width: responsive ? '100%' : '480px',
 						}}>
