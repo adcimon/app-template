@@ -43,7 +43,7 @@ export const SideBar: React.FC<ISideBarProps> = (props: ISideBarProps): JSX.Elem
 						)}
 						<Box
 							sx={{
-								padding: '10px',
+								padding: '15px',
 							}}>
 							{props.children}
 						</Box>
