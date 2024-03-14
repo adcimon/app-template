@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Theme, useTheme, useMediaQuery } from '@mui/material';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
+import Stack from '@mui/material/Stack';
 
 interface ISideBarProps {
 	open: boolean;
@@ -34,22 +35,30 @@ export const SideBar: React.FC<ISideBarProps> = (props: ISideBarProps): JSX.Elem
 							width: isResponsive ? '100%' : props.width || '480px',
 						},
 					}}>
-					{props.title && (
+					<Stack
+						direction='column'
+						sx={{
+							height: '100%',
+							width: '100%',
+						}}>
+						{props.title && (
+							<Box
+								sx={{
+									padding: '15px',
+								}}>
+								{props.title}
+							</Box>
+						)}
 						<Box
 							sx={{
-								padding: '15px',
+								flexGrow: '1',
+								overflowY: 'auto',
+								paddingBottom: '15px',
+								paddingX: '15px',
 							}}>
-							{props.title}
+							{props.children}
 						</Box>
-					)}
-					<Box
-						sx={{
-							overflowY: 'auto',
-							paddingBottom: '15px',
-							paddingX: '15px',
-						}}>
-						{props.children}
-					</Box>
+					</Stack>
 				</Drawer>
 			</>
 		);
