@@ -51,6 +51,7 @@ export const SideBar: React.FC<ISideBarProps> = (props: ISideBarProps): JSX.Elem
 						)}
 						<Box
 							sx={{
+								flexBasis: '0',
 								flexGrow: '1',
 								overflowY: 'auto',
 								paddingBottom: '15px',
