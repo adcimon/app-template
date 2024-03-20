@@ -22,7 +22,10 @@ export const MainBar: React.FC<IMainBarProps> = (props: IMainBarProps): JSX.Elem
 						height: props.height,
 						justifyContent: 'center',
 					}}>
-					<Toolbar>
+					<Toolbar
+						sx={{
+							paddingX: '16px !important',
+						}}>
 						{/* Left */}
 						<Box
 							sx={{
