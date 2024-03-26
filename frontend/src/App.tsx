@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { RecoilRoot } from 'recoil';
 import { ThemeManagerContainer } from './components/ThemeManager/ThemeManagerContainer';
-import { BackendManagerContainer } from './components/BackendManager/BackendManagerContainer';
+import { ApiManagerContainer } from './components/ApiManager/ApiManagerContainer';
 import { Toaster } from 'react-hot-toast';
 import { AppViewContainer } from './components/AppView/AppViewContainer';
 
@@ -10,7 +10,7 @@ export default function App() {
 		<>
 			<RecoilRoot>
 				<ThemeManagerContainer>
-					<BackendManagerContainer>
+					<ApiManagerContainer>
 						<Toaster
 							containerStyle={{
 								top: '10px',
@@ -21,7 +21,7 @@ export default function App() {
 							}}
 						/>
 						<AppViewContainer />
-					</BackendManagerContainer>
+					</ApiManagerContainer>
 				</ThemeManagerContainer>
 			</RecoilRoot>
 		</>

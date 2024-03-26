@@ -20,7 +20,7 @@ export const ProfileView: React.FC<IProfileViewProps> = (props: IProfileViewProp
 
 	const getMyUser = async () => {
 		try {
-			const user: any = await props.appState.backendClient?.usersClient.getMyUser();
+			const user: any = await props.appState.apiClient?.usersClient.getMyUser();
 			props.setAppState({
 				...props.appState,
 				user: user,

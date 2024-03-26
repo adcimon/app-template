@@ -80,7 +80,7 @@ export const SignUpView: React.FC<ISignUpViewProps> = (props: ISignUpViewProps):
 
 	const handleSignUp = async () => {
 		try {
-			await props.appState.backendClient?.authClient.signUp(state.email, state.password);
+			await props.appState.apiClient?.authClient.signUp(state.email, state.password);
 			props.setAppState({
 				...props.appState,
 				appView: AppViewType.SignIn,

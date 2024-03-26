@@ -47,7 +47,7 @@ export const ProfilePhoneCard: React.FC<IProfilePhoneCardProps> = (props: IProfi
 
 	const handleAcceptChange = async () => {
 		try {
-			const user: any = await props.appState.backendClient?.usersClient.updateMyPhone(state.phone);
+			const user: any = await props.appState.apiClient?.usersClient.updateMyPhone(state.phone);
 			props.setAppState({
 				...props.appState,
 				user: user,

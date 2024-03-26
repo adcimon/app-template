@@ -20,7 +20,7 @@ export const MainView: React.FC<IMainViewProps> = (props: IMainViewProps): JSX.E
 
 	const getMyUser = async () => {
 		try {
-			const user: any = await props.appState.backendClient?.usersClient.getMyUser();
+			const user: any = await props.appState.apiClient?.usersClient.getMyUser();
 			props.setAppState({
 				...props.appState,
 				user: user,

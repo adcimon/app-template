@@ -28,7 +28,7 @@ export const SignInView: React.FC<ISignInViewProps> = (props: ISignInViewProps):
 
 	const handleSignIn = async () => {
 		try {
-			await props.appState.backendClient?.authClient.signIn(state.email, state.password);
+			await props.appState.apiClient?.authClient.signIn(state.email, state.password);
 			props.setAppState({
 				...props.appState,
 				appView: AppViewType.Main,

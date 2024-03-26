@@ -50,7 +50,7 @@ export const ForgotPasswordView: React.FC<IForgotPasswordViewProps> = (
 
 	const handleSendCode = async () => {
 		try {
-			await props.appState.backendClient?.authClient.forgotPassword(state.email);
+			await props.appState.apiClient?.authClient.forgotPassword(state.email);
 			toast.success('Code sent');
 		} catch (error: any) {
 			toast.error(error.message);
@@ -59,7 +59,7 @@ export const ForgotPasswordView: React.FC<IForgotPasswordViewProps> = (
 
 	const handleChange = async () => {
 		try {
-			await props.appState.backendClient?.authClient.changePassword(state.email, state.code, state.password);
+			await props.appState.apiClient?.authClient.changePassword(state.email, state.code, state.password);
 			props.setAppState({
 				...props.appState,
 				appView: AppViewType.SignIn,

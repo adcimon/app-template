@@ -1,15 +1,15 @@
 import React from 'react';
 import axios, { AxiosInstance } from 'axios';
 import { AppViewType, AppStateType } from '../../states/AppState';
-import { IBackendClient, newBackendClient } from '../../clients/backend/backendClient';
+import { IApiClient, newApiClient } from '../../clients/api/apiClient';
 
-interface IBackendManagerProps {
+interface IApiManagerProps {
 	children?: React.ReactNode;
 	appState: AppStateType;
 	setAppState: (state: AppStateType) => void;
 }
 
-export const BackendManager: React.FC<IBackendManagerProps> = (props: IBackendManagerProps): JSX.Element => {
+export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps): JSX.Element => {
 	let endpoint: string = 'http://127.0.0.1:9000';
 	let instance: AxiosInstance | null = null;
 	let controller: AbortController | null = null;
@@ -25,7 +25,7 @@ export const BackendManager: React.FC<IBackendManagerProps> = (props: IBackendMa
 
 		props.setAppState({
 			...props.appState,
-			backendClient: client,
+			apiClient: client,
 		});
 	};
 
@@ -170,7 +170,7 @@ export const BackendManager: React.FC<IBackendManagerProps> = (props: IBackendMa
 
 				props.setAppState({
 					...props.appState,
-					backendClient: client,
+					apiClient: client,
 					appView: AppViewType.SignIn,
 					user: {},
 				});
@@ -182,10 +182,10 @@ export const BackendManager: React.FC<IBackendManagerProps> = (props: IBackendMa
 		}
 	};
 
-	const client: IBackendClient = newBackendClient(httpGet, httpPost, httpPatch, httpPut, httpDelete, cancelRequests);
+	const client: IApiClient = newApiClient(httpGet, httpPost, httpPatch, httpPut, httpDelete, cancelRequests);
 
 	const render = () => {
-		return <>{props.appState.backendClient && props.children}</>;
+		return <>{props.appState.apiClient && props.children}</>;
 	};
 
 	return render();

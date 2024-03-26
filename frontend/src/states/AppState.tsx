@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { IBackendClient } from '../clients/backend/backendClient';
+import { IApiClient } from '../clients/api/apiClient';
 
 export enum AppViewType {
 	SignIn,
@@ -9,7 +9,7 @@ export enum AppViewType {
 }
 
 export type AppStateType = {
-	backendClient: IBackendClient | null;
+	apiClient: IApiClient | null;
 	appView: AppViewType;
 	theme: number;
 	error: Error | null;
@@ -17,7 +17,7 @@ export type AppStateType = {
 };
 
 export const defaultAppState = {
-	backendClient: null,
+	apiClient: null,
 	appView: AppViewType.SignIn,
 	theme: 0,
 	error: null,
@@ -25,9 +25,9 @@ export const defaultAppState = {
 };
 
 export const resetAppState = (appState: AppStateType) => {
-	const { backendClient, theme, ...newDefaultAppState } = defaultAppState;
+	const { apiClient, theme, ...newDefaultAppState } = defaultAppState;
 	return {
-		backendClient: appState.backendClient,
+		apiClient: appState.apiClient,
 		theme: appState.theme,
 		...newDefaultAppState,
 	};

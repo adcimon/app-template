@@ -52,8 +52,8 @@ export const ProfileEmailCard: React.FC<IProfileEmailCardProps> = (props: IProfi
 
 	const handleAcceptVerify = async () => {
 		try {
-			await props.appState.backendClient?.authClient.verifyEmail(state.code);
-			const user: any = await props.appState.backendClient?.usersClient.getMyUser();
+			await props.appState.apiClient?.authClient.verifyEmail(state.code);
+			const user: any = await props.appState.apiClient?.usersClient.getMyUser();
 			props.setAppState({
 				...props.appState,
 				user: user,
@@ -85,7 +85,7 @@ export const ProfileEmailCard: React.FC<IProfileEmailCardProps> = (props: IProfi
 
 	const handleAcceptChange = async () => {
 		try {
-			await props.appState.backendClient?.usersClient.updateMyEmail(state.email);
+			await props.appState.apiClient?.usersClient.updateMyEmail(state.email);
 			toast.success('Verification code sent');
 		} catch (error: any) {
 			toast.error(error.message);
