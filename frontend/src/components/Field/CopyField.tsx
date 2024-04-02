@@ -69,6 +69,7 @@ export const CopyField: React.FC<TextFieldProps> = (props: TextFieldProps): JSX.
 							</InputAdornment>
 						),
 					}}
+					sx={props.sx}
 				/>
 			</>
 		);

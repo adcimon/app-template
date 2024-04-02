@@ -54,6 +54,7 @@ export const SendField: React.FC<TextFieldProps> = (props: TextFieldProps): JSX.
 							},
 						},
 					}}
+					sx={props.sx}
 				/>
 			</>
 		);

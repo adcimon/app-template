@@ -58,6 +58,7 @@ export const PasswordField: React.FC<TextFieldProps> = (props: TextFieldProps): 
 							</InputAdornment>
 						),
 					}}
+					sx={props.sx}
 				/>
 			</>
 		);
