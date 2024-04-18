@@ -1,0 +1,196 @@
+import * as React from 'react';
+import toast from 'react-hot-toast';
+import Button from '@mui/material/Button';
+import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Grid from '@mui/material/Grid';
+import Link from '@mui/material/Link';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import { Copyright } from '../../components/Copyright/Copyright';
+import { Logo } from '../../components/Logo/Logo';
+import { PasswordField } from '../../components/Field/PasswordField';
+import { PrivacyPolicyDialog } from '../../components/Dialog/PrivacyPolicyDialog';
+import { TermsOfServiceDialog } from '../../components/Dialog/TermsOfServiceDialog';
+import { AppViewType, AppStateType } from '../../states/AppState';
+import { Utils } from '../../utils/utils';
+
+interface ISignUpViewProps {
+	appState: AppStateType;
+	setAppState: (state: AppStateType) => void;
+}
+
+interface ISignUpViewState {
+	openTermsOfService: boolean;
+	openPrivacyPolicy: boolean;
+	email: string;
+	password: string;
+	confirmPassword: string;
+	legalAccepted: boolean;
+}
+
+export const SignUpView: React.FC<ISignUpViewProps> = (props: ISignUpViewProps): JSX.Element => {
+	const [state, setState] = React.useState<ISignUpViewState>({
+		openTermsOfService: false,
+		openPrivacyPolicy: false,
+		email: '',
+		password: '',
+		confirmPassword: '',
+		legalAccepted: false,
+	});
+
+	const validate = (): boolean => {
+		return (
+			Utils.EMAIL_REGEXP.test(state.email) &&
+			state.password !== '' &&
+			state.password === state.confirmPassword &&
+			state.legalAccepted
+		);
+	};
+
+	const handleOpenTermsOfService = (event: React.MouseEvent<HTMLElement>) => {
+		event.preventDefault();
+		setState({
+			...state,
+			openTermsOfService: true,
+		});
+	};
+
+	const handleAcceptTermsOfService = () => {
+		setState({
+			...state,
+			openTermsOfService: false,
+		});
+	};
+
+	const handleOpenPrivacyPolicy = (event: React.MouseEvent<HTMLElement>) => {
+		event.preventDefault();
+		setState({
+			...state,
+			openPrivacyPolicy: true,
+		});
+	};
+
+	const handleAcceptPrivacyPolicy = () => {
+		setState({
+			...state,
+			openPrivacyPolicy: false,
+		});
+	};
+
+	const handleSignUp = async () => {
+		try {
+			await props.appState.apiClient?.authService.signUp(state.email, state.password);
+			props.setAppState({
+				...props.appState,
+				appView: AppViewType.SignIn,
+			});
+			toast.success('Verify your email');
+		} catch (error: any) {
+			toast.error(error.message);
+		}
+	};
+
+	const handleSignIn = () => {
+		props.setAppState({
+			...props.appState,
+			appView: AppViewType.SignIn,
+		});
+	};
+
+	const render = () => {
+		return (
+			<>
+				<Logo />
+				<Typography
+					component='h1'
+					variant='h5'>
+					Sign Up
+				</Typography>
+				<TextField
+					label='Email'
+					value={state.email}
+					onChange={(event: any) => setState({ ...state, email: event.target.value })}
+					required
+					fullWidth
+					margin='normal'
+				/>
+				<PasswordField
+					label='Password'
+					value={state.password}
+					onChange={(event: any) => setState({ ...state, password: event.target.value })}
+					required
+					fullWidth
+					margin='normal'
+				/>
+				<PasswordField
+					label='Confirm Password'
+					value={state.confirmPassword}
+					onChange={(event: any) => setState({ ...state, confirmPassword: event.target.value })}
+					required
+					fullWidth
+					margin='normal'
+				/>
+				<FormControlLabel
+					control={
+						<Checkbox
+							color='primary'
+							value={state.legalAccepted}
+							onChange={(event: any, checked: boolean) =>
+								setState({
+									...state,
+									legalAccepted: checked,
+								})
+							}
+						/>
+					}
+					label={
+						<>
+							<Typography variant='subtitle2'>
+								I have read and agree to the{' '}
+								<Link onClick={handleOpenTermsOfService}>Terms of Service</Link> and{' '}
+								<Link onClick={handleOpenPrivacyPolicy}>Privacy Policy</Link>.
+							</Typography>
+						</>
+					}
+				/>
+				<Button
+					disabled={!validate()}
+					onClick={handleSignUp}
+					fullWidth
+					variant='contained'
+					sx={{
+						marginBottom: 2,
+						marginTop: 3,
+					}}>
+					Sign Up
+				</Button>
+				<Grid
+					container
+					sx={{
+						marginBottom: '25px',
+					}}>
+					<Grid item>
+						<Link
+							href='#'
+							onClick={handleSignIn}
+							variant='body2'>
+							← Already have an account? Sign in
+						</Link>
+					</Grid>
+				</Grid>
+				<Copyright />
+				<TermsOfServiceDialog
+					open={state.openTermsOfService}
+					onClose={handleAcceptTermsOfService}
+				/>
+				<PrivacyPolicyDialog
+					open={state.openPrivacyPolicy}
+					onClose={handleAcceptPrivacyPolicy}
+				/>
+			</>
+		);
+	};
+
+	return render();
+};

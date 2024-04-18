@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { RecoilRoot } from 'recoil';
-import { ThemeManagerContainer } from './components/ThemeManager/ThemeManagerContainer';
-import { ApiManagerContainer } from './components/ApiManager/ApiManagerContainer';
+import { ThemeManagerContainer } from './managers/ThemeManager/ThemeManagerContainer';
+import { ApiManagerContainer } from './managers/ApiManager/ApiManagerContainer';
 import { Toaster } from 'react-hot-toast';
-import { AppViewContainer } from './components/AppView/AppViewContainer';
+import { AppViewContainer } from './views/AppView/AppViewContainer';
 
 export default function App() {
 	return (

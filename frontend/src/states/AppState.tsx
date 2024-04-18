@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { IApiClient } from '../clients/api/apiClient';
+import { IApiClient } from '../api/apiClient';
 
 export enum AppViewType {
 	SignIn,
