@@ -17,7 +17,7 @@ export const MainBar: React.FC<IMainBarProps> = (props: IMainBarProps): JSX.Elem
 		return (
 			<>
 				<AppBar
-					position='fixed'
+					position='relative'
 					sx={{
 						height: props.height,
 						justifyContent: 'center',

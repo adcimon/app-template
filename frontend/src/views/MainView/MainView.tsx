@@ -48,8 +48,7 @@ export const MainView: React.FC<IMainViewProps> = (props: IMainViewProps): JSX.E
 					/>
 					<Box
 						sx={{
-							flexGrow: '1',
-							paddingTop: mainBarHeight,
+							height: `calc(100% - ${mainBarHeight})`,
 							width: '100%',
 						}}>
 						<HomeView />
