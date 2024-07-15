@@ -95,6 +95,7 @@ export function createComponents(config: any) {
 					display: 'flex',
 					flexDirection: 'column',
 					minHeight: '100%',
+					overscrollBehavior: 'contain',
 					width: '100%',
 				},
 				body: {
@@ -102,6 +103,7 @@ export function createComponents(config: any) {
 					flex: '1 1 auto',
 					flexDirection: 'column',
 					minHeight: '100%',
+					overscrollBehavior: 'contain',
 					width: '100%',
 				},
 				'#__next': {
@@ -226,20 +228,39 @@ export function createComponents(config: any) {
 		MuiOutlinedInput: {
 			styleOverrides: {
 				root: {
+					backgroundColor: 'transparent',
+					borderRadius: 8,
+					borderStyle: 'solid',
+					borderWidth: 1,
+					overflow: 'hidden',
+					borderColor: palette.neutral.light,
+					// transition: muiTheme.transitions.create(['border-color', 'box-shadow']),
 					'&:hover': {
-						backgroundColor: palette.action.hover,
+						backgroundColor: 'transparent',
+						borderColor: palette.primary.main,
 						[`& .${outlinedInputClasses.notchedOutline}`]: {
-							borderColor: palette.neutral.light,
+							borderColor: palette.primary.main,
 						},
+					},
+					'&:before': {
+						display: 'none',
+					},
+					'&:after': {
+						display: 'none',
+					},
+					[`&.${outlinedInputClasses.disabled}`]: {
+						backgroundColor: 'transparent',
 					},
 					[`&.${outlinedInputClasses.focused}`]: {
 						backgroundColor: 'transparent',
+						borderColor: palette.primary.main,
 						[`& .${outlinedInputClasses.notchedOutline}`]: {
 							borderColor: palette.primary.main,
 							boxShadow: `${palette.primary.main} 0 0 0 2px`,
 						},
 					},
-					[`&.${filledInputClasses.error}`]: {
+					[`&.${outlinedInputClasses.error}`]: {
+						borderColor: palette.error.main,
 						[`& .${outlinedInputClasses.notchedOutline}`]: {
 							borderColor: palette.error.main,
 							boxShadow: `${palette.error.main} 0 0 0 2px`,
@@ -252,7 +273,7 @@ export function createComponents(config: any) {
 					lineHeight: '24px',
 				},
 				notchedOutline: {
-					borderColor: palette.neutral.light,
+					borderColor: palette.primary.main,
 					// transition: muiTheme.transitions.create(['border-color', 'box-shadow']),
 				},
 			},

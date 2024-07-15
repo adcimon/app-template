@@ -8,6 +8,7 @@ import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { Copyright } from '../../components/Copyright/Copyright';
+import { LaunchView } from '../LaunchView/LaunchView';
 import { Logo } from '../../components/Logo/Logo';
 import { PasswordField } from '../../components/Field/PasswordField';
 import { AppViewType, AppStateType } from '../../states/AppState';
@@ -80,94 +81,96 @@ export const ForgotPasswordView: React.FC<IForgotPasswordViewProps> = (
 	const render = () => {
 		return (
 			<>
-				<Logo />
-				<Typography
-					component='h1'
-					variant='h5'>
-					Forgot Password
-				</Typography>
-				<TextField
-					label='Email'
-					value={state.email}
-					onChange={(event: any) => setState({ ...state, email: event.target.value })}
-					required
-					fullWidth
-					margin='normal'
-					InputProps={{
-						endAdornment: (
-							<InputAdornment position='end'>
-								<Badge
-									badgeContent={1}
-									color='primary'>
-									<Button
-										disabled={!validateSendCode()}
-										onClick={handleSendCode}
-										fullWidth
-										size='small'
-										variant='contained'>
-										Send Code
-									</Button>
-								</Badge>
-							</InputAdornment>
-						),
-					}}
-				/>
-				<TextField
-					label='Code'
-					placeholder='Code sent to your email'
-					value={state.code}
-					onChange={(event: any) => setState({ ...state, code: event.target.value })}
-					required
-					fullWidth
-					margin='normal'
-				/>
-				<PasswordField
-					label='Password'
-					value={state.password}
-					onChange={(event: any) => setState({ ...state, password: event.target.value })}
-					required
-					fullWidth
-					margin='normal'
-				/>
-				<PasswordField
-					label='Confirm Password'
-					value={state.confirmPassword}
-					onChange={(event: any) => setState({ ...state, confirmPassword: event.target.value })}
-					required
-					fullWidth
-					margin='normal'
-				/>
-				<Badge
-					badgeContent={2}
-					color='primary'
-					sx={{
-						marginTop: 2,
-						width: '100%',
-					}}>
-					<Button
-						disabled={!validateChange()}
-						onClick={handleChange}
+				<LaunchView>
+					<Logo />
+					<Typography
+						component='h1'
+						variant='h5'>
+						Forgot Password
+					</Typography>
+					<TextField
+						label='Email'
+						value={state.email}
+						onChange={(event: any) => setState({ ...state, email: event.target.value })}
+						required
 						fullWidth
-						variant='contained'>
-						Change
-					</Button>
-				</Badge>
-				<Grid
-					container
-					sx={{
-						marginBottom: '25px',
-						marginTop: 2,
-					}}>
-					<Grid item>
-						<Link
-							href='#'
-							onClick={handleSignIn}
-							variant='body2'>
-							← Already have an account? Sign in
-						</Link>
+						margin='normal'
+						InputProps={{
+							endAdornment: (
+								<InputAdornment position='end'>
+									<Badge
+										badgeContent={1}
+										color='primary'>
+										<Button
+											disabled={!validateSendCode()}
+											onClick={handleSendCode}
+											fullWidth
+											size='small'
+											variant='contained'>
+											Send Code
+										</Button>
+									</Badge>
+								</InputAdornment>
+							),
+						}}
+					/>
+					<TextField
+						label='Code'
+						placeholder='Code sent to your email'
+						value={state.code}
+						onChange={(event: any) => setState({ ...state, code: event.target.value })}
+						required
+						fullWidth
+						margin='normal'
+					/>
+					<PasswordField
+						label='Password'
+						value={state.password}
+						onChange={(event: any) => setState({ ...state, password: event.target.value })}
+						required
+						fullWidth
+						margin='normal'
+					/>
+					<PasswordField
+						label='Confirm Password'
+						value={state.confirmPassword}
+						onChange={(event: any) => setState({ ...state, confirmPassword: event.target.value })}
+						required
+						fullWidth
+						margin='normal'
+					/>
+					<Badge
+						badgeContent={2}
+						color='primary'
+						sx={{
+							marginTop: 2,
+							width: '100%',
+						}}>
+						<Button
+							disabled={!validateChange()}
+							onClick={handleChange}
+							fullWidth
+							variant='contained'>
+							Change
+						</Button>
+					</Badge>
+					<Grid
+						container
+						sx={{
+							marginBottom: '25px',
+							marginTop: 2,
+						}}>
+						<Grid item>
+							<Link
+								href='#'
+								onClick={handleSignIn}
+								variant='body2'>
+								← Already have an account? Sign in
+							</Link>
+						</Grid>
 					</Grid>
-				</Grid>
-				<Copyright />
+					<Copyright />
+				</LaunchView>
 			</>
 		);
 	};

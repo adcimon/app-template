@@ -112,9 +112,9 @@ export const ShareDialog: React.FC<IShareDialogProps> = (props: IShareDialogProp
 							label={props.label}
 							value={props.text}
 							onFocus={(event: any) => event.target.select()}
+							fullWidth
 							InputProps={{ readOnly: true }}
 							InputLabelProps={{ shrink: true }}
-							fullWidth
 						/>
 						{props.showQR && (
 							<Stack

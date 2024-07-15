@@ -14,9 +14,7 @@ interface IHomeCardProps {
 
 export const HomeCard: React.FC<IHomeCardProps> = (props: IHomeCardProps): JSX.Element => {
 	const handleClick = (event: any) => {
-		if (props.onClick) {
-			props.onClick(event);
-		}
+		props.onClick?.(event);
 	};
 
 	const render = () => {

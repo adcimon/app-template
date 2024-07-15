@@ -14,7 +14,8 @@ export const PasswordField: React.FC<TextFieldProps> = (props: TextFieldProps): 
 		showPassword: false,
 	});
 
-	const handleMouseLeave = () => {
+	const handleMouseLeave = (event: any) => {
+		props.onMouseLeave?.(event);
 		setState({
 			...state,
 			showPassword: false,
@@ -32,21 +33,9 @@ export const PasswordField: React.FC<TextFieldProps> = (props: TextFieldProps): 
 		return (
 			<>
 				<TextField
-					inputRef={props.inputRef}
-					label={props.label}
-					placeholder={props.placeholder}
+					{...props}
 					type={state.showPassword ? 'text' : 'password'}
-					value={props.value}
-					onChange={props.onChange}
-					onFocus={props.onFocus}
 					onMouseLeave={handleMouseLeave}
-					helperText={props.helperText}
-					disabled={props.disabled}
-					required={props.required}
-					autoFocus={props.autoFocus}
-					fullWidth={props.fullWidth}
-					margin={props.margin}
-					variant={props.variant}
 					InputProps={{
 						endAdornment: (
 							<InputAdornment position='end'>
@@ -58,7 +47,6 @@ export const PasswordField: React.FC<TextFieldProps> = (props: TextFieldProps): 
 							</InputAdornment>
 						),
 					}}
-					sx={props.sx}
 				/>
 			</>
 		);

@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { ErrorView } from '../ErrorView/ErrorView';
-import { ForgotPasswordViewContainer } from '../ForgotPasswordView/ForgotPasswordViewContainer';
-import { LaunchView } from '../LaunchView/LaunchView';
-import { MainViewContainer } from '../MainView/MainViewContainer';
-import { SignInViewContainer } from '../SignInView/SignInViewContainer';
-import { SignUpViewContainer } from '../SignUpView/SignUpViewContainer';
+import { ForgotPasswordView } from '../ForgotPasswordView/ForgotPasswordView';
+import { MainView } from '../MainView/MainView';
+import { SignInView } from '../SignInView/SignInView';
+import { SignUpView } from '../SignUpView/SignUpView';
 import { AppViewType, AppStateType } from '../../states/AppState';
 
 interface IAppViewProps {
@@ -39,24 +38,32 @@ export const AppView: React.FC<IAppViewProps> = (props: IAppViewProps): JSX.Elem
 		switch (props.appState.appView) {
 			case AppViewType.SignIn:
 				return (
-					<LaunchView>
-						<SignInViewContainer />
-					</LaunchView>
+					<SignInView
+						appState={props.appState}
+						setAppState={props.setAppState}
+					/>
 				);
 			case AppViewType.SignUp:
 				return (
-					<LaunchView>
-						<SignUpViewContainer />
-					</LaunchView>
+					<SignUpView
+						appState={props.appState}
+						setAppState={props.setAppState}
+					/>
 				);
 			case AppViewType.ForgotPassword:
 				return (
-					<LaunchView>
-						<ForgotPasswordViewContainer />
-					</LaunchView>
+					<ForgotPasswordView
+						appState={props.appState}
+						setAppState={props.setAppState}
+					/>
 				);
 			case AppViewType.Main:
-				return <MainViewContainer />;
+				return (
+					<MainView
+						appState={props.appState}
+						setAppState={props.setAppState}
+					/>
+				);
 			default:
 				return <ErrorView />;
 		}

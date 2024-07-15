@@ -17,9 +17,7 @@ interface IWindowProps {
 
 export const Window: React.FC<IWindowProps> = (props: IWindowProps): JSX.Element => {
 	const handleClose = (event: any) => {
-		if (props.onClose) {
-			props.onClose(event);
-		}
+		props.onClose?.(event);
 	};
 
 	const renderHeader = () => {

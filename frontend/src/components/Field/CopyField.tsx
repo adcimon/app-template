@@ -37,20 +37,8 @@ export const CopyField: React.FC<TextFieldProps> = (props: TextFieldProps): JSX.
 		return (
 			<>
 				<TextField
-					inputRef={props.inputRef}
+					{...props}
 					label={props.label || 'Text'}
-					placeholder={props.placeholder}
-					type={props.type}
-					value={props.value}
-					onChange={props.onChange}
-					onFocus={props.onFocus}
-					helperText={props.helperText}
-					disabled={props.disabled}
-					required={props.required}
-					autoFocus={props.autoFocus}
-					fullWidth={props.fullWidth}
-					margin={props.margin}
-					variant={props.variant}
 					InputProps={{
 						endAdornment: (
 							<InputAdornment position='end'>
@@ -69,7 +57,6 @@ export const CopyField: React.FC<TextFieldProps> = (props: TextFieldProps): JSX.
 							</InputAdornment>
 						),
 					}}
-					sx={props.sx}
 				/>
 			</>
 		);

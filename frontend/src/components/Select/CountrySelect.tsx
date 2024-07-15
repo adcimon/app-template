@@ -1,22 +1,11 @@
 import * as React from 'react';
-import Autocomplete, { AutocompleteChangeDetails, AutocompleteChangeReason } from '@mui/material/Autocomplete';
+import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import { InputLabelProps } from '@mui/material/InputLabel';
+import TextField, { TextFieldProps } from '@mui/material/TextField';
 
-interface ICountrySelectProps {
-	disabled?: boolean;
-	label?: React.ReactNode;
-	defaultValue?: string;
-	value?: string;
-	onChange?: (
-		event: React.SyntheticEvent<Element, Event>,
-		value: any,
-		reason: AutocompleteChangeReason,
-		details?: AutocompleteChangeDetails<any> | undefined,
-	) => void;
-	InputLabelProps?: Partial<InputLabelProps>;
-}
+type CountrySelectProps = TextFieldProps & {
+	disableClearable?: boolean;
+};
 
 interface CountryType {
 	code: string;
@@ -24,7 +13,10 @@ interface CountryType {
 	phone: string;
 }
 
-export const CountrySelect: React.FC<ICountrySelectProps> = (props: ICountrySelectProps): JSX.Element => {
+export const CountrySelect: React.FC<CountrySelectProps> = ({
+	disableClearable,
+	...props
+}: CountrySelectProps): JSX.Element => {
 	const defaultValue =
 		countries[countries.findIndex((country: CountryType) => country.code === props.defaultValue)] || null;
 	const value = countries[countries.findIndex((country: CountryType) => country.code === props.value)] || null;
@@ -33,10 +25,10 @@ export const CountrySelect: React.FC<ICountrySelectProps> = (props: ICountrySele
 			<Autocomplete
 				defaultValue={defaultValue}
 				value={value || defaultValue}
-				onChange={props.onChange}
+				onChange={(event: any, value: any) => props.onChange?.({ ...event, target: { value: value } })}
 				options={countries}
 				disabled={props.disabled}
-				disableClearable={props.disabled}
+				disableClearable={disableClearable}
 				getOptionLabel={(option) => option.label}
 				renderOption={(props, option) => (
 					<Box
@@ -61,14 +53,24 @@ export const CountrySelect: React.FC<ICountrySelectProps> = (props: ICountrySele
 				renderInput={(params) => (
 					<TextField
 						{...params}
-						label={props.label}
-						InputLabelProps={props.InputLabelProps}
+						{...props}
+						onChange={undefined}
+						InputProps={{
+							...params.InputProps,
+							...props.InputProps,
+							sx: {
+								...props.sx,
+								height: '100%',
+							},
+						}}
 						inputProps={{
 							...params.inputProps,
+							...props.inputProps,
 							autoComplete: 'new-password', // Disable autocomplete and autofill.
 						}}
 					/>
 				)}
+				sx={props.sx}
 			/>
 		);
 	};

@@ -8,6 +8,7 @@ import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { Copyright } from '../../components/Copyright/Copyright';
+import { LaunchView } from '../LaunchView/LaunchView';
 import { Logo } from '../../components/Logo/Logo';
 import { PasswordField } from '../../components/Field/PasswordField';
 import { PrivacyPolicyDialog } from '../../components/Dialog/PrivacyPolicyDialog';
@@ -101,93 +102,95 @@ export const SignUpView: React.FC<ISignUpViewProps> = (props: ISignUpViewProps):
 	const render = () => {
 		return (
 			<>
-				<Logo />
-				<Typography
-					component='h1'
-					variant='h5'>
-					Sign Up
-				</Typography>
-				<TextField
-					label='Email'
-					value={state.email}
-					onChange={(event: any) => setState({ ...state, email: event.target.value })}
-					required
-					fullWidth
-					margin='normal'
-				/>
-				<PasswordField
-					label='Password'
-					value={state.password}
-					onChange={(event: any) => setState({ ...state, password: event.target.value })}
-					required
-					fullWidth
-					margin='normal'
-				/>
-				<PasswordField
-					label='Confirm Password'
-					value={state.confirmPassword}
-					onChange={(event: any) => setState({ ...state, confirmPassword: event.target.value })}
-					required
-					fullWidth
-					margin='normal'
-				/>
-				<FormControlLabel
-					control={
-						<Checkbox
-							color='primary'
-							value={state.legalAccepted}
-							onChange={(event: any, checked: boolean) =>
-								setState({
-									...state,
-									legalAccepted: checked,
-								})
-							}
-						/>
-					}
-					label={
-						<>
-							<Typography variant='subtitle2'>
-								I have read and agree to the{' '}
-								<Link onClick={handleOpenTermsOfService}>Terms of Service</Link> and{' '}
-								<Link onClick={handleOpenPrivacyPolicy}>Privacy Policy</Link>.
-							</Typography>
-						</>
-					}
-				/>
-				<Button
-					disabled={!validate()}
-					onClick={handleSignUp}
-					fullWidth
-					variant='contained'
-					sx={{
-						marginBottom: 2,
-						marginTop: 3,
-					}}>
-					Sign Up
-				</Button>
-				<Grid
-					container
-					sx={{
-						marginBottom: '25px',
-					}}>
-					<Grid item>
-						<Link
-							href='#'
-							onClick={handleSignIn}
-							variant='body2'>
-							← Already have an account? Sign in
-						</Link>
+				<LaunchView>
+					<Logo />
+					<Typography
+						component='h1'
+						variant='h5'>
+						Sign Up
+					</Typography>
+					<TextField
+						label='Email'
+						value={state.email}
+						onChange={(event: any) => setState({ ...state, email: event.target.value })}
+						required
+						fullWidth
+						margin='normal'
+					/>
+					<PasswordField
+						label='Password'
+						value={state.password}
+						onChange={(event: any) => setState({ ...state, password: event.target.value })}
+						required
+						fullWidth
+						margin='normal'
+					/>
+					<PasswordField
+						label='Confirm Password'
+						value={state.confirmPassword}
+						onChange={(event: any) => setState({ ...state, confirmPassword: event.target.value })}
+						required
+						fullWidth
+						margin='normal'
+					/>
+					<FormControlLabel
+						control={
+							<Checkbox
+								color='primary'
+								value={state.legalAccepted}
+								onChange={(event: any, checked: boolean) =>
+									setState({
+										...state,
+										legalAccepted: checked,
+									})
+								}
+							/>
+						}
+						label={
+							<>
+								<Typography variant='subtitle2'>
+									I have read and agree to the{' '}
+									<Link onClick={handleOpenTermsOfService}>Terms of Service</Link> and{' '}
+									<Link onClick={handleOpenPrivacyPolicy}>Privacy Policy</Link>.
+								</Typography>
+							</>
+						}
+					/>
+					<Button
+						disabled={!validate()}
+						onClick={handleSignUp}
+						fullWidth
+						variant='contained'
+						sx={{
+							marginBottom: 2,
+							marginTop: 3,
+						}}>
+						Sign Up
+					</Button>
+					<Grid
+						container
+						sx={{
+							marginBottom: '25px',
+						}}>
+						<Grid item>
+							<Link
+								href='#'
+								onClick={handleSignIn}
+								variant='body2'>
+								← Already have an account? Sign in
+							</Link>
+						</Grid>
 					</Grid>
-				</Grid>
-				<Copyright />
-				<TermsOfServiceDialog
-					open={state.openTermsOfService}
-					onClose={handleAcceptTermsOfService}
-				/>
-				<PrivacyPolicyDialog
-					open={state.openPrivacyPolicy}
-					onClose={handleAcceptPrivacyPolicy}
-				/>
+					<Copyright />
+					<TermsOfServiceDialog
+						open={state.openTermsOfService}
+						onClose={handleAcceptTermsOfService}
+					/>
+					<PrivacyPolicyDialog
+						open={state.openPrivacyPolicy}
+						onClose={handleAcceptPrivacyPolicy}
+					/>
+				</LaunchView>
 			</>
 		);
 	};

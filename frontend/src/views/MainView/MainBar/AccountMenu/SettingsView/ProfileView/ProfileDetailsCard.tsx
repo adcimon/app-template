@@ -143,8 +143,8 @@ export const ProfileDetailsCard: React.FC<IProfileDetailsCardProps> = (
 									<CountrySelect
 										label='Country'
 										value={state.country}
-										onChange={(event: any, value: any) =>
-											setState({ ...state, country: value?.code || '' })
+										onChange={(event: any) =>
+											setState({ ...state, country: event.target.value?.code || '' })
 										}
 										InputLabelProps={{ shrink: true }}
 									/>
@@ -156,7 +156,7 @@ export const ProfileDetailsCard: React.FC<IProfileDetailsCardProps> = (
 									<TimezoneSelect
 										label='Timezone'
 										value={state.timezone}
-										onChange={(event: any, value: any) => setState({ ...state, timezone: value })}
+										onChange={(event: any) => setState({ ...state, timezone: event.target.value })}
 										InputLabelProps={{ shrink: true }}
 									/>
 								</Grid>

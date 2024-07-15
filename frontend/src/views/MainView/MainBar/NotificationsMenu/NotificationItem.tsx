@@ -14,29 +14,7 @@ interface INotificationItemProps {
 	onDelete?: (notification: any) => void;
 }
 
-interface INotificationItemState {
-	hover: boolean;
-}
-
 export const NotificationItem: React.FC<INotificationItemProps> = (props: INotificationItemProps): JSX.Element => {
-	const [state, setState] = React.useState<INotificationItemState>({
-		hover: false,
-	});
-
-	const handlePointerEnter = () => {
-		setState({
-			...state,
-			hover: true,
-		});
-	};
-
-	const handlePointerLeave = () => {
-		setState({
-			...state,
-			hover: false,
-		});
-	};
-
 	const handleDelete = (event: React.MouseEvent<HTMLElement>) => {
 		event.stopPropagation();
 		event.preventDefault();
@@ -51,8 +29,6 @@ export const NotificationItem: React.FC<INotificationItemProps> = (props: INotif
 				title={<NotificationTooltip notification={props.notification} />}
 				placement='bottom-start'>
 				<MenuItem
-					onPointerEnter={handlePointerEnter}
-					onPointerLeave={handlePointerLeave}
 					disableGutters
 					sx={{
 						paddingX: '10px',

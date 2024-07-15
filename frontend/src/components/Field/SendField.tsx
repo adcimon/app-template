@@ -4,10 +4,16 @@ import InputAdornment from '@mui/material/InputAdornment';
 import SendIcon from '@mui/icons-material/Send';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 
-export const SendField: React.FC<TextFieldProps> = (props: TextFieldProps): JSX.Element => {
-	const handleKeyPress = (event: any) => {
+type SendFieldProps = TextFieldProps & {
+	onSend?: () => void;
+};
+
+export const SendField: React.FC<TextFieldProps> = ({ onSend, ...props }: SendFieldProps): JSX.Element => {
+	const handleKeyDown = (event: any) => {
+		props.onKeyDown?.(event);
+
 		if (event.key === 'Enter') {
-			props.onClick?.(event);
+			onSend?.();
 		}
 	};
 
@@ -15,19 +21,9 @@ export const SendField: React.FC<TextFieldProps> = (props: TextFieldProps): JSX.
 		return (
 			<>
 				<TextField
-					inputRef={props.inputRef}
-					placeholder={props.placeholder}
+					{...props}
 					type='text'
-					value={props.value}
-					onChange={props.onChange}
-					onFocus={props.onFocus}
-					onKeyDown={handleKeyPress}
-					helperText={props.helperText}
-					disabled={props.disabled}
-					required={props.required}
-					autoFocus={props.autoFocus}
-					fullWidth={props.fullWidth}
-					margin={props.margin}
+					onKeyUp={handleKeyDown}
 					variant='filled'
 					InputProps={{
 						endAdornment: (
@@ -54,7 +50,6 @@ export const SendField: React.FC<TextFieldProps> = (props: TextFieldProps): JSX.
 							},
 						},
 					}}
-					sx={props.sx}
 				/>
 			</>
 		);
