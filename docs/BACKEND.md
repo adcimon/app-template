@@ -14,7 +14,7 @@ npm install -g @nestjs/cli
 npm install
 ```
 
-Start.
+Run.
 ```
 cd backend
 npm run start
