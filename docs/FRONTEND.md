@@ -13,7 +13,7 @@ cd frontend
 npm install
 ```
 
-Start.
+Run.
 ```
 cd frontend
 npm run start
