@@ -1,7 +1,6 @@
 {
 	"name": "frontend",
 	"version": "0.0.1",
-	"description": "",
 	"author": "adcimon",
 	"scripts": {
 		"start": "node esbuild.config.mjs --start",
