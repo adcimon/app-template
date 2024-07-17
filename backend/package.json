@@ -1,14 +1,11 @@
 {
 	"name": "backend",
-	"version": "0.1.0",
+	"version": "0.0.1",
 	"description": "",
-	"author": "",
-	"private": true,
-	"license": "UNLICENSED",
+	"author": "adcimon",
 	"scripts": {
 		"prebuild": "rimraf dist",
 		"build": "nest build",
-		"format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
 		"start": "nest start",
 		"start:dev": "nest start --watch",
 		"start:debug": "nest start --debug --watch",
