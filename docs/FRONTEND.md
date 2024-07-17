@@ -1,6 +1,6 @@
 # Frontend
 
-Based on [TypeScript](https://www.typescriptlang.org/), [React](https://react.dev/) and [MUI](https://mui.com/).
+Based on [esbuild](https://esbuild.github.io/), [TypeScript](https://www.typescriptlang.org/), [React](https://react.dev/) and [MUI](https://mui.com/).
 
 Configuration.
 ```
@@ -13,14 +13,19 @@ cd frontend
 npm install
 ```
 
-Run.
+Start.
 ```
 cd frontend
-npm start
+npm run start
 ```
 
 Build.
 ```
 cd frontend
-npm run build:prod
+npm run build
+```
+
+Clean.
+```
+npm run clean
 ```
