@@ -17,7 +17,10 @@ npm install
 Start.
 ```
 cd backend
+npm run start
 npm run start:dev
+npm run start:debug
+npm run start:prod
 ```
 
 Build.
