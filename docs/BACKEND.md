@@ -1,6 +1,10 @@
 # Backend
 
-Based on [TypeScript](https://www.typescriptlang.org/), [Node](https://nodejs.org/en/) and [Nest](https://nestjs.com/) with [AWS](https://aws.amazon.com/).
+Based on [TypeScript](https://www.typescriptlang.org/), [Node.js](https://nodejs.org/en/), [Nest.js](https://nestjs.com/) and [AWS](https://aws.amazon.com/).
+
+Requirements.
+* `Node v20`
+* `npm v10`
 
 Configuration.
 ```
