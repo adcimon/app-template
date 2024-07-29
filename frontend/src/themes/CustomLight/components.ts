@@ -239,7 +239,7 @@ export function createComponents(config: any) {
 						backgroundColor: 'transparent',
 						borderColor: palette.primary.main,
 						[`& .${outlinedInputClasses.notchedOutline}`]: {
-							borderColor: palette.primary.main,
+							borderColor: 'transparent',
 						},
 					},
 					'&:before': {
@@ -273,7 +273,7 @@ export function createComponents(config: any) {
 					lineHeight: '24px',
 				},
 				notchedOutline: {
-					borderColor: palette.primary.main,
+					borderColor: 'transparent',
 					// transition: muiTheme.transitions.create(['border-color', 'box-shadow']),
 				},
 			},
