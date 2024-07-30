@@ -8,7 +8,7 @@ type SendFieldProps = TextFieldProps & {
 	onSend?: () => void;
 };
 
-export const SendField: React.FC<TextFieldProps> = ({ onSend, ...props }: SendFieldProps): JSX.Element => {
+export const SendField: React.FC<SendFieldProps> = ({ onSend, ...props }: SendFieldProps): JSX.Element => {
 	const handleKeyDown = (event: any) => {
 		props.onKeyDown?.(event);
 
@@ -29,7 +29,7 @@ export const SendField: React.FC<TextFieldProps> = ({ onSend, ...props }: SendFi
 						endAdornment: (
 							<InputAdornment position='end'>
 								<Fab
-									onClick={(event: any) => props.onClick?.(event)}
+									onClick={() => onSend?.()}
 									size='small'
 									color='primary'
 									sx={{
