@@ -27,6 +27,7 @@ export const Window: React.FC<IWindowProps> = (props: IWindowProps): JSX.Element
 					direction='row'
 					sx={{
 						justifyContent: 'space-between',
+						width: '100%',
 					}}>
 					<Typography variant='h4'>{props.label}</Typography>
 					<IconButton
