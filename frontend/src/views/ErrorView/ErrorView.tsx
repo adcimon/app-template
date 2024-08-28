@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { UrlUtils } from '../../utils/urlUtils';
+import { NavigationUtils } from '../../utils/navigationUtils';
 
 interface IErrorViewProps {
 	error?: Error;
@@ -15,7 +15,7 @@ interface IErrorViewProps {
 
 export const ErrorView: React.FC<IErrorViewProps> = (props: IErrorViewProps): JSX.Element => {
 	const handleClick = () => {
-		UrlUtils.redirectToHome();
+		NavigationUtils.redirectToHome();
 	};
 
 	const render = () => {
