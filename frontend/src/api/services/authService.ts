@@ -20,23 +20,22 @@ export const newAuthService = (
 ): IAuthService => {
 	return {
 		signUp: async (email: string, password: string): Promise<any> => {
-			return httpPost(
-				'/auth/signup',
-				{
+			return httpPost({
+				endpoint: '/auth/signup',
+				data: {
 					email,
 					password: btoa(password),
 				},
-				false,
-			);
+			});
 		},
 		signDown: async (password: string): Promise<any> => {
-			const response: any = await httpPost(
-				'/auth/signdown',
-				{
+			const response: any = await httpPost({
+				endpoint: '/auth/signdown',
+				data: {
 					password: btoa(password),
 				},
-				true,
-			);
+				useAuthorization: true,
+			});
 
 			localStorage.removeItem('accessToken');
 			localStorage.removeItem('refreshToken');
@@ -44,14 +43,13 @@ export const newAuthService = (
 			return response;
 		},
 		signIn: async (email: string, password: string): Promise<any> => {
-			const response: any = await httpPost(
-				'/auth/signin',
-				{
+			const response: any = await httpPost({
+				endpoint: '/auth/signin',
+				data: {
 					email,
 					password: btoa(password),
 				},
-				false,
-			);
+			});
 
 			const accessToken: string = response.accessToken;
 			localStorage.setItem('accessToken', accessToken);
@@ -61,7 +59,10 @@ export const newAuthService = (
 			return response;
 		},
 		signOut: async (): Promise<any> => {
-			const response: any = await httpPost('/auth/signout', {}, true);
+			const response: any = await httpPost({
+				endpoint: '/auth/signout',
+				useAuthorization: true,
+			});
 
 			localStorage.removeItem('accessToken');
 			localStorage.removeItem('refreshToken');
@@ -69,13 +70,12 @@ export const newAuthService = (
 			return response;
 		},
 		refreshToken: async (): Promise<any> => {
-			const response: any = await httpPost(
-				'/auth/refresh-token',
-				{
+			const response: any = await httpPost({
+				endpoint: '/auth/refresh-token',
+				data: {
 					refreshToken: localStorage.getItem('refreshToken'),
 				},
-				false,
-			);
+			});
 
 			const accessToken: string = response.accessToken;
 			localStorage.setItem('accessToken', accessToken);
@@ -83,33 +83,31 @@ export const newAuthService = (
 			return response;
 		},
 		forgotPassword: async (email: string): Promise<any> => {
-			return httpPost(
-				'/auth/forgot-password',
-				{
+			return httpPost({
+				endpoint: '/auth/forgot-password',
+				data: {
 					email,
 				},
-				false,
-			);
+			});
 		},
 		changePassword: async (email: string, code: string, password: string): Promise<any> => {
-			return httpPost(
-				'/auth/change-password',
-				{
+			return httpPost({
+				endpoint: '/auth/change-password',
+				data: {
 					email,
 					code,
 					password: btoa(password),
 				},
-				false,
-			);
+			});
 		},
 		verifyEmail: async (code: string): Promise<any> => {
-			return httpPost(
-				'/auth/verify-email',
-				{
+			return httpPost({
+				endpoint: '/auth/verify-email',
+				data: {
 					code,
 				},
-				true,
-			);
+				useAuthorization: true,
+			});
 		},
 	};
 };

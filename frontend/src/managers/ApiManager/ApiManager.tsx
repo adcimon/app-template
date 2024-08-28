@@ -1,6 +1,7 @@
 import React from 'react';
 import axios, { AxiosInstance } from 'axios';
 import { AppViewType, AppStateType } from '../../states/AppState';
+import { HttpParams } from '../../api/httpMethods';
 import { IApiClient, newApiClient } from '../../api/apiClient';
 
 interface IApiManagerProps {
@@ -43,11 +44,15 @@ export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps):
 		return endpoint;
 	};
 
-	const getHttpConfig = (useAuthorization: boolean): any => {
+	const getHttpConfig = (options: { useAuthorization?: boolean; useForm?: boolean }): any => {
 		const accessToken: string | null = localStorage.getItem('accessToken');
+		const authorization: string | undefined =
+			options.useAuthorization && accessToken ? 'Bearer ' + accessToken : undefined;
+		const contentType: string | undefined = options.useForm ? 'multipart/form-data' : undefined;
 		return {
 			headers: {
-				Authorization: useAuthorization && accessToken ? 'Bearer ' + accessToken : undefined,
+				Authorization: authorization,
+				ContentType: contentType,
 			},
 		};
 	};
@@ -88,11 +93,17 @@ export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps):
 		);
 	};
 
-	const httpGet = async (endpoint: string, useAuthorization: boolean = false) => {
+	const httpGet = async (params: HttpParams) => {
+		const endpoint: string = params.endpoint ?? '';
+		const useAuthorization: boolean = params.useAuthorization ?? false;
+
 		const call = async () => {
-			const config = getHttpConfig(useAuthorization);
+			const config = getHttpConfig({
+				useAuthorization,
+			});
 			return await instance?.get(endpoint, config);
 		};
+
 		try {
 			return await call();
 		} catch (error: any) {
@@ -100,11 +111,20 @@ export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps):
 		}
 	};
 
-	const httpPost = async (endpoint: string, data: object, useAuthorization: boolean = false) => {
+	const httpPost = async (params: HttpParams) => {
+		const endpoint: string = params.endpoint ?? '';
+		const data: any = params.data ?? undefined;
+		const useAuthorization: boolean = params.useAuthorization ?? false;
+		const useForm: boolean = data instanceof FormData;
+
 		const call = async () => {
-			const config = getHttpConfig(useAuthorization);
+			const config = getHttpConfig({
+				useAuthorization,
+				useForm,
+			});
 			return await instance?.post(endpoint, data, config);
 		};
+
 		try {
 			return await call();
 		} catch (error: any) {
@@ -112,11 +132,18 @@ export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps):
 		}
 	};
 
-	const httpPatch = async (endpoint: string, data: object, useAuthorization: boolean = false) => {
+	const httpPatch = async (params: HttpParams) => {
+		const endpoint: string = params.endpoint ?? '';
+		const data: any = params.data ?? undefined;
+		const useAuthorization: boolean = params.useAuthorization ?? false;
+
 		const call = async () => {
-			const config = getHttpConfig(useAuthorization);
+			const config = getHttpConfig({
+				useAuthorization,
+			});
 			return await instance?.patch(endpoint, data, config);
 		};
+
 		try {
 			return await call();
 		} catch (error: any) {
@@ -124,11 +151,18 @@ export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps):
 		}
 	};
 
-	const httpPut = async (endpoint: string, data: object, useAuthorization: boolean = false) => {
+	const httpPut = async (params: HttpParams) => {
+		const endpoint: string = params.endpoint ?? '';
+		const data: any = params.data ?? undefined;
+		const useAuthorization: boolean = params.useAuthorization ?? false;
+
 		const call = async () => {
-			const config = getHttpConfig(useAuthorization);
+			const config = getHttpConfig({
+				useAuthorization,
+			});
 			return await instance?.put(endpoint, data, config);
 		};
+
 		try {
 			return await call();
 		} catch (error: any) {
@@ -136,12 +170,19 @@ export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps):
 		}
 	};
 
-	const httpDelete = async (endpoint: string, data: object, useAuthorization: boolean = false) => {
+	const httpDelete = async (params: HttpParams) => {
+		const endpoint: string = params.endpoint ?? '';
+		const data: any = params.data ?? undefined;
+		const useAuthorization: boolean = params.useAuthorization ?? false;
+
 		const call = async () => {
-			const config = getHttpConfig(useAuthorization);
+			const config = getHttpConfig({
+				useAuthorization,
+			});
 			config.data = data;
 			return await instance?.delete(endpoint, config);
 		};
+
 		try {
 			return await call();
 		} catch (error: any) {

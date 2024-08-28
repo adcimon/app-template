@@ -1,5 +1,11 @@
-export type HttpGet = (endpoint: string, useAuthorization: boolean) => any;
-export type HttpPost = (endpoint: string, data: object, useAuthorization: boolean) => any;
-export type HttpPatch = (endpoint: string, data: object, useAuthorization: boolean) => any;
-export type HttpPut = (endpoint: string, data: object, useAuthorization: boolean) => any;
-export type HttpDelete = (endpoint: string, data: object, useAuthorization: boolean) => any;
+export type HttpParams = {
+	endpoint?: string;
+	data?: any;
+	useAuthorization?: boolean;
+};
+
+export type HttpGet = (params: HttpParams) => any;
+export type HttpPost = (params: HttpParams) => any;
+export type HttpPatch = (params: HttpParams) => any;
+export type HttpPut = (params: HttpParams) => any;
+export type HttpDelete = (params: HttpParams) => any;

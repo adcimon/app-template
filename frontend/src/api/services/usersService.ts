@@ -25,10 +25,16 @@ export const newUsersService = (
 ): IUsersService => {
 	return {
 		getUsers: async (): Promise<any> => {
-			return httpGet('/users', true);
+			return httpGet({
+				endpoint: '/users',
+				useAuthorization: true,
+			});
 		},
 		getMyUser: async (): Promise<any> => {
-			return httpGet('/users/me', true);
+			return httpGet({
+				endpoint: '/users/me',
+				useAuthorization: true,
+			});
 		},
 		updateMyUser: async (params?: {
 			name?: string;
@@ -37,54 +43,54 @@ export const newUsersService = (
 			country?: string;
 			timezone?: string;
 		}): Promise<any> => {
-			return httpPatch(
-				'/users/me',
-				{
+			return httpPatch({
+				endpoint: '/users/me',
+				data: {
 					name: params?.name,
 					surname: params?.surname,
 					birthdate: params?.birthdate,
 					country: params?.country,
 					timezone: params?.timezone,
 				},
-				true,
-			);
+				useAuthorization: true,
+			});
 		},
 		updateMyEmail: async (email: string): Promise<any> => {
-			return httpPatch(
-				'/users/me/email',
-				{
+			return httpPatch({
+				endpoint: '/users/me/email',
+				data: {
 					email,
 				},
-				true,
-			);
+				useAuthorization: true,
+			});
 		},
 		updateMyPhone: async (phone: string): Promise<any> => {
-			return httpPatch(
-				'/users/me/phone',
-				{
+			return httpPatch({
+				endpoint: '/users/me/phone',
+				data: {
 					phone,
 				},
-				true,
-			);
+				useAuthorization: true,
+			});
 		},
 		updateMyPassword: async (currentPassword: string, newPassword: string): Promise<any> => {
-			return httpPatch(
-				'/users/me/password',
-				{
+			return httpPatch({
+				endpoint: '/users/me/password',
+				data: {
 					currentPassword: btoa(currentPassword),
 					newPassword: btoa(newPassword),
 				},
-				true,
-			);
+				useAuthorization: true,
+			});
 		},
 		updateMyAvatar: async (avatar: string): Promise<any> => {
-			return httpPatch(
-				'/users/me/avatar',
-				{
+			return httpPatch({
+				endpoint: '/users/me/avatar',
+				data: {
 					avatar,
 				},
-				true,
-			);
+				useAuthorization: true,
+			});
 		},
 	};
 };
