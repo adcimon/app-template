@@ -9,7 +9,6 @@ import { AppStateType } from '../../states/AppState';
 interface IThemeManagerProps {
 	children?: React.ReactNode;
 	appState: AppStateType;
-	setAppState: (state: AppStateType) => void;
 }
 
 export const ThemeManager: React.FC<IThemeManagerProps> = (props: IThemeManagerProps): JSX.Element => {

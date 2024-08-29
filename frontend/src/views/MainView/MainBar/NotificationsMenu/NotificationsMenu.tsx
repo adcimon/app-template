@@ -14,7 +14,6 @@ import { AppStateType } from '../../../../states/AppState';
 
 interface INotificationsMenuProps {
 	appState: AppStateType;
-	setAppState: (state: AppStateType) => void;
 }
 
 interface INotificationsMenuState {

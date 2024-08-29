@@ -44,6 +44,18 @@ export const AccountMenu: React.FC<IAccountMenuProps> = (props: IAccountMenuProp
 
 	const ref = React.useRef<any>(null);
 
+	const getAvatar = (): string | undefined => {
+		if (!props.appState.user) {
+			return undefined;
+		}
+
+		if (props.appState.user.avatar === '') {
+			return Utils.getPlaceholderAvatar(props.appState.user);
+		}
+
+		return props.appState.user.avatar;
+	};
+
 	const handleClick = () => {
 		setState({
 			...state,
@@ -131,11 +143,7 @@ export const AccountMenu: React.FC<IAccountMenuProps> = (props: IAccountMenuProp
 	};
 
 	const render = () => {
-		const avatar: string = props.appState.user
-			? props.appState.user.avatar === ''
-				? Utils.getPlaceholderAvatar(props.appState.user)
-				: props.appState.user.avatar
-			: undefined;
+		const avatar: string | undefined = getAvatar();
 		return (
 			<>
 				<Chip
@@ -281,7 +289,6 @@ export const AccountMenu: React.FC<IAccountMenuProps> = (props: IAccountMenuProp
 					open={state.openManagement}
 					onClose={handleCloseManagement}
 					appState={props.appState}
-					setAppState={props.setAppState}
 				/>
 				<HelpView
 					open={state.openHelp}

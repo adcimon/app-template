@@ -16,7 +16,6 @@ import { Utils } from '../../../../../../utils/utils';
 
 interface IUsersViewProps {
 	appState: AppStateType;
-	setAppState: (state: AppStateType) => void;
 }
 
 interface IUsersViewState {

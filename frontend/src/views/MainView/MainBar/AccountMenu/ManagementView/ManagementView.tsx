@@ -14,7 +14,6 @@ interface IManagementViewProps {
 	open: boolean;
 	onClose?: (event: any) => void;
 	appState: AppStateType;
-	setAppState: (state: AppStateType) => void;
 }
 
 interface IManagementViewState {
@@ -89,16 +88,7 @@ export const ManagementView: React.FC<IManagementViewProps> = (props: IManagemen
 	};
 
 	const renderTab = () => {
-		return (
-			<>
-				{state.tab === 0 && (
-					<UsersView
-						appState={props.appState}
-						setAppState={props.setAppState}
-					/>
-				)}
-			</>
-		);
+		return <>{state.tab === 0 && <UsersView appState={props.appState} />}</>;
 	};
 
 	const render = () => {

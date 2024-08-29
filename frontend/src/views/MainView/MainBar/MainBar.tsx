@@ -61,10 +61,7 @@ export const MainBar: React.FC<IMainBarProps> = (props: IMainBarProps): JSX.Elem
 								gap: '10px',
 								justifyContent: 'flex-end',
 							}}>
-							<NotificationsMenu
-								appState={props.appState}
-								setAppState={props.setAppState}
-							/>
+							<NotificationsMenu appState={props.appState} />
 							<AccountMenu
 								appState={props.appState}
 								setAppState={props.setAppState}

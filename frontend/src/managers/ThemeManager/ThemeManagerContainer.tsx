@@ -9,7 +9,6 @@ export const ThemeManagerContainer: React.FC<any> = (props: any = {}): JSX.Eleme
 		<ThemeManager
 			{...props}
 			appState={appState}
-			setAppState={setAppState}
 		/>
 	);
 };

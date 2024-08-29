@@ -31,6 +31,18 @@ export const UserAvatar: React.FC<IUserAvatarProps> = (props: IUserAvatarProps):
 
 	const ref = React.useRef<HTMLDivElement>(null);
 
+	const getAvatar = (): string | undefined => {
+		if (!props.appState.user) {
+			return undefined;
+		}
+
+		if (props.appState.user.avatar === '') {
+			return Utils.getPlaceholderAvatar(props.appState.user);
+		}
+
+		return props.appState.user.avatar;
+	};
+
 	const handleMouseEnter = () => {
 		setState({
 			...state,
@@ -98,11 +110,7 @@ export const UserAvatar: React.FC<IUserAvatarProps> = (props: IUserAvatarProps):
 	};
 
 	const render = () => {
-		const avatar: string = props.appState.user
-			? props.appState.user.avatar === ''
-				? Utils.getPlaceholderAvatar(props.appState.user)
-				: props.appState.user.avatar
-			: undefined;
+		const avatar: string | undefined = getAvatar();
 		return (
 			<>
 				<Box
