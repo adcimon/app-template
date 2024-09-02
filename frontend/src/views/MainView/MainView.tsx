@@ -3,14 +3,11 @@ import toast from 'react-hot-toast';
 import Box from '@mui/material/Box';
 import { HomeView } from './HomeView/HomeView';
 import { MainBar } from './MainBar/MainBar';
-import { AppStateType } from '../../states/AppState';
+import { useAppState } from '../../hooks/useAppState';
 
-interface IMainViewProps {
-	appState: AppStateType;
-	setAppState: (state: AppStateType) => void;
-}
+export const MainView: React.FC = (): JSX.Element => {
+	const { appState, setAppState } = useAppState();
 
-export const MainView: React.FC<IMainViewProps> = (props: IMainViewProps): JSX.Element => {
 	const mainBarHeight: string = '64px';
 
 	React.useEffect(() => {
@@ -20,9 +17,9 @@ export const MainView: React.FC<IMainViewProps> = (props: IMainViewProps): JSX.E
 
 	const getMyUser = async () => {
 		try {
-			const user: any = await props.appState.apiClient?.usersService.getMyUser();
-			props.setAppState({
-				...props.appState,
+			const user: any = await appState.apiClient?.usersService.getMyUser();
+			setAppState({
+				...appState,
 				user: user,
 			});
 		} catch (error: any) {
@@ -41,11 +38,7 @@ export const MainView: React.FC<IMainViewProps> = (props: IMainViewProps): JSX.E
 						height: '100vh',
 						width: '100vw',
 					}}>
-					<MainBar
-						height={mainBarHeight}
-						appState={props.appState}
-						setAppState={props.setAppState}
-					/>
+					<MainBar height={mainBarHeight} />
 					<Box
 						sx={{
 							height: `calc(100% - ${mainBarHeight})`,

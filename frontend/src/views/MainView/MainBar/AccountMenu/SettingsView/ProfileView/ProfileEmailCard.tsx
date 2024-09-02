@@ -13,13 +13,8 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { ConfirmationDialog } from '../../../../../../components/Dialog/ConfirmationDialog';
 import { VerificationBadge } from '../../../../../../components/Badge/VerificationBadge';
-import { AppStateType } from '../../../../../../states/AppState';
+import { useAppState } from '../../../../../../hooks/useAppState';
 import { Utils } from '../../../../../../utils/utils';
-
-interface IProfileEmailCardProps {
-	appState: AppStateType;
-	setAppState: (state: AppStateType) => void;
-}
 
 interface IProfileEmailCardState {
 	openChangeDialog: boolean;
@@ -29,17 +24,19 @@ interface IProfileEmailCardState {
 	code: string;
 }
 
-export const ProfileEmailCard: React.FC<IProfileEmailCardProps> = (props: IProfileEmailCardProps): JSX.Element => {
+export const ProfileEmailCard: React.FC = (): JSX.Element => {
+	const { appState, setAppState } = useAppState();
+
 	const [state, setState] = React.useState<IProfileEmailCardState>({
 		openChangeDialog: false,
 		openVerifyDialog: false,
-		email: props.appState.user.email,
+		email: appState.user.email,
 		newEmail: '',
 		code: '',
 	});
 
 	const validate = (): boolean => {
-		return Utils.EMAIL_REGEXP.test(state.email) && state.email !== props.appState.user.email;
+		return Utils.EMAIL_REGEXP.test(state.email) && state.email !== appState.user.email;
 	};
 
 	const handleVerify = async () => {
@@ -52,10 +49,10 @@ export const ProfileEmailCard: React.FC<IProfileEmailCardProps> = (props: IProfi
 
 	const handleAcceptVerify = async () => {
 		try {
-			await props.appState.apiClient?.authService.verifyEmail(state.code);
-			const user: any = await props.appState.apiClient?.usersService.getMyUser();
-			props.setAppState({
-				...props.appState,
+			await appState.apiClient?.authService.verifyEmail(state.code);
+			const user: any = await appState.apiClient?.usersService.getMyUser();
+			setAppState({
+				...appState,
 				user: user,
 			});
 			toast.success('Email changed');
@@ -85,7 +82,7 @@ export const ProfileEmailCard: React.FC<IProfileEmailCardProps> = (props: IProfi
 
 	const handleAcceptChange = async () => {
 		try {
-			await props.appState.apiClient?.usersService.updateMyEmail(state.email);
+			await appState.apiClient?.usersService.updateMyEmail(state.email);
 			toast.success('Verification code sent');
 		} catch (error: any) {
 			toast.error(error.message);
@@ -122,7 +119,7 @@ export const ProfileEmailCard: React.FC<IProfileEmailCardProps> = (props: IProfi
 										}}>
 										Email
 									</Typography>
-									<VerificationBadge verified={props.appState.user.emailVerified} />
+									<VerificationBadge verified={appState.user.emailVerified} />
 								</Stack>
 							</>
 						}

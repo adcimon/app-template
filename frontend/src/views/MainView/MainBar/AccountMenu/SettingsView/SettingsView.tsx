@@ -13,14 +13,12 @@ import { PreferencesView } from './PreferencesView/PreferencesView';
 import { ProfileView } from './ProfileView/ProfileView';
 import { UserAvatar } from './UserAvatar/UserAvatar';
 import { Window } from '../../../../../components/Window/Window';
-import { AppStateType } from '../../../../../states/AppState';
+import { useAppState } from '../../../../../hooks/useAppState';
 import { Utils } from '../../../../../utils/utils';
 
 interface ISettingsViewProps {
 	open: boolean;
 	onClose?: (event: any) => void;
-	appState: AppStateType;
-	setAppState: (state: AppStateType) => void;
 }
 
 interface ISettingsViewState {
@@ -28,6 +26,8 @@ interface ISettingsViewState {
 }
 
 export const SettingsView: React.FC<ISettingsViewProps> = (props: ISettingsViewProps): JSX.Element => {
+	const { appState, setAppState } = useAppState();
+
 	const [state, setState] = React.useState<ISettingsViewState>({
 		tab: 0,
 	});
@@ -52,9 +52,9 @@ export const SettingsView: React.FC<ISettingsViewProps> = (props: ISettingsViewP
 
 	const renderHeader = () => {
 		const id: string =
-			props.appState.user.name && props.appState.user.name !== ''
-				? `${props.appState.user.name} ${props.appState.user.surname}`
-				: props.appState.user.email;
+			appState.user.name && appState.user.name !== ''
+				? `${appState.user.name} ${appState.user.surname}`
+				: appState.user.email;
 		return (
 			<>
 				<Card>
@@ -79,10 +79,7 @@ export const SettingsView: React.FC<ISettingsViewProps> = (props: ISettingsViewP
 								position: 'relative',
 								zIndex: '10',
 							}}>
-							<UserAvatar
-								appState={props.appState}
-								setAppState={props.setAppState}
-							/>
+							<UserAvatar />
 							<Stack
 								direction='column'
 								sx={{
@@ -108,11 +105,11 @@ export const SettingsView: React.FC<ISettingsViewProps> = (props: ISettingsViewP
 											color: '#919eab',
 											width: '50%',
 										}}>
-										{props.appState.user.id}
+										{appState.user.id}
 									</Typography>
 									<IconButton
 										size='small'
-										onClick={() => Utils.copyToClipboard(props.appState.user.id)}>
+										onClick={() => Utils.copyToClipboard(appState.user.id)}>
 										<ContentCopyIcon
 											fontSize='inherit'
 											sx={{
@@ -171,18 +168,8 @@ export const SettingsView: React.FC<ISettingsViewProps> = (props: ISettingsViewP
 	const renderTab = () => {
 		return (
 			<>
-				{state.tab === 0 && (
-					<ProfileView
-						appState={props.appState}
-						setAppState={props.setAppState}
-					/>
-				)}
-				{state.tab === 1 && (
-					<PreferencesView
-						appState={props.appState}
-						setAppState={props.setAppState}
-					/>
-				)}
+				{state.tab === 0 && <ProfileView />}
+				{state.tab === 1 && <PreferencesView />}
 			</>
 		);
 	};

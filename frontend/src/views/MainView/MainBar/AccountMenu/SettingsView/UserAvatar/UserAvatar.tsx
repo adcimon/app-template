@@ -8,13 +8,8 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { ConfirmationDialog } from '../../../../../../components/Dialog/ConfirmationDialog';
-import { AppStateType } from '../../../../../../states/AppState';
+import { useAppState } from '../../../../../../hooks/useAppState';
 import { Utils } from '../../../../../../utils/utils';
-
-interface IUserAvatarProps {
-	appState: AppStateType;
-	setAppState: (state: AppStateType) => void;
-}
 
 interface IUserAvatarState {
 	showOverlay: boolean;
@@ -22,7 +17,9 @@ interface IUserAvatarState {
 	avatar: string;
 }
 
-export const UserAvatar: React.FC<IUserAvatarProps> = (props: IUserAvatarProps): JSX.Element => {
+export const UserAvatar: React.FC = (): JSX.Element => {
+	const { appState, setAppState } = useAppState();
+
 	const [state, setState] = React.useState<IUserAvatarState>({
 		showOverlay: false,
 		openDialog: false,
@@ -32,15 +29,15 @@ export const UserAvatar: React.FC<IUserAvatarProps> = (props: IUserAvatarProps):
 	const ref = React.useRef<HTMLDivElement>(null);
 
 	const getAvatar = (): string | undefined => {
-		if (!props.appState.user) {
+		if (!appState.user) {
 			return undefined;
 		}
 
-		if (props.appState.user.avatar === '') {
-			return Utils.getPlaceholderAvatar(props.appState.user);
+		if (appState.user.avatar === '') {
+			return Utils.getPlaceholderAvatar(appState.user);
 		}
 
-		return props.appState.user.avatar;
+		return appState.user.avatar;
 	};
 
 	const handleMouseEnter = () => {
@@ -61,20 +58,20 @@ export const UserAvatar: React.FC<IUserAvatarProps> = (props: IUserAvatarProps):
 		setState({
 			...state,
 			openDialog: true,
-			avatar: props.appState?.user?.avatar || '',
+			avatar: appState?.user?.avatar || '',
 		});
 	};
 
 	const validate = (): boolean => {
-		return Utils.AVATAR_REGEXP.test(state.avatar) && state.avatar !== props.appState.user.avatar;
+		return Utils.AVATAR_REGEXP.test(state.avatar) && state.avatar !== appState.user.avatar;
 	};
 
 	const handleAccept = async () => {
 		const update = async () => {
 			try {
-				const user: any = await props.appState.apiClient?.usersService.updateMyAvatar(state.avatar);
-				props.setAppState({
-					...props.appState,
+				const user: any = await appState.apiClient?.usersService.updateMyAvatar(state.avatar);
+				setAppState({
+					...appState,
 					user: user,
 				});
 				setState({

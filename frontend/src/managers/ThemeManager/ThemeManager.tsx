@@ -4,16 +4,17 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Base from '../../themes/Base/theme';
 import CustomLight from '../../themes/CustomLight/theme';
 import CustomDark from '../../themes/CustomDark/theme';
-import { AppStateType } from '../../states/AppState';
+import { useAppState } from '../../hooks/useAppState';
 
 interface IThemeManagerProps {
 	children?: React.ReactNode;
-	appState: AppStateType;
 }
 
 export const ThemeManager: React.FC<IThemeManagerProps> = (props: IThemeManagerProps): JSX.Element => {
+	const { appState, setAppState } = useAppState();
+
 	const getTheme = () => {
-		switch (props.appState.theme) {
+		switch (appState.theme) {
 			case 0:
 				return Base;
 			case 1:

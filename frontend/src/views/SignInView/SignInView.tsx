@@ -9,19 +9,17 @@ import { Copyright } from '../../components/Copyright/Copyright';
 import { LaunchView } from '../LaunchView/LaunchView';
 import { Logo } from '../../components/Logo/Logo';
 import { PasswordField } from '../../components/Field/PasswordField';
-import { AppViewType, AppStateType } from '../../states/AppState';
-
-interface ISignInViewProps {
-	appState: AppStateType;
-	setAppState: (state: AppStateType) => void;
-}
+import { AppViewType } from '../../states/AppState';
+import { useAppState } from '../../hooks/useAppState';
 
 interface ISignInViewState {
 	email: string;
 	password: string;
 }
 
-export const SignInView: React.FC<ISignInViewProps> = (props: ISignInViewProps): JSX.Element => {
+export const SignInView: React.FC = (): JSX.Element => {
+	const { appState, setAppState } = useAppState();
+
 	const [state, setState] = React.useState<ISignInViewState>({
 		email: '',
 		password: '',
@@ -29,9 +27,9 @@ export const SignInView: React.FC<ISignInViewProps> = (props: ISignInViewProps):
 
 	const handleSignIn = async () => {
 		try {
-			await props.appState.apiClient?.authService.signIn(state.email, state.password);
-			props.setAppState({
-				...props.appState,
+			await appState.apiClient?.authService.signIn(state.email, state.password);
+			setAppState({
+				...appState,
 				appView: AppViewType.Main,
 			});
 		} catch (error: any) {
@@ -40,15 +38,15 @@ export const SignInView: React.FC<ISignInViewProps> = (props: ISignInViewProps):
 	};
 
 	const handleForgotPassword = () => {
-		props.setAppState({
-			...props.appState,
+		setAppState({
+			...appState,
 			appView: AppViewType.ForgotPassword,
 		});
 	};
 
 	const handleSignUp = () => {
-		props.setAppState({
-			...props.appState,
+		setAppState({
+			...appState,
 			appView: AppViewType.SignUp,
 		});
 	};

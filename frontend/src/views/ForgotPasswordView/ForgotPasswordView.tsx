@@ -11,13 +11,9 @@ import { Copyright } from '../../components/Copyright/Copyright';
 import { LaunchView } from '../LaunchView/LaunchView';
 import { Logo } from '../../components/Logo/Logo';
 import { PasswordField } from '../../components/Field/PasswordField';
-import { AppViewType, AppStateType } from '../../states/AppState';
+import { AppViewType } from '../../states/AppState';
+import { useAppState } from '../../hooks/useAppState';
 import { Utils } from '../../utils/utils';
-
-interface IForgotPasswordViewProps {
-	appState: AppStateType;
-	setAppState: (state: AppStateType) => void;
-}
 
 interface IForgotPasswordViewState {
 	email: string;
@@ -26,9 +22,9 @@ interface IForgotPasswordViewState {
 	confirmPassword: string;
 }
 
-export const ForgotPasswordView: React.FC<IForgotPasswordViewProps> = (
-	props: IForgotPasswordViewProps,
-): JSX.Element => {
+export const ForgotPasswordView: React.FC = (): JSX.Element => {
+	const { appState, setAppState } = useAppState();
+
 	const [state, setState] = React.useState<IForgotPasswordViewState>({
 		email: '',
 		code: '',
@@ -51,7 +47,7 @@ export const ForgotPasswordView: React.FC<IForgotPasswordViewProps> = (
 
 	const handleSendCode = async () => {
 		try {
-			await props.appState.apiClient?.authService.forgotPassword(state.email);
+			await appState.apiClient?.authService.forgotPassword(state.email);
 			toast.success('Code sent');
 		} catch (error: any) {
 			toast.error(error.message);
@@ -60,9 +56,9 @@ export const ForgotPasswordView: React.FC<IForgotPasswordViewProps> = (
 
 	const handleChange = async () => {
 		try {
-			await props.appState.apiClient?.authService.changePassword(state.email, state.code, state.password);
-			props.setAppState({
-				...props.appState,
+			await appState.apiClient?.authService.changePassword(state.email, state.code, state.password);
+			setAppState({
+				...appState,
 				appView: AppViewType.SignIn,
 			});
 			toast.success('Password changed');
@@ -72,8 +68,8 @@ export const ForgotPasswordView: React.FC<IForgotPasswordViewProps> = (
 	};
 
 	const handleSignIn = () => {
-		props.setAppState({
-			...props.appState,
+		setAppState({
+			...appState,
 			appView: AppViewType.SignIn,
 		});
 	};

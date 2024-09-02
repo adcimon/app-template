@@ -4,25 +4,23 @@ import { ForgotPasswordView } from '../ForgotPasswordView/ForgotPasswordView';
 import { MainView } from '../MainView/MainView';
 import { SignInView } from '../SignInView/SignInView';
 import { SignUpView } from '../SignUpView/SignUpView';
-import { AppViewType, AppStateType } from '../../states/AppState';
+import { AppViewType } from '../../states/AppState';
+import { useAppState } from '../../hooks/useAppState';
 
-interface IAppViewProps {
-	appState: AppStateType;
-	setAppState: (state: AppStateType) => void;
-}
+export const AppView: React.FC = (): JSX.Element => {
+	const { appState, setAppState } = useAppState();
 
-export const AppView: React.FC<IAppViewProps> = (props: IAppViewProps): JSX.Element => {
 	React.useEffect(() => {
-		if (!props.appState.error) {
+		if (!appState.error) {
 			autoAuth();
 		}
 	}, []);
 
 	const autoAuth = async () => {
 		try {
-			await props.appState.apiClient?.usersService.getMyUser();
-			props.setAppState({
-				...props.appState,
+			await appState.apiClient?.usersService.getMyUser();
+			setAppState({
+				...appState,
 				appView: AppViewType.Main,
 			});
 		} catch (error: any) {
@@ -31,39 +29,19 @@ export const AppView: React.FC<IAppViewProps> = (props: IAppViewProps): JSX.Elem
 	};
 
 	const render = () => {
-		if (props.appState.error) {
-			return <ErrorView error={props.appState.error} />;
+		if (appState.error) {
+			return <ErrorView error={appState.error} />;
 		}
 
-		switch (props.appState.appView) {
+		switch (appState.appView) {
 			case AppViewType.SignIn:
-				return (
-					<SignInView
-						appState={props.appState}
-						setAppState={props.setAppState}
-					/>
-				);
+				return <SignInView />;
 			case AppViewType.SignUp:
-				return (
-					<SignUpView
-						appState={props.appState}
-						setAppState={props.setAppState}
-					/>
-				);
+				return <SignUpView />;
 			case AppViewType.ForgotPassword:
-				return (
-					<ForgotPasswordView
-						appState={props.appState}
-						setAppState={props.setAppState}
-					/>
-				);
+				return <ForgotPasswordView />;
 			case AppViewType.Main:
-				return (
-					<MainView
-						appState={props.appState}
-						setAppState={props.setAppState}
-					/>
-				);
+				return <MainView />;
 			default:
 				return <ErrorView />;
 		}

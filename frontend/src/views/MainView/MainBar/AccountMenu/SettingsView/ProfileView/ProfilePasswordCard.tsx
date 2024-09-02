@@ -11,12 +11,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { ConfirmationDialog } from '../../../../../../components/Dialog/ConfirmationDialog';
 import { PasswordField } from '../../../../../../components/Field/PasswordField';
-import { AppStateType } from '../../../../../../states/AppState';
-
-interface IProfilePasswordCardProps {
-	appState: AppStateType;
-	setAppState: (state: AppStateType) => void;
-}
+import { useAppState } from '../../../../../../hooks/useAppState';
 
 interface IProfilePasswordCardState {
 	openDialog: boolean;
@@ -25,9 +20,9 @@ interface IProfilePasswordCardState {
 	confirmPassword: string;
 }
 
-export const ProfilePasswordCard: React.FC<IProfilePasswordCardProps> = (
-	props: IProfilePasswordCardProps,
-): JSX.Element => {
+export const ProfilePasswordCard: React.FC = (): JSX.Element => {
+	const { appState, setAppState } = useAppState();
+
 	const [state, setState] = React.useState<IProfilePasswordCardState>({
 		openDialog: false,
 		currentPassword: '',
@@ -55,7 +50,7 @@ export const ProfilePasswordCard: React.FC<IProfilePasswordCardProps> = (
 
 	const handleAcceptChange = async () => {
 		try {
-			await props.appState.apiClient?.usersService.updateMyPassword(state.currentPassword, state.newPassword);
+			await appState.apiClient?.usersService.updateMyPassword(state.currentPassword, state.newPassword);
 			toast.success('Password changed');
 		} catch (error: any) {
 			toast.error(error.message);

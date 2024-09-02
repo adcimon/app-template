@@ -4,12 +4,9 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import { AccountMenu } from './AccountMenu/AccountMenu';
 import { NotificationsMenu } from './NotificationsMenu/NotificationsMenu';
-import { AppStateType } from '../../../states/AppState';
 
 interface IMainBarProps {
 	height?: string;
-	appState: AppStateType;
-	setAppState: (state: AppStateType) => void;
 }
 
 export const MainBar: React.FC<IMainBarProps> = (props: IMainBarProps): JSX.Element => {
@@ -61,11 +58,8 @@ export const MainBar: React.FC<IMainBarProps> = (props: IMainBarProps): JSX.Elem
 								gap: '10px',
 								justifyContent: 'flex-end',
 							}}>
-							<NotificationsMenu appState={props.appState} />
-							<AccountMenu
-								appState={props.appState}
-								setAppState={props.setAppState}
-							/>
+							<NotificationsMenu />
+							<AccountMenu />
 						</Box>
 					</Toolbar>
 				</AppBar>

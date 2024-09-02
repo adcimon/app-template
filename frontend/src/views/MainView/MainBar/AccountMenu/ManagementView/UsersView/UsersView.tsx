@@ -11,19 +11,17 @@ import { CountrySelect } from '../../../../../../components/Select/CountrySelect
 import { GenericTable } from '../../../../../../components/Table/GenericTable';
 import { TimezoneSelect } from '../../../../../../components/Select/TimezoneSelect';
 import { VerificationBadge } from '../../../../../../components/Badge/VerificationBadge';
-import { AppStateType } from '../../../../../../states/AppState';
+import { useAppState } from '../../../../../../hooks/useAppState';
 import { Utils } from '../../../../../../utils/utils';
-
-interface IUsersViewProps {
-	appState: AppStateType;
-}
 
 interface IUsersViewState {
 	users: any[];
 	user: any;
 }
 
-export const UsersView: React.FC<IUsersViewProps> = (props: IUsersViewProps): JSX.Element => {
+export const UsersView: React.FC = (): JSX.Element => {
+	const { appState, setAppState } = useAppState();
+
 	const [state, setState] = React.useState<IUsersViewState>({
 		users: [],
 		user: null,
@@ -42,7 +40,7 @@ export const UsersView: React.FC<IUsersViewProps> = (props: IUsersViewProps): JS
 
 	const getUsers = async () => {
 		try {
-			const users: any = await props.appState.apiClient?.usersService.getUsers();
+			const users: any = await appState.apiClient?.usersService.getUsers();
 			setState({
 				...state,
 				users: users,

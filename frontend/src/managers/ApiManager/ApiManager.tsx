@@ -1,16 +1,17 @@
 import React from 'react';
 import axios, { AxiosInstance } from 'axios';
-import { AppViewType, AppStateType } from '../../states/AppState';
+import { AppViewType } from '../../states/AppState';
+import { useAppState } from '../../hooks/useAppState';
 import { HttpParams } from '../../api/httpMethods';
 import { IApiClient, newApiClient } from '../../api/apiClient';
 
 interface IApiManagerProps {
 	children?: React.ReactNode;
-	appState: AppStateType;
-	setAppState: (state: AppStateType) => void;
 }
 
 export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps): JSX.Element => {
+	const { appState, setAppState } = useAppState();
+
 	let endpoint: string = 'http://127.0.0.1:9000';
 	let instance: AxiosInstance | null = null;
 	let controller: AbortController | null = null;
@@ -24,8 +25,8 @@ export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps):
 
 		createInstance();
 
-		props.setAppState({
-			...props.appState,
+		setAppState({
+			...appState,
 			apiClient: client,
 		});
 	};
@@ -209,8 +210,8 @@ export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps):
 				localStorage.removeItem('accessToken');
 				localStorage.removeItem('refreshToken');
 
-				props.setAppState({
-					...props.appState,
+				setAppState({
+					...appState,
 					apiClient: client,
 					appView: AppViewType.SignIn,
 					user: {},
@@ -226,7 +227,7 @@ export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps):
 	const client: IApiClient = newApiClient(httpGet, httpPost, httpPatch, httpPut, httpDelete, cancelRequests);
 
 	const render = () => {
-		return <>{props.appState.apiClient && props.children}</>;
+		return <>{appState.apiClient && props.children}</>;
 	};
 
 	return render();

@@ -7,17 +7,14 @@ import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
-import { AppStateType } from '../../../../../../states/AppState';
+import { useAppState } from '../../../../../../hooks/useAppState';
 
-interface IPreferencesViewProps {
-	appState: AppStateType;
-	setAppState: (state: AppStateType) => void;
-}
+export const PreferencesView: React.FC = (): JSX.Element => {
+	const { appState, setAppState } = useAppState();
 
-export const PreferencesView: React.FC<IPreferencesViewProps> = (props: IPreferencesViewProps): JSX.Element => {
 	const handleChangeTheme = (event: SelectChangeEvent) => {
-		props.setAppState({
-			...props.appState,
+		setAppState({
+			...appState,
 			theme: parseInt(event.target.value),
 		});
 	};
@@ -62,7 +59,7 @@ export const PreferencesView: React.FC<IPreferencesViewProps> = (props: IPrefere
 											</Typography>
 										</Box>
 										<Select
-											value={props.appState.theme.toString()}
+											value={appState.theme.toString()}
 											onChange={handleChangeTheme}>
 											<MenuItem value={0}>Base</MenuItem>
 											<MenuItem value={1}>Custom Light</MenuItem>

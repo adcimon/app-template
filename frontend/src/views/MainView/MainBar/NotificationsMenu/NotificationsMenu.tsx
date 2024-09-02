@@ -10,18 +10,13 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import { GenericPopover } from '../../../../components/Popover/GenericPopover';
 import { NotificationItem } from './NotificationItem';
-import { AppStateType } from '../../../../states/AppState';
-
-interface INotificationsMenuProps {
-	appState: AppStateType;
-}
 
 interface INotificationsMenuState {
 	open: boolean;
 	notifications: object[];
 }
 
-export const NotificationsMenu: React.FC<INotificationsMenuProps> = (props: INotificationsMenuProps): JSX.Element => {
+export const NotificationsMenu: React.FC = (): JSX.Element => {
 	const [state, setState] = React.useState<INotificationsMenuState>({
 		open: false,
 		notifications: notifications,

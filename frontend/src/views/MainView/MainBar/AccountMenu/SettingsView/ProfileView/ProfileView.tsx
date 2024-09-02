@@ -6,23 +6,20 @@ import { ProfileDetailsCard } from './ProfileDetailsCard';
 import { ProfileEmailCard } from './ProfileEmailCard';
 import { ProfilePasswordCard } from './ProfilePasswordCard';
 import { ProfilePhoneCard } from './ProfilePhoneCard';
-import { AppStateType } from '../../../../../../states/AppState';
+import { useAppState } from '../../../../../../hooks/useAppState';
 
-interface IProfileViewProps {
-	appState: AppStateType;
-	setAppState: (state: AppStateType) => void;
-}
+export const ProfileView: React.FC = (): JSX.Element => {
+	const { appState, setAppState } = useAppState();
 
-export const ProfileView: React.FC<IProfileViewProps> = (props: IProfileViewProps): JSX.Element => {
 	React.useEffect(() => {
 		getMyUser();
 	}, []);
 
 	const getMyUser = async () => {
 		try {
-			const user: any = await props.appState.apiClient?.usersService.getMyUser();
-			props.setAppState({
-				...props.appState,
+			const user: any = await appState.apiClient?.usersService.getMyUser();
+			setAppState({
+				...appState,
 				user: user,
 			});
 		} catch (error: any) {
@@ -47,50 +44,35 @@ export const ProfileView: React.FC<IProfileViewProps> = (props: IProfileViewProp
 						xs={12}
 						md={6}
 						lg={12}>
-						<ProfileDetailsCard
-							appState={props.appState}
-							setAppState={props.setAppState}
-						/>
+						<ProfileDetailsCard />
 					</Grid>
 					<Grid
 						item
 						xs={12}
 						md={6}
 						lg={6}>
-						<ProfileEmailCard
-							appState={props.appState}
-							setAppState={props.setAppState}
-						/>
+						<ProfileEmailCard />
 					</Grid>
 					<Grid
 						item
 						xs={12}
 						md={6}
 						lg={6}>
-						<ProfilePhoneCard
-							appState={props.appState}
-							setAppState={props.setAppState}
-						/>
+						<ProfilePhoneCard />
 					</Grid>
 					<Grid
 						item
 						xs={12}
 						md={6}
 						lg={6}>
-						<ProfilePasswordCard
-							appState={props.appState}
-							setAppState={props.setAppState}
-						/>
+						<ProfilePasswordCard />
 					</Grid>
 					<Grid
 						item
 						xs={12}
 						md={6}
 						lg={6}>
-						<ProfileDangerZoneCard
-							appState={props.appState}
-							setAppState={props.setAppState}
-						/>
+						<ProfileDangerZoneCard />
 					</Grid>
 				</Grid>
 			</>

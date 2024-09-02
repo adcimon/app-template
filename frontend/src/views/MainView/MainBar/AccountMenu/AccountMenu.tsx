@@ -17,13 +17,9 @@ import { GenericPopover } from '../../../../components/Popover/GenericPopover';
 import { HelpView } from './HelpView/HelpView';
 import { ManagementView } from './ManagementView/ManagementView';
 import { SettingsView } from './SettingsView/SettingsView';
-import { AppStateType, resetAppState } from '../../../../states/AppState';
+import { resetAppState } from '../../../../states/AppState';
+import { useAppState } from '../../../../hooks/useAppState';
 import { Utils } from '../../../../utils/utils';
-
-interface IAccountMenuProps {
-	appState: AppStateType;
-	setAppState: (state: AppStateType) => void;
-}
 
 interface IAccountMenuState {
 	open: boolean;
@@ -33,7 +29,9 @@ interface IAccountMenuState {
 	openSignOutDialog: boolean;
 }
 
-export const AccountMenu: React.FC<IAccountMenuProps> = (props: IAccountMenuProps): JSX.Element => {
+export const AccountMenu: React.FC = (): JSX.Element => {
+	const { appState, setAppState } = useAppState();
+
 	const [state, setState] = React.useState<IAccountMenuState>({
 		open: false,
 		openSettings: false,
@@ -45,15 +43,15 @@ export const AccountMenu: React.FC<IAccountMenuProps> = (props: IAccountMenuProp
 	const ref = React.useRef<any>(null);
 
 	const getAvatar = (): string | undefined => {
-		if (!props.appState.user) {
+		if (!appState.user) {
 			return undefined;
 		}
 
-		if (props.appState.user.avatar === '') {
-			return Utils.getPlaceholderAvatar(props.appState.user);
+		if (appState.user.avatar === '') {
+			return Utils.getPlaceholderAvatar(appState.user);
 		}
 
-		return props.appState.user.avatar;
+		return appState.user.avatar;
 	};
 
 	const handleClick = () => {
@@ -125,11 +123,11 @@ export const AccountMenu: React.FC<IAccountMenuProps> = (props: IAccountMenuProp
 
 	const handleAcceptSignOut = async () => {
 		try {
-			await props.appState.apiClient?.authService.signOut();
+			await appState.apiClient?.authService.signOut();
 		} catch (error: any) {
 			// Ignore errors.
 		} finally {
-			props.setAppState(resetAppState(props.appState));
+			setAppState(resetAppState(appState));
 			toast.success('See you soon!');
 		}
 	};
@@ -156,7 +154,7 @@ export const AccountMenu: React.FC<IAccountMenuProps> = (props: IAccountMenuProp
 								fontSize: '0.75rem',
 								maxWidth: '80px',
 							}}>
-							{props.appState.user.name || <Skeleton width={50} />}
+							{appState.user.name || <Skeleton width={50} />}
 						</Typography>
 					}
 					avatar={
@@ -210,13 +208,13 @@ export const AccountMenu: React.FC<IAccountMenuProps> = (props: IAccountMenuProp
 							sx={{
 								fontWeight: 'bold',
 							}}>
-							{props.appState.user.name || <Skeleton width={150} />}
+							{appState.user.name || <Skeleton width={150} />}
 						</Typography>
 						<Typography
 							noWrap
 							color='text.secondary'
 							variant='body2'>
-							{props.appState.user.email || <Skeleton width={150} />}
+							{appState.user.email || <Skeleton width={150} />}
 						</Typography>
 					</Box>
 					<Divider />
@@ -282,13 +280,10 @@ export const AccountMenu: React.FC<IAccountMenuProps> = (props: IAccountMenuProp
 				<SettingsView
 					open={state.openSettings}
 					onClose={handleCloseSettings}
-					appState={props.appState}
-					setAppState={props.setAppState}
 				/>
 				<ManagementView
 					open={state.openManagement}
 					onClose={handleCloseManagement}
-					appState={props.appState}
 				/>
 				<HelpView
 					open={state.openHelp}

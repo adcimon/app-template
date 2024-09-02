@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { RecoilRoot } from 'recoil';
-import { ThemeManagerContainer } from './managers/ThemeManager/ThemeManagerContainer';
-import { ApiManagerContainer } from './managers/ApiManager/ApiManagerContainer';
+import { ThemeManager } from './managers/ThemeManager/ThemeManager';
+import { ApiManager } from './managers/ApiManager/ApiManager';
 import { Toaster } from 'react-hot-toast';
-import { AppViewContainer } from './views/AppView/AppViewContainer';
+import { AppView } from './views/AppView/AppView';
 
 export default function App() {
 	return (
 		<>
 			<RecoilRoot>
-				<ThemeManagerContainer>
-					<ApiManagerContainer>
+				<ThemeManager>
+					<ApiManager>
 						<Toaster
 							containerStyle={{
 								top: '10px',
@@ -20,9 +20,9 @@ export default function App() {
 								duration: 5000,
 							}}
 						/>
-						<AppViewContainer />
-					</ApiManagerContainer>
-				</ThemeManagerContainer>
+						<AppView />
+					</ApiManager>
+				</ThemeManager>
 			</RecoilRoot>
 		</>
 	);

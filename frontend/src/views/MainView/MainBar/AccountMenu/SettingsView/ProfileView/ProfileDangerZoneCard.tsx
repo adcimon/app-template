@@ -10,21 +10,17 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { ConfirmationDialog } from '../../../../../../components/Dialog/ConfirmationDialog';
-import { AppViewType, AppStateType } from '../../../../../../states/AppState';
-
-interface IProfileDangerZoneCardProps {
-	appState: AppStateType;
-	setAppState: (state: AppStateType) => void;
-}
+import { AppViewType } from '../../../../../../states/AppState';
+import { useAppState } from '../../../../../../hooks/useAppState';
 
 interface IProfileDangerZoneCardState {
 	openDialog: boolean;
 	password: string;
 }
 
-export const ProfileDangerZoneCard: React.FC<IProfileDangerZoneCardProps> = (
-	props: IProfileDangerZoneCardProps,
-): JSX.Element => {
+export const ProfileDangerZoneCard: React.FC = (): JSX.Element => {
+	const { appState, setAppState } = useAppState();
+
 	const [state, setState] = React.useState<IProfileDangerZoneCardState>({
 		openDialog: false,
 		password: '',
@@ -43,9 +39,9 @@ export const ProfileDangerZoneCard: React.FC<IProfileDangerZoneCardProps> = (
 
 	const handleAcceptDeleteAccount = async () => {
 		try {
-			await props.appState.apiClient?.authService.signDown(state.password);
-			props.setAppState({
-				...props.appState,
+			await appState.apiClient?.authService.signDown(state.password);
+			setAppState({
+				...appState,
 				appView: AppViewType.SignIn,
 			});
 			toast.success('Account deleted');

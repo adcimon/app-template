@@ -8,12 +8,10 @@ import Tabs from '@mui/material/Tabs';
 import Typography from '@mui/material/Typography';
 import { UsersView } from './UsersView/UsersView';
 import { Window } from '../../../../../components/Window/Window';
-import { AppStateType } from '../../../../../states/AppState';
 
 interface IManagementViewProps {
 	open: boolean;
 	onClose?: (event: any) => void;
-	appState: AppStateType;
 }
 
 interface IManagementViewState {
@@ -88,7 +86,7 @@ export const ManagementView: React.FC<IManagementViewProps> = (props: IManagemen
 	};
 
 	const renderTab = () => {
-		return <>{state.tab === 0 && <UsersView appState={props.appState} />}</>;
+		return <>{state.tab === 0 && <UsersView />}</>;
 	};
 
 	const render = () => {

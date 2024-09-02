@@ -13,13 +13,9 @@ import { Logo } from '../../components/Logo/Logo';
 import { PasswordField } from '../../components/Field/PasswordField';
 import { PrivacyPolicyDialog } from '../../components/Dialog/PrivacyPolicyDialog';
 import { TermsOfServiceDialog } from '../../components/Dialog/TermsOfServiceDialog';
-import { AppViewType, AppStateType } from '../../states/AppState';
+import { AppViewType } from '../../states/AppState';
+import { useAppState } from '../../hooks/useAppState';
 import { Utils } from '../../utils/utils';
-
-interface ISignUpViewProps {
-	appState: AppStateType;
-	setAppState: (state: AppStateType) => void;
-}
 
 interface ISignUpViewState {
 	openTermsOfService: boolean;
@@ -30,7 +26,9 @@ interface ISignUpViewState {
 	legalAccepted: boolean;
 }
 
-export const SignUpView: React.FC<ISignUpViewProps> = (props: ISignUpViewProps): JSX.Element => {
+export const SignUpView: React.FC = (): JSX.Element => {
+	const { appState, setAppState } = useAppState();
+
 	const [state, setState] = React.useState<ISignUpViewState>({
 		openTermsOfService: false,
 		openPrivacyPolicy: false,
@@ -81,9 +79,9 @@ export const SignUpView: React.FC<ISignUpViewProps> = (props: ISignUpViewProps):
 
 	const handleSignUp = async () => {
 		try {
-			await props.appState.apiClient?.authService.signUp(state.email, state.password);
-			props.setAppState({
-				...props.appState,
+			await appState.apiClient?.authService.signUp(state.email, state.password);
+			setAppState({
+				...appState,
 				appView: AppViewType.SignIn,
 			});
 			toast.success('Verify your email');
@@ -93,8 +91,8 @@ export const SignUpView: React.FC<ISignUpViewProps> = (props: ISignUpViewProps):
 	};
 
 	const handleSignIn = () => {
-		props.setAppState({
-			...props.appState,
+		setAppState({
+			...appState,
 			appView: AppViewType.SignIn,
 		});
 	};
