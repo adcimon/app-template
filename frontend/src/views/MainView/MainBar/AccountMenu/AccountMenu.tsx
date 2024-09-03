@@ -17,7 +17,6 @@ import { GenericPopover } from '../../../../components/Popover/GenericPopover';
 import { HelpView } from './HelpView/HelpView';
 import { ManagementView } from './ManagementView/ManagementView';
 import { SettingsView } from './SettingsView/SettingsView';
-import { resetAppState } from '../../../../states/AppState';
 import { useAppState } from '../../../../hooks/useAppState';
 import { Utils } from '../../../../utils/utils';
 
@@ -30,7 +29,7 @@ interface IAccountMenuState {
 }
 
 export const AccountMenu: React.FC = (): JSX.Element => {
-	const { appState, setAppState } = useAppState();
+	const { appState, setAppState, resetAppState } = useAppState();
 
 	const [state, setState] = React.useState<IAccountMenuState>({
 		open: false,
@@ -127,7 +126,7 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 		} catch (error: any) {
 			// Ignore errors.
 		} finally {
-			setAppState(resetAppState(appState));
+			resetAppState();
 			toast.success('See you soon!');
 		}
 	};

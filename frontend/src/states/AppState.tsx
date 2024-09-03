@@ -16,7 +16,7 @@ export type AppStateType = {
 	user: any;
 };
 
-export const defaultAppState = {
+export const AppStateDefault = {
 	apiClient: null,
 	appView: AppViewType.SignIn,
 	theme: 0,
@@ -24,16 +24,7 @@ export const defaultAppState = {
 	user: {},
 };
 
-export const resetAppState = (appState: AppStateType) => {
-	const { apiClient, theme, ...newDefaultAppState } = defaultAppState;
-	return {
-		apiClient: appState.apiClient,
-		theme: appState.theme,
-		...newDefaultAppState,
-	};
-};
-
 export const AppState = atom<AppStateType>({
 	key: 'AppState',
-	default: defaultAppState,
+	default: AppStateDefault,
 });

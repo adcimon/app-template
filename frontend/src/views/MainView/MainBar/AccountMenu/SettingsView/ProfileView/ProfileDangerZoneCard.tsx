@@ -19,7 +19,7 @@ interface IProfileDangerZoneCardState {
 }
 
 export const ProfileDangerZoneCard: React.FC = (): JSX.Element => {
-	const { appState, setAppState } = useAppState();
+	const { appState, setAppState, resetAppState } = useAppState();
 
 	const [state, setState] = React.useState<IProfileDangerZoneCardState>({
 		openDialog: false,
@@ -40,10 +40,7 @@ export const ProfileDangerZoneCard: React.FC = (): JSX.Element => {
 	const handleAcceptDeleteAccount = async () => {
 		try {
 			await appState.apiClient?.authService.signDown(state.password);
-			setAppState({
-				...appState,
-				appView: AppViewType.SignIn,
-			});
+			resetAppState();
 			toast.success('Account deleted');
 		} catch (error: any) {
 			toast.error(error.message);
