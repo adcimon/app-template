@@ -38,6 +38,18 @@ export const UsersView: React.FC = (): JSX.Element => {
 		});
 	};
 
+	const getAvatar = (user: any): string | undefined => {
+		if (!user) {
+			return undefined;
+		}
+
+		if (user.avatar === '') {
+			return Utils.getPlaceholderAvatar(user);
+		}
+
+		return user.avatar;
+	};
+
 	const getUsers = async () => {
 		try {
 			const users: any = await appState.apiClient?.usersService.getUsers();
@@ -62,7 +74,7 @@ export const UsersView: React.FC = (): JSX.Element => {
 	};
 
 	const renderRow = (item: any) => {
-		const avatar: string = item ? (item.avatar === '' ? Utils.getPlaceholderAvatar(item) : item.avatar) : undefined;
+		const avatar: string | undefined = getAvatar(item);
 		return [
 			<>
 				{/* Name */}
@@ -132,11 +144,7 @@ export const UsersView: React.FC = (): JSX.Element => {
 	};
 
 	const renderDialog = () => {
-		const avatar: string = state.user
-			? state.user.avatar === ''
-				? Utils.getPlaceholderAvatar(state.user)
-				: state.user.avatar
-			: undefined;
+		const avatar: string | undefined = getAvatar(state.user);
 		return (
 			<>
 				<Stack

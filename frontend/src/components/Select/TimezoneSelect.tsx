@@ -30,26 +30,28 @@ export const TimezoneSelect: React.FC<TimezoneSelectProps> = ({
 						{option}
 					</Box>
 				)}
-				renderInput={(params) => (
-					<TextField
-						{...params}
-						{...props}
-						onChange={undefined}
-						InputProps={{
-							...params.InputProps,
-							...props.InputProps,
-							sx: {
-								...props.sx,
-								height: '100%',
-							},
-						}}
-						inputProps={{
-							...params.inputProps,
-							...props.inputProps,
-							autoComplete: 'new-password', // Disable autocomplete and autofill.
-						}}
-					/>
-				)}
+				renderInput={(params) => {
+					const { defaultValue, value, onChange, ...subprops } = props;
+					return (
+						<TextField
+							{...params}
+							{...subprops}
+							InputProps={{
+								...params.InputProps,
+								...props.InputProps,
+								sx: {
+									...props.sx,
+									height: '100%',
+								},
+							}}
+							inputProps={{
+								...params.inputProps,
+								...props.inputProps,
+								autoComplete: 'new-password', // Disable autocomplete and autofill.
+							}}
+						/>
+					);
+				}}
 				sx={props.sx}
 			/>
 		);
