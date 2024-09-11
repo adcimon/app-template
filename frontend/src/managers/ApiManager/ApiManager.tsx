@@ -4,6 +4,7 @@ import { AppViewType } from '../../states/AppState';
 import { useAppState } from '../../hooks/useAppState';
 import { HttpParams } from '../../api/httpMethods';
 import { IApiClient, newApiClient } from '../../api/apiClient';
+import { ConsoleUtils } from '../../utils/consoleUtils';
 
 interface IApiManagerProps {
 	children?: React.ReactNode;
@@ -66,24 +67,45 @@ export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps):
 			signal: controller.signal,
 		});
 
-		// Intercept responses before they are handled by then or catch.
+		// Intercept requests.
+		instance.interceptors.request.use(
+			(config: any) => {
+				const endpoint: string = `${config?.baseURL}${config?.url}`;
+				const method: string = config?.method?.toUpperCase();
+				const data: any = config?.data || {};
+				ConsoleUtils.logRequest(method, endpoint, data);
+				return config;
+			},
+			(error: any) => {
+				return Promise.reject({
+					code: 'network_error',
+					message: error?.message,
+					data: error,
+				});
+			},
+		);
+
+		// Intercept responses.
 		instance.interceptors.response.use(
 			(response: any) => {
+				const status: number = response?.status;
 				const body: any = response?.data;
+				const endpoint: string = body?.endpoint;
 				const data: any = body?.data;
-				console.log('%c%s%o', 'color:#00FF00', body?.endpoint, body);
+				ConsoleUtils.logResponse(status, endpoint, body);
 				return Promise.resolve(data);
 			},
 			(error: any) => {
+				const status: number = error?.response?.status ?? 666;
 				const body: any = error?.response?.data;
 				const endpoint: string = body?.endpoint;
 				const err: any = error?.response?.data?.error;
 				if (body && err) {
-					console.log('%c%s%o', 'color:#FF0000', endpoint, body);
+					ConsoleUtils.logResponse(status, endpoint, body);
 					return Promise.reject(err);
 				} else {
 					const endpoint: string = error.config.baseURL + error.config.url;
-					console.log('%c%s%o', 'color:#FF0000', endpoint, error);
+					ConsoleUtils.logResponse(status, endpoint, error);
 					return Promise.reject({
 						code: 'network_error',
 						message: error?.message,

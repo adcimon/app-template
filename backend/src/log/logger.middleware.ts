@@ -37,13 +37,13 @@ const METHOD_TAG = (method: string, url: string): string => {
 	return `${color}${method} ${url}${BASE_COLOR}`;
 };
 
-const STATUS_TAG = (code: number): string => {
+const STATUS_TAG = (status: number): string => {
 	let color: string = GREEN_COLOR;
-	if (code >= 400) {
+	if (status >= 400) {
 		color = RED_COLOR;
 	}
 
-	return `${color}${code}${BASE_COLOR}`;
+	return `${color}${status}${BASE_COLOR}`;
 };
 
 @Injectable()
