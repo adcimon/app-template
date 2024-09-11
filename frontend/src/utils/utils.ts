@@ -7,8 +7,22 @@ export namespace Utils {
 		navigator.clipboard.writeText(text);
 	};
 
-	export const applyPagination = (records: any[], page: number, rowsPerPage: number): any[] => {
-		return records.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+	export const readImage = async (file: File): Promise<string> => {
+		const promise: Promise<string> = new Promise((resolve, reject) => {
+			const reader: FileReader = new FileReader();
+
+			reader.onload = () => {
+				const result: string = reader.result as string;
+				resolve(result);
+			};
+			reader.onerror = (error: any) => {
+				reject(error);
+			};
+
+			reader.readAsDataURL(file);
+		});
+
+		return promise;
 	};
 
 	export const getPlaceholderAvatar = (user: any): string => {
