@@ -16,7 +16,7 @@ interface ISideBarProps {
 
 export const SideBar: React.FC<ISideBarProps> = (props: ISideBarProps): JSX.Element => {
 	const theme: Theme = useTheme();
-	const responsive = useMediaQuery(theme.breakpoints.down('md'));
+	const responsive: boolean = useMediaQuery(theme.breakpoints.down('md'));
 
 	const render = () => {
 		const isResponsive: boolean = (props.responsive ?? false) && responsive;

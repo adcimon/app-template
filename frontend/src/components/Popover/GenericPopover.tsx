@@ -16,7 +16,7 @@ interface IGenericPopoverProps {
 
 export const GenericPopover: React.FC<IGenericPopoverProps> = (props: IGenericPopoverProps): JSX.Element => {
 	const theme: Theme = useTheme();
-	const responsive = useMediaQuery(theme.breakpoints.down('md'));
+	const responsive: boolean = useMediaQuery(theme.breakpoints.down('md'));
 
 	const render = () => {
 		return (

@@ -17,7 +17,7 @@ interface IGenericDialogProps {
 
 export const GenericDialog: React.FC<IGenericDialogProps> = (props: IGenericDialogProps): JSX.Element => {
 	const theme: Theme = useTheme();
-	const responsive = useMediaQuery(theme.breakpoints.down('md'));
+	const responsive: boolean = useMediaQuery(theme.breakpoints.down('md'));
 
 	const paperSx = responsive
 		? {
