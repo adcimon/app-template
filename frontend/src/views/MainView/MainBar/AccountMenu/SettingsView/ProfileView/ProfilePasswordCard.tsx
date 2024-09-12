@@ -21,7 +21,7 @@ interface IProfilePasswordCardState {
 }
 
 export const ProfilePasswordCard: React.FC = (): JSX.Element => {
-	const { appState, setAppState } = useAppState();
+	const { appState } = useAppState();
 
 	const [state, setState] = React.useState<IProfilePasswordCardState>({
 		openDialog: false,

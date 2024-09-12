@@ -29,7 +29,7 @@ interface IAccountMenuState {
 }
 
 export const AccountMenu: React.FC = (): JSX.Element => {
-	const { appState, setAppState, resetAppState } = useAppState();
+	const { appState, resetAppState } = useAppState();
 
 	const [state, setState] = React.useState<IAccountMenuState>({
 		open: false,

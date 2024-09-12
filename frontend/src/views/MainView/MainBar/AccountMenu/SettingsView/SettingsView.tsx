@@ -26,7 +26,7 @@ interface ISettingsViewState {
 }
 
 export const SettingsView: React.FC<ISettingsViewProps> = (props: ISettingsViewProps): JSX.Element => {
-	const { appState, setAppState } = useAppState();
+	const { appState } = useAppState();
 
 	const [state, setState] = React.useState<ISettingsViewState>({
 		tab: 0,

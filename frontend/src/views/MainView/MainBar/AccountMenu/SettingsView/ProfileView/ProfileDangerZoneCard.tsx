@@ -10,7 +10,6 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { ConfirmationDialog } from '../../../../../../components/Dialog/ConfirmationDialog';
-import { AppViewType } from '../../../../../../states/AppState';
 import { useAppState } from '../../../../../../hooks/useAppState';
 
 interface IProfileDangerZoneCardState {
@@ -19,7 +18,7 @@ interface IProfileDangerZoneCardState {
 }
 
 export const ProfileDangerZoneCard: React.FC = (): JSX.Element => {
-	const { appState, setAppState, resetAppState } = useAppState();
+	const { appState, resetAppState } = useAppState();
 
 	const [state, setState] = React.useState<IProfileDangerZoneCardState>({
 		openDialog: false,
