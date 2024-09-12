@@ -4,6 +4,7 @@ export namespace ConsoleUtils {
 	const GREEN_COLOR: string = '#13a10e';
 	const YELLOW_COLOR: string = '#c19c00';
 	const CYAN_COLOR: string = '#3a96dd';
+	const GREY_COLOR: string = '#767676';
 
 	const BASE_COLOR: string = WHITE_COLOR;
 	const POST_COLOR: string = GREEN_COLOR;
@@ -13,42 +14,35 @@ export namespace ConsoleUtils {
 	const DELETE_COLOR: string = RED_COLOR;
 
 	const getMethodColor = (method: string): string => {
-		let color: string = BASE_COLOR;
 		switch (method) {
 			case 'POST':
-				color = POST_COLOR;
-				break;
+				return POST_COLOR;
 			case 'GET':
-				color = GET_COLOR;
-				break;
+				return GET_COLOR;
 			case 'PUT':
-				color = PUT_COLOR;
-				break;
+				return PUT_COLOR;
 			case 'PATCH':
-				color = PATCH_COLOR;
-				break;
+				return PATCH_COLOR;
 			case 'DELETE':
-				color = DELETE_COLOR;
-				break;
+				return DELETE_COLOR;
+			default:
+				return BASE_COLOR;
 		}
-
-		return `color:${color}`;
 	};
 
 	const getStatusColor = (status: number): string => {
-		let color: string = GREEN_COLOR;
 		if (status >= 400) {
-			color = RED_COLOR;
+			return RED_COLOR;
+		} else {
+			return GREEN_COLOR;
 		}
-
-		return `color:${color}`;
 	};
 
 	export const logRequest = (method: string, endpoint: string, data: any): void => {
-		console.log('%c%s %s%o', getMethodColor(method), method, endpoint, data);
+		console.log('%c%s %s%o', `color:${getMethodColor(method)}`, method, endpoint, data);
 	};
 
 	export const logResponse = (status: number, endpoint: string, body: any): void => {
-		console.log('%c%s %s%o', getStatusColor(status), status, endpoint, body);
+		console.log('%c%s %c%s%o', `color:${getStatusColor(status)}`, status, `color:${GREY_COLOR}`, endpoint, body);
 	};
 }
