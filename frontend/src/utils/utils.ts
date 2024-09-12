@@ -25,7 +25,15 @@ export namespace Utils {
 		return promise;
 	};
 
-	export const getPlaceholderAvatar = (user: any): string => {
-		return `https://api.dicebear.com/6.x/avataaars/svg?seed=${user?.name || Math.random() * 1000}`;
+	export const getAvatar = (user: any): string | undefined => {
+		if (!user) {
+			return undefined;
+		}
+
+		if (!user.avatar || user.avatar === '') {
+			return `https://api.dicebear.com/6.x/avataaars/svg?seed=${user?.name || Math.random() * 1000}`;
+		}
+
+		return user.avatar;
 	};
 }

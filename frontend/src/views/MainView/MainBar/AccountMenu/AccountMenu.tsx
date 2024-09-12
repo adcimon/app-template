@@ -41,18 +41,6 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 
 	const ref = React.useRef<any>(null);
 
-	const getAvatar = (): string | undefined => {
-		if (!appState.user) {
-			return undefined;
-		}
-
-		if (appState.user.avatar === '') {
-			return Utils.getPlaceholderAvatar(appState.user);
-		}
-
-		return appState.user.avatar;
-	};
-
 	const handleClick = () => {
 		setState({
 			...state,
@@ -140,7 +128,7 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 	};
 
 	const render = () => {
-		const avatar: string | undefined = getAvatar();
+		const avatar: string | undefined = Utils.getAvatar(appState.user);
 		return (
 			<>
 				<Chip
