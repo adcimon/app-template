@@ -54,7 +54,6 @@ export const SearchField: React.FC<SearchFieldProps> = ({ onSearch, ...props }: 
 					onChange={handleChange}
 					onKeyDown={handleKeyDown}
 					hiddenLabel
-					InputLabelProps={{ shrink: false }}
 					InputProps={{
 						startAdornment: (
 							<InputAdornment position='start'>
@@ -66,6 +65,9 @@ export const SearchField: React.FC<SearchFieldProps> = ({ onSearch, ...props }: 
 								{state.value !== '' && <IconButton onClick={handleClear}>{<CloseIcon />}</IconButton>}
 							</InputAdornment>
 						),
+					}}
+					InputLabelProps={{
+						shrink: false,
 					}}
 				/>
 			</>

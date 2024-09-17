@@ -102,7 +102,9 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 										label='Name'
 										value={state.name}
 										onChange={(event: any) => setState({ ...state, name: event.target.value })}
-										InputLabelProps={{ shrink: true }}
+										InputLabelProps={{
+											shrink: true,
+										}}
 										fullWidth
 									/>
 								</Grid>
@@ -114,7 +116,9 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 										label='Surname'
 										value={state.surname}
 										onChange={(event: any) => setState({ ...state, surname: event.target.value })}
-										InputLabelProps={{ shrink: true }}
+										InputLabelProps={{
+											shrink: true,
+										}}
 										fullWidth
 									/>
 								</Grid>
@@ -127,7 +131,9 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 										type='date'
 										value={state.birthdate}
 										onChange={(event: any) => setState({ ...state, birthdate: event.target.value })}
-										InputLabelProps={{ shrink: true }}
+										InputLabelProps={{
+											shrink: true,
+										}}
 										fullWidth
 									/>
 								</Grid>
@@ -141,7 +147,9 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 										onChange={(event: any) =>
 											setState({ ...state, country: event.target.value?.code || '' })
 										}
-										InputLabelProps={{ shrink: true }}
+										InputLabelProps={{
+											shrink: true,
+										}}
 									/>
 								</Grid>
 								<Grid
@@ -152,7 +160,9 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 										label='Timezone'
 										value={state.timezone}
 										onChange={(event: any) => setState({ ...state, timezone: event.target.value })}
-										InputLabelProps={{ shrink: true }}
+										InputLabelProps={{
+											shrink: true,
+										}}
 									/>
 								</Grid>
 							</Grid>

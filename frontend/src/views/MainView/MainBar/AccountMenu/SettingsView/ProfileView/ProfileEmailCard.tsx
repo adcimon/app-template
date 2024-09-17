@@ -145,7 +145,9 @@ export const ProfileEmailCard: React.FC = (): JSX.Element => {
 										label='Email'
 										value={state.email}
 										onChange={(event: any) => setState({ ...state, email: event.target.value })}
-										InputLabelProps={{ shrink: true }}
+										InputLabelProps={{
+											shrink: true,
+										}}
 										fullWidth
 									/>
 									<Typography

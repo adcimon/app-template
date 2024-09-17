@@ -112,7 +112,9 @@ export const ProfilePhoneCard: React.FC = (): JSX.Element => {
 										type='tel'
 										value={state.phone}
 										onChange={(event: any) => setState({ ...state, phone: event.target.value })}
-										InputLabelProps={{ shrink: true }}
+										InputLabelProps={{
+											shrink: true,
+										}}
 										fullWidth
 									/>
 									<Typography

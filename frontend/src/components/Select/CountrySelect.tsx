@@ -56,6 +56,11 @@ export const CountrySelect: React.FC<CountrySelectProps> = ({
 						<TextField
 							{...params}
 							{...subprops}
+							inputProps={{
+								...params.inputProps,
+								...props.inputProps,
+								autoComplete: 'new-password', // Disable autocomplete and autofill.
+							}}
 							InputProps={{
 								...params.InputProps,
 								...props.InputProps,
@@ -63,11 +68,6 @@ export const CountrySelect: React.FC<CountrySelectProps> = ({
 									...props.sx,
 									height: '100%',
 								},
-							}}
-							inputProps={{
-								...params.inputProps,
-								...props.inputProps,
-								autoComplete: 'new-password', // Disable autocomplete and autofill.
 							}}
 						/>
 					);

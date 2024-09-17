@@ -36,6 +36,11 @@ export const TimezoneSelect: React.FC<TimezoneSelectProps> = ({
 						<TextField
 							{...params}
 							{...subprops}
+							inputProps={{
+								...params.inputProps,
+								...props.inputProps,
+								autoComplete: 'new-password', // Disable autocomplete and autofill.
+							}}
 							InputProps={{
 								...params.InputProps,
 								...props.InputProps,
@@ -43,11 +48,6 @@ export const TimezoneSelect: React.FC<TimezoneSelectProps> = ({
 									...props.sx,
 									height: '100%',
 								},
-							}}
-							inputProps={{
-								...params.inputProps,
-								...props.inputProps,
-								autoComplete: 'new-password', // Disable autocomplete and autofill.
 							}}
 						/>
 					);

@@ -177,7 +177,9 @@ export const UsersView: React.FC = (): JSX.Element => {
 							</InputAdornment>
 						),
 					}}
-					InputLabelProps={{ shrink: true }}
+					InputLabelProps={{
+						shrink: true,
+					}}
 				/>
 				<TextField
 					label='Phone'
@@ -192,7 +194,9 @@ export const UsersView: React.FC = (): JSX.Element => {
 							</InputAdornment>
 						),
 					}}
-					InputLabelProps={{ shrink: true }}
+					InputLabelProps={{
+						shrink: true,
+					}}
 				/>
 				<TextField
 					label='Birthdate'
@@ -200,20 +204,28 @@ export const UsersView: React.FC = (): JSX.Element => {
 					defaultValue={state?.user?.birthdate}
 					disabled
 					fullWidth
-					InputProps={{ readOnly: true }}
-					InputLabelProps={{ shrink: true }}
+					InputProps={{
+						readOnly: true,
+					}}
+					InputLabelProps={{
+						shrink: true,
+					}}
 				/>
 				<CountrySelect
 					label='Country'
 					defaultValue={state?.user?.country}
 					disabled
-					InputLabelProps={{ shrink: true }}
+					InputLabelProps={{
+						shrink: true,
+					}}
 				/>
 				<TimezoneSelect
 					label='Timezone'
 					defaultValue={state?.user?.timezone}
 					disabled
-					InputLabelProps={{ shrink: true }}
+					InputLabelProps={{
+						shrink: true,
+					}}
 				/>
 			</>
 		);
