@@ -1,6 +1,6 @@
 import { HttpDelete, HttpGet, HttpPatch, HttpPost, HttpPut } from './httpMethods';
-import { AuthService } from './services/authService';
-import { UsersService } from './services/usersService';
+import { AuthService } from './services/auth/authService';
+import { UsersService } from './services/users/usersService';
 
 export class ApiClient {
 	authService: AuthService;

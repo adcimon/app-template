@@ -1,4 +1,4 @@
-import { HttpDelete, HttpGet, HttpPatch, HttpPost, HttpPut } from '../httpMethods';
+import { HttpDelete, HttpGet, HttpPatch, HttpPost, HttpPut } from '../../httpMethods';
 
 export class UsersService {
 	httpGet: HttpGet;
