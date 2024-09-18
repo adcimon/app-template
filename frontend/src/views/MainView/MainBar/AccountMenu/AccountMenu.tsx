@@ -114,8 +114,8 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 		} catch (error: any) {
 			// Ignore errors.
 		} finally {
-			resetAppState();
 			toast.success('See you soon!');
+			resetAppState();
 		}
 	};
 

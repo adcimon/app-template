@@ -39,10 +39,11 @@ export const ProfileDangerZoneCard: React.FC = (): JSX.Element => {
 	const handleAcceptDeleteAccount = async () => {
 		try {
 			await appState.apiClient?.authService.signDown(state.password);
-			resetAppState();
 			toast.success('Account deleted');
 		} catch (error: any) {
 			toast.error(error.message);
+		} finally {
+			resetAppState();
 		}
 
 		setState({
