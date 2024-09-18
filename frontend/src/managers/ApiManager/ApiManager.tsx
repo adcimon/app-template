@@ -3,7 +3,7 @@ import axios, { AxiosInstance } from 'axios';
 import { AppViewType } from '../../states/AppState';
 import { useAppState } from '../../hooks/useAppState';
 import { HttpParams } from '../../api/httpMethods';
-import { IApiClient, newApiClient } from '../../api/apiClient';
+import { ApiClient } from '../../api/apiClient';
 import { ConsoleUtils } from '../../utils/consoleUtils';
 
 interface IApiManagerProps {
@@ -246,7 +246,7 @@ export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps):
 		}
 	};
 
-	const client: IApiClient = newApiClient(httpGet, httpPost, httpPatch, httpPut, httpDelete, cancelRequests);
+	const client: ApiClient = new ApiClient(httpGet, httpPost, httpPatch, httpPut, httpDelete, cancelRequests);
 
 	const render = () => {
 		return <>{appState.apiClient && props.children}</>;
