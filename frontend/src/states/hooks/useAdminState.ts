@@ -8,7 +8,7 @@ export function useAdminState() {
 	const [users, setUsers] = Recoil.useRecoilState(UsersState);
 
 	const getUsers = async (): Promise<any[]> => {
-		const users: any[] = await apiState.client?.usersService.getUsers();
+		const users: any[] = await apiState.client?.adminService.getUsers();
 		setUsers(users);
 		return users;
 	};

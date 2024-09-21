@@ -15,13 +15,6 @@ export class UsersService {
 		this.httpDelete = httpDelete;
 	}
 
-	getUsers = async (): Promise<any> => {
-		return this.httpGet({
-			endpoint: '/users',
-			useAuthorization: true,
-		});
-	};
-
 	getMyUser = async (): Promise<any> => {
 		return this.httpGet({
 			endpoint: '/users/me',

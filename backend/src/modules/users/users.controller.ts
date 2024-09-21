@@ -11,13 +11,6 @@ import { UserDto } from './user.dto';
 export class UsersController {
 	constructor(private readonly usersService: UsersService) {}
 
-	@Get('/')
-	@UseGuards(AuthGuard)
-	@UseInterceptors(ResponseInterceptor)
-	async getUsers(): Promise<UserDto[]> {
-		return await this.usersService.get();
-	}
-
 	@Get('/me')
 	@UseGuards(AuthGuard)
 	@UseInterceptors(ResponseInterceptor)
