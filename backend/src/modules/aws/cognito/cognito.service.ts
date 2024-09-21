@@ -1,16 +1,16 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { ConfigService } from '../config/config.service';
-import { Transform } from '../decorators/transform.decorator';
-import { StatusBooleanToDto } from '../transforms/status-boolean-dto.transform';
-import { CredentialsObjectToDto } from '../transforms/credentials-object-dto.transform';
-import { UserCognitoToDto } from '../transforms/user-cognito-dto.transform';
-import { StatusDto } from '../dtos/status.dto';
-import { CredentialsDto } from '../auth/credentials.dto';
-import { UserDto } from '../users/user.dto';
-import { ResourceNotFoundException } from '../exceptions/resource-not-found.exception';
-import { EmailTakenException } from '../exceptions/email-taken.exception';
+import { ConfigService } from '../../config/config.service';
+import { Transform } from '../../../decorators/transform.decorator';
+import { StatusBooleanToDto } from '../../../transforms/status-boolean-dto.transform';
+import { CredentialsObjectToDto } from '../../../transforms/credentials-object-dto.transform';
+import { UserCognitoToDto } from '../../../transforms/user-cognito-dto.transform';
+import { StatusDto } from '../../../dtos/status.dto';
+import { CredentialsDto } from '../../auth/credentials.dto';
+import { UserDto } from '../../users/user.dto';
+import { ResourceNotFoundException } from '../../../exceptions/resource-not-found.exception';
+import { EmailTakenException } from '../../../exceptions/email-taken.exception';
 import * as AWS from '@aws-sdk/client-cognito-identity-provider';
-import { AuthUtils } from '../utils/auth.utils';
+import { AuthUtils } from '../../../utils/auth.utils';
 
 @Injectable()
 export class CognitoService implements OnModuleInit {

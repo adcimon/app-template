@@ -1,9 +1,9 @@
 import { Controller, Get, Patch, Request, Body, UseGuards, UseInterceptors } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { AuthGuard } from '../auth/auth.guard';
-import { PasswordInterceptor } from '../interceptors/password.interceptor';
-import { ResponseInterceptor } from '../interceptors/response.interceptor';
-import { ValidationPipe } from '../validation/validation.pipe';
+import { PasswordInterceptor } from '../../interceptors/password.interceptor';
+import { ResponseInterceptor } from '../../interceptors/response.interceptor';
+import { ValidationPipe } from '../../validation/validation.pipe';
 import { UsersSchema } from './users.schema';
 import { UserDto } from './user.dto';
 

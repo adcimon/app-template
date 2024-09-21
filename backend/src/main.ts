@@ -2,9 +2,9 @@ import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { HttpsOptions } from '@nestjs/common/interfaces/external/https-options.interface';
 import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
-import { AppModule } from './app.module';
+import { AppModule } from './modules/app.module';
 import { HttpExceptionFilter } from './exceptions/http-exception.filter';
-import { ConfigService } from './config/config.service';
+import { ConfigService } from './modules/config/config.service';
 import * as express from 'express';
 import * as fs from 'fs';
 

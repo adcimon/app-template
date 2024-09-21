@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { ValidationSchema } from '../validation/validation.schema';
+import { ValidationSchema } from '../../validation/validation.schema';
 
 export namespace AuthSchema {
 	export const SignUpSchema = yup.object().shape({

@@ -2,8 +2,8 @@ import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { ConfigModule } from './config/config.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
-import { CognitoModule } from './cognito/cognito.module';
-import { LoggerMiddleware } from './log/logger.middleware';
+import { CognitoModule } from './aws/cognito/cognito.module';
+import { LoggerMiddleware } from '../log/logger.middleware';
 
 @Module({
 	imports: [ConfigModule, AuthModule, UsersModule, CognitoModule],

@@ -1,9 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { IConfigService } from './config.interface';
 import { config } from 'dotenv';
 
 @Injectable()
-export class ConfigService implements IConfigService {
+export class ConfigService {
 	public static config(): any {
 		config();
 		console.log('Environment variables:');

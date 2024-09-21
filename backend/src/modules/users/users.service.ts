@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CognitoService } from '../cognito/cognito.service';
-import { StatusDto } from '../dtos/status.dto';
+import { CognitoService } from '../aws/cognito/cognito.service';
+import { StatusDto } from '../../dtos/status.dto';
 import { UserDto } from './user.dto';
 
 @Injectable()
