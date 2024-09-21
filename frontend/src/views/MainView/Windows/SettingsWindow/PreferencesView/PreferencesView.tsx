@@ -7,16 +7,14 @@ import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
-import { useAppState } from '../../../../../../hooks/useAppState';
+import { useAppState } from '../../../../../states/hooks/useAppState';
 
 export const PreferencesView: React.FC = (): JSX.Element => {
-	const { appState, setAppState } = useAppState();
+	const appState = useAppState();
 
 	const handleChangeTheme = (event: SelectChangeEvent) => {
-		setAppState({
-			...appState,
-			theme: parseInt(event.target.value),
-		});
+		const theme: number = parseInt(event.target.value);
+		appState.setTheme(theme);
 	};
 
 	const render = () => {

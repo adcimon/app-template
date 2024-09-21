@@ -11,8 +11,8 @@ import { Copyright } from '../../components/Copyright/Copyright';
 import { LaunchView } from '../LaunchView/LaunchView';
 import { Logo } from '../../components/Logo/Logo';
 import { PasswordField } from '../../components/Field/PasswordField';
-import { AppViewType } from '../../states/AppState';
-import { useAppState } from '../../hooks/useAppState';
+import { useAppState } from '../../states/hooks/useAppState';
+import { ViewType } from '../../types/viewType';
 import { Utils } from '../../utils/utils';
 
 interface IForgotPasswordViewState {
@@ -23,7 +23,7 @@ interface IForgotPasswordViewState {
 }
 
 export const ForgotPasswordView: React.FC = (): JSX.Element => {
-	const { appState, setAppState } = useAppState();
+	const appState = useAppState();
 
 	const [state, setState] = React.useState<IForgotPasswordViewState>({
 		email: '',
@@ -47,7 +47,7 @@ export const ForgotPasswordView: React.FC = (): JSX.Element => {
 
 	const handleSendCode = async () => {
 		try {
-			await appState.apiClient?.authService.forgotPassword(state.email);
+			await appState.forgotPassword(state.email);
 			toast.success('Code sent');
 		} catch (error: any) {
 			toast.error(error.message);
@@ -56,11 +56,8 @@ export const ForgotPasswordView: React.FC = (): JSX.Element => {
 
 	const handleChange = async () => {
 		try {
-			await appState.apiClient?.authService.changePassword(state.email, state.code, state.password);
-			setAppState({
-				...appState,
-				appView: AppViewType.SignIn,
-			});
+			await appState.changePassword(state.email, state.code, state.password);
+			appState.setAppView(ViewType.SignIn);
 			toast.success('Password changed');
 		} catch (error: any) {
 			toast.error(error.message);
@@ -68,10 +65,7 @@ export const ForgotPasswordView: React.FC = (): JSX.Element => {
 	};
 
 	const handleSignIn = () => {
-		setAppState({
-			...appState,
-			appView: AppViewType.SignIn,
-		});
+		appState.setAppView(ViewType.SignIn);
 	};
 
 	const render = () => {

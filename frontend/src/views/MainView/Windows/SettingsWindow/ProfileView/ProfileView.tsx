@@ -6,10 +6,10 @@ import { ProfileDetailsCard } from './ProfileDetailsCard';
 import { ProfileEmailCard } from './ProfileEmailCard';
 import { ProfilePasswordCard } from './ProfilePasswordCard';
 import { ProfilePhoneCard } from './ProfilePhoneCard';
-import { useAppState } from '../../../../../../hooks/useAppState';
+import { useUserState } from '../../../../../states/hooks/useUserState';
 
 export const ProfileView: React.FC = (): JSX.Element => {
-	const { appState, setAppState } = useAppState();
+	const userState = useUserState();
 
 	React.useEffect(() => {
 		getMyUser();
@@ -17,11 +17,7 @@ export const ProfileView: React.FC = (): JSX.Element => {
 
 	const getMyUser = async () => {
 		try {
-			const user: any = await appState.apiClient?.usersService.getMyUser();
-			setAppState({
-				...appState,
-				user: user,
-			});
+			await userState.get();
 		} catch (error: any) {
 			toast.error(error.message);
 		}

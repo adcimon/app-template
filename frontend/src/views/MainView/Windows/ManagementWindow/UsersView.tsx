@@ -7,23 +7,21 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { CountrySelect } from '../../../../../../components/Select/CountrySelect';
-import { GenericTable } from '../../../../../../components/Table/GenericTable';
-import { TimezoneSelect } from '../../../../../../components/Select/TimezoneSelect';
-import { VerificationBadge } from '../../../../../../components/Badge/VerificationBadge';
-import { useAppState } from '../../../../../../hooks/useAppState';
-import { Utils } from '../../../../../../utils/utils';
+import { CountrySelect } from '../../../../components/Select/CountrySelect';
+import { GenericTable } from '../../../../components/Table/GenericTable';
+import { TimezoneSelect } from '../../../../components/Select/TimezoneSelect';
+import { VerificationBadge } from '../../../../components/Badge/VerificationBadge';
+import { useAdminState } from '../../../../states/hooks/useAdminState';
+import { Utils } from '../../../../utils/utils';
 
 interface IUsersViewState {
-	users: any[];
 	user: any;
 }
 
 export const UsersView: React.FC = (): JSX.Element => {
-	const { appState } = useAppState();
+	const adminState = useAdminState();
 
 	const [state, setState] = React.useState<IUsersViewState>({
-		users: [],
 		user: null,
 	});
 
@@ -40,11 +38,7 @@ export const UsersView: React.FC = (): JSX.Element => {
 
 	const getUsers = async () => {
 		try {
-			const users: any = await appState.apiClient?.usersService.getUsers();
-			setState({
-				...state,
-				users: users,
-			});
+			await adminState.getUsers();
 		} catch (error: any) {
 			toast.error(error.message);
 		}
@@ -236,7 +230,7 @@ export const UsersView: React.FC = (): JSX.Element => {
 			<>
 				<Container maxWidth='xl'>
 					<GenericTable
-						items={state.users}
+						items={adminState.users}
 						head={() => ['Name', 'Email', 'Phone']}
 						row={renderRow}
 						dialog={renderDialog()}

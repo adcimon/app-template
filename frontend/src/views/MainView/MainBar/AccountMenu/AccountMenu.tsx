@@ -14,28 +14,30 @@ import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
 import { ConfirmationDialog } from '../../../../components/Dialog/ConfirmationDialog';
 import { GenericPopover } from '../../../../components/Popover/GenericPopover';
-import { HelpView } from './HelpView/HelpView';
-import { ManagementView } from './ManagementView/ManagementView';
-import { SettingsView } from './SettingsView/SettingsView';
-import { useAppState } from '../../../../hooks/useAppState';
+import { HelpWindow } from '../../Windows/HelpWindow/HelpWindow';
+import { ManagementWindow } from '../../Windows/ManagementWindow/ManagementWindow';
+import { SettingsWindow } from '../../Windows/SettingsWindow/SettingsWindow';
+import { useAppState } from '../../../../states/hooks/useAppState';
+import { useUserState } from '../../../../states/hooks/useUserState';
 import { Utils } from '../../../../utils/utils';
 
 interface IAccountMenuState {
 	open: boolean;
-	openSettings: boolean;
-	openManagement: boolean;
-	openHelp: boolean;
+	openSettingsWindow: boolean;
+	openManagementWindow: boolean;
+	openHelpWindow: boolean;
 	openSignOutDialog: boolean;
 }
 
 export const AccountMenu: React.FC = (): JSX.Element => {
-	const { appState, resetAppState } = useAppState();
+	const appState = useAppState();
+	const userState = useUserState();
 
 	const [state, setState] = React.useState<IAccountMenuState>({
 		open: false,
-		openSettings: false,
-		openManagement: false,
-		openHelp: false,
+		openSettingsWindow: false,
+		openManagementWindow: false,
+		openHelpWindow: false,
 		openSignOutDialog: false,
 	});
 
@@ -59,14 +61,14 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 		setState({
 			...state,
 			open: false,
-			openSettings: true,
+			openSettingsWindow: true,
 		});
 	};
 
 	const handleCloseSettings = () => {
 		setState({
 			...state,
-			openSettings: false,
+			openSettingsWindow: false,
 		});
 	};
 
@@ -74,14 +76,14 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 		setState({
 			...state,
 			open: false,
-			openManagement: true,
+			openManagementWindow: true,
 		});
 	};
 
 	const handleCloseManagement = () => {
 		setState({
 			...state,
-			openManagement: false,
+			openManagementWindow: false,
 		});
 	};
 
@@ -89,14 +91,14 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 		setState({
 			...state,
 			open: false,
-			openHelp: true,
+			openHelpWindow: true,
 		});
 	};
 
 	const handleCloseHelp = () => {
 		setState({
 			...state,
-			openHelp: false,
+			openHelpWindow: false,
 		});
 	};
 
@@ -110,12 +112,12 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 
 	const handleAcceptSignOut = async () => {
 		try {
-			await appState.apiClient?.authService.signOut();
+			await appState.signOut();
 		} catch (error: any) {
 			// Ignore errors.
 		} finally {
 			toast.success('See you soon!');
-			resetAppState();
+			appState.reset();
 		}
 	};
 
@@ -128,7 +130,7 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 	};
 
 	const render = () => {
-		const avatar: string | undefined = Utils.getAvatar(appState.user);
+		const avatar: string | undefined = Utils.getAvatar(userState.user);
 		return (
 			<>
 				<Chip
@@ -141,7 +143,7 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 								fontSize: '0.75rem',
 								maxWidth: '80px',
 							}}>
-							{appState.user.name || <Skeleton width={50} />}
+							{userState.user.name || <Skeleton width={50} />}
 						</Typography>
 					}
 					avatar={
@@ -195,13 +197,13 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 							sx={{
 								fontWeight: 'bold',
 							}}>
-							{appState.user.name || <Skeleton width={150} />}
+							{userState.user.name || <Skeleton width={150} />}
 						</Typography>
 						<Typography
 							noWrap
 							color='text.secondary'
 							variant='body2'>
-							{appState.user.email || <Skeleton width={150} />}
+							{userState.user.email || <Skeleton width={150} />}
 						</Typography>
 					</Box>
 					<Divider />
@@ -264,16 +266,16 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 						</MenuItem>
 					</MenuList>
 				</GenericPopover>
-				<SettingsView
-					open={state.openSettings}
+				<SettingsWindow
+					open={state.openSettingsWindow}
 					onClose={handleCloseSettings}
 				/>
-				<ManagementView
-					open={state.openManagement}
+				<ManagementWindow
+					open={state.openManagementWindow}
 					onClose={handleCloseManagement}
 				/>
-				<HelpView
-					open={state.openHelp}
+				<HelpWindow
+					open={state.openHelpWindow}
 					onClose={handleCloseHelp}
 				/>
 				<ConfirmationDialog

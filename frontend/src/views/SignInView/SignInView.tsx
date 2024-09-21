@@ -9,8 +9,9 @@ import { Copyright } from '../../components/Copyright/Copyright';
 import { LaunchView } from '../LaunchView/LaunchView';
 import { Logo } from '../../components/Logo/Logo';
 import { PasswordField } from '../../components/Field/PasswordField';
-import { AppViewType } from '../../states/AppState';
-import { useAppState } from '../../hooks/useAppState';
+import { useAppState } from '../../states/hooks/useAppState';
+import { AuthMode } from '../../types/authMode';
+import { ViewType } from '../../types/viewType';
 
 interface ISignInViewState {
 	email: string;
@@ -18,7 +19,7 @@ interface ISignInViewState {
 }
 
 export const SignInView: React.FC = (): JSX.Element => {
-	const { appState, setAppState } = useAppState();
+	const appState = useAppState();
 
 	const [state, setState] = React.useState<ISignInViewState>({
 		email: '',
@@ -27,28 +28,20 @@ export const SignInView: React.FC = (): JSX.Element => {
 
 	const handleSignIn = async () => {
 		try {
-			await appState.apiClient?.authService.signIn(state.email, state.password);
-			setAppState({
-				...appState,
-				appView: AppViewType.Main,
-			});
+			await appState.signIn(state.email, state.password);
+			appState.setAppView(ViewType.Main);
+			appState.setAuthMode(AuthMode.Signed);
 		} catch (error: any) {
 			toast.error(error.message);
 		}
 	};
 
 	const handleForgotPassword = () => {
-		setAppState({
-			...appState,
-			appView: AppViewType.ForgotPassword,
-		});
+		appState.setAppView(ViewType.ForgotPassword);
 	};
 
 	const handleSignUp = () => {
-		setAppState({
-			...appState,
-			appView: AppViewType.SignUp,
-		});
+		appState.setAppView(ViewType.SignUp);
 	};
 
 	const render = () => {

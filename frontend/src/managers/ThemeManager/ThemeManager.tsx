@@ -1,19 +1,20 @@
 import * as React from 'react';
+import { Theme } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import Base from '../../themes/Base/theme';
-import CustomLight from '../../themes/CustomLight/theme';
-import CustomDark from '../../themes/CustomDark/theme';
-import { useAppState } from '../../hooks/useAppState';
+import Base from '../../themes/base/theme';
+import CustomLight from '../../themes/customLight/theme';
+import CustomDark from '../../themes/customDark/theme';
+import { useAppState } from '../../states/hooks/useAppState';
 
 interface IThemeManagerProps {
 	children?: React.ReactNode;
 }
 
 export const ThemeManager: React.FC<IThemeManagerProps> = (props: IThemeManagerProps): JSX.Element => {
-	const { appState } = useAppState();
+	const appState = useAppState();
 
-	const getTheme = () => {
+	const getTheme = (): Theme => {
 		switch (appState.theme) {
 			case 0:
 				return Base;

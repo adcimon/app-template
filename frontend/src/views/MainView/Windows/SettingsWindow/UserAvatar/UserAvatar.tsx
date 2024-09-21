@@ -7,9 +7,9 @@ import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { ConfirmationDialog } from '../../../../../../components/Dialog/ConfirmationDialog';
-import { useAppState } from '../../../../../../hooks/useAppState';
-import { Utils } from '../../../../../../utils/utils';
+import { ConfirmationDialog } from '../../../../../components/Dialog/ConfirmationDialog';
+import { useUserState } from '../../../../../states/hooks/useUserState';
+import { Utils } from '../../../../../utils/utils';
 
 interface IUserAvatarState {
 	showOverlay: boolean;
@@ -18,7 +18,7 @@ interface IUserAvatarState {
 }
 
 export const UserAvatar: React.FC = (): JSX.Element => {
-	const { appState, setAppState } = useAppState();
+	const userState = useUserState();
 
 	const [state, setState] = React.useState<IUserAvatarState>({
 		showOverlay: false,
@@ -46,22 +46,18 @@ export const UserAvatar: React.FC = (): JSX.Element => {
 		setState({
 			...state,
 			openDialog: true,
-			avatar: appState?.user?.avatar || '',
+			avatar: userState.user?.avatar || '',
 		});
 	};
 
 	const validate = (): boolean => {
-		return Utils.AVATAR_REGEXP.test(state.avatar) && state.avatar !== appState.user.avatar;
+		return Utils.AVATAR_REGEXP.test(state.avatar) && state.avatar !== userState.user.avatar;
 	};
 
 	const handleAccept = async () => {
 		const update = async () => {
 			try {
-				const user: any = await appState.apiClient?.usersService.updateMyAvatar(state.avatar);
-				setAppState({
-					...appState,
-					user: user,
-				});
+				await userState.updateAvatar(state.avatar);
 				setState({
 					...state,
 					openDialog: false,
@@ -95,7 +91,7 @@ export const UserAvatar: React.FC = (): JSX.Element => {
 	};
 
 	const render = () => {
-		const avatar: string | undefined = Utils.getAvatar(appState.user);
+		const avatar: string | undefined = Utils.getAvatar(userState.user);
 		return (
 			<>
 				<Box

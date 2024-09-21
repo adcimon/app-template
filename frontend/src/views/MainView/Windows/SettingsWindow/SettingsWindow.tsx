@@ -12,25 +12,33 @@ import Typography from '@mui/material/Typography';
 import { PreferencesView } from './PreferencesView/PreferencesView';
 import { ProfileView } from './ProfileView/ProfileView';
 import { UserAvatar } from './UserAvatar/UserAvatar';
-import { Window } from '../../../../../components/Window/Window';
-import { useAppState } from '../../../../../hooks/useAppState';
-import { Utils } from '../../../../../utils/utils';
+import { Window } from '../../../../components/Window/Window';
+import { useUserState } from '../../../../states/hooks/useUserState';
+import { Utils } from '../../../../utils/utils';
 
-interface ISettingsViewProps {
+interface ISettingsWindowProps {
 	open: boolean;
 	onClose?: (event: any) => void;
 }
 
-interface ISettingsViewState {
+interface ISettingsWindowState {
 	tab: number;
 }
 
-export const SettingsView: React.FC<ISettingsViewProps> = (props: ISettingsViewProps): JSX.Element => {
-	const { appState } = useAppState();
+export const SettingsWindow: React.FC<ISettingsWindowProps> = (props: ISettingsWindowProps): JSX.Element => {
+	const userState = useUserState();
 
-	const [state, setState] = React.useState<ISettingsViewState>({
+	const [state, setState] = React.useState<ISettingsWindowState>({
 		tab: 0,
 	});
+
+	const getId = (): string => {
+		if (userState.user.name && userState.user.name !== '') {
+			return `${userState.user.name} ${userState.user.surname}`;
+		}
+
+		return userState.user.email;
+	};
 
 	const handleTabChange = (event: any, value: number) => {
 		setState({
@@ -51,10 +59,7 @@ export const SettingsView: React.FC<ISettingsViewProps> = (props: ISettingsViewP
 	};
 
 	const renderHeader = () => {
-		const id: string =
-			appState.user.name && appState.user.name !== ''
-				? `${appState.user.name} ${appState.user.surname}`
-				: appState.user.email;
+		const id: string = getId();
 		return (
 			<>
 				<Card>
@@ -105,11 +110,11 @@ export const SettingsView: React.FC<ISettingsViewProps> = (props: ISettingsViewP
 											color: '#919eab',
 											width: '50%',
 										}}>
-										{appState.user.id}
+										{userState.user.id}
 									</Typography>
 									<IconButton
 										size='small'
-										onClick={() => Utils.copyToClipboard(appState.user.id)}>
+										onClick={() => Utils.copyToClipboard(userState.user.id)}>
 										<ContentCopyIcon
 											fontSize='inherit'
 											sx={{

@@ -11,10 +11,10 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { ConfirmationDialog } from '../../../../../../components/Dialog/ConfirmationDialog';
-import { VerificationBadge } from '../../../../../../components/Badge/VerificationBadge';
-import { useAppState } from '../../../../../../hooks/useAppState';
-import { Utils } from '../../../../../../utils/utils';
+import { ConfirmationDialog } from '../../../../../components/Dialog/ConfirmationDialog';
+import { VerificationBadge } from '../../../../../components/Badge/VerificationBadge';
+import { useUserState } from '../../../../../states/hooks/useUserState';
+import { Utils } from '../../../../../utils/utils';
 
 interface IProfilePhoneCardState {
 	openChangeDialog: boolean;
@@ -23,16 +23,16 @@ interface IProfilePhoneCardState {
 }
 
 export const ProfilePhoneCard: React.FC = (): JSX.Element => {
-	const { appState, setAppState } = useAppState();
+	const userState = useUserState();
 
 	const [state, setState] = React.useState<IProfilePhoneCardState>({
 		openChangeDialog: false,
-		phone: appState.user.phone,
+		phone: userState.user.phone,
 		confirmPhone: '',
 	});
 
 	const validate = (): boolean => {
-		return Utils.PHONE_REGEXP.test(state.phone) && state.phone !== appState.user.phone;
+		return Utils.PHONE_REGEXP.test(state.phone) && state.phone !== userState.user.phone;
 	};
 
 	const handleChange = async () => {
@@ -44,11 +44,7 @@ export const ProfilePhoneCard: React.FC = (): JSX.Element => {
 
 	const handleAcceptChange = async () => {
 		try {
-			const user: any = await appState.apiClient?.usersService.updateMyPhone(state.phone);
-			setAppState({
-				...appState,
-				user: user,
-			});
+			await userState.updatePhone(state.phone);
 			toast.success('Phone changed');
 		} catch (error: any) {
 			toast.error(error.message);
@@ -85,7 +81,7 @@ export const ProfilePhoneCard: React.FC = (): JSX.Element => {
 										}}>
 										Phone
 									</Typography>
-									<VerificationBadge verified={appState.user.phone_verified} />
+									<VerificationBadge verified={userState.user.phoneVerified} />
 								</Stack>
 							</>
 						}

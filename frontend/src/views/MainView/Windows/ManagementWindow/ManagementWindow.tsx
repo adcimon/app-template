@@ -6,20 +6,20 @@ import Stack from '@mui/material/Stack';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Typography from '@mui/material/Typography';
-import { UsersView } from './UsersView/UsersView';
-import { Window } from '../../../../../components/Window/Window';
+import { UsersView } from './UsersView';
+import { Window } from '../../../../components/Window/Window';
 
-interface IManagementViewProps {
+interface IManagementWindowProps {
 	open: boolean;
 	onClose?: (event: any) => void;
 }
 
-interface IManagementViewState {
+interface IManagementWindowState {
 	tab: number;
 }
 
-export const ManagementView: React.FC<IManagementViewProps> = (props: IManagementViewProps): JSX.Element => {
-	const [state, setState] = React.useState<IManagementViewState>({
+export const ManagementWindow: React.FC<IManagementWindowProps> = (props: IManagementWindowProps): JSX.Element => {
+	const [state, setState] = React.useState<IManagementWindowState>({
 		tab: 0,
 	});
 

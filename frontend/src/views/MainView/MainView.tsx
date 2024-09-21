@@ -3,10 +3,10 @@ import toast from 'react-hot-toast';
 import Box from '@mui/material/Box';
 import { HomeView } from './HomeView/HomeView';
 import { MainBar } from './MainBar/MainBar';
-import { useAppState } from '../../hooks/useAppState';
+import { useUserState } from '../../states/hooks/useUserState';
 
 export const MainView: React.FC = (): JSX.Element => {
-	const { appState, setAppState } = useAppState();
+	const userState = useUserState();
 
 	const mainBarHeight: string = '64px';
 
@@ -17,11 +17,7 @@ export const MainView: React.FC = (): JSX.Element => {
 
 	const getMyUser = async () => {
 		try {
-			const user: any = await appState.apiClient?.usersService.getMyUser();
-			setAppState({
-				...appState,
-				user: user,
-			});
+			await userState.get();
 		} catch (error: any) {
 			toast.error(error.message);
 		}

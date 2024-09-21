@@ -10,9 +10,9 @@ import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { CountrySelect } from '../../../../../../components/Select/CountrySelect';
-import { TimezoneSelect } from '../../../../../../components/Select/TimezoneSelect';
-import { useAppState } from '../../../../../../hooks/useAppState';
+import { CountrySelect } from '../../../../../components/Select/CountrySelect';
+import { TimezoneSelect } from '../../../../../components/Select/TimezoneSelect';
+import { useUserState } from '../../../../../states/hooks/useUserState';
 
 interface IProfileDetailsCardState {
 	name: string;
@@ -23,22 +23,22 @@ interface IProfileDetailsCardState {
 }
 
 export const ProfileDetailsCard: React.FC = (): JSX.Element => {
-	const { appState, setAppState } = useAppState();
+	const userState = useUserState();
 
 	const [state, setState] = React.useState<IProfileDetailsCardState>({
-		name: appState.user.name || '',
-		surname: appState.user.surname || '',
-		birthdate: appState.user.birthdate || '',
-		country: appState.user.country || '',
-		timezone: appState.user.timezone || '',
+		name: userState.user.name || '',
+		surname: userState.user.surname || '',
+		birthdate: userState.user.birthdate || '',
+		country: userState.user.country || '',
+		timezone: userState.user.timezone || '',
 	});
 
 	const validate = (): boolean => {
-		const name: string = appState.user.name || '';
-		const familyName: string = appState.user.surname || '';
-		const birthdate: string = appState.user.birthdate || '';
-		const country: string = appState.user.country || '';
-		const timezone: string = appState.user.timezone || '';
+		const name: string = userState.user.name || '';
+		const familyName: string = userState.user.surname || '';
+		const birthdate: string = userState.user.birthdate || '';
+		const country: string = userState.user.country || '';
+		const timezone: string = userState.user.timezone || '';
 
 		return !(
 			state.name === name &&
@@ -51,16 +51,12 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 
 	const handleSave = async () => {
 		try {
-			const user: any = await appState.apiClient?.usersService.updateMyUser({
+			await userState.update({
 				name: state.name,
 				surname: state.surname,
 				birthdate: state.birthdate,
 				country: state.country,
 				timezone: state.timezone,
-			});
-			setAppState({
-				...appState,
-				user: user,
 			});
 			toast.success('Profile updated');
 		} catch (error: any) {

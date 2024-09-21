@@ -1,9 +1,11 @@
 import React from 'react';
 import axios, { AxiosInstance } from 'axios';
-import { AppViewType } from '../../states/AppState';
-import { useAppState } from '../../hooks/useAppState';
+import { useApiState } from '../../states/hooks/useApiState';
+import { useAppState } from '../../states/hooks/useAppState';
+import { useUserState } from '../../states/hooks/useUserState';
 import { HttpParams } from '../../api/httpMethods';
 import { ApiClient } from '../../api/apiClient';
+import { ViewType } from '../../types/viewType';
 import { ConsoleUtils } from '../../utils/consoleUtils';
 
 interface IApiManagerProps {
@@ -11,7 +13,9 @@ interface IApiManagerProps {
 }
 
 export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps): JSX.Element => {
-	const { appState, setAppState } = useAppState();
+	const apiState = useApiState();
+	const appState = useAppState();
+	const userState = useUserState();
 
 	let endpoint: string = 'http://127.0.0.1:9000';
 	let instance: AxiosInstance | null = null;
@@ -26,10 +30,7 @@ export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps):
 
 		createInstance();
 
-		setAppState({
-			...appState,
-			apiClient: client,
-		});
+		apiState.setClient(client);
 	};
 
 	const readConfig = async (): Promise<any> => {
@@ -232,12 +233,9 @@ export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps):
 				localStorage.removeItem('accessToken');
 				localStorage.removeItem('refreshToken');
 
-				setAppState({
-					...appState,
-					apiClient: client,
-					appView: AppViewType.SignIn,
-					user: {},
-				});
+				apiState.setClient(client);
+				appState.setAppView(ViewType.SignIn);
+				userState.reset();
 
 				throw error;
 			}
@@ -249,7 +247,7 @@ export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps):
 	const client: ApiClient = new ApiClient(httpGet, httpPost, httpPatch, httpPut, httpDelete, cancelRequests);
 
 	const render = () => {
-		return <>{appState.apiClient && props.children}</>;
+		return <>{apiState.client && props.children}</>;
 	};
 
 	return render();

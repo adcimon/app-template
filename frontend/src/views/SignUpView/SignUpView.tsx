@@ -13,13 +13,13 @@ import { Logo } from '../../components/Logo/Logo';
 import { PasswordField } from '../../components/Field/PasswordField';
 import { PrivacyPolicyDialog } from '../../components/Dialog/PrivacyPolicyDialog';
 import { TermsOfServiceDialog } from '../../components/Dialog/TermsOfServiceDialog';
-import { AppViewType } from '../../states/AppState';
-import { useAppState } from '../../hooks/useAppState';
+import { useAppState } from '../../states/hooks/useAppState';
+import { ViewType } from '../../types/viewType';
 import { Utils } from '../../utils/utils';
 
 interface ISignUpViewState {
-	openTermsOfService: boolean;
-	openPrivacyPolicy: boolean;
+	openTermsOfServiceDialog: boolean;
+	openPrivacyPolicyDialog: boolean;
 	email: string;
 	password: string;
 	confirmPassword: string;
@@ -27,11 +27,11 @@ interface ISignUpViewState {
 }
 
 export const SignUpView: React.FC = (): JSX.Element => {
-	const { appState, setAppState } = useAppState();
+	const appState = useAppState();
 
 	const [state, setState] = React.useState<ISignUpViewState>({
-		openTermsOfService: false,
-		openPrivacyPolicy: false,
+		openTermsOfServiceDialog: false,
+		openPrivacyPolicyDialog: false,
 		email: '',
 		password: '',
 		confirmPassword: '',
@@ -51,14 +51,14 @@ export const SignUpView: React.FC = (): JSX.Element => {
 		event.preventDefault();
 		setState({
 			...state,
-			openTermsOfService: true,
+			openTermsOfServiceDialog: true,
 		});
 	};
 
 	const handleAcceptTermsOfService = () => {
 		setState({
 			...state,
-			openTermsOfService: false,
+			openTermsOfServiceDialog: false,
 		});
 	};
 
@@ -66,24 +66,21 @@ export const SignUpView: React.FC = (): JSX.Element => {
 		event.preventDefault();
 		setState({
 			...state,
-			openPrivacyPolicy: true,
+			openPrivacyPolicyDialog: true,
 		});
 	};
 
 	const handleAcceptPrivacyPolicy = () => {
 		setState({
 			...state,
-			openPrivacyPolicy: false,
+			openPrivacyPolicyDialog: false,
 		});
 	};
 
 	const handleSignUp = async () => {
 		try {
-			await appState.apiClient?.authService.signUp(state.email, state.password);
-			setAppState({
-				...appState,
-				appView: AppViewType.SignIn,
-			});
+			await appState.signUp(state.email, state.password);
+			appState.setAppView(ViewType.SignIn);
 			toast.success('Verify your email');
 		} catch (error: any) {
 			toast.error(error.message);
@@ -91,10 +88,7 @@ export const SignUpView: React.FC = (): JSX.Element => {
 	};
 
 	const handleSignIn = () => {
-		setAppState({
-			...appState,
-			appView: AppViewType.SignIn,
-		});
+		appState.setAppView(ViewType.SignIn);
 	};
 
 	const render = () => {
@@ -181,11 +175,11 @@ export const SignUpView: React.FC = (): JSX.Element => {
 					</Grid>
 					<Copyright />
 					<TermsOfServiceDialog
-						open={state.openTermsOfService}
+						open={state.openTermsOfServiceDialog}
 						onClose={handleAcceptTermsOfService}
 					/>
 					<PrivacyPolicyDialog
-						open={state.openPrivacyPolicy}
+						open={state.openPrivacyPolicyDialog}
 						onClose={handleAcceptPrivacyPolicy}
 					/>
 				</LaunchView>

@@ -9,8 +9,8 @@ import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { ConfirmationDialog } from '../../../../../../components/Dialog/ConfirmationDialog';
-import { useAppState } from '../../../../../../hooks/useAppState';
+import { ConfirmationDialog } from '../../../../../components/Dialog/ConfirmationDialog';
+import { useAppState } from '../../../../../states/hooks/useAppState';
 
 interface IProfileDangerZoneCardState {
 	openDialog: boolean;
@@ -18,7 +18,7 @@ interface IProfileDangerZoneCardState {
 }
 
 export const ProfileDangerZoneCard: React.FC = (): JSX.Element => {
-	const { appState, resetAppState } = useAppState();
+	const appState = useAppState();
 
 	const [state, setState] = React.useState<IProfileDangerZoneCardState>({
 		openDialog: false,
@@ -38,12 +38,12 @@ export const ProfileDangerZoneCard: React.FC = (): JSX.Element => {
 
 	const handleAcceptDeleteAccount = async () => {
 		try {
-			await appState.apiClient?.authService.signDown(state.password);
+			await appState.signDown(state.password);
 			toast.success('Account deleted');
 		} catch (error: any) {
 			toast.error(error.message);
 		} finally {
-			resetAppState();
+			appState.reset();
 		}
 
 		setState({

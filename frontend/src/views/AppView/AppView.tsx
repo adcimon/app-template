@@ -4,11 +4,14 @@ import { ForgotPasswordView } from '../ForgotPasswordView/ForgotPasswordView';
 import { MainView } from '../MainView/MainView';
 import { SignInView } from '../SignInView/SignInView';
 import { SignUpView } from '../SignUpView/SignUpView';
-import { AppViewType } from '../../states/AppState';
-import { useAppState } from '../../hooks/useAppState';
+import { useAppState } from '../../states/hooks/useAppState';
+import { useUserState } from '../../states/hooks/useUserState';
+import { AuthMode } from '../../types/authMode';
+import { ViewType } from '../../types/viewType';
 
 export const AppView: React.FC = (): JSX.Element => {
-	const { appState, setAppState } = useAppState();
+	const appState = useAppState();
+	const userState = useUserState();
 
 	React.useEffect(() => {
 		if (!appState.error) {
@@ -18,11 +21,9 @@ export const AppView: React.FC = (): JSX.Element => {
 
 	const autoAuth = async () => {
 		try {
-			await appState.apiClient?.usersService.getMyUser();
-			setAppState({
-				...appState,
-				appView: AppViewType.Main,
-			});
+			await userState.get();
+			appState.setAppView(ViewType.Main);
+			appState.setAuthMode(AuthMode.Signed);
 		} catch (error: any) {
 			// Ignore errors.
 		}
@@ -34,13 +35,13 @@ export const AppView: React.FC = (): JSX.Element => {
 		}
 
 		switch (appState.appView) {
-			case AppViewType.SignIn:
+			case ViewType.SignIn:
 				return <SignInView />;
-			case AppViewType.SignUp:
+			case ViewType.SignUp:
 				return <SignUpView />;
-			case AppViewType.ForgotPassword:
+			case ViewType.ForgotPassword:
 				return <ForgotPasswordView />;
-			case AppViewType.Main:
+			case ViewType.Main:
 				return <MainView />;
 			default:
 				return <ErrorView />;

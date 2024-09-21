@@ -2,52 +2,52 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import { GenericCard } from '../../../../../components/Card/GenericCard';
-import { PrivacyPolicyDialog } from '../../../../../components/Dialog/PrivacyPolicyDialog';
-import { TermsOfServiceDialog } from '../../../../../components/Dialog/TermsOfServiceDialog';
-import { Window } from '../../../../../components/Window/Window';
+import { GenericCard } from '../../../../components/Card/GenericCard';
+import { PrivacyPolicyDialog } from '../../../../components/Dialog/PrivacyPolicyDialog';
+import { TermsOfServiceDialog } from '../../../../components/Dialog/TermsOfServiceDialog';
+import { Window } from '../../../../components/Window/Window';
 
-interface IHelpViewProps {
+interface IHelpWindowProps {
 	open: boolean;
 	onClose?: (event: any) => void;
 }
 
-interface IHelpViewState {
-	openTermsOfService: boolean;
-	openPrivacyPolicy: boolean;
+interface IHelpWindowState {
+	openTermsOfServiceDialog: boolean;
+	openPrivacyPolicyDialog: boolean;
 }
 
-export const HelpView: React.FC<IHelpViewProps> = (props: IHelpViewProps): JSX.Element => {
-	const [state, setState] = React.useState<IHelpViewState>({
-		openTermsOfService: false,
-		openPrivacyPolicy: false,
+export const HelpWindow: React.FC<IHelpWindowProps> = (props: IHelpWindowProps): JSX.Element => {
+	const [state, setState] = React.useState<IHelpWindowState>({
+		openTermsOfServiceDialog: false,
+		openPrivacyPolicyDialog: false,
 	});
 
 	const handleOpenTermsOfService = () => {
 		setState({
 			...state,
-			openTermsOfService: true,
+			openTermsOfServiceDialog: true,
 		});
 	};
 
 	const handleCloseTermsOfService = () => {
 		setState({
 			...state,
-			openTermsOfService: false,
+			openTermsOfServiceDialog: false,
 		});
 	};
 
 	const handleOpenPrivacyPolicy = () => {
 		setState({
 			...state,
-			openPrivacyPolicy: true,
+			openPrivacyPolicyDialog: true,
 		});
 	};
 
 	const handleClosePrivacyPolicy = () => {
 		setState({
 			...state,
-			openPrivacyPolicy: false,
+			openPrivacyPolicyDialog: false,
 		});
 	};
 
@@ -148,11 +148,11 @@ export const HelpView: React.FC<IHelpViewProps> = (props: IHelpViewProps): JSX.E
 						</Grid>
 					</Grid>
 					<TermsOfServiceDialog
-						open={state.openTermsOfService}
+						open={state.openTermsOfServiceDialog}
 						onClose={handleCloseTermsOfService}
 					/>
 					<PrivacyPolicyDialog
-						open={state.openPrivacyPolicy}
+						open={state.openPrivacyPolicyDialog}
 						onClose={handleClosePrivacyPolicy}
 					/>
 				</Window>
