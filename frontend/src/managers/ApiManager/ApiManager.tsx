@@ -18,8 +18,8 @@ export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps):
 	const userState = useUserState();
 
 	let endpoint: string = 'http://127.0.0.1:9000';
-	let instance: AxiosInstance | null = null;
-	let controller: AbortController | null = null;
+	let instance: AxiosInstance;
+	let controller: AbortController;
 
 	React.useEffect(() => {
 		init();
@@ -48,7 +48,7 @@ export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps):
 	};
 
 	const getHttpConfig = (options: { useAuthorization?: boolean; useForm?: boolean }): any => {
-		const accessToken: string | null = localStorage.getItem('accessToken');
+		const accessToken: string | undefined = localStorage.getItem('accessToken') ?? undefined;
 		const authorization: string | undefined =
 			options.useAuthorization && accessToken ? 'Bearer ' + accessToken : undefined;
 		const contentType: string | undefined = options.useForm ? 'multipart/form-data' : undefined;

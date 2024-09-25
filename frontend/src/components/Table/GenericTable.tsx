@@ -49,7 +49,7 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 		openDeleteDialog: false,
 		page: 0,
 		rowsPerPage: props.rowsPerPage || 5,
-		item: null,
+		item: undefined,
 	});
 
 	const applyPagination = (records: any[], page: number, rowsPerPage: number): any[] => {
@@ -106,7 +106,7 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 		setState({
 			...state,
 			openItemDialog: true,
-			item: null,
+			item: undefined,
 		});
 	};
 
@@ -129,7 +129,7 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 			...state,
 			openItemDialog: false,
 			openDeleteDialog: false,
-			item: null,
+			item: undefined,
 		});
 	};
 
@@ -175,7 +175,7 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 										? props.head().map((node: React.ReactNode, index: number) => {
 												return <TableCell key={index}>{node}</TableCell>;
 										  })
-										: null}
+										: undefined}
 								</TableRow>
 							</TableHead>
 							<TableBody>
@@ -193,7 +193,7 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 													? props.row(item).map((node: React.ReactNode, index: number) => {
 															return <TableCell key={index}>{node}</TableCell>;
 													  })
-													: null}
+													: undefined}
 											</TableRow>
 										);
 									},
