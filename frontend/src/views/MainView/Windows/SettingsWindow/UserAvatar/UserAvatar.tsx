@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import toast from 'react-hot-toast';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import Avatar from '@mui/material/Avatar';

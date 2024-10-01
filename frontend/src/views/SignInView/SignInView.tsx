@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import toast from 'react-hot-toast';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';

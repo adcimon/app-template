@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Zoom from '@mui/material/Zoom';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import IconButton from '@mui/material/IconButton';

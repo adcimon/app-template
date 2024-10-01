@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { ErrorView } from '../ErrorView/ErrorView';
 import { ForgotPasswordView } from '../ForgotPasswordView/ForgotPasswordView';
 import { MainView } from '../MainView/MainView';

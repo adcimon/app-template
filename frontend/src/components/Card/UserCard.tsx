@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Theme, useTheme } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
 import Card from '@mui/material/Card';

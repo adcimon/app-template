@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Theme } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';

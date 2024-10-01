@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';

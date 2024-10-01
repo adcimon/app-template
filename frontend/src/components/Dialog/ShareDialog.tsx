@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { SxProps } from '@mui/system';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';

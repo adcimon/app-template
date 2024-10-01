@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { RecoilRoot } from 'recoil';
 import { ThemeManager } from './managers/ThemeManager/ThemeManager';
 import { ApiManager } from './managers/ApiManager/ApiManager';

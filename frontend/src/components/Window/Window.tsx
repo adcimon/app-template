@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { SxProps } from '@mui/system';
 import CloseIcon from '@mui/icons-material/Close';
 import Container from '@mui/material/Container';

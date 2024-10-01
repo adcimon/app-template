@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { SxProps } from '@mui/system';
 import { Theme, useTheme, useMediaQuery } from '@mui/material';
 import Popover, { PopoverOrigin } from '@mui/material/Popover';
