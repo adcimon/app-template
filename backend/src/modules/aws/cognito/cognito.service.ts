@@ -14,7 +14,7 @@ import { AuthUtils } from '../../../utils/auth.utils';
 
 @Injectable()
 export class CognitoService implements OnModuleInit {
-	private client: any = null;
+	private client: AWS.CognitoIdentityProviderClient = null;
 
 	constructor(private readonly configService: ConfigService) {}
 
@@ -42,7 +42,7 @@ export class CognitoService implements OnModuleInit {
 			},
 		});
 
-		const response: any = await this.client.send(command);
+		const response: AWS.InitiateAuthCommandOutput = await this.client.send(command);
 		const accessToken: string = response.AuthenticationResult.AccessToken;
 		const refreshToken: string = response.AuthenticationResult.RefreshToken;
 
@@ -131,7 +131,7 @@ export class CognitoService implements OnModuleInit {
 			},
 		});
 
-		const response: any = await this.client.send(command);
+		const response: AWS.InitiateAuthCommandOutput = await this.client.send(command);
 		const accessToken: string = response.AuthenticationResult.AccessToken;
 
 		return { accessToken, refreshToken };
@@ -197,7 +197,7 @@ export class CognitoService implements OnModuleInit {
 		while (true) {
 			const command = new AWS.ListUsersCommand(params);
 
-			const response: any = await this.client.send(command);
+			const response: AWS.ListUsersCommandOutput = await this.client.send(command);
 			const fetchedUsers: any[] = response.Users;
 
 			users.push(...fetchedUsers);
