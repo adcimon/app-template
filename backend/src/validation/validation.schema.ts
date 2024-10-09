@@ -4,10 +4,10 @@ export namespace ValidationSchema {
 	const PHONE_REGEXP = /^(^$)|(\+[0-9]*)$/;
 	const PHONE_MESSAGE = 'Phones must start with a country prefix and contain numerical values.';
 
-	const NAME_REGEXP = /^[a-zA-Z][a-zA-Z0-9]+$/;
+	const NAME_REGEXP = /^(^$)|([a-zA-Z]+[a-zA-Z0-9]*( [a-zA-Z0-9]+)*)$/;
 	const NAME_MESSAGE = 'Names must start with an alpha character and contain alphanumeric characters.';
 
-	const SURNAME_REGEXP = /^([a-zA-Z][a-zA-Z0-9]+)?$/;
+	const SURNAME_REGEXP = NAME_REGEXP;
 	const SURNAME_MESSAGE = 'Surnames must start with an alpha character and contain alphanumeric characters.';
 
 	const AVATAR_REGEXP = /^(^$)|(([^]*)(\.)(jpg|jpeg|png))$/;
