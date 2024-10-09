@@ -32,13 +32,13 @@ export const ProfileEmailCard: React.FC = (): JSX.Element => {
 	const [state, setState] = React.useState<IProfileEmailCardState>({
 		openChangeDialog: false,
 		openVerifyDialog: false,
-		email: userState.user.email,
+		email: userState.user?.email ?? '',
 		newEmail: '',
 		code: '',
 	});
 
 	const validate = (): boolean => {
-		return Utils.EMAIL_REGEXP.test(state.email) && state.email !== userState.user.email;
+		return Utils.EMAIL_REGEXP.test(state.email) && state.email !== userState.user?.email;
 	};
 
 	const handleVerify = async () => {
@@ -117,7 +117,7 @@ export const ProfileEmailCard: React.FC = (): JSX.Element => {
 										}}>
 										Email
 									</Typography>
-									<VerificationBadge verified={userState.user.emailVerified} />
+									<VerificationBadge verified={userState.user?.emailVerified ?? false} />
 								</Stack>
 							</>
 						}

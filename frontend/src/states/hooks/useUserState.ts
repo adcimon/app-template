@@ -1,4 +1,6 @@
 import * as Recoil from 'recoil';
+import { UserDto } from '../../dtos/userDto';
+import { Transforms } from '../../dtos/transforms/transforms';
 import { useApiState } from './useApiState';
 import { UserState } from '../userState';
 
@@ -7,10 +9,11 @@ export function useUserState() {
 
 	const [user, setUser] = Recoil.useRecoilState(UserState);
 
-	const get = async (): Promise<any> => {
+	const get = async (): Promise<UserDto> => {
 		const user: any = await apiState.client?.usersService.getMyUser();
-		setUser(user);
-		return user;
+		const dto: UserDto = Transforms.ApiToDto.User(user);
+		setUser(dto);
+		return dto;
 	};
 
 	const update = async (params?: {
@@ -19,35 +22,40 @@ export function useUserState() {
 		birthdate?: string;
 		country?: string;
 		timezone?: string;
-	}): Promise<any> => {
+	}): Promise<UserDto> => {
 		const user: any = await apiState.client?.usersService.updateMyUser(params);
-		setUser(user);
-		return user;
+		const dto: UserDto = Transforms.ApiToDto.User(user);
+		setUser(dto);
+		return dto;
 	};
 
-	const updateEmail = async (email: string): Promise<any> => {
+	const updateEmail = async (email: string): Promise<UserDto> => {
 		const user: any = await apiState.client?.usersService.updateMyEmail(email);
-		return user;
+		const dto: UserDto = Transforms.ApiToDto.User(user);
+		return dto;
 	};
 
-	const updatePhone = async (phone: string): Promise<any> => {
+	const updatePhone = async (phone: string): Promise<UserDto> => {
 		const user: any = await apiState.client?.usersService.updateMyPhone(phone);
-		setUser(user);
-		return user;
+		const dto: UserDto = Transforms.ApiToDto.User(user);
+		setUser(dto);
+		return dto;
 	};
 
-	const updatePassword = async (currentPassword: string, newPassword: string): Promise<any> => {
+	const updatePassword = async (currentPassword: string, newPassword: string): Promise<UserDto> => {
 		const user: any = await apiState.client?.usersService.updateMyPassword(currentPassword, newPassword);
-		return user;
+		const dto: UserDto = Transforms.ApiToDto.User(user);
+		return dto;
 	};
 
-	const updateAvatar = async (avatar: string): Promise<any> => {
+	const updateAvatar = async (avatar: string): Promise<UserDto> => {
 		const user: any = await apiState.client?.usersService.updateMyAvatar(avatar);
-		return user;
+		const dto: UserDto = Transforms.ApiToDto.User(user);
+		return dto;
 	};
 
 	const reset = () => {
-		setUser({});
+		setUser(undefined);
 	};
 
 	return {

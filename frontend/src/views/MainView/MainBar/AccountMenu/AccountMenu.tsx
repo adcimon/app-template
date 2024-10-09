@@ -143,7 +143,7 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 								fontSize: '0.75rem',
 								maxWidth: '80px',
 							}}>
-							{userState.user.name || <Skeleton width={50} />}
+							{userState.user?.name || <Skeleton width={50} />}
 						</Typography>
 					}
 					avatar={
@@ -197,13 +197,13 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 							sx={{
 								fontWeight: 'bold',
 							}}>
-							{userState.user.name || <Skeleton width={150} />}
+							{userState.user?.name || <Skeleton width={150} />}
 						</Typography>
 						<Typography
 							noWrap
 							color='text.secondary'
 							variant='body2'>
-							{userState.user.email || <Skeleton width={150} />}
+							{userState.user?.email || <Skeleton width={150} />}
 						</Typography>
 					</Box>
 					<Divider />
@@ -222,14 +222,16 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 							/>
 							<Typography>Settings</Typography>
 						</MenuItem>
-						<MenuItem onClick={handleManagement}>
-							<SecurityIcon
-								sx={{
-									paddingRight: '5px',
-								}}
-							/>
-							<Typography>Management</Typography>
-						</MenuItem>
+						{userState.user?.isAdmin() && (
+							<MenuItem onClick={handleManagement}>
+								<SecurityIcon
+									sx={{
+										paddingRight: '5px',
+									}}
+								/>
+								<Typography>Management</Typography>
+							</MenuItem>
+						)}
 						<MenuItem onClick={handleHelp}>
 							<HelpIcon
 								sx={{

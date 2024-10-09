@@ -27,12 +27,12 @@ export const ProfilePhoneCard: React.FC = (): JSX.Element => {
 
 	const [state, setState] = React.useState<IProfilePhoneCardState>({
 		openChangeDialog: false,
-		phone: userState.user.phone,
+		phone: userState.user?.phone ?? '',
 		confirmPhone: '',
 	});
 
 	const validate = (): boolean => {
-		return Utils.PHONE_REGEXP.test(state.phone) && state.phone !== userState.user.phone;
+		return Utils.PHONE_REGEXP.test(state.phone) && state.phone !== userState.user?.phone;
 	};
 
 	const handleChange = async () => {
@@ -81,7 +81,7 @@ export const ProfilePhoneCard: React.FC = (): JSX.Element => {
 										}}>
 										Phone
 									</Typography>
-									<VerificationBadge verified={userState.user.phoneVerified} />
+									<VerificationBadge verified={userState.user?.phoneVerified ?? false} />
 								</Stack>
 							</>
 						}

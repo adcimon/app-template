@@ -26,19 +26,19 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 	const userState = useUserState();
 
 	const [state, setState] = React.useState<IProfileDetailsCardState>({
-		name: userState.user.name || '',
-		surname: userState.user.surname || '',
-		birthdate: userState.user.birthdate || '',
-		country: userState.user.country || '',
-		timezone: userState.user.timezone || '',
+		name: userState.user?.name || '',
+		surname: userState.user?.surname || '',
+		birthdate: userState.user?.birthdate || '',
+		country: userState.user?.country || '',
+		timezone: userState.user?.timezone || '',
 	});
 
 	const validate = (): boolean => {
-		const name: string = userState.user.name || '';
-		const familyName: string = userState.user.surname || '';
-		const birthdate: string = userState.user.birthdate || '';
-		const country: string = userState.user.country || '';
-		const timezone: string = userState.user.timezone || '';
+		const name: string = userState.user?.name || '';
+		const familyName: string = userState.user?.surname || '';
+		const birthdate: string = userState.user?.birthdate || '';
+		const country: string = userState.user?.country || '';
+		const timezone: string = userState.user?.timezone || '';
 
 		return !(
 			state.name === name &&

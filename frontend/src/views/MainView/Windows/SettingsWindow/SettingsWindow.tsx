@@ -33,11 +33,15 @@ export const SettingsWindow: React.FC<ISettingsWindowProps> = (props: ISettingsW
 	});
 
 	const getId = (): string => {
-		if (userState.user.name && userState.user.name !== '') {
+		if (userState.user?.name && userState.user?.name !== '') {
 			return `${userState.user.name} ${userState.user.surname}`;
 		}
 
-		return userState.user.email;
+		if (userState.user?.email) {
+			return userState.user.email;
+		}
+
+		return '';
 	};
 
 	const handleTabChange = (event: any, value: number) => {
@@ -110,11 +114,11 @@ export const SettingsWindow: React.FC<ISettingsWindowProps> = (props: ISettingsW
 											color: '#919eab',
 											width: '50%',
 										}}>
-										{userState.user.id}
+										{userState.user?.id}
 									</Typography>
 									<IconButton
 										size='small'
-										onClick={() => Utils.copyToClipboard(userState.user.id)}>
+										onClick={() => Utils.copyToClipboard(userState.user?.id ?? '')}>
 										<ContentCopyIcon
 											fontSize='inherit'
 											sx={{
