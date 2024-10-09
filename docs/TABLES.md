@@ -12,11 +12,15 @@ Cognito users are base ond the [OpenID Connect specification](https://openid.net
 | ------ | ----------- | ---------------- | ------ | -------------- | ------------ | --------------------- | ------ | -------- | ------- |
 | string | string      | string (ISO8601) | string | boolean        | string       | boolean               | string | string   | string  |
 
+| custom:roles |
+| ------------ |
+| string       |
+
 Service: Cognito
 Primary key: Username
 
 Internally Cognito records are transformed to user DTOs (Data Transfer Objects).
 
-| id     | name   | surname | birthdate | email  | emailVerified | phone  | phoneVerified | country | timezone | avatar |
-| ------ | ------ | ------- | --------- | ------ | ------------- | ------ | ------------- | ------- | -------- | ------ |
-| string | string | string  | string    | string | boolean       | string | boolean       | string  | string   | string |
+| id     | name   | surname | birthdate | email  | emailVerified | phone  | phoneVerified | country | timezone | avatar | roles  |
+| ------ | ------ | ------- | --------- | ------ | ------------- | ------ | ------------- | ------- | -------- | ------ | ------ |
+| string | string | string  | string    | string | boolean       | string | boolean       | string  | string   | string | string |
