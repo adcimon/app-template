@@ -1,4 +1,4 @@
-import { UserDto } from '../modules/users/user.dto';
+import { UserDto } from '../../../users/user.dto';
 
 export function UserCognitoToDto(user: any): UserDto {
 	const dto: UserDto = new UserDto();
@@ -6,7 +6,9 @@ export function UserCognitoToDto(user: any): UserDto {
 	const attributes: any = user['UserAttributes'] || user['Attributes'];
 	const values: any = {};
 	attributes.forEach((attribute: any) => {
-		values[attribute.Name] = attribute.Value;
+		const name: string = attribute.Name.replace('custom:', '');
+		const value: any = attribute.Value;
+		values[name] = value;
 	});
 
 	dto.id = user.Username;
@@ -20,6 +22,7 @@ export function UserCognitoToDto(user: any): UserDto {
 	dto.country = values.locale || '';
 	dto.timezone = values.zoneinfo || '';
 	dto.avatar = values.picture || '';
+	dto.roles = values.roles ? values.roles.split(',') : [];
 
 	return dto;
 }

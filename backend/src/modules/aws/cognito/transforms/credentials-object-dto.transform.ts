@@ -1,4 +1,4 @@
-import { CredentialsDto } from '../modules/auth/credentials.dto';
+import { CredentialsDto } from '../../../auth/credentials.dto';
 
 export function CredentialsObjectToDto(credentials: any): CredentialsDto {
 	const dto: CredentialsDto = new CredentialsDto();

@@ -11,9 +11,9 @@ terraform {
 provider "aws" {
   region = local.REGION
   default_tags {
-	tags = {
-	  project = "${local.PROJECT}"
-	  environment = "${local.ENVIRONMENT}"
-	}
+    tags = {
+      project     = "${local.PROJECT}"
+      environment = "${local.ENVIRONMENT}"
+    }
   }
 }

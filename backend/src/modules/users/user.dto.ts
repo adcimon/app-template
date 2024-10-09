@@ -10,4 +10,5 @@ export class UserDto {
 	country: string;
 	timezone: string;
 	avatar: string;
+	roles: string[];
 }
