@@ -193,7 +193,7 @@ export class CognitoService implements OnModuleInit {
 			Filter: filter,
 		};
 
-		const users: any[] = [];
+		const users: AWS.UserType[] = [];
 		while (true) {
 			const command = new AWS.ListUsersCommand(params);
 
@@ -210,7 +210,7 @@ export class CognitoService implements OnModuleInit {
 			}
 		}
 
-		return users;
+		return users as any;
 	}
 
 	public async getByEmail(email: string): Promise<UserDto> {
@@ -230,9 +230,9 @@ export class CognitoService implements OnModuleInit {
 			AccessToken: accessToken,
 		});
 
-		const user: any = await this.client.send(command);
+		const user: AWS.GetUserCommandOutput = await this.client.send(command);
 
-		return user;
+		return user as any;
 	}
 
 	public async updateMyUser(
