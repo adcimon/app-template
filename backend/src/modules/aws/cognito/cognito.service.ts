@@ -198,9 +198,10 @@ export class CognitoService implements OnModuleInit {
 			const command = new AWS.ListUsersCommand(params);
 
 			const response: AWS.ListUsersCommandOutput = await this.client.send(command);
-			const fetchedUsers: any[] = response.Users;
 
-			users.push(...fetchedUsers);
+			if (response.Users) {
+				users.push(...response.Users);
+			}
 
 			// Check if there are more users to retrieve.
 			if (response.PaginationToken) {
