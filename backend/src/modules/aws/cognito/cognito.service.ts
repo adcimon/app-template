@@ -33,18 +33,20 @@ export class CognitoService implements OnModuleInit {
 
 	private async authUser(id: string, password: string): Promise<object> {
 		const clientId: string = await this.configService.get('AWS_USER_POOL_CLIENT_ID');
-		const command = new AWS.InitiateAuthCommand({
+		const input: AWS.InitiateAuthCommandInput = {
 			AuthFlow: 'USER_PASSWORD_AUTH',
 			ClientId: clientId,
 			AuthParameters: {
 				USERNAME: id,
 				PASSWORD: password,
 			},
-		});
+		};
 
-		const response: AWS.InitiateAuthCommandOutput = await this.client.send(command);
-		const accessToken: string = response.AuthenticationResult.AccessToken;
-		const refreshToken: string = response.AuthenticationResult.RefreshToken;
+		const command = new AWS.InitiateAuthCommand(input);
+
+		const output: AWS.InitiateAuthCommandOutput = await this.client.send(command);
+		const accessToken: string = output.AuthenticationResult?.AccessToken ?? '';
+		const refreshToken: string = output.AuthenticationResult?.RefreshToken ?? '';
 
 		return { accessToken, refreshToken };
 	}
@@ -65,7 +67,7 @@ export class CognitoService implements OnModuleInit {
 		const clientId: string = await this.configService.get('AWS_USER_POOL_CLIENT_ID');
 		const username: string = AuthUtils.generateId();
 		const name: string = email.substring(0, email.indexOf('@'));
-		const command = new AWS.SignUpCommand({
+		const input: AWS.SignUpCommandInput = {
 			ClientId: clientId,
 			Username: username,
 			Password: password,
@@ -79,7 +81,9 @@ export class CognitoService implements OnModuleInit {
 					Value: name,
 				},
 			],
-		});
+		};
+
+		const command = new AWS.SignUpCommand(input);
 
 		await this.client.send(command);
 
@@ -111,9 +115,11 @@ export class CognitoService implements OnModuleInit {
 
 	@Transform(StatusBooleanToDto)
 	public async signOut(accessToken: string): Promise<StatusDto> {
-		const command = new AWS.GlobalSignOutCommand({
+		const input: AWS.GlobalSignOutCommandInput = {
 			AccessToken: accessToken,
-		});
+		};
+
+		const command = new AWS.GlobalSignOutCommand(input);
 
 		await this.client.send(command);
 
@@ -123,16 +129,18 @@ export class CognitoService implements OnModuleInit {
 	@Transform(CredentialsObjectToDto)
 	public async refreshToken(refreshToken: string): Promise<CredentialsDto> {
 		const clientId: string = await this.configService.get('AWS_USER_POOL_CLIENT_ID');
-		const command = new AWS.InitiateAuthCommand({
+		const input: AWS.InitiateAuthCommandInput = {
 			AuthFlow: 'REFRESH_TOKEN_AUTH',
 			ClientId: clientId,
 			AuthParameters: {
 				REFRESH_TOKEN: refreshToken,
 			},
-		});
+		};
 
-		const response: AWS.InitiateAuthCommandOutput = await this.client.send(command);
-		const accessToken: string = response.AuthenticationResult.AccessToken;
+		const command = new AWS.InitiateAuthCommand(input);
+
+		const output: AWS.InitiateAuthCommandOutput = await this.client.send(command);
+		const accessToken: string = output.AuthenticationResult?.AccessToken ?? '';
 
 		return { accessToken, refreshToken };
 	}
@@ -142,10 +150,12 @@ export class CognitoService implements OnModuleInit {
 		const user: UserDto = await this.getByEmail(email);
 
 		const clientId: string = await this.configService.get('AWS_USER_POOL_CLIENT_ID');
-		const command = new AWS.ForgotPasswordCommand({
+		const input: AWS.ForgotPasswordCommandInput = {
 			ClientId: clientId,
 			Username: user.id,
-		});
+		};
+
+		const command = new AWS.ForgotPasswordCommand(input);
 
 		await this.client.send(command);
 
@@ -157,12 +167,14 @@ export class CognitoService implements OnModuleInit {
 		const user: UserDto = await this.getByEmail(email);
 
 		const clientId: string = await this.configService.get('AWS_USER_POOL_CLIENT_ID');
-		const command = new AWS.ConfirmForgotPasswordCommand({
+		const input: AWS.ConfirmForgotPasswordCommandInput = {
 			ClientId: clientId,
 			Username: user.id,
 			ConfirmationCode: code,
 			Password: password,
-		});
+		};
+
+		const command = new AWS.ConfirmForgotPasswordCommand(input);
 
 		await this.client.send(command);
 
@@ -173,11 +185,13 @@ export class CognitoService implements OnModuleInit {
 	public async verifyEmail(accessToken: string, code: string): Promise<StatusDto> {
 		await this.getMyUser(accessToken);
 
-		const command = new AWS.VerifyUserAttributeCommand({
+		const input: AWS.VerifyUserAttributeCommandInput = {
 			AccessToken: accessToken,
 			AttributeName: 'email',
 			Code: code,
-		});
+		};
+
+		const command = new AWS.VerifyUserAttributeCommand(input);
 
 		await this.client.send(command);
 
@@ -187,7 +201,7 @@ export class CognitoService implements OnModuleInit {
 	@Transform(UserCognitoToDto)
 	public async get(filter?: string): Promise<UserDto[]> {
 		const userPoolId: string = await this.configService.get('AWS_USER_POOL_ID');
-		const params: any = {
+		const input: AWS.ListUsersCommandInput = {
 			UserPoolId: userPoolId,
 			Limit: 60, // Maximum number of users per API call.
 			Filter: filter,
@@ -195,17 +209,17 @@ export class CognitoService implements OnModuleInit {
 
 		const users: AWS.UserType[] = [];
 		while (true) {
-			const command = new AWS.ListUsersCommand(params);
+			const command = new AWS.ListUsersCommand(input);
 
-			const response: AWS.ListUsersCommandOutput = await this.client.send(command);
+			const output: AWS.ListUsersCommandOutput = await this.client.send(command);
 
-			if (response.Users) {
-				users.push(...response.Users);
+			if (output.Users) {
+				users.push(...output.Users);
 			}
 
 			// Check if there are more users to retrieve.
-			if (response.PaginationToken) {
-				params.PaginationToken = response.PaginationToken;
+			if (output.PaginationToken) {
+				input.PaginationToken = output.PaginationToken;
 			} else {
 				break;
 			}
@@ -227,9 +241,11 @@ export class CognitoService implements OnModuleInit {
 
 	@Transform(UserCognitoToDto)
 	public async getMyUser(accessToken: string): Promise<UserDto> {
-		const command = new AWS.GetUserCommand({
+		const input: AWS.GetUserCommandInput = {
 			AccessToken: accessToken,
-		});
+		};
+
+		const command = new AWS.GetUserCommand(input);
 
 		const user: AWS.GetUserCommandOutput = await this.client.send(command);
 
@@ -263,10 +279,12 @@ export class CognitoService implements OnModuleInit {
 			attributes.push({ Name: 'zoneinfo', Value: params.timezone });
 		}
 
-		const command = new AWS.UpdateUserAttributesCommand({
+		const input: AWS.UpdateUserAttributesCommandInput = {
 			AccessToken: accessToken,
 			UserAttributes: attributes,
-		});
+		};
+
+		const command = new AWS.UpdateUserAttributesCommand(input);
 
 		await this.client.send(command);
 
@@ -284,11 +302,14 @@ export class CognitoService implements OnModuleInit {
 
 		const userPoolId: string = await this.configService.get('AWS_USER_POOL_ID');
 		const attributes = [{ Name: 'email', Value: email }];
-		const command = new AWS.AdminUpdateUserAttributesCommand({
+		const input: AWS.AdminUpdateUserAttributesCommandInput = {
 			UserPoolId: userPoolId,
 			Username: user.id,
 			UserAttributes: attributes,
-		});
+		};
+
+		const command = new AWS.AdminUpdateUserAttributesCommand(input);
+
 		await this.client.send(command);
 
 		return await this.getMyUser(accessToken);
@@ -299,22 +320,27 @@ export class CognitoService implements OnModuleInit {
 
 		const userPoolId: string = await this.configService.get('AWS_USER_POOL_ID');
 		const attributes = [{ Name: 'phone_number', Value: phone }];
-		const command = new AWS.AdminUpdateUserAttributesCommand({
+		const input: AWS.AdminUpdateUserAttributesCommandInput = {
 			UserPoolId: userPoolId,
 			Username: user.id,
 			UserAttributes: attributes,
-		});
+		};
+
+		const command = new AWS.AdminUpdateUserAttributesCommand(input);
+
 		await this.client.send(command);
 
 		return await this.getMyUser(accessToken);
 	}
 
 	public async updateMyPassword(accessToken: string, currentPassword: string, newPassword: string): Promise<UserDto> {
-		const command = new AWS.ChangePasswordCommand({
+		const input: AWS.ChangePasswordCommandInput = {
 			AccessToken: accessToken,
 			PreviousPassword: currentPassword,
 			ProposedPassword: newPassword,
-		});
+		};
+
+		const command = new AWS.ChangePasswordCommand(input);
 
 		await this.client.send(command);
 
@@ -323,10 +349,12 @@ export class CognitoService implements OnModuleInit {
 
 	public async updateMyAvatar(accessToken: string, avatar: string): Promise<UserDto> {
 		const attributes = [{ Name: 'picture', Value: avatar }];
-		const command = new AWS.UpdateUserAttributesCommand({
+		const input: AWS.UpdateUserAttributesCommandInput = {
 			AccessToken: accessToken,
 			UserAttributes: attributes,
-		});
+		};
+
+		const command = new AWS.UpdateUserAttributesCommand(input);
 
 		await this.client.send(command);
 
@@ -335,9 +363,11 @@ export class CognitoService implements OnModuleInit {
 
 	@Transform(StatusBooleanToDto)
 	public async deleteMyUser(accessToken: string): Promise<StatusDto> {
-		const command = new AWS.DeleteUserCommand({
+		const input: AWS.DeleteUserCommandInput = {
 			AccessToken: accessToken,
-		});
+		};
+
+		const command = new AWS.DeleteUserCommand(input);
 
 		await this.client.send(command);
 
