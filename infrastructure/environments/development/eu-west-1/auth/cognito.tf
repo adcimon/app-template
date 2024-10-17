@@ -1,4 +1,4 @@
-resource "aws_cognito_user_pool" "app_user_pool" {
+resource "aws_cognito_user_pool" "user_pool" {
   name                     = "${var.PROJECT}_${var.ENVIRONMENT}_user_pool"
   auto_verified_attributes = ["email"]
 
@@ -32,14 +32,14 @@ resource "aws_cognito_user_pool" "app_user_pool" {
   }
 }
 
-resource "aws_cognito_user_pool_domain" "app_user_pool_domain" {
+resource "aws_cognito_user_pool_domain" "user_pool_domain" {
   domain       = "${var.PROJECT}-${var.ENVIRONMENT}"
-  user_pool_id = aws_cognito_user_pool.app_user_pool.id
+  user_pool_id = aws_cognito_user_pool.user_pool.id
 }
 
-resource "aws_cognito_user_pool_client" "app_user_pool_client" {
+resource "aws_cognito_user_pool_client" "user_pool_client" {
   name         = "${var.PROJECT}_${var.ENVIRONMENT}_user_pool_client"
-  user_pool_id = aws_cognito_user_pool.app_user_pool.id
+  user_pool_id = aws_cognito_user_pool.user_pool.id
   explicit_auth_flows = [
     "USER_PASSWORD_AUTH",
   ]
