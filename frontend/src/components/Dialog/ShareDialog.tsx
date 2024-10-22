@@ -48,14 +48,18 @@ export const ShareDialog: React.FC<IShareDialogProps> = (props: IShareDialogProp
 	};
 
 	const handleAccept = async (event: any) => {
-		if (props.onAccept) {
-			if (acceptButtonRef.current) {
-				acceptButtonRef.current.disabled = true;
-			}
-			await props.onAccept(event);
-			if (acceptButtonRef.current) {
-				acceptButtonRef.current.disabled = false;
-			}
+		if (!props.onAccept) {
+			return;
+		}
+
+		if (acceptButtonRef.current) {
+			acceptButtonRef.current.disabled = true;
+		}
+
+		await props.onAccept(event);
+
+		if (acceptButtonRef.current) {
+			acceptButtonRef.current.disabled = false;
 		}
 	};
 

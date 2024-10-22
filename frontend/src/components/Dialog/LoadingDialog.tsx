@@ -17,14 +17,18 @@ export const LoadingDialog: React.FC<ILoadingDialogProps> = (props: ILoadingDial
 	const cancelButtonRef = React.useRef<any>(null);
 
 	const handleCancel = async (event: any) => {
-		if (props.onCancel) {
-			if (cancelButtonRef.current) {
-				cancelButtonRef.current.disabled = true;
-			}
-			await props.onCancel(event);
-			if (cancelButtonRef.current) {
-				cancelButtonRef.current.disabled = false;
-			}
+		if (!props.onCancel) {
+			return;
+		}
+
+		if (cancelButtonRef.current) {
+			cancelButtonRef.current.disabled = true;
+		}
+
+		await props.onCancel(event);
+
+		if (cancelButtonRef.current) {
+			cancelButtonRef.current.disabled = false;
 		}
 	};
 
