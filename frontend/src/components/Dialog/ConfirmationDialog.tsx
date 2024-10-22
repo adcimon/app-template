@@ -21,26 +21,34 @@ export const ConfirmationDialog: React.FC<IConfirmationDialogProps> = (
 	const cancelButtonRef = React.useRef<any>(null);
 
 	const handleAccept = async (event: any) => {
-		if (props.onAccept) {
-			if (acceptButtonRef.current) {
-				acceptButtonRef.current.disabled = true;
-			}
-			await props.onAccept(event);
-			if (acceptButtonRef.current) {
-				acceptButtonRef.current.disabled = false;
-			}
+		if (!props.onAccept) {
+			return;
+		}
+
+		if (acceptButtonRef.current) {
+			acceptButtonRef.current.disabled = true;
+		}
+
+		await props.onAccept(event);
+
+		if (acceptButtonRef.current) {
+			acceptButtonRef.current.disabled = false;
 		}
 	};
 
 	const handleCancel = async (event: any) => {
-		if (props.onCancel) {
-			if (cancelButtonRef.current) {
-				cancelButtonRef.current.disabled = true;
-			}
-			await props.onCancel(event);
-			if (cancelButtonRef.current) {
-				cancelButtonRef.current.disabled = false;
-			}
+		if (!props.onCancel) {
+			return;
+		}
+
+		if (cancelButtonRef.current) {
+			cancelButtonRef.current.disabled = true;
+		}
+
+		await props.onCancel(event);
+
+		if (cancelButtonRef.current) {
+			cancelButtonRef.current.disabled = false;
 		}
 	};
 
