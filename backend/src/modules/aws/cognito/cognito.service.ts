@@ -42,7 +42,7 @@ export class CognitoService implements OnModuleInit {
 			},
 		};
 
-		const command = new AWS.InitiateAuthCommand(input);
+		const command: AWS.InitiateAuthCommand = new AWS.InitiateAuthCommand(input);
 
 		const output: AWS.InitiateAuthCommandOutput = await this.client.send(command);
 		const accessToken: string = output.AuthenticationResult?.AccessToken ?? '';
@@ -83,7 +83,7 @@ export class CognitoService implements OnModuleInit {
 			],
 		};
 
-		const command = new AWS.SignUpCommand(input);
+		const command: AWS.SignUpCommand = new AWS.SignUpCommand(input);
 
 		await this.client.send(command);
 
@@ -119,7 +119,7 @@ export class CognitoService implements OnModuleInit {
 			AccessToken: accessToken,
 		};
 
-		const command = new AWS.GlobalSignOutCommand(input);
+		const command: AWS.GlobalSignOutCommand = new AWS.GlobalSignOutCommand(input);
 
 		await this.client.send(command);
 
@@ -137,7 +137,7 @@ export class CognitoService implements OnModuleInit {
 			},
 		};
 
-		const command = new AWS.InitiateAuthCommand(input);
+		const command: AWS.InitiateAuthCommand = new AWS.InitiateAuthCommand(input);
 
 		const output: AWS.InitiateAuthCommandOutput = await this.client.send(command);
 		const accessToken: string = output.AuthenticationResult?.AccessToken ?? '';
@@ -155,7 +155,7 @@ export class CognitoService implements OnModuleInit {
 			Username: user.id,
 		};
 
-		const command = new AWS.ForgotPasswordCommand(input);
+		const command: AWS.ForgotPasswordCommand = new AWS.ForgotPasswordCommand(input);
 
 		await this.client.send(command);
 
@@ -174,7 +174,7 @@ export class CognitoService implements OnModuleInit {
 			Password: password,
 		};
 
-		const command = new AWS.ConfirmForgotPasswordCommand(input);
+		const command: AWS.ConfirmForgotPasswordCommand = new AWS.ConfirmForgotPasswordCommand(input);
 
 		await this.client.send(command);
 
@@ -191,7 +191,7 @@ export class CognitoService implements OnModuleInit {
 			Code: code,
 		};
 
-		const command = new AWS.VerifyUserAttributeCommand(input);
+		const command: AWS.VerifyUserAttributeCommand = new AWS.VerifyUserAttributeCommand(input);
 
 		await this.client.send(command);
 
@@ -209,7 +209,7 @@ export class CognitoService implements OnModuleInit {
 
 		const users: AWS.UserType[] = [];
 		while (true) {
-			const command = new AWS.ListUsersCommand(input);
+			const command: AWS.ListUsersCommand = new AWS.ListUsersCommand(input);
 
 			const output: AWS.ListUsersCommandOutput = await this.client.send(command);
 
@@ -245,7 +245,7 @@ export class CognitoService implements OnModuleInit {
 			AccessToken: accessToken,
 		};
 
-		const command = new AWS.GetUserCommand(input);
+		const command: AWS.GetUserCommand = new AWS.GetUserCommand(input);
 
 		const user: AWS.GetUserCommandOutput = await this.client.send(command);
 
@@ -284,7 +284,7 @@ export class CognitoService implements OnModuleInit {
 			UserAttributes: attributes,
 		};
 
-		const command = new AWS.UpdateUserAttributesCommand(input);
+		const command: AWS.UpdateUserAttributesCommand = new AWS.UpdateUserAttributesCommand(input);
 
 		await this.client.send(command);
 
@@ -308,7 +308,7 @@ export class CognitoService implements OnModuleInit {
 			UserAttributes: attributes,
 		};
 
-		const command = new AWS.AdminUpdateUserAttributesCommand(input);
+		const command: AWS.AdminUpdateUserAttributesCommand = new AWS.AdminUpdateUserAttributesCommand(input);
 
 		await this.client.send(command);
 
@@ -326,7 +326,7 @@ export class CognitoService implements OnModuleInit {
 			UserAttributes: attributes,
 		};
 
-		const command = new AWS.AdminUpdateUserAttributesCommand(input);
+		const command: AWS.AdminUpdateUserAttributesCommand = new AWS.AdminUpdateUserAttributesCommand(input);
 
 		await this.client.send(command);
 
@@ -340,7 +340,7 @@ export class CognitoService implements OnModuleInit {
 			ProposedPassword: newPassword,
 		};
 
-		const command = new AWS.ChangePasswordCommand(input);
+		const command: AWS.ChangePasswordCommand = new AWS.ChangePasswordCommand(input);
 
 		await this.client.send(command);
 
@@ -354,7 +354,7 @@ export class CognitoService implements OnModuleInit {
 			UserAttributes: attributes,
 		};
 
-		const command = new AWS.UpdateUserAttributesCommand(input);
+		const command: AWS.UpdateUserAttributesCommand = new AWS.UpdateUserAttributesCommand(input);
 
 		await this.client.send(command);
 
@@ -367,7 +367,7 @@ export class CognitoService implements OnModuleInit {
 			AccessToken: accessToken,
 		};
 
-		const command = new AWS.DeleteUserCommand(input);
+		const command: AWS.DeleteUserCommand = new AWS.DeleteUserCommand(input);
 
 		await this.client.send(command);
 
