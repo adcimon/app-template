@@ -199,7 +199,22 @@ export class CognitoService implements OnModuleInit {
 	}
 
 	@Transform(UserCognitoToDto)
-	public async get(filter?: string): Promise<UserDto[]> {
+	public async get(id: string): Promise<UserDto> {
+		const userPoolId: string = await this.configService.get('AWS_USER_POOL_ID');
+		const input: AWS.AdminGetUserCommandInput = {
+			UserPoolId: userPoolId,
+			Username: id,
+		};
+
+		const command: AWS.AdminGetUserCommand = new AWS.AdminGetUserCommand(input);
+
+		const output: AWS.AdminGetUserCommandOutput = await this.client.send(command);
+
+		return output as any;
+	}
+
+	@Transform(UserCognitoToDto)
+	public async getBy(filter?: string): Promise<UserDto[]> {
 		const userPoolId: string = await this.configService.get('AWS_USER_POOL_ID');
 		const input: AWS.ListUsersCommandInput = {
 			UserPoolId: userPoolId,
@@ -229,7 +244,7 @@ export class CognitoService implements OnModuleInit {
 	}
 
 	public async getByEmail(email: string): Promise<UserDto> {
-		const users: UserDto[] = await this.get(`email = "${email}"`);
+		const users: UserDto[] = await this.getBy(`email = "${email}"`);
 		if (users.length !== 1) {
 			throw new ResourceNotFoundException('User', { email });
 		}
@@ -295,7 +310,7 @@ export class CognitoService implements OnModuleInit {
 		const user: UserDto = await this.getMyUser(accessToken);
 
 		// Check whether the email is taken.
-		const users: any[] = await this.get(`email = "${email}"`);
+		const users: any[] = await this.getBy(`email = "${email}"`);
 		if (users.length !== 0) {
 			throw new EmailTakenException(email);
 		}

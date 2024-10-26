@@ -6,7 +6,14 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 
 @Module({
-	imports: [ConfigModule, UsersModule, CognitoModule],
+	imports: [
+		// Base
+		ConfigModule,
+		// API
+		UsersModule,
+		// AWS
+		CognitoModule,
+	],
 	controllers: [AuthController],
 	providers: [AuthService],
 	exports: [AuthService],

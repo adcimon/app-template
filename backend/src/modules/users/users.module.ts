@@ -5,7 +5,12 @@ import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 
 @Module({
-	imports: [ConfigModule, CognitoModule],
+	imports: [
+		// Base
+		ConfigModule,
+		// AWS
+		CognitoModule,
+	],
 	controllers: [UsersController],
 	providers: [UsersService],
 	exports: [UsersService],

@@ -4,7 +4,10 @@ import { AdminController } from './admin.controller';
 import { AdminService } from './admin.service';
 
 @Module({
-	imports: [UsersModule],
+	imports: [
+		// API
+		UsersModule,
+	],
 	controllers: [AdminController],
 	providers: [AdminService],
 	exports: [AdminService],

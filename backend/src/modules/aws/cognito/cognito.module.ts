@@ -3,7 +3,10 @@ import { ConfigModule } from '../../config/config.module';
 import { CognitoService } from './cognito.service';
 
 @Module({
-	imports: [ConfigModule],
+	imports: [
+		// Base
+		ConfigModule,
+	],
 	controllers: [],
 	providers: [CognitoService],
 	exports: [CognitoService],

@@ -7,7 +7,16 @@ import { CognitoModule } from './aws/cognito/cognito.module';
 import { LoggerMiddleware } from '../log/logger.middleware';
 
 @Module({
-	imports: [ConfigModule, AuthModule, UsersModule, AdminModule, CognitoModule],
+	imports: [
+		// Base
+		ConfigModule,
+		// API
+		AuthModule,
+		UsersModule,
+		AdminModule,
+		// AWS
+		CognitoModule,
+	],
 	controllers: [],
 	providers: [],
 })

@@ -7,8 +7,13 @@ import { UserDto } from './user.dto';
 export class UsersService {
 	constructor(private readonly cognitoService: CognitoService) {}
 
-	public async get(filter?: string): Promise<UserDto[]> {
-		const users: UserDto[] = await this.cognitoService.get(filter);
+	public async get(id: string): Promise<UserDto> {
+		const user: UserDto = await this.cognitoService.get(id);
+		return user;
+	}
+
+	public async getBy(filter?: string): Promise<UserDto[]> {
+		const users: UserDto[] = await this.cognitoService.getBy(filter);
 		return users;
 	}
 
