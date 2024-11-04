@@ -6,7 +6,7 @@ These files are used to deploy de required infrastructure services in AWS.
 
 ## Environments
 
-Currently there is 1 environment in the region `eu-west-1`.
+Currently there is 1 environment:
 * `development`
 
 The file `variables.tf` defines the `PROJECT` and `ENVIRONMENT` local variables (e.g. `app`, `development`).
