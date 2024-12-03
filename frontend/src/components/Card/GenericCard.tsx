@@ -40,8 +40,8 @@ export const GenericCard: React.FC<IGenericCardProps> = (props: IGenericCardProp
 							alignItems: 'center',
 						}}>
 						<Typography
-							gutterBottom
-							variant='h6'>
+							variant='h6'
+							gutterBottom>
 							{props.title}
 						</Typography>
 						{props.children}

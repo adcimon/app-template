@@ -23,8 +23,8 @@ export const SendField: React.FC<SendFieldProps> = ({ onSend, ...props }: SendFi
 				<TextField
 					{...props}
 					type='text'
-					onKeyUp={handleKeyDown}
 					variant='filled'
+					onKeyUp={handleKeyDown}
 					InputProps={{
 						endAdornment: (
 							<InputAdornment position='end'>

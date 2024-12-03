@@ -71,8 +71,8 @@ export const UserCard: React.FC<IUserCardProps> = (props: IUserCardProps): JSX.E
 							alignItems: 'center',
 						}}>
 						<Typography
-							gutterBottom
-							variant='h6'>
+							variant='h6'
+							gutterBottom>
 							{props.title}
 						</Typography>
 						<Typography color='text.secondary'>{props.text}</Typography>

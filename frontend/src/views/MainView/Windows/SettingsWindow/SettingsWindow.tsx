@@ -95,8 +95,8 @@ export const SettingsWindow: React.FC<ISettingsWindowProps> = (props: ISettingsW
 									justifyContent: 'center',
 								}}>
 								<Typography
-									gutterBottom
 									variant='h5'
+									gutterBottom
 									sx={{
 										color: 'white',
 									}}>
@@ -108,8 +108,8 @@ export const SettingsWindow: React.FC<ISettingsWindowProps> = (props: ISettingsW
 										display: 'flex',
 									}}>
 									<Typography
-										noWrap
 										variant='body2'
+										noWrap
 										sx={{
 											color: '#919eab',
 											width: '50%',
@@ -138,9 +138,9 @@ export const SettingsWindow: React.FC<ISettingsWindowProps> = (props: ISettingsW
 							width: '100%',
 						}}>
 						<Tabs
+							variant='scrollable'
 							value={state.tab}
 							onChange={handleTabChange}
-							variant='scrollable'
 							scrollButtons
 							allowScrollButtonsMobile>
 							<Tab

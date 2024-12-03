@@ -171,8 +171,8 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 						}}>
 						<Button
 							disabled={!validate()}
-							onClick={handleSave}
-							variant='contained'>
+							variant='contained'
+							onClick={handleSave}>
 							Save
 						</Button>
 					</CardActions>

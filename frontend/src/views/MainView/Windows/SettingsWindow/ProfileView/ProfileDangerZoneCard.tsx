@@ -110,9 +110,9 @@ export const ProfileDangerZoneCard: React.FC = (): JSX.Element => {
 											</Typography>
 										</Box>
 										<Button
-											onClick={handleDeleteAccount}
 											variant='contained'
-											color='error'>
+											color='error'
+											onClick={handleDeleteAccount}>
 											Delete
 										</Button>
 									</Box>
@@ -133,12 +133,12 @@ export const ProfileDangerZoneCard: React.FC = (): JSX.Element => {
 					<Typography>Confirm your password to delete your account.</Typography>
 					<TextField
 						type='password'
+						variant='standard'
 						value={state.password}
 						onChange={(event: any) => setState({ ...state, password: event.target.value })}
 						autoFocus
 						fullWidth
 						margin='dense'
-						variant='standard'
 					/>
 				</ConfirmationDialog>
 			</>

@@ -132,8 +132,8 @@ export const ProfilePhoneCard: React.FC = (): JSX.Element => {
 						}}>
 						<Button
 							disabled={!validate()}
-							onClick={handleChange}
-							variant='contained'>
+							variant='contained'
+							onClick={handleChange}>
 							Change
 						</Button>
 					</CardActions>
@@ -148,12 +148,12 @@ export const ProfilePhoneCard: React.FC = (): JSX.Element => {
 					<Typography>Confirm your new phone number to change it.</Typography>
 					<TextField
 						type='tel'
+						variant='standard'
 						value={state.confirmPhone}
 						onChange={(event: any) => setState({ ...state, confirmPhone: event.target.value })}
 						autoFocus
 						fullWidth
 						margin='dense'
-						variant='standard'
 					/>
 				</ConfirmationDialog>
 			</>

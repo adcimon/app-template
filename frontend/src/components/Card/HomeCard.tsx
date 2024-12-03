@@ -56,8 +56,8 @@ export const HomeCard: React.FC<IHomeCardProps> = (props: IHomeCardProps): JSX.E
 						{props.text}
 					</Typography>
 					<Button
-						onClick={handleClick}
 						variant='outlined'
+						onClick={handleClick}
 						sx={{
 							borderColor: 'white',
 							borderRadius: '5px',

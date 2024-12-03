@@ -136,9 +136,9 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 				<Chip
 					label={
 						<Typography
-							noWrap
 							variant='body2'
 							color='primary.contrastText'
+							noWrap
 							sx={{
 								fontSize: '0.75rem',
 								maxWidth: '80px',
@@ -200,9 +200,9 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 							{userState.user?.name || <Skeleton width={150} />}
 						</Typography>
 						<Typography
-							noWrap
+							variant='body2'
 							color='text.secondary'
-							variant='body2'>
+							noWrap>
 							{userState.user?.email || <Skeleton width={150} />}
 						</Typography>
 					</Box>

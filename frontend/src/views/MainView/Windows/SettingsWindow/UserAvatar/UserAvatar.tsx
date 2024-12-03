@@ -51,7 +51,7 @@ export const UserAvatar: React.FC = (): JSX.Element => {
 	};
 
 	const validate = (): boolean => {
-		return Utils.AVATAR_REGEXP.test(state.avatar) && state.avatar !== userState.user.avatar;
+		return Utils.AVATAR_REGEXP.test(state.avatar) && state.avatar !== userState.user?.avatar;
 	};
 
 	const handleAccept = async () => {
@@ -161,13 +161,13 @@ export const UserAvatar: React.FC = (): JSX.Element => {
 					onClose={handleCancel}>
 					<Typography>Insert your avatar URL.</Typography>
 					<TextField
+						variant='standard'
 						value={state.avatar}
 						onChange={(event: any) => setState({ ...state, avatar: event.target.value })}
 						helperText='Supported formats: jpg, jpeg and png.'
 						autoFocus
 						fullWidth
 						margin='dense'
-						variant='standard'
 					/>
 				</ConfirmationDialog>
 			</>

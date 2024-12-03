@@ -60,13 +60,13 @@ export const NotificationItem: React.FC<INotificationItemProps> = (props: INotif
 									width: '70%',
 								}}>
 								<Typography
-									noWrap
-									variant='subtitle2'>
+									variant='subtitle2'
+									noWrap>
 									{props.notification.title}
 								</Typography>
 								<Typography
-									noWrap
 									variant='body2'
+									noWrap
 									sx={{
 										color: 'text.secondary',
 										fontSize: '0.75rem',
@@ -75,8 +75,8 @@ export const NotificationItem: React.FC<INotificationItemProps> = (props: INotif
 									{props.notification.description}
 								</Typography>
 								<Typography
-									noWrap
 									variant='body2'
+									noWrap
 									sx={{
 										color: 'text.secondary',
 										fontSize: '0.75rem',

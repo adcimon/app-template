@@ -77,8 +77,8 @@ export const UsersView: React.FC = (): JSX.Element => {
 							{item.name} {item?.surname}
 						</Typography>
 						<Typography
-							noWrap
 							variant='body2'
+							noWrap
 							sx={{
 								color: 'text.secondary',
 								fontSize: '0.75rem',

@@ -166,14 +166,14 @@ export const ProfileEmailCard: React.FC = (): JSX.Element => {
 							justifyContent: 'flex-end',
 						}}>
 						<Button
-							onClick={handleVerify}
-							variant='contained'>
+							variant='contained'
+							onClick={handleVerify}>
 							Verify
 						</Button>
 						<Button
 							disabled={!validate()}
-							onClick={handleChange}
-							variant='contained'>
+							variant='contained'
+							onClick={handleChange}>
 							Change
 						</Button>
 					</CardActions>
@@ -187,12 +187,12 @@ export const ProfileEmailCard: React.FC = (): JSX.Element => {
 					onClose={handleCancelChange}>
 					<Typography>Confirm your new email to change it.</Typography>
 					<TextField
+						variant='standard'
 						value={state.newEmail}
 						onChange={(event: any) => setState({ ...state, newEmail: event.target.value })}
 						autoFocus
 						fullWidth
 						margin='dense'
-						variant='standard'
 					/>
 				</ConfirmationDialog>
 				<ConfirmationDialog
@@ -205,12 +205,12 @@ export const ProfileEmailCard: React.FC = (): JSX.Element => {
 					<Typography>Insert the verification code to change your email.</Typography>
 					<TextField
 						type='number'
+						variant='standard'
 						value={state.code}
 						onChange={(event: any) => setState({ ...state, code: event.target.value })}
 						autoFocus
 						fullWidth
 						margin='dense'
-						variant='standard'
 					/>
 				</ConfirmationDialog>
 			</>

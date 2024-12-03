@@ -73,9 +73,9 @@ export const SignInView: React.FC = (): JSX.Element => {
 						margin='normal'
 					/>
 					<Button
+						variant='contained'
 						onClick={handleSignIn}
 						fullWidth
-						variant='contained'
 						sx={{
 							marginBottom: 2,
 							marginTop: 3,
@@ -90,16 +90,16 @@ export const SignInView: React.FC = (): JSX.Element => {
 							xs>
 							<Link
 								href='#'
-								onClick={handleForgotPassword}
-								variant='body2'>
+								variant='body2'
+								onClick={handleForgotPassword}>
 								Forgot your password?
 							</Link>
 						</Grid>
 						<Grid item>
 							<Link
 								href='#'
-								onClick={handleSignUp}
-								variant='body2'>
+								variant='body2'
+								onClick={handleSignUp}>
 								{"Don't have an account? Sign Up"}
 							</Link>
 						</Grid>

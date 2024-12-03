@@ -150,9 +150,9 @@ export const SignUpView: React.FC = (): JSX.Element => {
 					/>
 					<Button
 						disabled={!validate()}
+						variant='contained'
 						onClick={handleSignUp}
 						fullWidth
-						variant='contained'
 						sx={{
 							marginBottom: 2,
 							marginTop: 3,
@@ -167,8 +167,8 @@ export const SignUpView: React.FC = (): JSX.Element => {
 						<Grid item>
 							<Link
 								href='#'
-								onClick={handleSignIn}
-								variant='body2'>
+								variant='body2'
+								onClick={handleSignIn}>
 								← Already have an account? Sign in
 							</Link>
 						</Grid>

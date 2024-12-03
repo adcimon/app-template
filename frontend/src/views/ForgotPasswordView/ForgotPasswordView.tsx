@@ -93,10 +93,10 @@ export const ForgotPasswordView: React.FC = (): JSX.Element => {
 										color='primary'>
 										<Button
 											disabled={!validateSendCode()}
-											onClick={handleSendCode}
-											fullWidth
+											variant='contained'
 											size='small'
-											variant='contained'>
+											onClick={handleSendCode}
+											fullWidth>
 											Send Code
 										</Button>
 									</Badge>
@@ -138,9 +138,9 @@ export const ForgotPasswordView: React.FC = (): JSX.Element => {
 						}}>
 						<Button
 							disabled={!validateChange()}
+							variant='contained'
 							onClick={handleChange}
-							fullWidth
-							variant='contained'>
+							fullWidth>
 							Change
 						</Button>
 					</Badge>
@@ -153,8 +153,8 @@ export const ForgotPasswordView: React.FC = (): JSX.Element => {
 						<Grid item>
 							<Link
 								href='#'
-								onClick={handleSignIn}
-								variant='body2'>
+								variant='body2'
+								onClick={handleSignIn}>
 								← Already have an account? Sign in
 							</Link>
 						</Grid>

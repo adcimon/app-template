@@ -108,7 +108,9 @@ export const ProfilePasswordCard: React.FC = (): JSX.Element => {
 									lg={12}>
 									<Typography
 										variant='body2'
-										sx={{ color: 'text.secondary' }}>
+										sx={{
+											color: 'text.secondary',
+										}}>
 										Password change requires to insert your current password, the new one and
 										confirm it.
 									</Typography>
@@ -122,8 +124,8 @@ export const ProfilePasswordCard: React.FC = (): JSX.Element => {
 							justifyContent: 'flex-end',
 						}}>
 						<Button
-							onClick={handleChange}
-							variant='contained'>
+							variant='contained'
+							onClick={handleChange}>
 							Change
 						</Button>
 					</CardActions>
@@ -136,6 +138,7 @@ export const ProfilePasswordCard: React.FC = (): JSX.Element => {
 					onCancel={handleCancelChange}
 					onClose={handleCancelChange}>
 					<PasswordField
+						variant='standard'
 						label='Current Password'
 						placeholder='*****'
 						value={state.currentPassword}
@@ -143,25 +146,24 @@ export const ProfilePasswordCard: React.FC = (): JSX.Element => {
 						autoFocus
 						fullWidth
 						margin='dense'
-						variant='standard'
 					/>
 					<PasswordField
+						variant='standard'
 						label='New Password'
 						placeholder='*****'
 						value={state.newPassword}
 						onChange={(event: any) => setState({ ...state, newPassword: event.target.value })}
 						fullWidth
 						margin='dense'
-						variant='standard'
 					/>
 					<PasswordField
+						variant='standard'
 						label='Confirm Password'
 						placeholder='*****'
 						value={state.confirmPassword}
 						onChange={(event: any) => setState({ ...state, confirmPassword: event.target.value })}
 						fullWidth
 						margin='dense'
-						variant='standard'
 					/>
 				</ConfirmationDialog>
 			</>
