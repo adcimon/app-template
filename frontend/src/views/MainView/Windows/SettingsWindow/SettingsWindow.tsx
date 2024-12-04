@@ -102,10 +102,10 @@ export const SettingsWindow: React.FC<ISettingsWindowProps> = (props: ISettingsW
 									}}>
 									{id}
 								</Typography>
-								<Box
+								<Stack
+									direction='row'
 									sx={{
 										alignItems: 'center',
-										display: 'flex',
 									}}>
 									<Typography
 										variant='body2'
@@ -126,7 +126,7 @@ export const SettingsWindow: React.FC<ISettingsWindowProps> = (props: ISettingsW
 											}}
 										/>
 									</IconButton>
-								</Box>
+								</Stack>
 							</Stack>
 						</Stack>
 					</Box>
