@@ -23,13 +23,17 @@ export const TimezoneSelect: React.FC<TimezoneSelectProps> = ({
 				disabled={props.disabled}
 				disableClearable={disableClearable}
 				getOptionLabel={(option) => option}
-				renderOption={(props, option) => (
-					<Box
-						component='li'
-						{...props}>
-						{option}
-					</Box>
-				)}
+				renderOption={(props, option) => {
+					const { key, ...subprops } = props;
+					return (
+						<Box
+							key={key}
+							component='li'
+							{...subprops}>
+							{option}
+						</Box>
+					);
+				}}
 				renderInput={(params) => {
 					const { defaultValue, value, onChange, ...subprops } = props;
 					return (

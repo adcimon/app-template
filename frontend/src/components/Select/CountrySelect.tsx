@@ -30,26 +30,30 @@ export const CountrySelect: React.FC<CountrySelectProps> = ({
 				disabled={props.disabled}
 				disableClearable={disableClearable}
 				getOptionLabel={(option) => option.label}
-				renderOption={(props, option) => (
-					<Box
-						component='li'
-						sx={{
-							'& > img': {
-								flexShrink: 0,
-								marginRight: 2,
-							},
-						}}
-						{...props}>
-						<img
-							loading='lazy'
-							src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
-							srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
-							alt=''
-							width='20'
-						/>
-						({option.code}) {option.label} +{option.phone}
-					</Box>
-				)}
+				renderOption={(props, option) => {
+					const { key, ...subprops } = props;
+					return (
+						<Box
+							key={key}
+							component='li'
+							sx={{
+								'& > img': {
+									flexShrink: 0,
+									marginRight: 2,
+								},
+							}}
+							{...subprops}>
+							<img
+								loading='lazy'
+								src={`https://flagcdn.com/w20/${option.code.toLowerCase()}.png`}
+								srcSet={`https://flagcdn.com/w40/${option.code.toLowerCase()}.png 2x`}
+								alt=''
+								width='20'
+							/>
+							({option.code}) {option.label} +{option.phone}
+						</Box>
+					);
+				}}
 				renderInput={(params) => {
 					const { defaultValue, value, onChange, ...subprops } = props;
 					return (
