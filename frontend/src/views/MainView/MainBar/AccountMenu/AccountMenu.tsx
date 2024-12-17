@@ -1,5 +1,6 @@
 import React from 'react';
 import toast from 'react-hot-toast';
+import { SxProps } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
@@ -131,6 +132,9 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 
 	const render = () => {
 		const avatar: string | undefined = Utils.getAvatar(userState.user);
+		const iconSx: SxProps = {
+			paddingRight: '5px',
+		};
 		return (
 			<>
 				<Chip
@@ -215,29 +219,17 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 							paddingBottom: '10px',
 						}}>
 						<MenuItem onClick={handleSettings}>
-							<SettingsIcon
-								sx={{
-									paddingRight: '5px',
-								}}
-							/>
+							<SettingsIcon sx={iconSx} />
 							<Typography>Settings</Typography>
 						</MenuItem>
 						{userState.user?.isAdmin() && (
 							<MenuItem onClick={handleManagement}>
-								<SecurityIcon
-									sx={{
-										paddingRight: '5px',
-									}}
-								/>
+								<SecurityIcon sx={iconSx} />
 								<Typography>Management</Typography>
 							</MenuItem>
 						)}
 						<MenuItem onClick={handleHelp}>
-							<HelpIcon
-								sx={{
-									paddingRight: '5px',
-								}}
-							/>
+							<HelpIcon sx={iconSx} />
 							<Typography>Help</Typography>
 						</MenuItem>
 						<MenuItem
@@ -259,11 +251,7 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 									},
 								},
 							}}>
-							<ExitToApp
-								sx={{
-									paddingRight: '5px',
-								}}
-							/>
+							<ExitToApp sx={iconSx} />
 							<Typography>Sign Out</Typography>
 						</MenuItem>
 					</MenuList>
