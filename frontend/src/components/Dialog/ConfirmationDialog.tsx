@@ -5,6 +5,7 @@ import { GenericDialog } from './GenericDialog';
 
 interface IConfirmationDialogProps {
 	open: boolean;
+	variant?: 'info' | 'success' | 'warning' | 'error';
 	title?: React.ReactNode;
 	acceptable?: boolean;
 	onAccept?: (event: any) => void;
@@ -59,6 +60,7 @@ export const ConfirmationDialog: React.FC<IConfirmationDialogProps> = (
 			<>
 				<GenericDialog
 					open={props.open}
+					variant={props.variant}
 					title={props.title}
 					actions={
 						<>

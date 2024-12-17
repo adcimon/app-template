@@ -1,8 +1,8 @@
 import React from 'react';
-import { Theme, useTheme, useMediaQuery } from '@mui/material';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Stack from '@mui/material/Stack';
+import { useResponsive } from '../hooks/useResponsive';
 
 interface ISideBarProps {
 	open: boolean;
@@ -15,8 +15,7 @@ interface ISideBarProps {
 }
 
 export const SideBar: React.FC<ISideBarProps> = (props: ISideBarProps): JSX.Element => {
-	const theme: Theme = useTheme();
-	const responsive: boolean = useMediaQuery(theme.breakpoints.down('md'));
+	const responsive: boolean = useResponsive();
 
 	const render = () => {
 		const isResponsive: boolean = (props.responsive ?? false) && responsive;

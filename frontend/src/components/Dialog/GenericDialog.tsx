@@ -1,13 +1,19 @@
 import React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme, useTheme, useMediaQuery } from '@mui/material';
+import CancelIcon from '@mui/icons-material/Cancel';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
+import ErrorRoundedIcon from '@mui/icons-material/ErrorRounded';
+import InfoIcon from '@mui/icons-material/Info';
+import Stack from '@mui/material/Stack';
+import { useResponsive } from '../hooks/useResponsive';
 
 interface IGenericDialogProps {
 	open: boolean;
+	variant?: 'info' | 'success' | 'warning' | 'error';
 	title?: React.ReactNode;
 	actions?: React.ReactNode;
 	onClose?: (event: any) => void;
@@ -16,8 +22,7 @@ interface IGenericDialogProps {
 }
 
 export const GenericDialog: React.FC<IGenericDialogProps> = (props: IGenericDialogProps): JSX.Element => {
-	const theme: Theme = useTheme();
-	const responsive: boolean = useMediaQuery(theme.breakpoints.down('md'));
+	const responsive: boolean = useResponsive();
 
 	const paperSx = responsive
 		? {
@@ -33,7 +38,46 @@ export const GenericDialog: React.FC<IGenericDialogProps> = (props: IGenericDial
 					paddingY: '0',
 				},
 		  }
-		: undefined;
+		: {};
+
+	const renderIcon = () => {
+		const sx = {
+			marginRight: '0.5rem',
+			transform: 'scale(1.2)',
+		};
+		switch (props.variant) {
+			case 'info':
+				return (
+					<InfoIcon
+						color='info'
+						sx={sx}
+					/>
+				);
+			case 'success':
+				return (
+					<CheckCircleIcon
+						color='success'
+						sx={sx}
+					/>
+				);
+			case 'warning':
+				return (
+					<ErrorRoundedIcon
+						color='warning'
+						sx={sx}
+					/>
+				);
+			case 'error':
+				return (
+					<CancelIcon
+						color='error'
+						sx={sx}
+					/>
+				);
+			default:
+				return <></>;
+		}
+	};
 
 	const render = () => {
 		return (
@@ -46,7 +90,20 @@ export const GenericDialog: React.FC<IGenericDialogProps> = (props: IGenericDial
 					PaperProps={{
 						sx: paperSx,
 					}}>
-					{props.title && <DialogTitle>{props.title}</DialogTitle>}
+					{props.title && (
+						<DialogTitle>
+							<Stack
+								direction='row'
+								sx={{
+									alignItems: 'center',
+									height: '100%',
+									width: '100%',
+								}}>
+								{renderIcon()}
+								{props.title}
+							</Stack>
+						</DialogTitle>
+					)}
 					<DialogContent sx={props.sx}>{props.children}</DialogContent>
 					{props.actions && <DialogActions>{props.actions}</DialogActions>}
 				</Dialog>

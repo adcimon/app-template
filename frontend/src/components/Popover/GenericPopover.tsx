@@ -1,8 +1,8 @@
 import React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme, useTheme, useMediaQuery } from '@mui/material';
 import Popover, { PopoverOrigin } from '@mui/material/Popover';
 import { GenericDialog } from '../Dialog/GenericDialog';
+import { useResponsive } from '../hooks/useResponsive';
 
 interface IGenericPopoverProps {
 	anchorEl?: React.MutableRefObject<any>;
@@ -15,8 +15,7 @@ interface IGenericPopoverProps {
 }
 
 export const GenericPopover: React.FC<IGenericPopoverProps> = (props: IGenericPopoverProps): JSX.Element => {
-	const theme: Theme = useTheme();
-	const responsive: boolean = useMediaQuery(theme.breakpoints.down('md'));
+	const responsive: boolean = useResponsive();
 
 	const render = () => {
 		return (
