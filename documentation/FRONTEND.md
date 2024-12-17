@@ -1,6 +1,6 @@
 # Frontend
 
-Based on [esbuild](https://esbuild.github.io/), [TypeScript](https://www.typescriptlang.org/), [React](https://react.dev/) and [MUI](https://mui.com/).
+Based on [TypeScript](https://www.typescriptlang.org/), [React](https://react.dev/) and [MUI](https://mui.com/).
 
 Requirements.
 * `Node v22.11.0`
@@ -20,16 +20,11 @@ npm install
 Run.
 ```
 cd frontend
-npm run start
+npm run dev
 ```
 
 Build.
 ```
 cd frontend
 npm run build
-```
-
-Clean.
-```
-npm run clean
 ```
