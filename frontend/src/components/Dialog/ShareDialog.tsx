@@ -11,12 +11,12 @@ import { GenericDialog } from './GenericDialog';
 const QRCode = require('qrcode');
 
 interface IShareDialogProps {
-	open: boolean;
 	label?: string;
 	text?: string;
+	open: boolean;
+	showQR?: boolean;
 	onAccept?: (event: any) => void;
 	onClose?: (event: any) => void;
-	showQR?: boolean;
 	sx?: SxProps;
 	children?: React.ReactNode;
 }
@@ -67,7 +67,6 @@ export const ShareDialog: React.FC<IShareDialogProps> = (props: IShareDialogProp
 		return (
 			<>
 				<GenericDialog
-					open={props.open}
 					title={
 						<>
 							<Stack
@@ -103,6 +102,7 @@ export const ShareDialog: React.FC<IShareDialogProps> = (props: IShareDialogProp
 							</Button>
 						</>
 					}
+					open={props.open}
 					onClose={props.onClose}
 					sx={props.sx}>
 					<Stack

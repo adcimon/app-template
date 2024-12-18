@@ -12,9 +12,9 @@ import Stack from '@mui/material/Stack';
 import { useResponsive } from '../hooks/useResponsive';
 
 interface IGenericDialogProps {
-	open: boolean;
-	variant?: 'info' | 'success' | 'warning' | 'error';
 	title?: React.ReactNode;
+	variant?: 'info' | 'success' | 'warning' | 'error';
+	open: boolean;
 	actions?: React.ReactNode;
 	onClose?: (event: any) => void;
 	sx?: SxProps;
@@ -86,7 +86,7 @@ export const GenericDialog: React.FC<IGenericDialogProps> = (props: IGenericDial
 					open={props.open}
 					closeAfterTransition={true}
 					onClose={props.onClose}
-					fullWidth
+					fullWidth={true}
 					PaperProps={{
 						sx: paperSx,
 					}}>

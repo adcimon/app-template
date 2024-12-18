@@ -5,8 +5,8 @@ import Stack from '@mui/material/Stack';
 import { useResponsive } from '../hooks/useResponsive';
 
 interface ISideBarProps {
-	open: boolean;
 	title?: React.ReactNode;
+	open: boolean;
 	responsive?: boolean;
 	height?: number | string;
 	width?: number | string;

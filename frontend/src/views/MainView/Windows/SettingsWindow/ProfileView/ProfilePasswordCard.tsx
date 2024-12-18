@@ -109,8 +109,8 @@ export const ProfilePasswordCard: React.FC = (): JSX.Element => {
 					</CardActions>
 				</Card>
 				<ConfirmationDialog
-					open={openDialog}
 					title='Change Password'
+					open={openDialog}
 					acceptable={validate()}
 					onAccept={handleAcceptChange}
 					onCancel={handleCancelChange}

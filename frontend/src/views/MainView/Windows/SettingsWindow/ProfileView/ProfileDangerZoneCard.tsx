@@ -108,8 +108,8 @@ export const ProfileDangerZoneCard: React.FC = (): JSX.Element => {
 					<CardContent>{/* More dangerous actions */}</CardContent>
 				</Card>
 				<ConfirmationDialog
-					open={openDialog}
 					title='Delete Account'
+					open={openDialog}
 					acceptable={validate()}
 					onAccept={handleAcceptDeleteAccount}
 					onCancel={handleCancelDeleteAccount}

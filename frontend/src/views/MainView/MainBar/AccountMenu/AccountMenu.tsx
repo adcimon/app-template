@@ -229,8 +229,8 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 					onClose={handleCloseHelp}
 				/>
 				<ConfirmationDialog
-					open={openSignOutDialog}
 					title='Sign Out'
+					open={openSignOutDialog}
 					onAccept={handleAcceptSignOut}
 					onCancel={handleCancelSignOut}
 					onClose={handleCancelSignOut}>

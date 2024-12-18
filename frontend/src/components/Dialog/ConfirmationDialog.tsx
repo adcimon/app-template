@@ -4,9 +4,9 @@ import Button from '@mui/material/Button';
 import { GenericDialog } from './GenericDialog';
 
 interface IConfirmationDialogProps {
-	open: boolean;
-	variant?: 'info' | 'success' | 'warning' | 'error';
 	title?: React.ReactNode;
+	variant?: 'info' | 'success' | 'warning' | 'error';
+	open: boolean;
 	acceptable?: boolean;
 	onAccept?: (event: any) => void;
 	onCancel?: (event: any) => void;
@@ -59,9 +59,8 @@ export const ConfirmationDialog: React.FC<IConfirmationDialogProps> = (
 		return (
 			<>
 				<GenericDialog
-					open={props.open}
-					variant={props.variant}
 					title={props.title}
+					variant={props.variant}
 					actions={
 						<>
 							<Button
@@ -78,6 +77,7 @@ export const ConfirmationDialog: React.FC<IConfirmationDialogProps> = (
 							</Button>
 						</>
 					}
+					open={props.open}
 					onClose={props.onClose}
 					sx={props.sx}>
 					{props.children}

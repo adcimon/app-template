@@ -191,7 +191,6 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 					</Card>
 				</Stack>
 				<GenericDialog
-					open={openItemDialog}
 					title={
 						<>
 							<Stack
@@ -216,6 +215,7 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 							</Stack>
 						</>
 					}
+					open={openItemDialog}
 					onClose={handleCloseDialog}>
 					<Stack
 						direction='column'
@@ -239,8 +239,8 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 					</DialogActions>
 				</GenericDialog>
 				<ConfirmationDialog
-					open={openDeleteDialog}
 					title='Delete'
+					open={openDeleteDialog}
 					onAccept={handleAcceptDelete}
 					onCancel={handleCancelDelete}
 					onClose={handleCancelDelete}>

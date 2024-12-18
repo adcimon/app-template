@@ -130,8 +130,8 @@ export const UserAvatar: React.FC = (): JSX.Element => {
 					</Stack>
 				</Box>
 				<ConfirmationDialog
-					open={openDialog}
 					title='Change Avatar'
+					open={openDialog}
 					acceptable={validate()}
 					onAccept={handleAccept}
 					onCancel={handleCancel}

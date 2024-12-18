@@ -48,7 +48,7 @@ export const Window: React.FC<IWindowProps> = (props: IWindowProps): JSX.Element
 				<Dialog
 					open={props.open}
 					closeAfterTransition={true}
-					fullScreen
+					fullScreen={true}
 					PaperProps={{
 						sx: {
 							backgroundColor: 'background.default',

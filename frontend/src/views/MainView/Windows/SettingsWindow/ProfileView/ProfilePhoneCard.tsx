@@ -122,8 +122,8 @@ export const ProfilePhoneCard: React.FC = (): JSX.Element => {
 					</CardActions>
 				</Card>
 				<ConfirmationDialog
-					open={openChangeDialog}
 					title='Change Phone'
+					open={openChangeDialog}
 					acceptable={phone === confirmPhone}
 					onAccept={handleAcceptChange}
 					onCancel={handleCancelChange}

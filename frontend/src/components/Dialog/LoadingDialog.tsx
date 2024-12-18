@@ -6,8 +6,8 @@ import Stack from '@mui/material/Stack';
 import { GenericDialog } from './GenericDialog';
 
 interface ILoadingDialogProps {
-	open: boolean;
 	title?: React.ReactNode;
+	open: boolean;
 	onCancel?: (event: any) => void;
 	sx?: SxProps;
 	children?: React.ReactNode;
@@ -40,7 +40,6 @@ export const LoadingDialog: React.FC<ILoadingDialogProps> = (props: ILoadingDial
 		return (
 			<>
 				<GenericDialog
-					open={props.open}
 					title={props.title}
 					actions={
 						<>
@@ -51,6 +50,7 @@ export const LoadingDialog: React.FC<ILoadingDialogProps> = (props: ILoadingDial
 							</Button>
 						</>
 					}
+					open={props.open}
 					onClose={handleClose}
 					sx={props.sx}>
 					<Stack

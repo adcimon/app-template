@@ -151,8 +151,8 @@ export const ProfileEmailCard: React.FC = (): JSX.Element => {
 					</CardActions>
 				</Card>
 				<ConfirmationDialog
-					open={openChangeDialog}
 					title='Change Email'
+					open={openChangeDialog}
 					acceptable={email === newEmail}
 					onAccept={handleAcceptChange}
 					onCancel={handleCancelChange}
@@ -168,8 +168,8 @@ export const ProfileEmailCard: React.FC = (): JSX.Element => {
 					/>
 				</ConfirmationDialog>
 				<ConfirmationDialog
-					open={openVerifyDialog}
 					title='Verify Email'
+					open={openVerifyDialog}
 					acceptable={code !== ''}
 					onAccept={handleAcceptVerify}
 					onCancel={handleCancelVerify}
