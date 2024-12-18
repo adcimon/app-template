@@ -38,11 +38,11 @@ export namespace ConsoleUtils {
 		}
 	};
 
-	export const logRequest = (method: string, endpoint: string, data: any): void => {
+	export const logRequest = (method: string, endpoint: string, data: any) => {
 		console.log('%c%s %s%o', `color:${getMethodColor(method)}`, method, endpoint, data);
 	};
 
-	export const logResponse = (status: number, endpoint: string, body: any): void => {
+	export const logResponse = (status: number, endpoint: string, body: any) => {
 		console.log('%c%s %c%s%o', `color:${getStatusColor(status)}`, status, `color:${GREY_COLOR}`, endpoint, body);
 	};
 }

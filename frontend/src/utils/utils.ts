@@ -3,7 +3,7 @@ export namespace Utils {
 	export const PHONE_REGEXP: RegExp = /^(^$)|(\+[0-9]*)$/;
 	export const AVATAR_REGEXP: RegExp = /^(^$)|(([^]*)(\.)(jpg|jpeg|png))$/;
 
-	export const copyToClipboard = (text: string): void => {
+	export const copyToClipboard = (text: string) => {
 		navigator.clipboard.writeText(text);
 	};
 
