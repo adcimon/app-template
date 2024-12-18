@@ -35,22 +35,12 @@ interface IGenericTableProps {
 	onDelete?: (item: any) => Promise<boolean>;
 }
 
-interface IGenericTableState {
-	openItemDialog: boolean;
-	openDeleteDialog: boolean;
-	page: number;
-	rowsPerPage: number;
-	item: any;
-}
-
 export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableProps): JSX.Element => {
-	const [state, setState] = React.useState<IGenericTableState>({
-		openItemDialog: false,
-		openDeleteDialog: false,
-		page: 0,
-		rowsPerPage: props.rowsPerPage || 5,
-		item: undefined,
-	});
+	const [openItemDialog, setOpenItemDialog] = React.useState<boolean>(false);
+	const [openDeleteDialog, setOpenDeleteDialog] = React.useState<boolean>(false);
+	const [page, setPage] = React.useState<number>(0);
+	const [rowsPerPage, setRowsPerPage] = React.useState<number>(props.rowsPerPage || 5);
+	const [item, setItem] = React.useState<any>();
 
 	const applyPagination = (records: any[], page: number, rowsPerPage: number): any[] => {
 		return records.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
@@ -61,15 +51,12 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 			props.onSelect(item);
 		}
 
-		setState({
-			...state,
-			openItemDialog: true,
-			item: item,
-		});
+		setItem(item);
+		setOpenItemDialog(true);
 	};
 
 	const handleAcceptDialog = async () => {
-		if (!state.item) {
+		if (!item) {
 			if (props.onCreate) {
 				const created: boolean = await props.onCreate();
 				if (!created) {
@@ -78,17 +65,14 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 			}
 		} else {
 			if (props.onUpdate) {
-				const updated: boolean = await props.onUpdate(state.item);
+				const updated: boolean = await props.onUpdate(item);
 				if (!updated) {
 					return;
 				}
 			}
 		}
 
-		setState({
-			...state,
-			openItemDialog: false,
-		});
+		setOpenItemDialog(false);
 	};
 
 	const handleCloseDialog = () => {
@@ -96,63 +80,43 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 			props.onDeselect();
 		}
 
-		setState({
-			...state,
-			openItemDialog: false,
-		});
+		setOpenItemDialog(false);
 	};
 
 	const handleAdd = () => {
-		setState({
-			...state,
-			openItemDialog: true,
-			item: undefined,
-		});
+		setItem(undefined);
+		setOpenItemDialog(true);
 	};
 
 	const handleDelete = () => {
-		setState({
-			...state,
-			openDeleteDialog: true,
-		});
+		setOpenDeleteDialog(true);
 	};
 
 	const handleAcceptDelete = async () => {
 		if (props.onDelete) {
-			const deleted: boolean = await props.onDelete(state.item);
+			const deleted: boolean = await props.onDelete(item);
 			if (!deleted) {
 				return;
 			}
 		}
 
-		setState({
-			...state,
-			openItemDialog: false,
-			openDeleteDialog: false,
-			item: undefined,
-		});
+		setOpenItemDialog(false);
+		setOpenDeleteDialog(false);
+		setItem(undefined);
 	};
 
 	const handleCancelDelete = () => {
-		setState({
-			...state,
-			openDeleteDialog: false,
-		});
+		setOpenDeleteDialog(false);
 	};
 
 	const handlePageChange = async (event: any, page: number) => {
-		setState({
-			...state,
-			page: page,
-		});
+		setPage(page);
 	};
 
 	const handleRowsPerPageChange = async (event: any) => {
-		setState({
-			...state,
-			page: 0,
-			rowsPerPage: parseInt(event.target.value),
-		});
+		const rowsPerPage: number = parseInt(event.target.value);
+		setPage(0);
+		setRowsPerPage(rowsPerPage);
 	};
 
 	const render = () => {
@@ -179,25 +143,23 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 								</TableRow>
 							</TableHead>
 							<TableBody>
-								{applyPagination(props.items, state.page, state.rowsPerPage).map(
-									(item: any, index: number) => {
-										return (
-											<TableRow
-												key={index}
-												onClick={() => handleClickRow(item)}
-												hover
-												sx={{
-													cursor: 'pointer',
-												}}>
-												{props.row
-													? props.row(item).map((node: React.ReactNode, index: number) => {
-															return <TableCell key={index}>{node}</TableCell>;
-													  })
-													: undefined}
-											</TableRow>
-										);
-									},
-								)}
+								{applyPagination(props.items, page, rowsPerPage).map((item: any, index: number) => {
+									return (
+										<TableRow
+											key={index}
+											onClick={() => handleClickRow(item)}
+											hover
+											sx={{
+												cursor: 'pointer',
+											}}>
+											{props.row
+												? props.row(item).map((node: React.ReactNode, index: number) => {
+														return <TableCell key={index}>{node}</TableCell>;
+												  })
+												: undefined}
+										</TableRow>
+									);
+								})}
 							</TableBody>
 						</Table>
 						<Stack
@@ -221,15 +183,15 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 								count={props.items.length}
 								onPageChange={handlePageChange}
 								onRowsPerPageChange={handleRowsPerPageChange}
-								page={state.page}
-								rowsPerPage={state.rowsPerPage}
+								page={page}
+								rowsPerPage={rowsPerPage}
 								rowsPerPageOptions={Array.from(RowsPerPageRange)}
 							/>
 						</Stack>
 					</Card>
 				</Stack>
 				<GenericDialog
-					open={state.openItemDialog}
+					open={openItemDialog}
 					title={
 						<>
 							<Stack
@@ -240,9 +202,9 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 									width: '100%',
 								}}>
 								<Typography variant='h5'>
-									{!state.item ? 'New' : props.onUpdate ? 'Edit' : 'Inspect'}
+									{!item ? 'New' : props.onUpdate ? 'Edit' : 'Inspect'}
 								</Typography>
-								{state.item && props.onDelete && (
+								{item && props.onDelete && (
 									<IconButton
 										onClick={handleDelete}
 										sx={{
@@ -277,7 +239,7 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 					</DialogActions>
 				</GenericDialog>
 				<ConfirmationDialog
-					open={state.openDeleteDialog}
+					open={openDeleteDialog}
 					title='Delete'
 					onAccept={handleAcceptDelete}
 					onCancel={handleCancelDelete}

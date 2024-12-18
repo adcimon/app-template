@@ -17,10 +17,10 @@ export const CountrySelect: React.FC<CountrySelectProps> = ({
 	disableClearable,
 	...props
 }: CountrySelectProps): JSX.Element => {
-	const defaultValue =
-		countries[countries.findIndex((country: CountryType) => country.code === props.defaultValue)] || null;
-	const value = countries[countries.findIndex((country: CountryType) => country.code === props.value)] || null;
 	const render = () => {
+		const defaultValue =
+			countries[countries.findIndex((country: CountryType) => country.code === props.defaultValue)] || null;
+		const value = countries[countries.findIndex((country: CountryType) => country.code === props.value)] || null;
 		return (
 			<Autocomplete
 				defaultValue={defaultValue}

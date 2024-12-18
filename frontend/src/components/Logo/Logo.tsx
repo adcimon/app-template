@@ -1,25 +1,27 @@
 import React from 'react';
-import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 export const Logo: React.FC = (): JSX.Element => {
 	const render = () => {
 		return (
 			<>
-				<Box
+				<Stack
+					direction='column'
 					sx={{
 						alignItems: 'center',
-						display: 'flex',
-						flexDirection: 'column',
 						justifyContent: 'center',
 						marginBottom: '10px',
 					}}>
 					<Typography
-						variant='h4'
-						color='#0170cd'>
+						component='h2'
+						variant='h2'
+						sx={{
+							color: '#0170cd',
+						}}>
 						App Template
 					</Typography>
-				</Box>
+				</Stack>
 			</>
 		);
 	};

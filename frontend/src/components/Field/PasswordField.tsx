@@ -5,28 +5,16 @@ import TextField, { TextFieldProps } from '@mui/material/TextField';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
-interface IPasswordFieldState {
-	showPassword: boolean;
-}
-
 export const PasswordField: React.FC<TextFieldProps> = (props: TextFieldProps): JSX.Element => {
-	const [state, setState] = React.useState<IPasswordFieldState>({
-		showPassword: false,
-	});
+	const [showPassword, setShowPassword] = React.useState<boolean>(false);
 
 	const handleMouseLeave = (event: any) => {
 		props.onMouseLeave?.(event);
-		setState({
-			...state,
-			showPassword: false,
-		});
+		setShowPassword(false);
 	};
 
 	const handleShowPassword = () => {
-		setState({
-			...state,
-			showPassword: !state.showPassword,
-		});
+		setShowPassword(!showPassword);
 	};
 
 	const render = () => {
@@ -34,7 +22,7 @@ export const PasswordField: React.FC<TextFieldProps> = (props: TextFieldProps): 
 			<>
 				<TextField
 					{...props}
-					type={state.showPassword ? 'text' : 'password'}
+					type={showPassword ? 'text' : 'password'}
 					onMouseLeave={handleMouseLeave}
 					InputProps={{
 						endAdornment: (
@@ -42,7 +30,7 @@ export const PasswordField: React.FC<TextFieldProps> = (props: TextFieldProps): 
 								<IconButton
 									onClick={handleShowPassword}
 									onMouseDown={handleShowPassword}>
-									{state.showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+									{showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
 								</IconButton>
 							</InputAdornment>
 						),

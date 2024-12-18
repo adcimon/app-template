@@ -17,32 +17,19 @@ interface IImagePickerProps {
 	onDelete?: () => void;
 }
 
-interface IImagePickerState {
-	showOverlay: boolean;
-	src?: string;
-}
-
 export const ImagePicker: React.FC<IImagePickerProps> = (props: IImagePickerProps): JSX.Element => {
-	const [state, setState] = React.useState<IImagePickerState>({
-		showOverlay: false,
-		src: '',
-	});
-
 	const ref = React.useRef<HTMLDivElement>(null);
 	const inputRef = React.useRef<HTMLInputElement>(null);
 
+	const [showOverlay, setShowOverlay] = React.useState<boolean>(false);
+	const [src, setSrc] = React.useState<string>('');
+
 	const handleMouseEnter = () => {
-		setState({
-			...state,
-			showOverlay: true,
-		});
+		setShowOverlay(true);
 	};
 
 	const handleMouseLeave = () => {
-		setState({
-			...state,
-			showOverlay: false,
-		});
+		setShowOverlay(false);
 	};
 
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -58,21 +45,13 @@ export const ImagePicker: React.FC<IImagePickerProps> = (props: IImagePickerProp
 
 		const file: File = files[0];
 		const src: string = await Utils.readImage(file);
-
-		setState({
-			...state,
-			src: src,
-		});
+		setSrc(src);
 
 		props.onChange?.(file);
 	};
 
 	const handleDelete = () => {
-		setState({
-			...state,
-			src: '',
-		});
-
+		setSrc('');
 		props.onDelete?.();
 	};
 
@@ -103,7 +82,7 @@ export const ImagePicker: React.FC<IImagePickerProps> = (props: IImagePickerProp
 					}}>
 					<Avatar
 						ref={ref}
-						src={state.src || props.src}
+						src={src || props.src}
 						sx={{
 							backgroundColor: 'neutral.light',
 							border: '2px solid white',
@@ -119,11 +98,11 @@ export const ImagePicker: React.FC<IImagePickerProps> = (props: IImagePickerProp
 							height: '128px',
 							justifyContent: 'center',
 							left: '0',
-							opacity: !state.showOverlay ? '0' : '1',
+							opacity: !showOverlay ? '0' : '1',
 							position: 'absolute',
 							transition: 'all 0.2s',
 							top: '0',
-							visibility: !state.showOverlay ? 'hidden' : 'visible',
+							visibility: !showOverlay ? 'hidden' : 'visible',
 							width: '128px',
 						}}>
 						<Box

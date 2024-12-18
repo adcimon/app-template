@@ -11,9 +11,10 @@ export const TimezoneSelect: React.FC<TimezoneSelectProps> = ({
 	disableClearable,
 	...props
 }: TimezoneSelectProps): JSX.Element => {
-	const defaultValue = timezones[timezones.findIndex((timezone: string) => timezone === props.defaultValue)] || null;
-	const value = timezones[timezones.findIndex((timezone: string) => timezone === props.value)] || null;
 	const render = () => {
+		const defaultValue =
+			timezones[timezones.findIndex((timezone: string) => timezone === props.defaultValue)] || null;
+		const value = timezones[timezones.findIndex((timezone: string) => timezone === props.value)] || null;
 		return (
 			<Autocomplete
 				defaultValue={defaultValue}

@@ -7,29 +7,17 @@ import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import { Utils } from '../../utils/utils';
 
-interface ICopyFieldState {
-	success: boolean;
-}
-
 export const CopyField: React.FC<TextFieldProps> = (props: TextFieldProps): JSX.Element => {
-	const [state, setState] = React.useState<ICopyFieldState>({
-		success: false,
-	});
+	const [success, setSuccess] = React.useState<boolean>(false);
 
 	const handleClick = () => {
 		const value: string = (props.value as any) || (props.defaultValue as any);
 		Utils.copyToClipboard(value);
 
-		setState({
-			...state,
-			success: true,
-		});
+		setSuccess(true);
 
 		setTimeout(() => {
-			setState({
-				...state,
-				success: false,
-			});
+			setSuccess(false);
 		}, 3000);
 	};
 
@@ -43,11 +31,9 @@ export const CopyField: React.FC<TextFieldProps> = (props: TextFieldProps): JSX.
 						endAdornment: (
 							<InputAdornment position='end'>
 								<>
-									{!state.success && (
-										<IconButton onClick={handleClick}>{<ContentCopyIcon />}</IconButton>
-									)}
-									{state.success && (
-										<Zoom in={state.success}>
+									{!success && <IconButton onClick={handleClick}>{<ContentCopyIcon />}</IconButton>}
+									{success && (
+										<Zoom in={success}>
 											<IconButton disableRipple>
 												<TaskAltIcon color='success' />
 											</IconButton>
