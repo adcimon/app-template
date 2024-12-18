@@ -3,8 +3,8 @@
 Based on [TypeScript](https://www.typescriptlang.org/), [React](https://react.dev/) and [MUI](https://mui.com/).
 
 Requirements.
-* `Node v22.11.0`
-* `npm v10.9.1`
+* `Node v22.12.0`
+* `npm v11.0.0`
 
 Configuration.
 ```
