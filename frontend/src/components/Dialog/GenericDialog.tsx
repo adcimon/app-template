@@ -24,7 +24,7 @@ interface IGenericDialogProps {
 export const GenericDialog: React.FC<IGenericDialogProps> = (props: IGenericDialogProps): JSX.Element => {
 	const responsive: boolean = useResponsive();
 
-	const paperSx = responsive
+	const paperSx: SxProps = responsive
 		? {
 				borderBottomLeftRadius: '0px',
 				borderBottomRightRadius: '0px',
@@ -41,7 +41,7 @@ export const GenericDialog: React.FC<IGenericDialogProps> = (props: IGenericDial
 		: {};
 
 	const renderIcon = () => {
-		const sx = {
+		const sx: SxProps = {
 			marginRight: '0.5rem',
 			transform: 'scale(1.2)',
 		};

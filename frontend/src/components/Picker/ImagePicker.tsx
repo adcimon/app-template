@@ -1,4 +1,5 @@
 import React from 'react';
+import { SxProps } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -56,7 +57,7 @@ export const ImagePicker: React.FC<IImagePickerProps> = (props: IImagePickerProp
 	};
 
 	const renderIcon = () => {
-		const iconSx = {
+		const iconSx: SxProps = {
 			color: 'neutral.dark',
 			height: '60%',
 			width: '60%',
