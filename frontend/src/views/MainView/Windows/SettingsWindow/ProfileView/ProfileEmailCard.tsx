@@ -21,11 +21,11 @@ export const ProfileEmailCard: React.FC = (): JSX.Element => {
 	const appState = useAppState();
 	const userState = useUserState();
 
-	const [openVerifyDialog, setOpenVerifyDialog] = React.useState<boolean>(false);
-	const [openChangeDialog, setOpenChangeDialog] = React.useState<boolean>(false);
 	const [email, setEmail] = React.useState<string>('');
 	const [newEmail, setNewEmail] = React.useState<string>('');
 	const [code, setCode] = React.useState<string>('');
+	const [openVerifyDialog, setOpenVerifyDialog] = React.useState<boolean>(false);
+	const [openChangeDialog, setOpenChangeDialog] = React.useState<boolean>(false);
 
 	const validate = (): boolean => {
 		return Utils.EMAIL_REGEXP.test(email) && email !== userState.user?.email;

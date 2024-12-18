@@ -16,9 +16,9 @@ export const UserAvatar: React.FC = (): JSX.Element => {
 
 	const userState = useUserState();
 
+	const [avatar, setAvatar] = React.useState<string>('');
 	const [showOverlay, setShowOverlay] = React.useState<boolean>(false);
 	const [openDialog, setOpenDialog] = React.useState<boolean>(false);
-	const [avatar, setAvatar] = React.useState<string>('');
 
 	const handleMouseEnter = () => {
 		setShowOverlay(true);

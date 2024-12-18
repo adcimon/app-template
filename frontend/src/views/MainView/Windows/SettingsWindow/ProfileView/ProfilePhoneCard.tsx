@@ -19,9 +19,9 @@ import { Utils } from '../../../../../utils/utils';
 export const ProfilePhoneCard: React.FC = (): JSX.Element => {
 	const userState = useUserState();
 
-	const [openChangeDialog, setOpenChangeDialog] = React.useState<boolean>(false);
 	const [phone, setPhone] = React.useState<string>(userState.user?.phone ?? '');
 	const [confirmPhone, setConfirmPhone] = React.useState<string>('');
+	const [openChangeDialog, setOpenChangeDialog] = React.useState<boolean>(false);
 
 	const validate = (): boolean => {
 		return Utils.PHONE_REGEXP.test(phone) && phone !== userState.user?.phone;

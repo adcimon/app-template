@@ -36,11 +36,11 @@ interface IGenericTableProps {
 }
 
 export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableProps): JSX.Element => {
-	const [openItemDialog, setOpenItemDialog] = React.useState<boolean>(false);
-	const [openDeleteDialog, setOpenDeleteDialog] = React.useState<boolean>(false);
 	const [page, setPage] = React.useState<number>(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState<number>(props.rowsPerPage || 5);
 	const [item, setItem] = React.useState<any>();
+	const [openItemDialog, setOpenItemDialog] = React.useState<boolean>(false);
+	const [openDeleteDialog, setOpenDeleteDialog] = React.useState<boolean>(false);
 
 	const applyPagination = (records: any[], page: number, rowsPerPage: number): any[] => {
 		return records.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);

@@ -15,8 +15,8 @@ import { useAppState } from '../../../../../states/hooks/useAppState';
 export const ProfileDangerZoneCard: React.FC = (): JSX.Element => {
 	const appState = useAppState();
 
-	const [openDialog, setOpenDialog] = React.useState<boolean>(false);
 	const [password, setPassword] = React.useState<string>('');
+	const [openDialog, setOpenDialog] = React.useState<boolean>(false);
 
 	const validate = (): boolean => {
 		return password !== '';

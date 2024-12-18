@@ -20,12 +20,12 @@ import { Utils } from '../../utils/utils';
 export const SignUpView: React.FC = (): JSX.Element => {
 	const appState = useAppState();
 
-	const [openTermsOfServiceDialog, setOpenTermsOfServiceDialog] = React.useState<boolean>(false);
-	const [openPrivacyPolicyDialog, setOpenPrivacyPolicyDialog] = React.useState<boolean>(false);
 	const [email, setEmail] = React.useState<string>('');
 	const [password, setPassword] = React.useState<string>('');
 	const [confirmPassword, setConfirmPassword] = React.useState<string>('');
 	const [legalAccepted, setLegalAccepted] = React.useState<boolean>(false);
+	const [openTermsOfServiceDialog, setOpenTermsOfServiceDialog] = React.useState<boolean>(false);
+	const [openPrivacyPolicyDialog, setOpenPrivacyPolicyDialog] = React.useState<boolean>(false);
 
 	const validate = (): boolean => {
 		return Utils.EMAIL_REGEXP.test(email) && password !== '' && password === confirmPassword && legalAccepted;

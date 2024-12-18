@@ -14,8 +14,8 @@ import { NotificationItem } from './NotificationItem';
 export const NotificationsMenu: React.FC = (): JSX.Element => {
 	const ref = React.useRef<any>(null);
 
-	const [open, setOpen] = React.useState<boolean>(false);
 	const [notifications, setNotifications] = React.useState<object[]>(defaultNotifications);
+	const [open, setOpen] = React.useState<boolean>(false);
 
 	const handleClick = () => {
 		setOpen(!open);

@@ -16,10 +16,10 @@ import { useUserState } from '../../../../../states/hooks/useUserState';
 export const ProfilePasswordCard: React.FC = (): JSX.Element => {
 	const userState = useUserState();
 
-	const [openDialog, setOpenDialog] = React.useState<boolean>(false);
 	const [currentPassword, setCurrentPassword] = React.useState<string>('');
 	const [newPassword, setNewPassword] = React.useState<string>('');
 	const [confirmPassword, setConfirmPassword] = React.useState<string>('');
+	const [openDialog, setOpenDialog] = React.useState<boolean>(false);
 
 	const validate = (): boolean => {
 		return newPassword !== '' && currentPassword !== newPassword && newPassword === confirmPassword;
