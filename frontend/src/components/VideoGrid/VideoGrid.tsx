@@ -149,7 +149,7 @@ export const VideoGrid: React.FC<IVideoGridProps> = (props: IVideoGridProps): JS
 							flex: '1',
 							flexWrap: 'wrap',
 							justifyContent: 'center',
-							overflow: 'scroll',
+							overflow: 'auto',
 							verticalAlign: 'middle',
 						}}>
 						{renderTiles()}
