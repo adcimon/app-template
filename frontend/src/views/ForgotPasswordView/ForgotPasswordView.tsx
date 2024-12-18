@@ -67,22 +67,22 @@ export const ForgotPasswordView: React.FC = (): JSX.Element => {
 					<TextField
 						label='Email'
 						value={email}
+						required={true}
 						onChange={(event: any) => setEmail(event.target.value)}
-						required
-						fullWidth
+						fullWidth={true}
 						margin='normal'
 						InputProps={{
 							endAdornment: (
 								<InputAdornment position='end'>
 									<Badge
-										badgeContent={1}
-										color='primary'>
+										color='primary'
+										badgeContent={1}>
 										<Button
 											disabled={!validateSendCode()}
 											variant='contained'
 											size='small'
 											onClick={handleSendCode}
-											fullWidth>
+											fullWidth={true}>
 											Send Code
 										</Button>
 									</Badge>
@@ -94,30 +94,30 @@ export const ForgotPasswordView: React.FC = (): JSX.Element => {
 						label='Code'
 						placeholder='Code sent to your email'
 						value={code}
+						required={true}
 						onChange={(event: any) => setCode(event.target.value)}
-						required
-						fullWidth
+						fullWidth={true}
 						margin='normal'
 					/>
 					<PasswordField
 						label='Password'
 						value={password}
+						required={true}
 						onChange={(event: any) => setPassword(event.target.value)}
-						required
-						fullWidth
+						fullWidth={true}
 						margin='normal'
 					/>
 					<PasswordField
 						label='Confirm Password'
 						value={confirmPassword}
+						required={true}
 						onChange={(event: any) => setConfirmPassword(event.target.value)}
-						required
-						fullWidth
+						fullWidth={true}
 						margin='normal'
 					/>
 					<Badge
-						badgeContent={2}
 						color='primary'
+						badgeContent={2}
 						sx={{
 							marginTop: 2,
 							width: '100%',
@@ -126,7 +126,7 @@ export const ForgotPasswordView: React.FC = (): JSX.Element => {
 							disabled={!validateChange()}
 							variant='contained'
 							onClick={handleChange}
-							fullWidth>
+							fullWidth={true}>
 							Change
 						</Button>
 					</Badge>

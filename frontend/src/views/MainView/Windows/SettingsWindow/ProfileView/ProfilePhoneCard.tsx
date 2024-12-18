@@ -94,7 +94,7 @@ export const ProfilePhoneCard: React.FC = (): JSX.Element => {
 										InputLabelProps={{
 											shrink: true,
 										}}
-										fullWidth
+										fullWidth={true}
 									/>
 									<Typography
 										variant='body2'
@@ -133,9 +133,9 @@ export const ProfilePhoneCard: React.FC = (): JSX.Element => {
 						type='tel'
 						variant='standard'
 						value={confirmPhone}
+						autoFocus={true}
 						onChange={(event: any) => setConfirmPhone(event.target.value)}
-						autoFocus
-						fullWidth
+						fullWidth={true}
 						margin='dense'
 					/>
 				</ConfirmationDialog>

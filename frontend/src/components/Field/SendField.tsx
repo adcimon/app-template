@@ -29,9 +29,9 @@ export const SendField: React.FC<SendFieldProps> = ({ onSend, ...props }: SendFi
 						endAdornment: (
 							<InputAdornment position='end'>
 								<Fab
-									onClick={() => onSend?.()}
-									size='small'
 									color='primary'
+									size='small'
+									onClick={() => onSend?.()}
 									sx={{
 										transform: 'scale(0.9)',
 									}}>

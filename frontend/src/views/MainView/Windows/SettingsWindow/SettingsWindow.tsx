@@ -96,7 +96,7 @@ export const SettingsWindow: React.FC<ISettingsWindowProps> = (props: ISettingsW
 									}}>
 									<Typography
 										variant='body2'
-										noWrap
+										noWrap={true}
 										sx={{
 											color: '#919eab',
 											width: '50%',

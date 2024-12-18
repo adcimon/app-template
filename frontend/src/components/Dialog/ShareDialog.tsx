@@ -96,7 +96,7 @@ export const ShareDialog: React.FC<IShareDialogProps> = (props: IShareDialogProp
 						<>
 							<Button
 								ref={acceptButtonRef}
-								autoFocus
+								autoFocus={true}
 								onClick={handleAccept}>
 								Accept
 							</Button>
@@ -116,7 +116,7 @@ export const ShareDialog: React.FC<IShareDialogProps> = (props: IShareDialogProp
 							label={props.label}
 							value={props.text}
 							onFocus={(event: any) => event.target.select()}
-							fullWidth
+							fullWidth={true}
 							InputProps={{
 								readOnly: true,
 							}}

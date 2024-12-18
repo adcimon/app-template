@@ -140,10 +140,10 @@ export const UserAvatar: React.FC = (): JSX.Element => {
 					<TextField
 						variant='standard'
 						value={avatar}
-						onChange={(event: any) => setAvatar(event.target.value)}
 						helperText='Supported formats: jpg, jpeg and png.'
-						autoFocus
-						fullWidth
+						autoFocus={true}
+						onChange={(event: any) => setAvatar(event.target.value)}
+						fullWidth={true}
 						margin='dense'
 					/>
 				</ConfirmationDialog>

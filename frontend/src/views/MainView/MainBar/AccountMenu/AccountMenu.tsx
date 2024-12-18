@@ -102,7 +102,7 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 						<Typography
 							variant='body2'
 							color='primary.contrastText'
-							noWrap
+							noWrap={true}
 							sx={{
 								fontSize: '0.75rem',
 								maxWidth: '80px',
@@ -166,7 +166,7 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 						<Typography
 							variant='body2'
 							color='text.secondary'
-							noWrap>
+							noWrap={true}>
 							{userState.user?.email || <Skeleton width={150} />}
 						</Typography>
 					</Box>

@@ -51,24 +51,24 @@ export const SignInView: React.FC = (): JSX.Element => {
 						label='Email'
 						autoComplete='email'
 						value={email}
+						autoFocus={true}
+						required={true}
 						onChange={(event: any) => setEmail(event.target.value)}
-						autoFocus
-						required
-						fullWidth
+						fullWidth={true}
 						margin='normal'
 					/>
 					<PasswordField
 						label='Password'
 						value={password}
+						required={true}
 						onChange={(event: any) => setPassword(event.target.value)}
-						required
-						fullWidth
+						fullWidth={true}
 						margin='normal'
 					/>
 					<Button
 						variant='contained'
 						onClick={handleSignIn}
-						fullWidth
+						fullWidth={true}
 						sx={{
 							marginBottom: 2,
 							marginTop: 3,

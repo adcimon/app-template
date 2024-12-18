@@ -118,7 +118,7 @@ export const ProfileEmailCard: React.FC = (): JSX.Element => {
 										InputLabelProps={{
 											shrink: true,
 										}}
-										fullWidth
+										fullWidth={true}
 									/>
 									<Typography
 										variant='body2'
@@ -161,9 +161,9 @@ export const ProfileEmailCard: React.FC = (): JSX.Element => {
 					<TextField
 						variant='standard'
 						value={newEmail}
+						autoFocus={true}
 						onChange={(event: any) => setNewEmail(event.target.value)}
-						autoFocus
-						fullWidth
+						fullWidth={true}
 						margin='dense'
 					/>
 				</ConfirmationDialog>
@@ -179,9 +179,9 @@ export const ProfileEmailCard: React.FC = (): JSX.Element => {
 						type='number'
 						variant='standard'
 						value={code}
+						autoFocus={true}
 						onChange={(event: any) => setCode(event.target.value)}
-						autoFocus
-						fullWidth
+						fullWidth={true}
 						margin='dense'
 					/>
 				</ConfirmationDialog>

@@ -119,9 +119,9 @@ export const ProfileDangerZoneCard: React.FC = (): JSX.Element => {
 						type='password'
 						variant='standard'
 						value={password}
+						autoFocus={true}
 						onChange={(event: any) => setPassword(event.target.value)}
-						autoFocus
-						fullWidth
+						fullWidth={true}
 						margin='dense'
 					/>
 				</ConfirmationDialog>

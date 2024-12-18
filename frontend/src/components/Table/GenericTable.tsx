@@ -225,14 +225,14 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 					<DialogActions>
 						{props.onUpdate && (
 							<Button
-								autoFocus
+								autoFocus={true}
 								onClick={handleCloseDialog}>
 								Cancel
 							</Button>
 						)}
 						<Button
 							disabled={props.validate ? !props.validate() : false}
-							autoFocus
+							autoFocus={true}
 							onClick={handleAcceptDialog}>
 							Accept
 						</Button>

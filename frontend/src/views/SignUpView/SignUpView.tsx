@@ -76,25 +76,25 @@ export const SignUpView: React.FC = (): JSX.Element => {
 					<TextField
 						label='Email'
 						value={email}
+						required={true}
 						onChange={(event: any) => setEmail(event.target.value)}
-						required
-						fullWidth
+						fullWidth={true}
 						margin='normal'
 					/>
 					<PasswordField
 						label='Password'
 						value={password}
+						required={true}
 						onChange={(event: any) => setPassword(event.target.value)}
-						required
-						fullWidth
+						fullWidth={true}
 						margin='normal'
 					/>
 					<PasswordField
 						label='Confirm Password'
 						value={confirmPassword}
+						required={true}
 						onChange={(event: any) => setConfirmPassword(event.target.value)}
-						required
-						fullWidth
+						fullWidth={true}
 						margin='normal'
 					/>
 					<FormControlLabel
@@ -119,7 +119,7 @@ export const SignUpView: React.FC = (): JSX.Element => {
 						disabled={!validate()}
 						variant='contained'
 						onClick={handleSignUp}
-						fullWidth
+						fullWidth={true}
 						sx={{
 							marginBottom: 2,
 							marginTop: 3,

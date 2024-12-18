@@ -71,7 +71,7 @@ export const ConfirmationDialog: React.FC<IConfirmationDialogProps> = (
 							<Button
 								ref={acceptButtonRef}
 								disabled={!acceptable}
-								autoFocus
+								autoFocus={true}
 								onClick={handleAccept}>
 								Accept
 							</Button>

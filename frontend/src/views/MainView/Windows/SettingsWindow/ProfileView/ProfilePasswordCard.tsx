@@ -120,9 +120,9 @@ export const ProfilePasswordCard: React.FC = (): JSX.Element => {
 						label='Current Password'
 						placeholder='*****'
 						value={currentPassword}
+						autoFocus={true}
 						onChange={(event: any) => setCurrentPassword(event.target.value)}
-						autoFocus
-						fullWidth
+						fullWidth={true}
 						margin='dense'
 					/>
 					<PasswordField
@@ -131,7 +131,7 @@ export const ProfilePasswordCard: React.FC = (): JSX.Element => {
 						placeholder='*****'
 						value={newPassword}
 						onChange={(event: any) => setNewPassword(event.target.value)}
-						fullWidth
+						fullWidth={true}
 						margin='dense'
 					/>
 					<PasswordField
@@ -140,7 +140,7 @@ export const ProfilePasswordCard: React.FC = (): JSX.Element => {
 						placeholder='*****'
 						value={confirmPassword}
 						onChange={(event: any) => setConfirmPassword(event.target.value)}
-						fullWidth
+						fullWidth={true}
 						margin='dense'
 					/>
 				</ConfirmationDialog>

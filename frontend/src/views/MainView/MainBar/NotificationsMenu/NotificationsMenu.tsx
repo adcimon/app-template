@@ -56,8 +56,8 @@ export const NotificationsMenu: React.FC = (): JSX.Element => {
 							color: 'white',
 						}}>
 						<Badge
-							badgeContent={notifications.length}
-							color='error'>
+							color='error'
+							badgeContent={notifications.length}>
 							<NotificationsIcon />
 						</Badge>
 					</IconButton>
@@ -75,7 +75,7 @@ export const NotificationsMenu: React.FC = (): JSX.Element => {
 							marginY: 1.5,
 						}}>
 						<Typography
-							noWrap
+							noWrap={true}
 							sx={{
 								fontWeight: 'bold',
 							}}>

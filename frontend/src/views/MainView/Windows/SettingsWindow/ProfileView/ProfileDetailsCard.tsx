@@ -91,7 +91,7 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 										InputLabelProps={{
 											shrink: true,
 										}}
-										fullWidth
+										fullWidth={true}
 									/>
 								</Grid>
 								<Grid
@@ -105,7 +105,7 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 										InputLabelProps={{
 											shrink: true,
 										}}
-										fullWidth
+										fullWidth={true}
 									/>
 								</Grid>
 								<Grid
@@ -120,7 +120,7 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 										InputLabelProps={{
 											shrink: true,
 										}}
-										fullWidth
+										fullWidth={true}
 									/>
 								</Grid>
 								<Grid

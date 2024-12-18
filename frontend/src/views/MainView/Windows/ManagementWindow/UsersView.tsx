@@ -66,7 +66,7 @@ export const UsersView: React.FC = (): JSX.Element => {
 						</Typography>
 						<Typography
 							variant='body2'
-							noWrap
+							noWrap={true}
 							sx={{
 								color: 'text.secondary',
 								fontSize: '0.75rem',
@@ -150,7 +150,7 @@ export const UsersView: React.FC = (): JSX.Element => {
 					label='Email'
 					defaultValue={user?.email}
 					disabled
-					fullWidth
+					fullWidth={true}
 					InputProps={{
 						readOnly: true,
 						startAdornment: (
@@ -167,7 +167,7 @@ export const UsersView: React.FC = (): JSX.Element => {
 					label='Phone'
 					defaultValue={user?.phone}
 					disabled
-					fullWidth
+					fullWidth={true}
 					InputProps={{
 						readOnly: true,
 						startAdornment: (
@@ -185,7 +185,7 @@ export const UsersView: React.FC = (): JSX.Element => {
 					type='date'
 					defaultValue={user?.birthdate}
 					disabled
-					fullWidth
+					fullWidth={true}
 					InputProps={{
 						readOnly: true,
 					}}
