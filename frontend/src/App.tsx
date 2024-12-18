@@ -12,12 +12,12 @@ export default function App() {
 				<ThemeManager>
 					<ApiManager>
 						<Toaster
-							containerStyle={{
-								top: '10px',
-							}}
 							position='top-center'
 							toastOptions={{
 								duration: 5000,
+							}}
+							containerStyle={{
+								top: '10px',
 							}}
 						/>
 						<AppView />
