@@ -15,39 +15,25 @@ import { useAppState } from '../../states/hooks/useAppState';
 import { ViewType } from '../../types/viewType';
 import { Utils } from '../../utils/utils';
 
-interface IForgotPasswordViewState {
-	email: string;
-	code: string;
-	password: string;
-	confirmPassword: string;
-}
-
 export const ForgotPasswordView: React.FC = (): JSX.Element => {
 	const appState = useAppState();
 
-	const [state, setState] = React.useState<IForgotPasswordViewState>({
-		email: '',
-		code: '',
-		password: '',
-		confirmPassword: '',
-	});
+	const [email, setEmail] = React.useState<string>('');
+	const [code, setCode] = React.useState<string>('');
+	const [password, setPassword] = React.useState<string>('');
+	const [confirmPassword, setConfirmPassword] = React.useState<string>('');
 
 	const validateSendCode = (): boolean => {
-		return Utils.EMAIL_REGEXP.test(state.email);
+		return Utils.EMAIL_REGEXP.test(email);
 	};
 
 	const validateChange = (): boolean => {
-		return (
-			Utils.EMAIL_REGEXP.test(state.email) &&
-			state.code !== '' &&
-			state.password !== '' &&
-			state.password === state.confirmPassword
-		);
+		return Utils.EMAIL_REGEXP.test(email) && code !== '' && password !== '' && password === confirmPassword;
 	};
 
 	const handleSendCode = async () => {
 		try {
-			await appState.forgotPassword(state.email);
+			await appState.forgotPassword(email);
 			toast.success('Code sent');
 		} catch (error: any) {
 			toast.error(error.message);
@@ -56,7 +42,7 @@ export const ForgotPasswordView: React.FC = (): JSX.Element => {
 
 	const handleChange = async () => {
 		try {
-			await appState.changePassword(state.email, state.code, state.password);
+			await appState.changePassword(email, code, password);
 			appState.setAppView(ViewType.SignIn);
 			toast.success('Password changed');
 		} catch (error: any) {
@@ -80,8 +66,8 @@ export const ForgotPasswordView: React.FC = (): JSX.Element => {
 					</Typography>
 					<TextField
 						label='Email'
-						value={state.email}
-						onChange={(event: any) => setState({ ...state, email: event.target.value })}
+						value={email}
+						onChange={(event: any) => setEmail(event.target.value)}
 						required
 						fullWidth
 						margin='normal'
@@ -107,24 +93,24 @@ export const ForgotPasswordView: React.FC = (): JSX.Element => {
 					<TextField
 						label='Code'
 						placeholder='Code sent to your email'
-						value={state.code}
-						onChange={(event: any) => setState({ ...state, code: event.target.value })}
+						value={code}
+						onChange={(event: any) => setCode(event.target.value)}
 						required
 						fullWidth
 						margin='normal'
 					/>
 					<PasswordField
 						label='Password'
-						value={state.password}
-						onChange={(event: any) => setState({ ...state, password: event.target.value })}
+						value={password}
+						onChange={(event: any) => setPassword(event.target.value)}
 						required
 						fullWidth
 						margin='normal'
 					/>
 					<PasswordField
 						label='Confirm Password'
-						value={state.confirmPassword}
-						onChange={(event: any) => setState({ ...state, confirmPassword: event.target.value })}
+						value={confirmPassword}
+						onChange={(event: any) => setConfirmPassword(event.target.value)}
 						required
 						fullWidth
 						margin='normal'

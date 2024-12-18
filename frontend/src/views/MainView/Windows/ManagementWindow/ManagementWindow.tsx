@@ -14,28 +14,15 @@ interface IManagementWindowProps {
 	onClose?: (event: any) => void;
 }
 
-interface IManagementWindowState {
-	tab: number;
-}
-
 export const ManagementWindow: React.FC<IManagementWindowProps> = (props: IManagementWindowProps): JSX.Element => {
-	const [state, setState] = React.useState<IManagementWindowState>({
-		tab: 0,
-	});
+	const [tab, setTab] = React.useState<number>(0);
 
 	const handleTabChange = (event: any, value: number) => {
-		setState({
-			...state,
-			tab: value,
-		});
+		setTab(value);
 	};
 
 	const handleClose = (event: any) => {
-		setState({
-			...state,
-			tab: 0,
-		});
-
+		setTab(0);
 		if (props.onClose) {
 			props.onClose(event);
 		}
@@ -59,7 +46,7 @@ export const ManagementWindow: React.FC<IManagementWindowProps> = (props: IManag
 						}}
 					/>
 					<Tabs
-						value={state.tab}
+						value={tab}
 						onChange={handleTabChange}
 						sx={{
 							'& .MuiTabs-flexContainer': {
@@ -86,7 +73,7 @@ export const ManagementWindow: React.FC<IManagementWindowProps> = (props: IManag
 	};
 
 	const renderTab = () => {
-		return <>{state.tab === 0 && <UsersView />}</>;
+		return <>{tab === 0 && <UsersView />}</>;
 	};
 
 	const render = () => {

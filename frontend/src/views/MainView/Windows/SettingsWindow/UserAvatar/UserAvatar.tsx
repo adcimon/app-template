@@ -11,69 +11,49 @@ import { ConfirmationDialog } from '../../../../../components/Dialog/Confirmatio
 import { useUserState } from '../../../../../states/hooks/useUserState';
 import { Utils } from '../../../../../utils/utils';
 
-interface IUserAvatarState {
-	showOverlay: boolean;
-	openDialog: boolean;
-	avatar: string;
-}
-
 export const UserAvatar: React.FC = (): JSX.Element => {
-	const userState = useUserState();
-
-	const [state, setState] = React.useState<IUserAvatarState>({
-		showOverlay: false,
-		openDialog: false,
-		avatar: '',
-	});
-
 	const ref = React.useRef<HTMLDivElement>(null);
 
+	const userState = useUserState();
+
+	const [showOverlay, setShowOverlay] = React.useState<boolean>(false);
+	const [openDialog, setOpenDialog] = React.useState<boolean>(false);
+	const [avatar, setAvatar] = React.useState<string>('');
+
 	const handleMouseEnter = () => {
-		setState({
-			...state,
-			showOverlay: true,
-		});
+		setShowOverlay(true);
 	};
 
 	const handleMouseLeave = () => {
-		setState({
-			...state,
-			showOverlay: false,
-		});
+		setShowOverlay(false);
 	};
 
 	const handleClick = () => {
-		setState({
-			...state,
-			openDialog: true,
-			avatar: userState.user?.avatar || '',
-		});
+		setAvatar(userState.user?.avatar || '');
+		setOpenDialog(true);
 	};
 
 	const validate = (): boolean => {
-		return Utils.AVATAR_REGEXP.test(state.avatar) && state.avatar !== userState.user?.avatar;
+		return Utils.AVATAR_REGEXP.test(avatar) && avatar !== userState.user?.avatar;
 	};
 
 	const handleAccept = async () => {
 		const update = async () => {
 			try {
-				await userState.updateAvatar(state.avatar);
-				setState({
-					...state,
-					openDialog: false,
-				});
+				await userState.updateAvatar(avatar);
+				setOpenDialog(false);
 				toast.success('Avatar changed');
 			} catch (error: any) {
 				toast.error(error.message);
 			}
 		};
 
-		if (state.avatar === '') {
+		if (avatar === '') {
 			update();
 			return;
 		}
 
-		fetch(state.avatar, { method: 'GET', mode: 'no-cors' })
+		fetch(avatar, { method: 'GET', mode: 'no-cors' })
 			.then((response: any) => {
 				console.log(response);
 				update();
@@ -84,10 +64,7 @@ export const UserAvatar: React.FC = (): JSX.Element => {
 	};
 
 	const handleCancel = () => {
-		setState({
-			...state,
-			openDialog: false,
-		});
+		setOpenDialog(false);
 	};
 
 	const render = () => {
@@ -117,11 +94,11 @@ export const UserAvatar: React.FC = (): JSX.Element => {
 							height: '128px',
 							justifyContent: 'center',
 							left: '0',
-							opacity: !state.showOverlay ? '0' : '1',
+							opacity: !showOverlay ? '0' : '1',
 							position: 'absolute',
 							transition: 'all 0.2s',
 							top: '0',
-							visibility: !state.showOverlay ? 'hidden' : 'visible',
+							visibility: !showOverlay ? 'hidden' : 'visible',
 							width: '128px',
 						}}>
 						<Box
@@ -153,7 +130,7 @@ export const UserAvatar: React.FC = (): JSX.Element => {
 					</Stack>
 				</Box>
 				<ConfirmationDialog
-					open={state.openDialog}
+					open={openDialog}
 					title='Change Avatar'
 					acceptable={validate()}
 					onAccept={handleAccept}
@@ -162,8 +139,8 @@ export const UserAvatar: React.FC = (): JSX.Element => {
 					<Typography>Insert your avatar URL.</Typography>
 					<TextField
 						variant='standard'
-						value={state.avatar}
-						onChange={(event: any) => setState({ ...state, avatar: event.target.value })}
+						value={avatar}
+						onChange={(event: any) => setAvatar(event.target.value)}
 						helperText='Supported formats: jpg, jpeg and png.'
 						autoFocus
 						fullWidth

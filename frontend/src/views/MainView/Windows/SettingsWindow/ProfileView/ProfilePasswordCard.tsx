@@ -13,66 +13,44 @@ import { ConfirmationDialog } from '../../../../../components/Dialog/Confirmatio
 import { PasswordField } from '../../../../../components/Field/PasswordField';
 import { useUserState } from '../../../../../states/hooks/useUserState';
 
-interface IProfilePasswordCardState {
-	openDialog: boolean;
-	currentPassword: string;
-	newPassword: string;
-	confirmPassword: string;
-}
-
 export const ProfilePasswordCard: React.FC = (): JSX.Element => {
 	const userState = useUserState();
 
-	const [state, setState] = React.useState<IProfilePasswordCardState>({
-		openDialog: false,
-		currentPassword: '',
-		newPassword: '',
-		confirmPassword: '',
-	});
+	const [openDialog, setOpenDialog] = React.useState<boolean>(false);
+	const [currentPassword, setCurrentPassword] = React.useState<string>('');
+	const [newPassword, setNewPassword] = React.useState<string>('');
+	const [confirmPassword, setConfirmPassword] = React.useState<string>('');
 
 	const validate = (): boolean => {
-		return (
-			state.newPassword !== '' &&
-			state.currentPassword !== state.newPassword &&
-			state.newPassword === state.confirmPassword
-		);
+		return newPassword !== '' && currentPassword !== newPassword && newPassword === confirmPassword;
 	};
 
 	const handleChange = async () => {
-		setState({
-			...state,
-			openDialog: true,
-			currentPassword: '',
-			newPassword: '',
-			confirmPassword: '',
-		});
+		setCurrentPassword('');
+		setNewPassword('');
+		setConfirmPassword('');
+		setOpenDialog(true);
 	};
 
 	const handleAcceptChange = async () => {
 		try {
-			await userState.updatePassword(state.currentPassword, state.newPassword);
+			await userState.updatePassword(currentPassword, newPassword);
 			toast.success('Password changed');
 		} catch (error: any) {
 			toast.error(error.message);
 		}
 
-		setState({
-			...state,
-			openDialog: false,
-			currentPassword: '',
-			newPassword: '',
-			confirmPassword: '',
-		});
+		setCurrentPassword('');
+		setNewPassword('');
+		setConfirmPassword('');
+		setOpenDialog(false);
 	};
 
 	const handleCancelChange = async () => {
-		setState({
-			...state,
-			openDialog: false,
-			currentPassword: '',
-			newPassword: '',
-			confirmPassword: '',
-		});
+		setCurrentPassword('');
+		setNewPassword('');
+		setConfirmPassword('');
+		setOpenDialog(false);
 	};
 
 	const render = () => {
@@ -131,7 +109,7 @@ export const ProfilePasswordCard: React.FC = (): JSX.Element => {
 					</CardActions>
 				</Card>
 				<ConfirmationDialog
-					open={state.openDialog}
+					open={openDialog}
 					title='Change Password'
 					acceptable={validate()}
 					onAccept={handleAcceptChange}
@@ -141,8 +119,8 @@ export const ProfilePasswordCard: React.FC = (): JSX.Element => {
 						variant='standard'
 						label='Current Password'
 						placeholder='*****'
-						value={state.currentPassword}
-						onChange={(event: any) => setState({ ...state, currentPassword: event.target.value })}
+						value={currentPassword}
+						onChange={(event: any) => setCurrentPassword(event.target.value)}
 						autoFocus
 						fullWidth
 						margin='dense'
@@ -151,8 +129,8 @@ export const ProfilePasswordCard: React.FC = (): JSX.Element => {
 						variant='standard'
 						label='New Password'
 						placeholder='*****'
-						value={state.newPassword}
-						onChange={(event: any) => setState({ ...state, newPassword: event.target.value })}
+						value={newPassword}
+						onChange={(event: any) => setNewPassword(event.target.value)}
 						fullWidth
 						margin='dense'
 					/>
@@ -160,8 +138,8 @@ export const ProfilePasswordCard: React.FC = (): JSX.Element => {
 						variant='standard'
 						label='Confirm Password'
 						placeholder='*****'
-						value={state.confirmPassword}
-						onChange={(event: any) => setState({ ...state, confirmPassword: event.target.value })}
+						value={confirmPassword}
+						onChange={(event: any) => setConfirmPassword(event.target.value)}
 						fullWidth
 						margin='dense'
 					/>

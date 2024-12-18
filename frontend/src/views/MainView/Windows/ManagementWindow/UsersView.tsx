@@ -14,26 +14,17 @@ import { VerificationBadge } from '../../../../components/Badge/VerificationBadg
 import { useAdminState } from '../../../../states/hooks/useAdminState';
 import { Utils } from '../../../../utils/utils';
 
-interface IUsersViewState {
-	user: any;
-}
-
 export const UsersView: React.FC = (): JSX.Element => {
 	const adminState = useAdminState();
 
-	const [state, setState] = React.useState<IUsersViewState>({
-		user: null,
-	});
+	const [user, setUser] = React.useState<any>();
 
 	React.useEffect(() => {
 		getUsers();
 	}, []);
 
 	const resetState = () => {
-		setState({
-			...state,
-			user: null,
-		});
+		setUser(undefined);
 	};
 
 	const getUsers = async () => {
@@ -45,10 +36,7 @@ export const UsersView: React.FC = (): JSX.Element => {
 	};
 
 	const handleSelect = (item: any) => {
-		setState({
-			...state,
-			user: item,
-		});
+		setUser(item);
 	};
 
 	const handleDeselect = () => {
@@ -126,7 +114,7 @@ export const UsersView: React.FC = (): JSX.Element => {
 	};
 
 	const renderDialog = () => {
-		const avatar: string | undefined = Utils.getAvatar(state.user);
+		const avatar: string | undefined = Utils.getAvatar(user);
 		return (
 			<>
 				<Stack
@@ -145,7 +133,7 @@ export const UsersView: React.FC = (): JSX.Element => {
 					/>
 					<Box>
 						<Typography variant='h5'>
-							{state?.user?.name} {state?.user?.surname}
+							{user?.name} {user?.surname}
 						</Typography>
 						<Typography
 							variant='body2'
@@ -154,20 +142,20 @@ export const UsersView: React.FC = (): JSX.Element => {
 								fontSize: '0.75rem',
 								marginTop: '5px',
 							}}>
-							{state?.user?.id}
+							{user?.id}
 						</Typography>
 					</Box>
 				</Stack>
 				<TextField
 					label='Email'
-					defaultValue={state?.user?.email}
+					defaultValue={user?.email}
 					disabled
 					fullWidth
 					InputProps={{
 						readOnly: true,
 						startAdornment: (
 							<InputAdornment position='start'>
-								<VerificationBadge verified={state?.user?.emailVerified} />
+								<VerificationBadge verified={user?.emailVerified} />
 							</InputAdornment>
 						),
 					}}
@@ -177,14 +165,14 @@ export const UsersView: React.FC = (): JSX.Element => {
 				/>
 				<TextField
 					label='Phone'
-					defaultValue={state?.user?.phone}
+					defaultValue={user?.phone}
 					disabled
 					fullWidth
 					InputProps={{
 						readOnly: true,
 						startAdornment: (
 							<InputAdornment position='start'>
-								<VerificationBadge verified={state?.user?.phoneVerified} />
+								<VerificationBadge verified={user?.phoneVerified} />
 							</InputAdornment>
 						),
 					}}
@@ -195,7 +183,7 @@ export const UsersView: React.FC = (): JSX.Element => {
 				<TextField
 					label='Birthdate'
 					type='date'
-					defaultValue={state?.user?.birthdate}
+					defaultValue={user?.birthdate}
 					disabled
 					fullWidth
 					InputProps={{
@@ -207,7 +195,7 @@ export const UsersView: React.FC = (): JSX.Element => {
 				/>
 				<CountrySelect
 					label='Country'
-					defaultValue={state?.user?.country}
+					defaultValue={user?.country}
 					disabled
 					InputLabelProps={{
 						shrink: true,
@@ -215,7 +203,7 @@ export const UsersView: React.FC = (): JSX.Element => {
 				/>
 				<TimezoneSelect
 					label='Timezone'
-					defaultValue={state?.user?.timezone}
+					defaultValue={user?.timezone}
 					disabled
 					InputLabelProps={{
 						shrink: true,

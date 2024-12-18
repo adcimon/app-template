@@ -17,86 +17,58 @@ import { useAppState } from '../../../../../states/hooks/useAppState';
 import { useUserState } from '../../../../../states/hooks/useUserState';
 import { Utils } from '../../../../../utils/utils';
 
-interface IProfileEmailCardState {
-	openChangeDialog: boolean;
-	openVerifyDialog: boolean;
-	email: string;
-	newEmail: string;
-	code: string;
-}
-
 export const ProfileEmailCard: React.FC = (): JSX.Element => {
 	const appState = useAppState();
 	const userState = useUserState();
 
-	const [state, setState] = React.useState<IProfileEmailCardState>({
-		openChangeDialog: false,
-		openVerifyDialog: false,
-		email: userState.user?.email ?? '',
-		newEmail: '',
-		code: '',
-	});
+	const [openVerifyDialog, setOpenVerifyDialog] = React.useState<boolean>(false);
+	const [openChangeDialog, setOpenChangeDialog] = React.useState<boolean>(false);
+	const [email, setEmail] = React.useState<string>('');
+	const [newEmail, setNewEmail] = React.useState<string>('');
+	const [code, setCode] = React.useState<string>('');
 
 	const validate = (): boolean => {
-		return Utils.EMAIL_REGEXP.test(state.email) && state.email !== userState.user?.email;
+		return Utils.EMAIL_REGEXP.test(email) && email !== userState.user?.email;
 	};
 
 	const handleVerify = async () => {
-		setState({
-			...state,
-			openVerifyDialog: true,
-			code: '',
-		});
+		setCode('');
+		setOpenVerifyDialog(true);
 	};
 
 	const handleAcceptVerify = async () => {
 		try {
-			await appState.verifyEmail(state.code);
+			await appState.verifyEmail(code);
 			await userState.get();
 			toast.success('Email changed');
 		} catch (error: any) {
 			toast.error(error.message);
 		}
 
-		setState({
-			...state,
-			openVerifyDialog: false,
-		});
+		setOpenVerifyDialog(false);
 	};
 
 	const handleCancelVerify = async () => {
-		setState({
-			...state,
-			openVerifyDialog: false,
-		});
+		setOpenVerifyDialog(false);
 	};
 
 	const handleChange = async () => {
-		setState({
-			...state,
-			openChangeDialog: true,
-		});
+		setOpenChangeDialog(true);
 	};
 
 	const handleAcceptChange = async () => {
 		try {
-			await userState.updateEmail(state.email);
+			await userState.updateEmail(email);
 			toast.success('Verification code sent');
 		} catch (error: any) {
 			toast.error(error.message);
 		}
 
-		setState({
-			...state,
-			openChangeDialog: false,
-		});
+		setOpenChangeDialog(false);
 	};
 
 	const handleCancelChange = async () => {
-		setState({
-			...state,
-			openChangeDialog: false,
-		});
+		setOpenChangeDialog(false);
 	};
 
 	const render = () => {
@@ -141,8 +113,8 @@ export const ProfileEmailCard: React.FC = (): JSX.Element => {
 									lg={12}>
 									<TextField
 										label='Email'
-										value={state.email}
-										onChange={(event: any) => setState({ ...state, email: event.target.value })}
+										value={email}
+										onChange={(event: any) => setEmail(event.target.value)}
 										InputLabelProps={{
 											shrink: true,
 										}}
@@ -179,26 +151,26 @@ export const ProfileEmailCard: React.FC = (): JSX.Element => {
 					</CardActions>
 				</Card>
 				<ConfirmationDialog
-					open={state.openChangeDialog}
+					open={openChangeDialog}
 					title='Change Email'
-					acceptable={state.email === state.newEmail}
+					acceptable={email === newEmail}
 					onAccept={handleAcceptChange}
 					onCancel={handleCancelChange}
 					onClose={handleCancelChange}>
 					<Typography>Confirm your new email to change it.</Typography>
 					<TextField
 						variant='standard'
-						value={state.newEmail}
-						onChange={(event: any) => setState({ ...state, newEmail: event.target.value })}
+						value={newEmail}
+						onChange={(event: any) => setNewEmail(event.target.value)}
 						autoFocus
 						fullWidth
 						margin='dense'
 					/>
 				</ConfirmationDialog>
 				<ConfirmationDialog
-					open={state.openVerifyDialog}
+					open={openVerifyDialog}
 					title='Verify Email'
-					acceptable={state.code !== ''}
+					acceptable={code !== ''}
 					onAccept={handleAcceptVerify}
 					onCancel={handleCancelVerify}
 					onClose={handleCancelVerify}>
@@ -206,8 +178,8 @@ export const ProfileEmailCard: React.FC = (): JSX.Element => {
 					<TextField
 						type='number'
 						variant='standard'
-						value={state.code}
-						onChange={(event: any) => setState({ ...state, code: event.target.value })}
+						value={code}
+						onChange={(event: any) => setCode(event.target.value)}
 						autoFocus
 						fullWidth
 						margin='dense'

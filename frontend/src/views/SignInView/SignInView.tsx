@@ -13,22 +13,15 @@ import { useAppState } from '../../states/hooks/useAppState';
 import { AuthMode } from '../../types/authMode';
 import { ViewType } from '../../types/viewType';
 
-interface ISignInViewState {
-	email: string;
-	password: string;
-}
-
 export const SignInView: React.FC = (): JSX.Element => {
 	const appState = useAppState();
 
-	const [state, setState] = React.useState<ISignInViewState>({
-		email: '',
-		password: '',
-	});
+	const [email, setEmail] = React.useState<string>('');
+	const [password, setPassword] = React.useState<string>('');
 
 	const handleSignIn = async () => {
 		try {
-			await appState.signIn(state.email, state.password);
+			await appState.signIn(email, password);
 			appState.setAppView(ViewType.Main);
 			appState.setAuthMode(AuthMode.Signed);
 		} catch (error: any) {
@@ -57,8 +50,8 @@ export const SignInView: React.FC = (): JSX.Element => {
 					<TextField
 						label='Email'
 						autoComplete='email'
-						value={state.email}
-						onChange={(event: any) => setState({ ...state, email: event.target.value })}
+						value={email}
+						onChange={(event: any) => setEmail(event.target.value)}
 						autoFocus
 						required
 						fullWidth
@@ -66,8 +59,8 @@ export const SignInView: React.FC = (): JSX.Element => {
 					/>
 					<PasswordField
 						label='Password'
-						value={state.password}
-						onChange={(event: any) => setState({ ...state, password: event.target.value })}
+						value={password}
+						onChange={(event: any) => setPassword(event.target.value)}
 						required
 						fullWidth
 						margin='normal'

@@ -14,49 +14,39 @@ import { CountrySelect } from '../../../../../components/Select/CountrySelect';
 import { TimezoneSelect } from '../../../../../components/Select/TimezoneSelect';
 import { useUserState } from '../../../../../states/hooks/useUserState';
 
-interface IProfileDetailsCardState {
-	name: string;
-	surname: string;
-	birthdate: string;
-	country: string;
-	timezone: string;
-}
-
 export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 	const userState = useUserState();
 
-	const [state, setState] = React.useState<IProfileDetailsCardState>({
-		name: userState.user?.name || '',
-		surname: userState.user?.surname || '',
-		birthdate: userState.user?.birthdate || '',
-		country: userState.user?.country || '',
-		timezone: userState.user?.timezone || '',
-	});
+	const [name, setName] = React.useState<string>(userState.user?.name || '');
+	const [surname, setSurname] = React.useState<string>(userState.user?.surname || '');
+	const [birthdate, setBirthdate] = React.useState<string>(userState.user?.birthdate || '');
+	const [country, setCountry] = React.useState<string>(userState.user?.country || '');
+	const [timezone, setTimezone] = React.useState<string>(userState.user?.timezone || '');
 
 	const validate = (): boolean => {
-		const name: string = userState.user?.name || '';
-		const familyName: string = userState.user?.surname || '';
-		const birthdate: string = userState.user?.birthdate || '';
-		const country: string = userState.user?.country || '';
-		const timezone: string = userState.user?.timezone || '';
+		const userName: string = userState.user?.name || '';
+		const userSurname: string = userState.user?.surname || '';
+		const userBirthdate: string = userState.user?.birthdate || '';
+		const userCountry: string = userState.user?.country || '';
+		const userTimezone: string = userState.user?.timezone || '';
 
 		return !(
-			state.name === name &&
-			state.surname === familyName &&
-			state.birthdate === birthdate &&
-			state.country === country &&
-			state.timezone === timezone
+			name === userName &&
+			surname === userSurname &&
+			birthdate === userBirthdate &&
+			country === userCountry &&
+			timezone === userTimezone
 		);
 	};
 
 	const handleSave = async () => {
 		try {
 			await userState.update({
-				name: state.name,
-				surname: state.surname,
-				birthdate: state.birthdate,
-				country: state.country,
-				timezone: state.timezone,
+				name: name,
+				surname: surname,
+				birthdate: birthdate,
+				country: country,
+				timezone: timezone,
 			});
 			toast.success('Profile updated');
 		} catch (error: any) {
@@ -96,8 +86,8 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 									md={6}>
 									<TextField
 										label='Name'
-										value={state.name}
-										onChange={(event: any) => setState({ ...state, name: event.target.value })}
+										value={name}
+										onChange={(event: any) => setName(event.target.value)}
 										InputLabelProps={{
 											shrink: true,
 										}}
@@ -110,8 +100,8 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 									md={6}>
 									<TextField
 										label='Surname'
-										value={state.surname}
-										onChange={(event: any) => setState({ ...state, surname: event.target.value })}
+										value={surname}
+										onChange={(event: any) => setSurname(event.target.value)}
 										InputLabelProps={{
 											shrink: true,
 										}}
@@ -125,8 +115,8 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 									<TextField
 										label='Birthdate'
 										type='date'
-										value={state.birthdate}
-										onChange={(event: any) => setState({ ...state, birthdate: event.target.value })}
+										value={birthdate}
+										onChange={(event: any) => setBirthdate(event.target.value)}
 										InputLabelProps={{
 											shrink: true,
 										}}
@@ -139,10 +129,8 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 									md={6}>
 									<CountrySelect
 										label='Country'
-										value={state.country}
-										onChange={(event: any) =>
-											setState({ ...state, country: event.target.value?.code || '' })
-										}
+										value={country}
+										onChange={(event: any) => setCountry(event.target.value?.code || '')}
 										InputLabelProps={{
 											shrink: true,
 										}}
@@ -154,8 +142,8 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 									md={6}>
 									<TimezoneSelect
 										label='Timezone'
-										value={state.timezone}
-										onChange={(event: any) => setState({ ...state, timezone: event.target.value })}
+										value={timezone}
+										onChange={(event: any) => setTimezone(event.target.value)}
 										InputLabelProps={{
 											shrink: true,
 										}}

@@ -17,69 +17,41 @@ import { useAppState } from '../../states/hooks/useAppState';
 import { ViewType } from '../../types/viewType';
 import { Utils } from '../../utils/utils';
 
-interface ISignUpViewState {
-	openTermsOfServiceDialog: boolean;
-	openPrivacyPolicyDialog: boolean;
-	email: string;
-	password: string;
-	confirmPassword: string;
-	legalAccepted: boolean;
-}
-
 export const SignUpView: React.FC = (): JSX.Element => {
 	const appState = useAppState();
 
-	const [state, setState] = React.useState<ISignUpViewState>({
-		openTermsOfServiceDialog: false,
-		openPrivacyPolicyDialog: false,
-		email: '',
-		password: '',
-		confirmPassword: '',
-		legalAccepted: false,
-	});
+	const [openTermsOfServiceDialog, setOpenTermsOfServiceDialog] = React.useState<boolean>(false);
+	const [openPrivacyPolicyDialog, setOpenPrivacyPolicyDialog] = React.useState<boolean>(false);
+	const [email, setEmail] = React.useState<string>('');
+	const [password, setPassword] = React.useState<string>('');
+	const [confirmPassword, setConfirmPassword] = React.useState<string>('');
+	const [legalAccepted, setLegalAccepted] = React.useState<boolean>(false);
 
 	const validate = (): boolean => {
-		return (
-			Utils.EMAIL_REGEXP.test(state.email) &&
-			state.password !== '' &&
-			state.password === state.confirmPassword &&
-			state.legalAccepted
-		);
+		return Utils.EMAIL_REGEXP.test(email) && password !== '' && password === confirmPassword && legalAccepted;
 	};
 
 	const handleOpenTermsOfService = (event: React.MouseEvent<HTMLElement>) => {
 		event.preventDefault();
-		setState({
-			...state,
-			openTermsOfServiceDialog: true,
-		});
+		setOpenTermsOfServiceDialog(true);
 	};
 
 	const handleAcceptTermsOfService = () => {
-		setState({
-			...state,
-			openTermsOfServiceDialog: false,
-		});
+		setOpenTermsOfServiceDialog(false);
 	};
 
 	const handleOpenPrivacyPolicy = (event: React.MouseEvent<HTMLElement>) => {
 		event.preventDefault();
-		setState({
-			...state,
-			openPrivacyPolicyDialog: true,
-		});
+		setOpenPrivacyPolicyDialog(true);
 	};
 
 	const handleAcceptPrivacyPolicy = () => {
-		setState({
-			...state,
-			openPrivacyPolicyDialog: false,
-		});
+		setOpenPrivacyPolicyDialog(false);
 	};
 
 	const handleSignUp = async () => {
 		try {
-			await appState.signUp(state.email, state.password);
+			await appState.signUp(email, password);
 			appState.setAppView(ViewType.SignIn);
 			toast.success('Verify your email');
 		} catch (error: any) {
@@ -103,24 +75,24 @@ export const SignUpView: React.FC = (): JSX.Element => {
 					</Typography>
 					<TextField
 						label='Email'
-						value={state.email}
-						onChange={(event: any) => setState({ ...state, email: event.target.value })}
+						value={email}
+						onChange={(event: any) => setEmail(event.target.value)}
 						required
 						fullWidth
 						margin='normal'
 					/>
 					<PasswordField
 						label='Password'
-						value={state.password}
-						onChange={(event: any) => setState({ ...state, password: event.target.value })}
+						value={password}
+						onChange={(event: any) => setPassword(event.target.value)}
 						required
 						fullWidth
 						margin='normal'
 					/>
 					<PasswordField
 						label='Confirm Password'
-						value={state.confirmPassword}
-						onChange={(event: any) => setState({ ...state, confirmPassword: event.target.value })}
+						value={confirmPassword}
+						onChange={(event: any) => setConfirmPassword(event.target.value)}
 						required
 						fullWidth
 						margin='normal'
@@ -129,13 +101,8 @@ export const SignUpView: React.FC = (): JSX.Element => {
 						control={
 							<Checkbox
 								color='primary'
-								value={state.legalAccepted}
-								onChange={(event: any, checked: boolean) =>
-									setState({
-										...state,
-										legalAccepted: checked,
-									})
-								}
+								value={legalAccepted}
+								onChange={(event: any, checked: boolean) => setLegalAccepted(checked)}
 							/>
 						}
 						label={
@@ -175,11 +142,11 @@ export const SignUpView: React.FC = (): JSX.Element => {
 					</Grid>
 					<Copyright />
 					<TermsOfServiceDialog
-						open={state.openTermsOfServiceDialog}
+						open={openTermsOfServiceDialog}
 						onClose={handleAcceptTermsOfService}
 					/>
 					<PrivacyPolicyDialog
-						open={state.openPrivacyPolicyDialog}
+						open={openPrivacyPolicyDialog}
 						onClose={handleAcceptPrivacyPolicy}
 					/>
 				</LaunchView>

@@ -11,40 +11,24 @@ import Typography from '@mui/material/Typography';
 import { GenericPopover } from '../../../../components/Popover/GenericPopover';
 import { NotificationItem } from './NotificationItem';
 
-interface INotificationsMenuState {
-	open: boolean;
-	notifications: object[];
-}
-
 export const NotificationsMenu: React.FC = (): JSX.Element => {
-	const [state, setState] = React.useState<INotificationsMenuState>({
-		open: false,
-		notifications: notifications,
-	});
-
 	const ref = React.useRef<any>(null);
 
+	const [open, setOpen] = React.useState<boolean>(false);
+	const [notifications, setNotifications] = React.useState<object[]>(defaultNotifications);
+
 	const handleClick = () => {
-		setState({
-			...state,
-			open: !state.open,
-		});
+		setOpen(!open);
 	};
 
 	const handleClose = () => {
-		setState({
-			...state,
-			open: false,
-		});
+		setOpen(false);
 	};
 
 	const handleDelete = (index: number) => {
-		const notifications = [...state.notifications];
-		notifications.splice(index, 1);
-		setState({
-			...state,
-			notifications,
-		});
+		const newNotifications = [...notifications];
+		newNotifications.splice(index, 1);
+		setNotifications(newNotifications);
 	};
 
 	const render = () => {
@@ -72,7 +56,7 @@ export const NotificationsMenu: React.FC = (): JSX.Element => {
 							color: 'white',
 						}}>
 						<Badge
-							badgeContent={state?.notifications.length}
+							badgeContent={notifications.length}
 							color='error'>
 							<NotificationsIcon />
 						</Badge>
@@ -80,7 +64,7 @@ export const NotificationsMenu: React.FC = (): JSX.Element => {
 				</Tooltip>
 				<GenericPopover
 					anchorEl={ref}
-					open={state.open}
+					open={open}
 					onClose={handleClose}
 					sx={{
 						width: '300px',
@@ -107,11 +91,9 @@ export const NotificationsMenu: React.FC = (): JSX.Element => {
 							paddingBottom: '10px',
 							width: '100%',
 						}}>
-						{!state.notifications ||
-							(state?.notifications.length === 0 && (
-								<MenuItem disabled>There are no notifications</MenuItem>
-							))}
-						{state.notifications.map((notification: any, index: number) => (
+						{!notifications ||
+							(notifications.length === 0 && <MenuItem disabled>There are no notifications</MenuItem>)}
+						{notifications.map((notification: any, index: number) => (
 							<NotificationItem
 								key={index}
 								notification={notification}
@@ -127,7 +109,7 @@ export const NotificationsMenu: React.FC = (): JSX.Element => {
 	return render();
 };
 
-const notifications: object[] = [
+const defaultNotifications: object[] = [
 	{
 		icon: '/images/logo_white.png',
 		title: 'Welcome',

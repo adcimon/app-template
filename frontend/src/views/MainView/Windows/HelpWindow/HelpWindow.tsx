@@ -12,43 +12,24 @@ interface IHelpWindowProps {
 	onClose?: (event: any) => void;
 }
 
-interface IHelpWindowState {
-	openTermsOfServiceDialog: boolean;
-	openPrivacyPolicyDialog: boolean;
-}
-
 export const HelpWindow: React.FC<IHelpWindowProps> = (props: IHelpWindowProps): JSX.Element => {
-	const [state, setState] = React.useState<IHelpWindowState>({
-		openTermsOfServiceDialog: false,
-		openPrivacyPolicyDialog: false,
-	});
+	const [openTermsOfServiceDialog, setOpenTermsOfServiceDialog] = React.useState<boolean>(false);
+	const [openPrivacyPolicyDialog, setOpenPrivacyPolicyDialog] = React.useState<boolean>(false);
 
 	const handleOpenTermsOfService = () => {
-		setState({
-			...state,
-			openTermsOfServiceDialog: true,
-		});
+		setOpenTermsOfServiceDialog(true);
 	};
 
 	const handleCloseTermsOfService = () => {
-		setState({
-			...state,
-			openTermsOfServiceDialog: false,
-		});
+		setOpenTermsOfServiceDialog(false);
 	};
 
 	const handleOpenPrivacyPolicy = () => {
-		setState({
-			...state,
-			openPrivacyPolicyDialog: true,
-		});
+		setOpenPrivacyPolicyDialog(true);
 	};
 
 	const handleClosePrivacyPolicy = () => {
-		setState({
-			...state,
-			openPrivacyPolicyDialog: false,
-		});
+		setOpenPrivacyPolicyDialog(false);
 	};
 
 	const handleClose = (event: any) => {
@@ -148,11 +129,11 @@ export const HelpWindow: React.FC<IHelpWindowProps> = (props: IHelpWindowProps):
 						</Grid>
 					</Grid>
 					<TermsOfServiceDialog
-						open={state.openTermsOfServiceDialog}
+						open={openTermsOfServiceDialog}
 						onClose={handleCloseTermsOfService}
 					/>
 					<PrivacyPolicyDialog
-						open={state.openPrivacyPolicyDialog}
+						open={openPrivacyPolicyDialog}
 						onClose={handleClosePrivacyPolicy}
 					/>
 				</Window>

@@ -16,51 +16,34 @@ import { VerificationBadge } from '../../../../../components/Badge/VerificationB
 import { useUserState } from '../../../../../states/hooks/useUserState';
 import { Utils } from '../../../../../utils/utils';
 
-interface IProfilePhoneCardState {
-	openChangeDialog: boolean;
-	phone: string;
-	confirmPhone: string;
-}
-
 export const ProfilePhoneCard: React.FC = (): JSX.Element => {
 	const userState = useUserState();
 
-	const [state, setState] = React.useState<IProfilePhoneCardState>({
-		openChangeDialog: false,
-		phone: userState.user?.phone ?? '',
-		confirmPhone: '',
-	});
+	const [openChangeDialog, setOpenChangeDialog] = React.useState<boolean>(false);
+	const [phone, setPhone] = React.useState<string>(userState.user?.phone ?? '');
+	const [confirmPhone, setConfirmPhone] = React.useState<string>('');
 
 	const validate = (): boolean => {
-		return Utils.PHONE_REGEXP.test(state.phone) && state.phone !== userState.user?.phone;
+		return Utils.PHONE_REGEXP.test(phone) && phone !== userState.user?.phone;
 	};
 
 	const handleChange = async () => {
-		setState({
-			...state,
-			openChangeDialog: true,
-		});
+		setOpenChangeDialog(true);
 	};
 
 	const handleAcceptChange = async () => {
 		try {
-			await userState.updatePhone(state.phone);
+			await userState.updatePhone(phone);
 			toast.success('Phone changed');
 		} catch (error: any) {
 			toast.error(error.message);
 		}
 
-		setState({
-			...state,
-			openChangeDialog: false,
-		});
+		setOpenChangeDialog(false);
 	};
 
 	const handleCancelChange = async () => {
-		setState({
-			...state,
-			openChangeDialog: false,
-		});
+		setOpenChangeDialog(false);
 	};
 
 	const render = () => {
@@ -106,8 +89,8 @@ export const ProfilePhoneCard: React.FC = (): JSX.Element => {
 									<TextField
 										label='Phone'
 										type='tel'
-										value={state.phone}
-										onChange={(event: any) => setState({ ...state, phone: event.target.value })}
+										value={phone}
+										onChange={(event: any) => setPhone(event.target.value)}
 										InputLabelProps={{
 											shrink: true,
 										}}
@@ -139,9 +122,9 @@ export const ProfilePhoneCard: React.FC = (): JSX.Element => {
 					</CardActions>
 				</Card>
 				<ConfirmationDialog
-					open={state.openChangeDialog}
+					open={openChangeDialog}
 					title='Change Phone'
-					acceptable={state.phone === state.confirmPhone}
+					acceptable={phone === confirmPhone}
 					onAccept={handleAcceptChange}
 					onCancel={handleCancelChange}
 					onClose={handleCancelChange}>
@@ -149,8 +132,8 @@ export const ProfilePhoneCard: React.FC = (): JSX.Element => {
 					<TextField
 						type='tel'
 						variant='standard'
-						value={state.confirmPhone}
-						onChange={(event: any) => setState({ ...state, confirmPhone: event.target.value })}
+						value={confirmPhone}
+						onChange={(event: any) => setConfirmPhone(event.target.value)}
 						autoFocus
 						fullWidth
 						margin='dense'

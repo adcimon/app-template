@@ -1,14 +1,15 @@
 import React from 'react';
 import toast from 'react-hot-toast';
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import { HomeView } from './HomeView/HomeView';
 import { MainBar } from './MainBar/MainBar';
 import { useUserState } from '../../states/hooks/useUserState';
 
 export const MainView: React.FC = (): JSX.Element => {
-	const userState = useUserState();
-
 	const mainBarHeight: string = '64px';
+
+	const userState = useUserState();
 
 	React.useEffect(() => {
 		toast.success('Welcome!');
@@ -26,11 +27,10 @@ export const MainView: React.FC = (): JSX.Element => {
 	const render = () => {
 		return (
 			<>
-				<Box
+				<Stack
+					direction='column'
 					sx={{
 						alignItems: 'center',
-						display: 'flex',
-						flexDirection: 'column',
 						height: '100vh',
 						width: '100vw',
 					}}>
@@ -42,7 +42,7 @@ export const MainView: React.FC = (): JSX.Element => {
 						}}>
 						<HomeView />
 					</Box>
-				</Box>
+				</Stack>
 			</>
 		);
 	};

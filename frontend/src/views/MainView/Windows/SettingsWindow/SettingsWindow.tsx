@@ -21,16 +21,10 @@ interface ISettingsWindowProps {
 	onClose?: (event: any) => void;
 }
 
-interface ISettingsWindowState {
-	tab: number;
-}
-
 export const SettingsWindow: React.FC<ISettingsWindowProps> = (props: ISettingsWindowProps): JSX.Element => {
 	const userState = useUserState();
 
-	const [state, setState] = React.useState<ISettingsWindowState>({
-		tab: 0,
-	});
+	const [tab, setTab] = React.useState<number>(0);
 
 	const getId = (): string => {
 		if (userState.user?.name && userState.user?.name !== '') {
@@ -45,18 +39,11 @@ export const SettingsWindow: React.FC<ISettingsWindowProps> = (props: ISettingsW
 	};
 
 	const handleTabChange = (event: any, value: number) => {
-		setState({
-			...state,
-			tab: value,
-		});
+		setTab(value);
 	};
 
 	const handleClose = (event: any) => {
-		setState({
-			...state,
-			tab: 0,
-		});
-
+		setTab(0);
 		if (props.onClose) {
 			props.onClose(event);
 		}
@@ -139,7 +126,7 @@ export const SettingsWindow: React.FC<ISettingsWindowProps> = (props: ISettingsW
 						}}>
 						<Tabs
 							variant='scrollable'
-							value={state.tab}
+							value={tab}
 							onChange={handleTabChange}
 							scrollButtons
 							allowScrollButtonsMobile>
@@ -177,8 +164,8 @@ export const SettingsWindow: React.FC<ISettingsWindowProps> = (props: ISettingsW
 	const renderTab = () => {
 		return (
 			<>
-				{state.tab === 0 && <ProfileView />}
-				{state.tab === 1 && <PreferencesView />}
+				{tab === 0 && <ProfileView />}
+				{tab === 1 && <PreferencesView />}
 			</>
 		);
 	};

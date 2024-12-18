@@ -22,93 +22,56 @@ import { useAppState } from '../../../../states/hooks/useAppState';
 import { useUserState } from '../../../../states/hooks/useUserState';
 import { Utils } from '../../../../utils/utils';
 
-interface IAccountMenuState {
-	open: boolean;
-	openSettingsWindow: boolean;
-	openManagementWindow: boolean;
-	openHelpWindow: boolean;
-	openSignOutDialog: boolean;
-}
-
 export const AccountMenu: React.FC = (): JSX.Element => {
+	const ref = React.useRef<any>(null);
+
 	const appState = useAppState();
 	const userState = useUserState();
 
-	const [state, setState] = React.useState<IAccountMenuState>({
-		open: false,
-		openSettingsWindow: false,
-		openManagementWindow: false,
-		openHelpWindow: false,
-		openSignOutDialog: false,
-	});
-
-	const ref = React.useRef<any>(null);
+	const [open, setOpen] = React.useState<boolean>(false);
+	const [openSettingsWindow, setOpenSettingsWindow] = React.useState<boolean>(false);
+	const [openManagementWindow, setOpenManagementWindow] = React.useState<boolean>(false);
+	const [openHelpWindow, setOpenHelpWindow] = React.useState<boolean>(false);
+	const [openSignOutDialog, setOpenSignOutDialog] = React.useState<boolean>(false);
 
 	const handleClick = () => {
-		setState({
-			...state,
-			open: !state.open,
-		});
+		setOpen(!open);
 	};
 
 	const handleClose = () => {
-		setState({
-			...state,
-			open: false,
-		});
+		setOpen(false);
 	};
 
 	const handleSettings = () => {
-		setState({
-			...state,
-			open: false,
-			openSettingsWindow: true,
-		});
+		setOpen(false);
+		setOpenSettingsWindow(true);
 	};
 
 	const handleCloseSettings = () => {
-		setState({
-			...state,
-			openSettingsWindow: false,
-		});
+		setOpenSettingsWindow(false);
 	};
 
 	const handleManagement = () => {
-		setState({
-			...state,
-			open: false,
-			openManagementWindow: true,
-		});
+		setOpen(false);
+		setOpenManagementWindow(true);
 	};
 
 	const handleCloseManagement = () => {
-		setState({
-			...state,
-			openManagementWindow: false,
-		});
+		setOpenManagementWindow(false);
 	};
 
 	const handleHelp = () => {
-		setState({
-			...state,
-			open: false,
-			openHelpWindow: true,
-		});
+		setOpen(false);
+		setOpenHelpWindow(true);
 	};
 
 	const handleCloseHelp = () => {
-		setState({
-			...state,
-			openHelpWindow: false,
-		});
+		setOpenHelpWindow(false);
 	};
 
 	const handleSignOut = () => {
-		setState({
-			...state,
-			open: false,
-			openSignOutDialog: true,
-		});
+		setOpen(false);
+		setOpenSignOutDialog(true);
 	};
 
 	const handleAcceptSignOut = async () => {
@@ -123,11 +86,8 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 	};
 
 	const handleCancelSignOut = () => {
-		setState({
-			...state,
-			open: false,
-			openSignOutDialog: false,
-		});
+		setOpen(false);
+		setOpenSignOutDialog(false);
 	};
 
 	const render = () => {
@@ -182,7 +142,7 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 				/>
 				<GenericPopover
 					anchorEl={ref}
-					open={state.open}
+					open={open}
 					onClose={handleClose}
 					sx={{
 						backgroundImage: 'url("/images/blur_cyan.png"), url("/images/blur_red.png") !important',
@@ -257,19 +217,19 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 					</MenuList>
 				</GenericPopover>
 				<SettingsWindow
-					open={state.openSettingsWindow}
+					open={openSettingsWindow}
 					onClose={handleCloseSettings}
 				/>
 				<ManagementWindow
-					open={state.openManagementWindow}
+					open={openManagementWindow}
 					onClose={handleCloseManagement}
 				/>
 				<HelpWindow
-					open={state.openHelpWindow}
+					open={openHelpWindow}
 					onClose={handleCloseHelp}
 				/>
 				<ConfirmationDialog
-					open={state.openSignOutDialog}
+					open={openSignOutDialog}
 					title='Sign Out'
 					onAccept={handleAcceptSignOut}
 					onCancel={handleCancelSignOut}

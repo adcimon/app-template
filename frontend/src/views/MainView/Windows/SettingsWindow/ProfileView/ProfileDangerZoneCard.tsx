@@ -12,33 +12,23 @@ import Typography from '@mui/material/Typography';
 import { ConfirmationDialog } from '../../../../../components/Dialog/ConfirmationDialog';
 import { useAppState } from '../../../../../states/hooks/useAppState';
 
-interface IProfileDangerZoneCardState {
-	openDialog: boolean;
-	password: string;
-}
-
 export const ProfileDangerZoneCard: React.FC = (): JSX.Element => {
 	const appState = useAppState();
 
-	const [state, setState] = React.useState<IProfileDangerZoneCardState>({
-		openDialog: false,
-		password: '',
-	});
+	const [openDialog, setOpenDialog] = React.useState<boolean>(false);
+	const [password, setPassword] = React.useState<string>('');
 
 	const validate = (): boolean => {
-		return state.password !== '';
+		return password !== '';
 	};
 
 	const handleDeleteAccount = async () => {
-		setState({
-			...state,
-			openDialog: true,
-		});
+		setOpenDialog(true);
 	};
 
 	const handleAcceptDeleteAccount = async () => {
 		try {
-			await appState.signDown(state.password);
+			await appState.signDown(password);
 			toast.success('Account deleted');
 		} catch (error: any) {
 			toast.error(error.message);
@@ -46,17 +36,11 @@ export const ProfileDangerZoneCard: React.FC = (): JSX.Element => {
 			appState.reset();
 		}
 
-		setState({
-			...state,
-			openDialog: false,
-		});
+		setOpenDialog(false);
 	};
 
 	const handleCancelDeleteAccount = async () => {
-		setState({
-			...state,
-			openDialog: false,
-		});
+		setOpenDialog(false);
 	};
 
 	const render = () => {
@@ -124,7 +108,7 @@ export const ProfileDangerZoneCard: React.FC = (): JSX.Element => {
 					<CardContent>{/* More dangerous actions */}</CardContent>
 				</Card>
 				<ConfirmationDialog
-					open={state.openDialog}
+					open={openDialog}
 					title='Delete Account'
 					acceptable={validate()}
 					onAccept={handleAcceptDeleteAccount}
@@ -134,8 +118,8 @@ export const ProfileDangerZoneCard: React.FC = (): JSX.Element => {
 					<TextField
 						type='password'
 						variant='standard'
-						value={state.password}
-						onChange={(event: any) => setState({ ...state, password: event.target.value })}
+						value={password}
+						onChange={(event: any) => setPassword(event.target.value)}
 						autoFocus
 						fullWidth
 						margin='dense'
