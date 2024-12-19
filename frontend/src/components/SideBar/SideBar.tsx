@@ -1,5 +1,6 @@
 import React from 'react';
 import Box from '@mui/material/Box';
+import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import Stack from '@mui/material/Stack';
 import { useResponsive } from '../hooks/useResponsive';
@@ -8,6 +9,7 @@ interface ISideBarProps {
 	title?: React.ReactNode;
 	open: boolean;
 	responsive?: boolean;
+	divider?: boolean;
 	height?: number | string;
 	width?: number | string;
 	onClose?: (event: {}, reason: 'backdropClick' | 'escapeKeyDown') => void;
@@ -47,6 +49,13 @@ export const SideBar: React.FC<ISideBarProps> = (props: ISideBarProps): JSX.Elem
 								}}>
 								{props.title}
 							</Box>
+						)}
+						{props.divider && (
+							<Divider
+								sx={{
+									width: '100%',
+								}}
+							/>
 						)}
 						<Box
 							sx={{
