@@ -4,6 +4,7 @@ export function createComponents() {
 			styleOverrides: {
 				'*': {
 					boxSizing: 'border-box',
+					scrollbarWidth: 'thin',
 				},
 				html: {
 					MozOsxFontSmoothing: 'grayscale',

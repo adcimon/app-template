@@ -96,6 +96,7 @@ export function createComponents(config: any) {
 			styleOverrides: {
 				'*': {
 					boxSizing: 'border-box',
+					scrollbarWidth: 'thin',
 				},
 				html: {
 					MozOsxFontSmoothing: 'grayscale',
