@@ -14,8 +14,8 @@ import { useResponsive } from '../hooks/useResponsive';
 interface IGenericDialogProps {
 	title?: React.ReactNode;
 	variant?: 'info' | 'success' | 'warning' | 'error';
-	open: boolean;
 	actions?: React.ReactNode;
+	open: boolean;
 	onClose?: (event: any) => void;
 	sx?: SxProps;
 	children?: React.ReactNode;
