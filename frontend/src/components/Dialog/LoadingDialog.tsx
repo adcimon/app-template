@@ -43,11 +43,13 @@ export const LoadingDialog: React.FC<ILoadingDialogProps> = (props: ILoadingDial
 					title={props.title}
 					actions={
 						<>
-							<Button
-								ref={cancelButtonRef}
-								onClick={handleCancel}>
-								Cancel
-							</Button>
+							{props.onCancel && (
+								<Button
+									ref={cancelButtonRef}
+									onClick={handleCancel}>
+									Cancel
+								</Button>
+							)}
 						</>
 					}
 					open={props.open}

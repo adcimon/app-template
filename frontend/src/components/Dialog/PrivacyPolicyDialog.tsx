@@ -71,9 +71,7 @@ export const PrivacyPolicyDialog: React.FC<IPrivacyPolicyDialogProps> = (
 							<br />
 						</DialogContentText>
 					</DialogContent>
-					<DialogActions>
-						<Button onClick={props.onClose}>Accept</Button>
-					</DialogActions>
+					<DialogActions>{props.onClose && <Button onClick={props.onClose}>Accept</Button>}</DialogActions>
 				</Dialog>
 			</>
 		);

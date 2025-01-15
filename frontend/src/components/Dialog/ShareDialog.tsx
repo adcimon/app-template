@@ -94,12 +94,14 @@ export const ShareDialog: React.FC<IShareDialogProps> = (props: IShareDialogProp
 					}
 					actions={
 						<>
-							<Button
-								ref={acceptButtonRef}
-								autoFocus={true}
-								onClick={handleAccept}>
-								Accept
-							</Button>
+							{props.onAccept && (
+								<Button
+									ref={acceptButtonRef}
+									autoFocus={true}
+									onClick={handleAccept}>
+									Accept
+								</Button>
+							)}
 						</>
 					}
 					open={props.open}

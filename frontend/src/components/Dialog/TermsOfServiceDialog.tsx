@@ -79,9 +79,7 @@ export const TermsOfServiceDialog: React.FC<ITermsOfServiceDialogProps> = (
 							[Your Company Name] [Your Address] [Your Website URL]
 						</DialogContentText>
 					</DialogContent>
-					<DialogActions>
-						<Button onClick={props.onClose}>Accept</Button>
-					</DialogActions>
+					<DialogActions>{props.onClose && <Button onClick={props.onClose}>Accept</Button>}</DialogActions>
 				</Dialog>
 			</>
 		);

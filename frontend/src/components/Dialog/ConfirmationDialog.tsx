@@ -63,18 +63,22 @@ export const ConfirmationDialog: React.FC<IConfirmationDialogProps> = (
 					variant={props.variant}
 					actions={
 						<>
-							<Button
-								ref={cancelButtonRef}
-								onClick={handleCancel}>
-								Cancel
-							</Button>
-							<Button
-								ref={acceptButtonRef}
-								disabled={!acceptable}
-								autoFocus={true}
-								onClick={handleAccept}>
-								Accept
-							</Button>
+							{props.onCancel && (
+								<Button
+									ref={cancelButtonRef}
+									onClick={handleCancel}>
+									Cancel
+								</Button>
+							)}
+							{props.onAccept && (
+								<Button
+									ref={acceptButtonRef}
+									disabled={!acceptable}
+									autoFocus={true}
+									onClick={handleAccept}>
+									Accept
+								</Button>
+							)}
 						</>
 					}
 					open={props.open}
