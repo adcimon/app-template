@@ -23,6 +23,10 @@ export const UsersView: React.FC = (): JSX.Element => {
 		getUsers();
 	}, []);
 
+	const resetState = () => {
+		setUser(undefined);
+	};
+
 	const getUsers = async () => {
 		try {
 			await adminState.getUsers();
@@ -36,7 +40,7 @@ export const UsersView: React.FC = (): JSX.Element => {
 	};
 
 	const handleDeselect = () => {
-		setUser(undefined);
+		resetState();
 	};
 
 	const renderRow = (item: any) => {
