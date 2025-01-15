@@ -1,6 +1,6 @@
 import { Controller, Post, Request, Body, UseGuards, UseInterceptors } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from '../../guards/auth.guard';
 import { PasswordInterceptor } from '../../interceptors/password.interceptor';
 import { ResponseInterceptor } from '../../interceptors/response.interceptor';
 import { ValidationPipe } from '../../validation/validation.pipe';
@@ -8,6 +8,7 @@ import { AuthSchema } from './auth.schema';
 import { StatusDto } from '../../dtos/status.dto';
 import { CredentialsDto } from './credentials.dto';
 import { UserDto } from '../users/user.dto';
+import { AuthMethod } from '../../types/auth-method';
 
 @Controller('auth')
 export class AuthController {
@@ -20,7 +21,7 @@ export class AuthController {
 	}
 
 	@Post('/signdown')
-	@UseGuards(AuthGuard)
+	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(PasswordInterceptor, ResponseInterceptor)
 	async signDown(
 		@Request() request,
@@ -36,7 +37,7 @@ export class AuthController {
 	}
 
 	@Post('/signout')
-	@UseGuards(AuthGuard)
+	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(ResponseInterceptor)
 	async signOut(
 		@Request() request,
@@ -64,7 +65,7 @@ export class AuthController {
 	}
 
 	@Post('/verify-email')
-	@UseGuards(AuthGuard)
+	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(ResponseInterceptor)
 	async verifyEmail(
 		@Request() request,

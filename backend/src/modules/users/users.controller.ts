@@ -1,25 +1,26 @@
 import { Controller, Get, Patch, Request, Body, UseGuards, UseInterceptors } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { AuthGuard } from '../auth/auth.guard';
+import { AuthGuard } from '../../guards/auth.guard';
 import { PasswordInterceptor } from '../../interceptors/password.interceptor';
 import { ResponseInterceptor } from '../../interceptors/response.interceptor';
 import { ValidationPipe } from '../../validation/validation.pipe';
 import { UsersSchema } from './users.schema';
 import { UserDto } from './user.dto';
+import { AuthMethod } from '../../types/auth-method';
 
 @Controller('users')
 export class UsersController {
 	constructor(private readonly usersService: UsersService) {}
 
 	@Get('/me')
-	@UseGuards(AuthGuard)
+	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(ResponseInterceptor)
 	async getMyUser(@Request() request): Promise<UserDto> {
 		return await this.usersService.getMyUser(request.accessToken);
 	}
 
 	@Patch('/me')
-	@UseGuards(AuthGuard)
+	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(ResponseInterceptor)
 	async updateMyUser(
 		@Request() request,
@@ -35,7 +36,7 @@ export class UsersController {
 	}
 
 	@Patch('/me/email')
-	@UseGuards(AuthGuard)
+	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(ResponseInterceptor)
 	async updateMyEmail(
 		@Request() request,
@@ -45,7 +46,7 @@ export class UsersController {
 	}
 
 	@Patch('/me/phone')
-	@UseGuards(AuthGuard)
+	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(ResponseInterceptor)
 	async updateMyPhone(
 		@Request() request,
@@ -55,7 +56,7 @@ export class UsersController {
 	}
 
 	@Patch('/me/password')
-	@UseGuards(AuthGuard)
+	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(PasswordInterceptor, ResponseInterceptor)
 	async updateMyPassword(
 		@Request() request,
@@ -65,7 +66,7 @@ export class UsersController {
 	}
 
 	@Patch('/me/avatar')
-	@UseGuards(AuthGuard)
+	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(ResponseInterceptor)
 	async updateMyAvatar(
 		@Request() request,
