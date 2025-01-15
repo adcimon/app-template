@@ -1,10 +1,8 @@
 import React from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import DeleteIcon from '@mui/icons-material/Delete';
-import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import Table from '@mui/material/Table';
@@ -15,7 +13,6 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import { ConfirmationDialog } from '../Dialog/ConfirmationDialog';
-import { GenericDialog } from '../Dialog/GenericDialog';
 
 const RowsPerPageRange = [5, 10, 25] as const;
 type RowsPerPageType = (typeof RowsPerPageRange)[number];
@@ -190,7 +187,7 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 						</Stack>
 					</Card>
 				</Stack>
-				<GenericDialog
+				<ConfirmationDialog
 					title={
 						<>
 							<Stack
@@ -215,28 +212,16 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 					}
 					variant='info'
 					open={openItemDialog}
+					acceptable={props.validate ? props.validate() : true}
+					onAccept={handleAcceptDialog}
+					onCancel={props.onUpdate ? handleCloseDialog : undefined}
 					onClose={handleCloseDialog}>
 					<Stack
 						direction='column'
 						spacing={2}>
 						{props.dialog}
 					</Stack>
-					<DialogActions>
-						{props.onUpdate && (
-							<Button
-								autoFocus={true}
-								onClick={handleCloseDialog}>
-								Cancel
-							</Button>
-						)}
-						<Button
-							disabled={props.validate ? !props.validate() : false}
-							autoFocus={true}
-							onClick={handleAcceptDialog}>
-							Accept
-						</Button>
-					</DialogActions>
-				</GenericDialog>
+				</ConfirmationDialog>
 				<ConfirmationDialog
 					title='Delete'
 					variant='warning'
