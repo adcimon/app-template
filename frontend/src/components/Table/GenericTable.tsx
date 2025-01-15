@@ -200,9 +200,7 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 									justifyContent: 'space-between',
 									width: '100%',
 								}}>
-								<Typography variant='h5'>
-									{!item ? 'New' : props.onUpdate ? 'Edit' : 'Inspect'}
-								</Typography>
+								{!item ? 'New' : props.onUpdate ? 'Edit' : 'Inspect'}
 								{item && props.onDelete && (
 									<IconButton
 										onClick={handleDelete}
@@ -215,6 +213,7 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 							</Stack>
 						</>
 					}
+					variant='info'
 					open={openItemDialog}
 					onClose={handleCloseDialog}>
 					<Stack
@@ -240,6 +239,7 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 				</GenericDialog>
 				<ConfirmationDialog
 					title='Delete'
+					variant='warning'
 					open={openDeleteDialog}
 					onAccept={handleAcceptDelete}
 					onCancel={handleCancelDelete}

@@ -42,7 +42,7 @@ export const GenericDialog: React.FC<IGenericDialogProps> = (props: IGenericDial
 
 	const renderIcon = () => {
 		const sx: SxProps = {
-			marginRight: '0.5rem',
+			marginRight: '0.7rem',
 			transform: 'scale(1.2)',
 		};
 		switch (props.variant) {
