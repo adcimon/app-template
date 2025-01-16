@@ -42,12 +42,6 @@ export function useUserState() {
 		return dto;
 	};
 
-	const updatePassword = async (currentPassword: string, newPassword: string): Promise<UserDto> => {
-		const user: any = await apiState.client?.usersService.updateMyPassword(currentPassword, newPassword);
-		const dto: UserDto = Transforms.ApiToDto.User(user);
-		return dto;
-	};
-
 	const updateAvatar = async (avatar: string): Promise<UserDto> => {
 		const user: any = await apiState.client?.usersService.updateMyAvatar(avatar);
 		const dto: UserDto = Transforms.ApiToDto.User(user);
@@ -64,7 +58,6 @@ export function useUserState() {
 		update,
 		updateEmail,
 		updatePhone,
-		updatePassword,
 		updateAvatar,
 		reset,
 	};

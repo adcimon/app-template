@@ -30,9 +30,14 @@ export namespace AuthSchema {
 		email: ValidationSchema.EmailSchema.required('Email is required'),
 	});
 
-	export const ChangePasswordSchema = yup.object().shape({
+	export const ConfirmPasswordSchema = yup.object().shape({
 		email: ValidationSchema.EmailSchema.required('Email is required'),
 		code: ValidationSchema.CodeSchema.required('Code is required'),
 		password: ValidationSchema.PasswordSchema.required('Password is required'),
+	});
+
+	export const ChangePasswordBody = yup.object().shape({
+		currentPassword: ValidationSchema.PasswordSchema.required('Current password is required'),
+		newPassword: ValidationSchema.PasswordSchema.required('New password is required'),
 	});
 }

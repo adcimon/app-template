@@ -62,17 +62,6 @@ export class UsersService {
 		});
 	};
 
-	updateMyPassword = async (currentPassword: string, newPassword: string): Promise<any> => {
-		return this.httpPatch({
-			endpoint: '/users/me/password',
-			data: {
-				currentPassword: btoa(currentPassword),
-				newPassword: btoa(newPassword),
-			},
-			useAuthorization: true,
-		});
-	};
-
 	updateMyAvatar = async (avatar: string): Promise<any> => {
 		return this.httpPatch({
 			endpoint: '/users/me/avatar',

@@ -1,11 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { CognitoService } from '../aws/cognito/cognito.service';
-import { StatusDto } from '../../dtos/status.dto';
 import { UserDto } from './user.dto';
 
 @Injectable()
 export class UsersService {
-	constructor(private readonly cognitoService: CognitoService) {}
+	constructor(
+		// AWS
+		private readonly cognitoService: CognitoService,
+	) {}
 
 	public async get(id: string): Promise<UserDto> {
 		const user: UserDto = await this.cognitoService.get(id);
@@ -27,8 +29,8 @@ export class UsersService {
 		return user;
 	}
 
-	public async updateMyUser(
-		accessToken: string,
+	public async update(
+		id: string,
 		params?: {
 			name: string;
 			surname: string;
@@ -37,32 +39,22 @@ export class UsersService {
 			timezone: string;
 		},
 	): Promise<UserDto> {
-		const user: UserDto = await this.cognitoService.updateMyUser(accessToken, params);
+		const user: UserDto = await this.cognitoService.update(id, params);
 		return user;
 	}
 
-	public async updateMyEmail(accessToken: string, email: string): Promise<UserDto> {
-		const user: UserDto = await this.cognitoService.updateMyEmail(accessToken, email);
+	public async updateEmail(id: string, email: string): Promise<UserDto> {
+		const user: UserDto = await this.cognitoService.updateEmail(id, email);
 		return user;
 	}
 
-	public async updateMyPhone(accessToken: string, phone: string): Promise<UserDto> {
-		const user: UserDto = await this.cognitoService.updateMyPhone(accessToken, phone);
+	public async updatePhone(id: string, phone: string): Promise<UserDto> {
+		const user: UserDto = await this.cognitoService.updatePhone(id, phone);
 		return user;
 	}
 
-	public async updateMyPassword(accessToken: string, currentPassword: string, newPassword: string): Promise<UserDto> {
-		const user: UserDto = await this.cognitoService.updateMyPassword(accessToken, currentPassword, newPassword);
+	public async updateAvatar(id: string, avatar: string): Promise<UserDto> {
+		const user: UserDto = await this.cognitoService.updateAvatar(id, avatar);
 		return user;
-	}
-
-	public async updateMyAvatar(accessToken: string, avatar: string): Promise<UserDto> {
-		const user: UserDto = await this.cognitoService.updateMyAvatar(accessToken, avatar);
-		return user;
-	}
-
-	public async deleteMyUser(accessToken: string): Promise<StatusDto> {
-		const status: StatusDto = await this.cognitoService.deleteMyUser(accessToken);
-		return status;
 	}
 }

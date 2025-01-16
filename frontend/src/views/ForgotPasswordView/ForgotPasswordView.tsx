@@ -42,7 +42,7 @@ export const ForgotPasswordView: React.FC = (): JSX.Element => {
 
 	const handleChange = async () => {
 		try {
-			await appState.changePassword(email, code, password);
+			await appState.confirmPassword(email, code, password);
 			appState.setAppView(ViewType.SignIn);
 			toast.success('Password changed');
 		} catch (error: any) {

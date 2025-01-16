@@ -83,6 +83,16 @@ export class AuthService {
 		return response;
 	};
 
+	verifyEmail = async (code: string): Promise<any> => {
+		return this.httpPost({
+			endpoint: '/auth/verify-email',
+			data: {
+				code,
+			},
+			useAuthorization: true,
+		});
+	};
+
 	forgotPassword = async (email: string): Promise<any> => {
 		return this.httpPost({
 			endpoint: '/auth/forgot-password',
@@ -92,9 +102,9 @@ export class AuthService {
 		});
 	};
 
-	changePassword = async (email: string, code: string, password: string): Promise<any> => {
+	confirmPassword = async (email: string, code: string, password: string): Promise<any> => {
 		return this.httpPost({
-			endpoint: '/auth/change-password',
+			endpoint: '/auth/confirm-password',
 			data: {
 				email,
 				code,
@@ -103,11 +113,12 @@ export class AuthService {
 		});
 	};
 
-	verifyEmail = async (code: string): Promise<any> => {
+	changePassword = async (currentPassword: string, newPassword: string): Promise<any> => {
 		return this.httpPost({
-			endpoint: '/auth/verify-email',
+			endpoint: '/auth/change-password',
 			data: {
-				code,
+				currentPassword: btoa(currentPassword),
+				newPassword: btoa(newPassword),
 			},
 			useAuthorization: true,
 		});

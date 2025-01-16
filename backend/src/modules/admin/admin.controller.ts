@@ -9,12 +9,12 @@ import { Role } from '../../types/role';
 
 @Controller('')
 export class AdminController {
-	constructor(private readonly adminService: AdminService) {}
+	constructor(private readonly service: AdminService) {}
 
 	@Get('/users')
 	@UseGuards(AuthGuard(AuthMethod.Bearer), RolesGuard(Role.Admin))
 	@UseInterceptors(ResponseInterceptor)
 	async getUsers(): Promise<UserDto[]> {
-		return await this.adminService.getUsers();
+		return await this.service.getUsers();
 	}
 }

@@ -1,4 +1,6 @@
 import * as Recoil from 'recoil';
+import { UserDto } from '../../dtos/userDto';
+import { Transforms } from '../../dtos/transforms/transforms';
 import { useApiState } from './useApiState';
 import { AppErrorState, AppThemeState, AppViewState, AuthModeState } from '../appState';
 import { AuthMode } from '../../types/authMode';
@@ -32,19 +34,25 @@ export function useAppState() {
 		return status.status;
 	};
 
+	const verifyEmail = async (code: string): Promise<boolean> => {
+		const status: any = await apiState.client?.authService.verifyEmail(code);
+		return status.status;
+	};
+
 	const forgotPassword = async (email: string): Promise<boolean> => {
 		const status: any = await apiState.client?.authService.forgotPassword(email);
 		return status.status;
 	};
 
-	const changePassword = async (email: string, code: string, password: string): Promise<boolean> => {
-		const status: any = await apiState.client?.authService.changePassword(email, code, password);
+	const confirmPassword = async (email: string, code: string, password: string): Promise<boolean> => {
+		const status: any = await apiState.client?.authService.confirmPassword(email, code, password);
 		return status.status;
 	};
 
-	const verifyEmail = async (code: string): Promise<boolean> => {
-		const status: any = await apiState.client?.authService.verifyEmail(code);
-		return status.status;
+	const changePassword = async (currentPassword: string, newPassword: string): Promise<UserDto> => {
+		const user: any = await apiState.client?.authService.changePassword(currentPassword, newPassword);
+		const dto: UserDto = Transforms.ApiToDto.User(user);
+		return dto;
 	};
 
 	const reset = () => {
@@ -67,9 +75,10 @@ export function useAppState() {
 		signDown,
 		signIn,
 		signOut,
-		forgotPassword,
-		changePassword,
 		verifyEmail,
+		forgotPassword,
+		confirmPassword,
+		changePassword,
 		reset,
 	};
 }

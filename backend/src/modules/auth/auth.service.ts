@@ -6,7 +6,10 @@ import { UserDto } from '../users/user.dto';
 
 @Injectable()
 export class AuthService {
-	constructor(private readonly cognitoService: CognitoService) {}
+	constructor(
+		// AWS
+		private readonly cognitoService: CognitoService,
+	) {}
 
 	public async signUp(email: string, password: string): Promise<UserDto> {
 		const user: UserDto = await this.cognitoService.signUp(email, password);
@@ -33,18 +36,23 @@ export class AuthService {
 		return credentials;
 	}
 
+	public async verifyEmail(accessToken: string, code: string): Promise<StatusDto> {
+		const status: StatusDto = await this.cognitoService.verifyEmail(accessToken, code);
+		return status;
+	}
+
 	public async forgotPassword(email: string): Promise<StatusDto> {
 		const status: StatusDto = await this.cognitoService.forgotPassword(email);
 		return status;
 	}
 
-	public async changePassword(email: string, code: string, password: string): Promise<StatusDto> {
-		const status: StatusDto = await this.cognitoService.changePassword(email, code, password);
+	public async confirmPassword(email: string, code: string, password: string): Promise<StatusDto> {
+		const status: StatusDto = await this.cognitoService.confirmPassword(email, code, password);
 		return status;
 	}
 
-	public async verifyEmail(accessToken: string, code: string): Promise<StatusDto> {
-		const status: StatusDto = await this.cognitoService.verifyEmail(accessToken, code);
-		return status;
+	public async changePassword(accessToken: string, currentPassword: string, newPassword: string): Promise<UserDto> {
+		const user: UserDto = await this.cognitoService.changePassword(accessToken, currentPassword, newPassword);
+		return user;
 	}
 }

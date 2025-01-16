@@ -11,10 +11,10 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { ConfirmationDialog } from '../../../../../components/Dialog/ConfirmationDialog';
 import { PasswordField } from '../../../../../components/Field/PasswordField';
-import { useUserState } from '../../../../../states/hooks/useUserState';
+import { useAppState } from '../../../../../states/hooks/useAppState';
 
 export const ProfilePasswordCard: React.FC = (): JSX.Element => {
-	const userState = useUserState();
+	const appState = useAppState();
 
 	const [currentPassword, setCurrentPassword] = React.useState<string>('');
 	const [newPassword, setNewPassword] = React.useState<string>('');
@@ -34,7 +34,7 @@ export const ProfilePasswordCard: React.FC = (): JSX.Element => {
 
 	const handleAcceptChange = async () => {
 		try {
-			await userState.updatePassword(currentPassword, newPassword);
+			await appState.changePassword(currentPassword, newPassword);
 			toast.success('Password changed');
 		} catch (error: any) {
 			toast.error(error.message);

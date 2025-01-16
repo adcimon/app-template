@@ -1,7 +1,6 @@
 import { Controller, Get, Patch, Request, Body, UseGuards, UseInterceptors } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { AuthGuard } from '../../guards/auth.guard';
-import { PasswordInterceptor } from '../../interceptors/password.interceptor';
 import { ResponseInterceptor } from '../../interceptors/response.interceptor';
 import { ValidationPipe } from '../../validation/validation.pipe';
 import { UsersSchema } from './users.schema';
@@ -10,13 +9,13 @@ import { AuthMethod } from '../../types/auth-method';
 
 @Controller('users')
 export class UsersController {
-	constructor(private readonly usersService: UsersService) {}
+	constructor(private readonly service: UsersService) {}
 
 	@Get('/me')
 	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(ResponseInterceptor)
 	async getMyUser(@Request() request): Promise<UserDto> {
-		return await this.usersService.getMyUser(request.accessToken);
+		return await this.service.get(request.user.id);
 	}
 
 	@Patch('/me')
@@ -24,9 +23,9 @@ export class UsersController {
 	@UseInterceptors(ResponseInterceptor)
 	async updateMyUser(
 		@Request() request,
-		@Body(new ValidationPipe(UsersSchema.UpdateMyUserSchema)) body: any,
+		@Body(new ValidationPipe(UsersSchema.UpdateMyUserBody)) body: any,
 	): Promise<UserDto> {
-		return await this.usersService.updateMyUser(request.accessToken, {
+		return await this.service.update(request.user.id, {
 			name: body.name,
 			surname: body.surname,
 			birthdate: body.birthdate,
@@ -40,9 +39,9 @@ export class UsersController {
 	@UseInterceptors(ResponseInterceptor)
 	async updateMyEmail(
 		@Request() request,
-		@Body(new ValidationPipe(UsersSchema.UpdateMyEmailSchema)) body: any,
+		@Body(new ValidationPipe(UsersSchema.UpdateMyEmailBody)) body: any,
 	): Promise<UserDto> {
-		return await this.usersService.updateMyEmail(request.accessToken, body.email);
+		return await this.service.updateEmail(request.user.id, body.email);
 	}
 
 	@Patch('/me/phone')
@@ -50,19 +49,9 @@ export class UsersController {
 	@UseInterceptors(ResponseInterceptor)
 	async updateMyPhone(
 		@Request() request,
-		@Body(new ValidationPipe(UsersSchema.UpdateMyPhoneSchema)) body: any,
+		@Body(new ValidationPipe(UsersSchema.UpdateMyPhoneBody)) body: any,
 	): Promise<UserDto> {
-		return await this.usersService.updateMyPhone(request.accessToken, body.phone);
-	}
-
-	@Patch('/me/password')
-	@UseGuards(AuthGuard(AuthMethod.Bearer))
-	@UseInterceptors(PasswordInterceptor, ResponseInterceptor)
-	async updateMyPassword(
-		@Request() request,
-		@Body(new ValidationPipe(UsersSchema.UpdateMyPasswordSchema)) body: any,
-	): Promise<UserDto> {
-		return await this.usersService.updateMyPassword(request.accessToken, body.currentPassword, body.newPassword);
+		return await this.service.updatePhone(request.user.id, body.phone);
 	}
 
 	@Patch('/me/avatar')
@@ -70,8 +59,8 @@ export class UsersController {
 	@UseInterceptors(ResponseInterceptor)
 	async updateMyAvatar(
 		@Request() request,
-		@Body(new ValidationPipe(UsersSchema.UpdateMyAvatarSchema)) body: any,
+		@Body(new ValidationPipe(UsersSchema.UpdateMyAvatarBody)) body: any,
 	): Promise<UserDto> {
-		return await this.usersService.updateMyAvatar(request.accessToken, body.avatar);
+		return await this.service.updateAvatar(request.user.id, body.avatar);
 	}
 }

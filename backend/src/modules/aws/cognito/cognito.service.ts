@@ -9,14 +9,17 @@ import { CredentialsDto } from '../../auth/credentials.dto';
 import { UserDto } from '../../users/user.dto';
 import { ResourceNotFoundException } from '../../../exceptions/resource-not-found.exception';
 import { EmailTakenException } from '../../../exceptions/email-taken.exception';
-import * as AWS from '@aws-sdk/client-cognito-identity-provider';
 import { AuthUtils } from '../../../utils/auth.utils';
+import * as AWS from '@aws-sdk/client-cognito-identity-provider';
 
 @Injectable()
 export class CognitoService implements OnModuleInit {
 	private client: AWS.CognitoIdentityProviderClient = null;
 
-	constructor(private readonly configService: ConfigService) {}
+	constructor(
+		// Base
+		private readonly configService: ConfigService,
+	) {}
 
 	public async onModuleInit() {
 		const region: string = await this.configService.get('AWS_REGION');
@@ -33,6 +36,7 @@ export class CognitoService implements OnModuleInit {
 
 	private async authUser(id: string, password: string): Promise<object> {
 		const clientId: string = await this.configService.get('AWS_USER_POOL_CLIENT_ID');
+
 		const input: AWS.InitiateAuthCommandInput = {
 			AuthFlow: 'USER_PASSWORD_AUTH',
 			ClientId: clientId,
@@ -67,6 +71,7 @@ export class CognitoService implements OnModuleInit {
 		const clientId: string = await this.configService.get('AWS_USER_POOL_CLIENT_ID');
 		const username: string = AuthUtils.generateId();
 		const name: string = email.substring(0, email.indexOf('@'));
+
 		const input: AWS.SignUpCommandInput = {
 			ClientId: clientId,
 			Username: username,
@@ -93,6 +98,7 @@ export class CognitoService implements OnModuleInit {
 	}
 
 	public async signDown(accessToken: string, password: string): Promise<UserDto> {
+		// Check whether the user exists.
 		const user: UserDto = await this.getMyUser(accessToken);
 
 		await this.authUser(user.id, password);
@@ -129,6 +135,7 @@ export class CognitoService implements OnModuleInit {
 	@Transform(CredentialsObjectToDto)
 	public async refreshToken(refreshToken: string): Promise<CredentialsDto> {
 		const clientId: string = await this.configService.get('AWS_USER_POOL_CLIENT_ID');
+
 		const input: AWS.InitiateAuthCommandInput = {
 			AuthFlow: 'REFRESH_TOKEN_AUTH',
 			ClientId: clientId,
@@ -146,43 +153,8 @@ export class CognitoService implements OnModuleInit {
 	}
 
 	@Transform(StatusBooleanToDto)
-	public async forgotPassword(email: string): Promise<StatusDto> {
-		const user: UserDto = await this.getByEmail(email);
-
-		const clientId: string = await this.configService.get('AWS_USER_POOL_CLIENT_ID');
-		const input: AWS.ForgotPasswordCommandInput = {
-			ClientId: clientId,
-			Username: user.id,
-		};
-
-		const command: AWS.ForgotPasswordCommand = new AWS.ForgotPasswordCommand(input);
-
-		await this.client.send(command);
-
-		return true as any;
-	}
-
-	@Transform(StatusBooleanToDto)
-	public async changePassword(email: string, code: string, password: string): Promise<StatusDto> {
-		const user: UserDto = await this.getByEmail(email);
-
-		const clientId: string = await this.configService.get('AWS_USER_POOL_CLIENT_ID');
-		const input: AWS.ConfirmForgotPasswordCommandInput = {
-			ClientId: clientId,
-			Username: user.id,
-			ConfirmationCode: code,
-			Password: password,
-		};
-
-		const command: AWS.ConfirmForgotPasswordCommand = new AWS.ConfirmForgotPasswordCommand(input);
-
-		await this.client.send(command);
-
-		return true as any;
-	}
-
-	@Transform(StatusBooleanToDto)
 	public async verifyEmail(accessToken: string, code: string): Promise<StatusDto> {
+		// Check whether the user exists.
 		await this.getMyUser(accessToken);
 
 		const input: AWS.VerifyUserAttributeCommandInput = {
@@ -198,9 +170,64 @@ export class CognitoService implements OnModuleInit {
 		return true as any;
 	}
 
+	@Transform(StatusBooleanToDto)
+	public async forgotPassword(email: string): Promise<StatusDto> {
+		// Check whether the user exists.
+		const user: UserDto = await this.getByEmail(email);
+
+		const clientId: string = await this.configService.get('AWS_USER_POOL_CLIENT_ID');
+
+		const input: AWS.ForgotPasswordCommandInput = {
+			ClientId: clientId,
+			Username: user.id,
+		};
+
+		const command: AWS.ForgotPasswordCommand = new AWS.ForgotPasswordCommand(input);
+
+		await this.client.send(command);
+
+		return true as any;
+	}
+
+	@Transform(StatusBooleanToDto)
+	public async confirmPassword(email: string, code: string, password: string): Promise<StatusDto> {
+		// Check whether the user exists.
+		const user: UserDto = await this.getByEmail(email);
+
+		const clientId: string = await this.configService.get('AWS_USER_POOL_CLIENT_ID');
+
+		const input: AWS.ConfirmForgotPasswordCommandInput = {
+			ClientId: clientId,
+			Username: user.id,
+			ConfirmationCode: code,
+			Password: password,
+		};
+
+		const command: AWS.ConfirmForgotPasswordCommand = new AWS.ConfirmForgotPasswordCommand(input);
+
+		await this.client.send(command);
+
+		return true as any;
+	}
+
+	public async changePassword(accessToken: string, currentPassword: string, newPassword: string): Promise<UserDto> {
+		const input: AWS.ChangePasswordCommandInput = {
+			AccessToken: accessToken,
+			PreviousPassword: currentPassword,
+			ProposedPassword: newPassword,
+		};
+
+		const command: AWS.ChangePasswordCommand = new AWS.ChangePasswordCommand(input);
+
+		await this.client.send(command);
+
+		return await this.getMyUser(accessToken);
+	}
+
 	@Transform(UserCognitoToDto)
 	public async get(id: string): Promise<UserDto> {
 		const userPoolId: string = await this.configService.get('AWS_USER_POOL_ID');
+
 		const input: AWS.AdminGetUserCommandInput = {
 			UserPoolId: userPoolId,
 			Username: id,
@@ -216,6 +243,7 @@ export class CognitoService implements OnModuleInit {
 	@Transform(UserCognitoToDto)
 	public async getBy(filter?: string): Promise<UserDto[]> {
 		const userPoolId: string = await this.configService.get('AWS_USER_POOL_ID');
+
 		const input: AWS.ListUsersCommandInput = {
 			UserPoolId: userPoolId,
 			Limit: 60, // Maximum number of users per API call.
@@ -267,8 +295,8 @@ export class CognitoService implements OnModuleInit {
 		return user as any;
 	}
 
-	public async updateMyUser(
-		accessToken: string,
+	public async update(
+		id: string,
 		params?: {
 			name?: string;
 			surname?: string;
@@ -277,6 +305,8 @@ export class CognitoService implements OnModuleInit {
 			timezone?: string;
 		},
 	): Promise<UserDto> {
+		const userPoolId: string = await this.configService.get('AWS_USER_POOL_ID');
+
 		const attributes = [];
 		if (params.name !== undefined && params.name !== null) {
 			attributes.push({ Name: 'name', Value: params.name });
@@ -294,86 +324,52 @@ export class CognitoService implements OnModuleInit {
 			attributes.push({ Name: 'zoneinfo', Value: params.timezone });
 		}
 
-		const input: AWS.UpdateUserAttributesCommandInput = {
-			AccessToken: accessToken,
+		const input: AWS.AdminUpdateUserAttributesCommandInput = {
+			UserPoolId: userPoolId,
+			Username: id,
 			UserAttributes: attributes,
 		};
 
-		const command: AWS.UpdateUserAttributesCommand = new AWS.UpdateUserAttributesCommand(input);
+		const command: AWS.AdminUpdateUserAttributesCommand = new AWS.AdminUpdateUserAttributesCommand(input);
 
 		await this.client.send(command);
 
-		return await this.getMyUser(accessToken);
+		return await this.get(id);
 	}
 
-	public async updateMyEmail(accessToken: string, email: string): Promise<UserDto> {
-		const user: UserDto = await this.getMyUser(accessToken);
+	private async updateAttribute(id: string, name: string, value: any): Promise<UserDto> {
+		const userPoolId: string = await this.configService.get('AWS_USER_POOL_ID');
+		const attributes = [{ Name: name, Value: value }];
 
+		const input: AWS.AdminUpdateUserAttributesCommandInput = {
+			UserPoolId: userPoolId,
+			Username: id,
+			UserAttributes: attributes,
+		};
+
+		const command: AWS.AdminUpdateUserAttributesCommand = new AWS.AdminUpdateUserAttributesCommand(input);
+
+		await this.client.send(command);
+
+		return await this.get(id);
+	}
+
+	public async updateEmail(id: string, email: string): Promise<UserDto> {
 		// Check whether the email is taken.
 		const users: any[] = await this.getBy(`email = "${email}"`);
 		if (users.length !== 0) {
 			throw new EmailTakenException(email);
 		}
 
-		const userPoolId: string = await this.configService.get('AWS_USER_POOL_ID');
-		const attributes = [{ Name: 'email', Value: email }];
-		const input: AWS.AdminUpdateUserAttributesCommandInput = {
-			UserPoolId: userPoolId,
-			Username: user.id,
-			UserAttributes: attributes,
-		};
-
-		const command: AWS.AdminUpdateUserAttributesCommand = new AWS.AdminUpdateUserAttributesCommand(input);
-
-		await this.client.send(command);
-
-		return await this.getMyUser(accessToken);
+		return await this.updateAttribute(id, 'email', email);
 	}
 
-	public async updateMyPhone(accessToken: string, phone: string): Promise<UserDto> {
-		const user: UserDto = await this.getMyUser(accessToken);
-
-		const userPoolId: string = await this.configService.get('AWS_USER_POOL_ID');
-		const attributes = [{ Name: 'phone_number', Value: phone }];
-		const input: AWS.AdminUpdateUserAttributesCommandInput = {
-			UserPoolId: userPoolId,
-			Username: user.id,
-			UserAttributes: attributes,
-		};
-
-		const command: AWS.AdminUpdateUserAttributesCommand = new AWS.AdminUpdateUserAttributesCommand(input);
-
-		await this.client.send(command);
-
-		return await this.getMyUser(accessToken);
+	public async updatePhone(id: string, phone: string): Promise<UserDto> {
+		return await this.updateAttribute(id, 'phone_number', phone);
 	}
 
-	public async updateMyPassword(accessToken: string, currentPassword: string, newPassword: string): Promise<UserDto> {
-		const input: AWS.ChangePasswordCommandInput = {
-			AccessToken: accessToken,
-			PreviousPassword: currentPassword,
-			ProposedPassword: newPassword,
-		};
-
-		const command: AWS.ChangePasswordCommand = new AWS.ChangePasswordCommand(input);
-
-		await this.client.send(command);
-
-		return await this.getMyUser(accessToken);
-	}
-
-	public async updateMyAvatar(accessToken: string, avatar: string): Promise<UserDto> {
-		const attributes = [{ Name: 'picture', Value: avatar }];
-		const input: AWS.UpdateUserAttributesCommandInput = {
-			AccessToken: accessToken,
-			UserAttributes: attributes,
-		};
-
-		const command: AWS.UpdateUserAttributesCommand = new AWS.UpdateUserAttributesCommand(input);
-
-		await this.client.send(command);
-
-		return await this.getMyUser(accessToken);
+	public async updateAvatar(id: string, avatar: string): Promise<UserDto> {
+		return await this.updateAttribute(id, 'picture', avatar);
 	}
 
 	@Transform(StatusBooleanToDto)

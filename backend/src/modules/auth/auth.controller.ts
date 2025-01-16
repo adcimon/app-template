@@ -12,12 +12,12 @@ import { AuthMethod } from '../../types/auth-method';
 
 @Controller('auth')
 export class AuthController {
-	constructor(private readonly authService: AuthService) {}
+	constructor(private readonly service: AuthService) {}
 
 	@Post('/sign-up')
 	@UseInterceptors(PasswordInterceptor, ResponseInterceptor)
 	async signUp(@Body(new ValidationPipe(AuthSchema.SignUpSchema)) body: any): Promise<UserDto> {
-		return await this.authService.signUp(body.email, body.password);
+		return await this.service.signUp(body.email, body.password);
 	}
 
 	@Post('/sign-down')
@@ -27,13 +27,13 @@ export class AuthController {
 		@Request() request,
 		@Body(new ValidationPipe(AuthSchema.SignDownSchema)) body: any,
 	): Promise<UserDto> {
-		return await this.authService.signDown(request.accessToken, body.password);
+		return await this.service.signDown(request.accessToken, body.password);
 	}
 
 	@Post('/sign-in')
 	@UseInterceptors(PasswordInterceptor, ResponseInterceptor)
 	async signIn(@Body(new ValidationPipe(AuthSchema.SignInSchema)) body: any): Promise<CredentialsDto> {
-		return await this.authService.signIn(body.email, body.password);
+		return await this.service.signIn(body.email, body.password);
 	}
 
 	@Post('/sign-out')
@@ -43,25 +43,13 @@ export class AuthController {
 		@Request() request,
 		@Body(new ValidationPipe(AuthSchema.SignOutSchema)) body: any,
 	): Promise<StatusDto> {
-		return await this.authService.signOut(request.accessToken);
+		return await this.service.signOut(request.accessToken);
 	}
 
 	@Post('/refresh-token')
 	@UseInterceptors(ResponseInterceptor)
 	async refreshToken(@Body(new ValidationPipe(AuthSchema.RefreshTokenSchema)) body: any): Promise<CredentialsDto> {
-		return await this.authService.refreshToken(body.refreshToken);
-	}
-
-	@Post('/forgot-password')
-	@UseInterceptors(ResponseInterceptor)
-	async forgotPassword(@Body(new ValidationPipe(AuthSchema.ForgotPasswordSchema)) body: any): Promise<StatusDto> {
-		return await this.authService.forgotPassword(body.email);
-	}
-
-	@Post('/change-password')
-	@UseInterceptors(PasswordInterceptor, ResponseInterceptor)
-	async changePassword(@Body(new ValidationPipe(AuthSchema.ChangePasswordSchema)) body: any): Promise<StatusDto> {
-		return await this.authService.changePassword(body.email, body.code, body.password);
+		return await this.service.refreshToken(body.refreshToken);
 	}
 
 	@Post('/verify-email')
@@ -71,6 +59,28 @@ export class AuthController {
 		@Request() request,
 		@Body(new ValidationPipe(AuthSchema.VerifyEmailSchema)) body: any,
 	): Promise<StatusDto> {
-		return await this.authService.verifyEmail(request.accessToken, body.code);
+		return await this.service.verifyEmail(request.accessToken, body.code);
+	}
+
+	@Post('/forgot-password')
+	@UseInterceptors(ResponseInterceptor)
+	async forgotPassword(@Body(new ValidationPipe(AuthSchema.ForgotPasswordSchema)) body: any): Promise<StatusDto> {
+		return await this.service.forgotPassword(body.email);
+	}
+
+	@Post('/confirm-password')
+	@UseInterceptors(PasswordInterceptor, ResponseInterceptor)
+	async confirmPassword(@Body(new ValidationPipe(AuthSchema.ConfirmPasswordSchema)) body: any): Promise<StatusDto> {
+		return await this.service.confirmPassword(body.email, body.code, body.password);
+	}
+
+	@Post('/change-password')
+	@UseGuards(AuthGuard(AuthMethod.Bearer))
+	@UseInterceptors(PasswordInterceptor, ResponseInterceptor)
+	async changePassword(
+		@Request() request,
+		@Body(new ValidationPipe(AuthSchema.ChangePasswordBody)) body: any,
+	): Promise<UserDto> {
+		return await this.service.changePassword(request.accessToken, body.currentPassword, body.newPassword);
 	}
 }
