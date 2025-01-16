@@ -17,7 +17,7 @@ export class AuthService {
 
 	signUp = async (email: string, password: string): Promise<any> => {
 		return this.httpPost({
-			endpoint: '/auth/signup',
+			endpoint: '/auth/sign-up',
 			data: {
 				email,
 				password: btoa(password),
@@ -27,7 +27,7 @@ export class AuthService {
 
 	signDown = async (password: string): Promise<any> => {
 		const response: any = await this.httpPost({
-			endpoint: '/auth/signdown',
+			endpoint: '/auth/sign-down',
 			data: {
 				password: btoa(password),
 			},
@@ -42,7 +42,7 @@ export class AuthService {
 
 	signIn = async (email: string, password: string): Promise<any> => {
 		const response: any = await this.httpPost({
-			endpoint: '/auth/signin',
+			endpoint: '/auth/sign-in',
 			data: {
 				email,
 				password: btoa(password),
@@ -59,7 +59,7 @@ export class AuthService {
 
 	signOut = async (): Promise<any> => {
 		const response: any = await this.httpPost({
-			endpoint: '/auth/signout',
+			endpoint: '/auth/sign-out',
 			useAuthorization: true,
 		});
 

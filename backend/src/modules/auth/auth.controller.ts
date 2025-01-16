@@ -14,13 +14,13 @@ import { AuthMethod } from '../../types/auth-method';
 export class AuthController {
 	constructor(private readonly authService: AuthService) {}
 
-	@Post('/signup')
+	@Post('/sign-up')
 	@UseInterceptors(PasswordInterceptor, ResponseInterceptor)
 	async signUp(@Body(new ValidationPipe(AuthSchema.SignUpSchema)) body: any): Promise<UserDto> {
 		return await this.authService.signUp(body.email, body.password);
 	}
 
-	@Post('/signdown')
+	@Post('/sign-down')
 	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(PasswordInterceptor, ResponseInterceptor)
 	async signDown(
@@ -30,13 +30,13 @@ export class AuthController {
 		return await this.authService.signDown(request.accessToken, body.password);
 	}
 
-	@Post('/signin')
+	@Post('/sign-in')
 	@UseInterceptors(PasswordInterceptor, ResponseInterceptor)
 	async signIn(@Body(new ValidationPipe(AuthSchema.SignInSchema)) body: any): Promise<CredentialsDto> {
 		return await this.authService.signIn(body.email, body.password);
 	}
 
-	@Post('/signout')
+	@Post('/sign-out')
 	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(ResponseInterceptor)
 	async signOut(
