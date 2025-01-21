@@ -19,8 +19,9 @@ type RowsPerPageType = (typeof RowsPerPageRange)[number];
 
 interface IGenericTableProps {
 	title?: React.ReactNode;
+	itemName?: string;
 	items: any[];
-	head?: () => React.ReactNode[];
+	head?: React.ReactNode[];
 	row?: (item: any) => React.ReactNode[];
 	dialog?: React.ReactNode;
 	validate?: () => boolean;
@@ -33,8 +34,9 @@ interface IGenericTableProps {
 }
 
 export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableProps): JSX.Element => {
+	const itemName: string = props.itemName || '';
 	const [page, setPage] = React.useState<number>(0);
-	const [rowsPerPage, setRowsPerPage] = React.useState<number>(props.rowsPerPage || 5);
+	const [rowsPerPage, setRowsPerPage] = React.useState<number>(props.rowsPerPage || RowsPerPageRange[0]);
 	const [item, setItem] = React.useState<any>();
 	const [openItemDialog, setOpenItemDialog] = React.useState<boolean>(false);
 	const [openDeleteDialog, setOpenDeleteDialog] = React.useState<boolean>(false);
@@ -132,11 +134,9 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 						<Table>
 							<TableHead>
 								<TableRow>
-									{props.head
-										? props.head().map((node: React.ReactNode, index: number) => {
-												return <TableCell key={index}>{node}</TableCell>;
-										  })
-										: undefined}
+									{props.head?.map((node: React.ReactNode, index: number) => {
+										return <TableCell key={index}>{node}</TableCell>;
+									})}
 								</TableRow>
 							</TableHead>
 							<TableBody>
@@ -197,7 +197,12 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 									justifyContent: 'space-between',
 									width: '100%',
 								}}>
-								{!item ? 'New' : props.onUpdate ? 'Edit' : 'Inspect'}
+								<Typography
+									sx={{
+										fontWeight: 'bold',
+									}}>
+									{!item ? `New ${itemName}` : `${itemName}`}
+								</Typography>
 								{item && props.onDelete && (
 									<IconButton
 										onClick={handleDelete}
@@ -210,7 +215,6 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 							</Stack>
 						</>
 					}
-					variant='info'
 					open={openItemDialog}
 					acceptable={props.validate ? props.validate() : true}
 					onAccept={handleAcceptDialog}

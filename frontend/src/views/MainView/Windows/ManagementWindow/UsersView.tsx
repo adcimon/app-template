@@ -218,8 +218,9 @@ export const UsersView: React.FC = (): JSX.Element => {
 			<>
 				<Container maxWidth='xl'>
 					<GenericTable
+						itemName='User'
 						items={adminState.users}
-						head={() => ['Name', 'Email', 'Phone']}
+						head={['Name', 'Email', 'Phone']}
 						row={renderRow}
 						dialog={renderDialog()}
 						onSelect={handleSelect}
