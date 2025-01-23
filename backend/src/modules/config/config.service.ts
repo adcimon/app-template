@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { ConfigurationErrorException } from '../../exceptions/configuration-error.exception';
 import { config } from 'dotenv';
 
 @Injectable()
@@ -59,7 +60,13 @@ export class ConfigService {
 		return ConfigService.parse(value);
 	}
 
-	public async get(key: string, defaultValue: any = undefined): Promise<any> {
-		return await ConfigService.getEnvironmentVariable(key, defaultValue);
+	public async getVariable(key: string, defaultValue: any = undefined): Promise<any> {
+		try {
+			const value: any = await ConfigService.getEnvironmentVariable(key, defaultValue);
+			return value;
+		} catch (error: any) {
+			console.log(error);
+			throw new ConfigurationErrorException(error.message);
+		}
 	}
 }

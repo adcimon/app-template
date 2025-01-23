@@ -12,7 +12,7 @@ Currently there is 1 environment:
 The file `variables.tf` defines the `PROJECT` and `ENVIRONMENT` local variables (e.g. `app`, `development`).
 These must be copied in the backend `.env` file variables `AWS_PROJECT` and `AWS_ENVIRONMENT`.
 
-## Deploy
+## Deployment
 
 1. Install Terraform.
 2. Go to the workspace directory (e.g. `/infrastructure/environments/development`).
