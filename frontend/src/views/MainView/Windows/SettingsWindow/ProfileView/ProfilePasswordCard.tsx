@@ -11,7 +11,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { ConfirmationDialog } from '../../../../../components/Dialog/ConfirmationDialog';
 import { PasswordField } from '../../../../../components/Field/PasswordField';
-import { useAppState } from '../../../../../states/hooks/useAppState';
+import { useAppState } from '../../../../../states/app/useAppState';
 
 export const ProfilePasswordCard: React.FC = (): JSX.Element => {
 	const appState = useAppState();

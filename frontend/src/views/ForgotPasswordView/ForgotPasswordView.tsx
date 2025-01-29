@@ -11,7 +11,7 @@ import { Copyright } from '../../components/Copyright/Copyright';
 import { LaunchView } from '../LaunchView/LaunchView';
 import { Logo } from '../../components/Logo/Logo';
 import { PasswordField } from '../../components/Field/PasswordField';
-import { useAppState } from '../../states/hooks/useAppState';
+import { useAppState } from '../../states/app/useAppState';
 import { ViewType } from '../../types/viewType';
 import { Utils } from '../../utils/utils';
 

@@ -13,7 +13,7 @@ import { Logo } from '../../components/Logo/Logo';
 import { PasswordField } from '../../components/Field/PasswordField';
 import { PrivacyPolicyDialog } from '../../components/Dialog/PrivacyPolicyDialog';
 import { TermsOfServiceDialog } from '../../components/Dialog/TermsOfServiceDialog';
-import { useAppState } from '../../states/hooks/useAppState';
+import { useAppState } from '../../states/app/useAppState';
 import { ViewType } from '../../types/viewType';
 import { Utils } from '../../utils/utils';
 

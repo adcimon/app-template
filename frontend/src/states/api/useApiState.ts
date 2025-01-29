@@ -1,8 +1,8 @@
 import * as Recoil from 'recoil';
-import { ApiClientAtom } from '../apiState';
+import { ApiClientState } from './apiState';
 
 export function useApiState() {
-	const [client, setClient] = Recoil.useRecoilState(ApiClientAtom);
+	const [client, setClient] = Recoil.useRecoilState(ApiClientState);
 
 	const reset = () => {
 		setClient(undefined);

@@ -1,8 +1,8 @@
 import * as Recoil from 'recoil';
 import { UserDto } from '../../dtos/userDto';
 import { Transforms } from '../../dtos/transforms/transforms';
-import { useApiState } from './useApiState';
-import { UserState } from '../userState';
+import { useApiState } from '../api/useApiState';
+import { UserState } from './userState';
 
 export function useUserState() {
 	const apiState = useApiState();

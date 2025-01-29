@@ -4,8 +4,8 @@ import { ForgotPasswordView } from '../ForgotPasswordView/ForgotPasswordView';
 import { MainView } from '../MainView/MainView';
 import { SignInView } from '../SignInView/SignInView';
 import { SignUpView } from '../SignUpView/SignUpView';
-import { useAppState } from '../../states/hooks/useAppState';
-import { useUserState } from '../../states/hooks/useUserState';
+import { useAppState } from '../../states/app/useAppState';
+import { useUserState } from '../../states/user/useUserState';
 import { AuthMode } from '../../types/authMode';
 import { ViewType } from '../../types/viewType';
 

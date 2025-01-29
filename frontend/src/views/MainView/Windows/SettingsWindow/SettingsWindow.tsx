@@ -13,7 +13,7 @@ import { PreferencesView } from './PreferencesView/PreferencesView';
 import { ProfileView } from './ProfileView/ProfileView';
 import { UserAvatar } from './UserAvatar/UserAvatar';
 import { Window } from '../../../../components/Window/Window';
-import { useUserState } from '../../../../states/hooks/useUserState';
+import { useUserState } from '../../../../states/user/useUserState';
 import { Utils } from '../../../../utils/utils';
 
 interface ISettingsWindowProps {

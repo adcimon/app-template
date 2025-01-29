@@ -13,7 +13,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { ConfirmationDialog } from '../../../../../components/Dialog/ConfirmationDialog';
 import { VerificationBadge } from '../../../../../components/Badge/VerificationBadge';
-import { useUserState } from '../../../../../states/hooks/useUserState';
+import { useUserState } from '../../../../../states/user/useUserState';
 import { Utils } from '../../../../../utils/utils';
 
 export const ProfilePhoneCard: React.FC = (): JSX.Element => {

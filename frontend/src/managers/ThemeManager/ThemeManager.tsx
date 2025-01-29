@@ -5,7 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Base from '../../themes/base/theme';
 import CustomLight from '../../themes/customLight/theme';
 import CustomDark from '../../themes/customDark/theme';
-import { useAppState } from '../../states/hooks/useAppState';
+import { useAppState } from '../../states/app/useAppState';
 
 interface IThemeManagerProps {
 	children?: React.ReactNode;

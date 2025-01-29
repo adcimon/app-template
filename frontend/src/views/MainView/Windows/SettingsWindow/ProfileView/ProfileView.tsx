@@ -6,7 +6,7 @@ import { ProfileDetailsCard } from './ProfileDetailsCard';
 import { ProfileEmailCard } from './ProfileEmailCard';
 import { ProfilePasswordCard } from './ProfilePasswordCard';
 import { ProfilePhoneCard } from './ProfilePhoneCard';
-import { useUserState } from '../../../../../states/hooks/useUserState';
+import { useUserState } from '../../../../../states/user/useUserState';
 
 export const ProfileView: React.FC = (): JSX.Element => {
 	const userState = useUserState();

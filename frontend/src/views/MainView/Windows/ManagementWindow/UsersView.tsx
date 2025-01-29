@@ -11,7 +11,7 @@ import { CountrySelect } from '../../../../components/Select/CountrySelect';
 import { GenericTable } from '../../../../components/Table/GenericTable';
 import { TimezoneSelect } from '../../../../components/Select/TimezoneSelect';
 import { VerificationBadge } from '../../../../components/Badge/VerificationBadge';
-import { useAdminState } from '../../../../states/hooks/useAdminState';
+import { useAdminState } from '../../../../states/admin/useAdminState';
 import { Utils } from '../../../../utils/utils';
 
 export const UsersView: React.FC = (): JSX.Element => {

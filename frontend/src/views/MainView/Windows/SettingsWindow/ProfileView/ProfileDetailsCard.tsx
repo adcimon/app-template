@@ -12,7 +12,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { CountrySelect } from '../../../../../components/Select/CountrySelect';
 import { TimezoneSelect } from '../../../../../components/Select/TimezoneSelect';
-import { useUserState } from '../../../../../states/hooks/useUserState';
+import { useUserState } from '../../../../../states/user/useUserState';
 
 export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 	const userState = useUserState();

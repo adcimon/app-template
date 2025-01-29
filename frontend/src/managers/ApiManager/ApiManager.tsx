@@ -1,8 +1,8 @@
 import React from 'react';
 import axios, { AxiosInstance } from 'axios';
-import { useApiState } from '../../states/hooks/useApiState';
-import { useAppState } from '../../states/hooks/useAppState';
-import { useUserState } from '../../states/hooks/useUserState';
+import { useApiState } from '../../states/api/useApiState';
+import { useAppState } from '../../states/app/useAppState';
+import { useUserState } from '../../states/user/useUserState';
 import { HttpParams } from '../../api/httpMethods';
 import { ApiClient } from '../../api/apiClient';
 import { ViewType } from '../../types/viewType';

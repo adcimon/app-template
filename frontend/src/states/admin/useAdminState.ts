@@ -1,6 +1,6 @@
 import * as Recoil from 'recoil';
-import { useApiState } from './useApiState';
-import { UsersState } from '../adminState';
+import { useApiState } from '../api/useApiState';
+import { UsersState } from './adminState';
 
 export function useAdminState() {
 	const apiState = useApiState();

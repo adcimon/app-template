@@ -8,7 +8,7 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { ConfirmationDialog } from '../../../../../components/Dialog/ConfirmationDialog';
-import { useUserState } from '../../../../../states/hooks/useUserState';
+import { useUserState } from '../../../../../states/user/useUserState';
 import { Utils } from '../../../../../utils/utils';
 
 export const UserAvatar: React.FC = (): JSX.Element => {

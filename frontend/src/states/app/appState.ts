@@ -1,6 +1,6 @@
 import * as Recoil from 'recoil';
-import { AuthMode } from '../types/authMode';
-import { ViewType } from '../types/viewType';
+import { AuthMode } from '../../types/authMode';
+import { ViewType } from '../../types/viewType';
 
 export const AppViewState = Recoil.atom<ViewType>({
 	key: 'AppView',

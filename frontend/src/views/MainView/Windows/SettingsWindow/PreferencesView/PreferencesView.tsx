@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
-import { useAppState } from '../../../../../states/hooks/useAppState';
+import { useAppState } from '../../../../../states/app/useAppState';
 
 export const PreferencesView: React.FC = (): JSX.Element => {
 	const appState = useAppState();

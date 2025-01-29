@@ -1,8 +1,8 @@
 import * as Recoil from 'recoil';
 import { UserDto } from '../../dtos/userDto';
 import { Transforms } from '../../dtos/transforms/transforms';
-import { useApiState } from './useApiState';
-import { AppErrorState, AppThemeState, AppViewState, AuthModeState } from '../appState';
+import { useApiState } from '../api/useApiState';
+import { AppErrorState, AppThemeState, AppViewState, AuthModeState } from './appState';
 import { AuthMode } from '../../types/authMode';
 import { ViewType } from '../../types/viewType';
 

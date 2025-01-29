@@ -13,8 +13,8 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { ConfirmationDialog } from '../../../../../components/Dialog/ConfirmationDialog';
 import { VerificationBadge } from '../../../../../components/Badge/VerificationBadge';
-import { useAppState } from '../../../../../states/hooks/useAppState';
-import { useUserState } from '../../../../../states/hooks/useUserState';
+import { useAppState } from '../../../../../states/app/useAppState';
+import { useUserState } from '../../../../../states/user/useUserState';
 import { Utils } from '../../../../../utils/utils';
 
 export const ProfileEmailCard: React.FC = (): JSX.Element => {

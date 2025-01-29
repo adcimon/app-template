@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { HomeView } from './HomeView/HomeView';
 import { MainBar } from './MainBar/MainBar';
-import { useUserState } from '../../states/hooks/useUserState';
+import { useUserState } from '../../states/user/useUserState';
 
 export const MainView: React.FC = (): JSX.Element => {
 	const mainBarHeight: string = '64px';

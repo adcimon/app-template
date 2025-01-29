@@ -10,7 +10,7 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { ConfirmationDialog } from '../../../../../components/Dialog/ConfirmationDialog';
-import { useAppState } from '../../../../../states/hooks/useAppState';
+import { useAppState } from '../../../../../states/app/useAppState';
 
 export const ProfileDangerZoneCard: React.FC = (): JSX.Element => {
 	const appState = useAppState();
