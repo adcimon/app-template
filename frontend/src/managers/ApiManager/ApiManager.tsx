@@ -223,7 +223,11 @@ export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps):
 		if (error?.code === 'unauthorized') {
 			// Try to refresh the access token.
 			try {
-				await client.authService.refreshToken();
+				const refreshToken: string = localStorage.getItem('refreshToken') || '';
+				const credentials: any = await client.authService.refreshToken(refreshToken);
+
+				const accessToken: string = credentials.accessToken;
+				localStorage.setItem('accessToken', accessToken);
 			} catch (err: any) {}
 
 			// Call the API endpoint again.

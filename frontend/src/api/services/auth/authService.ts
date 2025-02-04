@@ -26,61 +26,39 @@ export class AuthService {
 	};
 
 	signDown = async (password: string): Promise<any> => {
-		const response: any = await this.httpPost({
+		return this.httpPost({
 			endpoint: '/auth/sign-down',
 			data: {
 				password: btoa(password),
 			},
 			useAuthorization: true,
 		});
-
-		localStorage.removeItem('accessToken');
-		localStorage.removeItem('refreshToken');
-
-		return response;
 	};
 
 	signIn = async (email: string, password: string): Promise<any> => {
-		const response: any = await this.httpPost({
+		return this.httpPost({
 			endpoint: '/auth/sign-in',
 			data: {
 				email,
 				password: btoa(password),
 			},
 		});
-
-		const accessToken: string = response.accessToken;
-		localStorage.setItem('accessToken', accessToken);
-		const refreshToken: string = response.refreshToken;
-		localStorage.setItem('refreshToken', refreshToken);
-
-		return response;
 	};
 
 	signOut = async (): Promise<any> => {
-		const response: any = await this.httpPost({
+		return this.httpPost({
 			endpoint: '/auth/sign-out',
 			useAuthorization: true,
 		});
-
-		localStorage.removeItem('accessToken');
-		localStorage.removeItem('refreshToken');
-
-		return response;
 	};
 
-	refreshToken = async (): Promise<any> => {
-		const response: any = await this.httpPost({
+	refreshToken = async (refreshToken: string): Promise<any> => {
+		return this.httpPost({
 			endpoint: '/auth/refresh-token',
 			data: {
-				refreshToken: localStorage.getItem('refreshToken'),
+				refreshToken,
 			},
 		});
-
-		const accessToken: string = response.accessToken;
-		localStorage.setItem('accessToken', accessToken);
-
-		return response;
 	};
 
 	verifyEmail = async (code: string): Promise<any> => {
