@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { Copyright } from '../../core/components/Copyright/Copyright';
 import { LaunchView } from '../LaunchView/LaunchView';
-import { Logo } from '../../components/Logo/Logo';
+import { Logo } from '../LaunchView/Logo';
 import { PasswordField } from '../../core/components/Field/PasswordField';
 import { useNavigator } from '../../core/hooks/useNavigator';
 import { useAppState } from '../../states/app/useAppState';
