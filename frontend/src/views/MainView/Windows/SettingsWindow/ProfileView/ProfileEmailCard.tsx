@@ -11,11 +11,11 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { ConfirmationDialog } from '../../../../../components/Dialog/ConfirmationDialog';
-import { VerificationBadge } from '../../../../../components/Badge/VerificationBadge';
+import { ConfirmationDialog } from '../../../../../core/components/Dialog/ConfirmationDialog';
+import { VerificationBadge } from '../../../../../core/components/Badge/VerificationBadge';
 import { useAppState } from '../../../../../states/app/useAppState';
 import { useUserState } from '../../../../../states/user/useUserState';
-import { Utils } from '../../../../../utils/utils';
+import { AppUtils } from '../../../../../utils/appUtils';
 
 export const ProfileEmailCard: React.FC = (): JSX.Element => {
 	const appState = useAppState();
@@ -28,7 +28,7 @@ export const ProfileEmailCard: React.FC = (): JSX.Element => {
 	const [openChangeDialog, setOpenChangeDialog] = React.useState<boolean>(false);
 
 	const validate = (): boolean => {
-		return Utils.EMAIL_REGEXP.test(email) && email !== userState.user?.email;
+		return AppUtils.EMAIL_REGEXP.test(email) && email !== userState.user?.email;
 	};
 
 	const handleVerify = async () => {

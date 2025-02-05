@@ -12,9 +12,9 @@ import Typography from '@mui/material/Typography';
 import { PreferencesView } from './PreferencesView/PreferencesView';
 import { ProfileView } from './ProfileView/ProfileView';
 import { UserAvatar } from './UserAvatar/UserAvatar';
-import { Window } from '../../../../components/Window/Window';
+import { Window } from '../../../../core/components/Window/Window';
 import { useUserState } from '../../../../states/user/useUserState';
-import { Utils } from '../../../../utils/utils';
+import { AppUtils } from '../../../../utils/appUtils';
 
 interface ISettingsWindowProps {
 	open: boolean;
@@ -105,7 +105,7 @@ export const SettingsWindow: React.FC<ISettingsWindowProps> = (props: ISettingsW
 									</Typography>
 									<IconButton
 										size='small'
-										onClick={() => Utils.copyToClipboard(userState.user?.id ?? '')}>
+										onClick={() => AppUtils.copyToClipboard(userState.user?.id ?? '')}>
 										<ContentCopyIcon
 											fontSize='inherit'
 											sx={{

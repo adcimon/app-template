@@ -11,10 +11,10 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { ConfirmationDialog } from '../../../../../components/Dialog/ConfirmationDialog';
-import { VerificationBadge } from '../../../../../components/Badge/VerificationBadge';
+import { ConfirmationDialog } from '../../../../../core/components/Dialog/ConfirmationDialog';
+import { VerificationBadge } from '../../../../../core/components/Badge/VerificationBadge';
 import { useUserState } from '../../../../../states/user/useUserState';
-import { Utils } from '../../../../../utils/utils';
+import { AppUtils } from '../../../../../utils/appUtils';
 
 export const ProfilePhoneCard: React.FC = (): JSX.Element => {
 	const userState = useUserState();
@@ -24,7 +24,7 @@ export const ProfilePhoneCard: React.FC = (): JSX.Element => {
 	const [openChangeDialog, setOpenChangeDialog] = React.useState<boolean>(false);
 
 	const validate = (): boolean => {
-		return Utils.PHONE_REGEXP.test(phone) && phone !== userState.user?.phone;
+		return AppUtils.PHONE_REGEXP.test(phone) && phone !== userState.user?.phone;
 	};
 
 	const handleChange = async () => {

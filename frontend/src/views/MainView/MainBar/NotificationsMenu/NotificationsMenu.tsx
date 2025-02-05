@@ -8,7 +8,7 @@ import MenuList from '@mui/material/MenuList';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import { GenericPopover } from '../../../../components/Popover/GenericPopover';
+import { GenericPopover } from '../../../../core/components/Popover/GenericPopover';
 import { NotificationItem } from './NotificationItem';
 
 export const NotificationsMenu: React.FC = (): JSX.Element => {

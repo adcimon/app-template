@@ -13,14 +13,14 @@ import SecurityIcon from '@mui/icons-material/Security';
 import SettingsIcon from '@mui/icons-material/Settings';
 import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
-import { ConfirmationDialog } from '../../../../components/Dialog/ConfirmationDialog';
-import { GenericPopover } from '../../../../components/Popover/GenericPopover';
+import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
+import { GenericPopover } from '../../../../core/components/Popover/GenericPopover';
 import { HelpWindow } from '../../Windows/HelpWindow/HelpWindow';
 import { ManagementWindow } from '../../Windows/ManagementWindow/ManagementWindow';
 import { SettingsWindow } from '../../Windows/SettingsWindow/SettingsWindow';
 import { useAppState } from '../../../../states/app/useAppState';
 import { useUserState } from '../../../../states/user/useUserState';
-import { Utils } from '../../../../utils/utils';
+import { AppUtils } from '../../../../utils/appUtils';
 
 export const AccountMenu: React.FC = (): JSX.Element => {
 	const ref = React.useRef<any>(null);
@@ -82,6 +82,7 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 		} finally {
 			toast.success('See you soon!');
 			appState.reset();
+			userState.reset();
 		}
 	};
 
@@ -91,7 +92,7 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 	};
 
 	const render = () => {
-		const avatar: string | undefined = Utils.getAvatar(userState.user);
+		const avatar: string | undefined = AppUtils.getAvatar(userState.user);
 		const iconSx: SxProps = {
 			paddingRight: '5px',
 		};

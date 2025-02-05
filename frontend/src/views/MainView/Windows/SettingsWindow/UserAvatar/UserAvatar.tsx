@@ -7,9 +7,9 @@ import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { ConfirmationDialog } from '../../../../../components/Dialog/ConfirmationDialog';
+import { ConfirmationDialog } from '../../../../../core/components/Dialog/ConfirmationDialog';
 import { useUserState } from '../../../../../states/user/useUserState';
-import { Utils } from '../../../../../utils/utils';
+import { AppUtils } from '../../../../../utils/appUtils';
 
 export const UserAvatar: React.FC = (): JSX.Element => {
 	const ref = React.useRef<HTMLDivElement>(null);
@@ -34,7 +34,7 @@ export const UserAvatar: React.FC = (): JSX.Element => {
 	};
 
 	const validate = (): boolean => {
-		return Utils.AVATAR_REGEXP.test(avatar) && avatar !== userState.user?.avatar;
+		return AppUtils.AVATAR_REGEXP.test(avatar) && avatar !== userState.user?.avatar;
 	};
 
 	const handleAccept = async () => {
@@ -68,7 +68,7 @@ export const UserAvatar: React.FC = (): JSX.Element => {
 	};
 
 	const render = () => {
-		const avatar: string | undefined = Utils.getAvatar(userState.user);
+		const avatar: string | undefined = AppUtils.getAvatar(userState.user);
 		return (
 			<>
 				<Box

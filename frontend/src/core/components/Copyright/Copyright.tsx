@@ -15,10 +15,10 @@ export const Copyright: React.FC = (): JSX.Element => {
 				}}>
 				{'Copyright © '}
 				<Link
-					href='https://github.com/adcimon'
+					href='https://www.brainstorm3d.com/'
 					target='_blank'
 					color='inherit'>
-					adcimon
+					Brainstorm
 				</Link>{' '}
 				{year}
 			</Typography>

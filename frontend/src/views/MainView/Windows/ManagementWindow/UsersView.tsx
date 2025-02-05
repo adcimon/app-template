@@ -7,12 +7,12 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { CountrySelect } from '../../../../components/Select/CountrySelect';
-import { GenericTable } from '../../../../components/Table/GenericTable';
-import { TimezoneSelect } from '../../../../components/Select/TimezoneSelect';
-import { VerificationBadge } from '../../../../components/Badge/VerificationBadge';
+import { CountrySelect } from '../../../../core/components/Select/CountrySelect';
+import { GenericTable } from '../../../../core/components/Table/GenericTable';
+import { TimezoneSelect } from '../../../../core/components/Select/TimezoneSelect';
+import { VerificationBadge } from '../../../../core/components/Badge/VerificationBadge';
 import { useAdminState } from '../../../../states/admin/useAdminState';
-import { Utils } from '../../../../utils/utils';
+import { AppUtils } from '../../../../utils/appUtils';
 
 export const UsersView: React.FC = (): JSX.Element => {
 	const adminState = useAdminState();
@@ -44,7 +44,7 @@ export const UsersView: React.FC = (): JSX.Element => {
 	};
 
 	const renderRow = (item: any) => {
-		const avatar: string | undefined = Utils.getAvatar(item);
+		const avatar: string | undefined = AppUtils.getAvatar(item);
 		return [
 			<>
 				{/* Name */}
@@ -114,7 +114,7 @@ export const UsersView: React.FC = (): JSX.Element => {
 	};
 
 	const renderDialog = () => {
-		const avatar: string | undefined = Utils.getAvatar(user);
+		const avatar: string | undefined = AppUtils.getAvatar(user);
 		return (
 			<>
 				<Stack

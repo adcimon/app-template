@@ -61,6 +61,7 @@ export const ConfirmationDialog: React.FC<IConfirmationDialogProps> = (
 				<GenericDialog
 					title={props.title}
 					variant={props.variant}
+					open={props.open}
 					actions={
 						<>
 							{props.onCancel && (
@@ -81,7 +82,6 @@ export const ConfirmationDialog: React.FC<IConfirmationDialogProps> = (
 							)}
 						</>
 					}
-					open={props.open}
 					onClose={props.onClose}
 					sx={props.sx}>
 					{props.children}

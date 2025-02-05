@@ -2,17 +2,12 @@ import * as Recoil from 'recoil';
 import { UserDto } from '../../dtos/userDto';
 import { Transforms } from '../../dtos/transforms/transforms';
 import { useApiState } from '../api/useApiState';
-import { AppErrorState, AppThemeState, AppViewState, AuthModeState } from './appState';
-import { AuthMode } from '../../types/authMode';
-import { ViewType } from '../../types/viewType';
+import { AppThemeState } from './appState';
 
 export function useAppState() {
 	const apiState = useApiState();
 
-	const [appView, setAppView] = Recoil.useRecoilState(AppViewState);
-	const [authMode, setAuthMode] = Recoil.useRecoilState(AuthModeState);
 	const [theme, setTheme] = Recoil.useRecoilState(AppThemeState);
-	const [error, setError] = Recoil.useRecoilState(AppErrorState);
 
 	const signUp = async (email: string, password: string): Promise<any> => {
 		const user: any = await apiState.client?.authService.signUp(email, password);
@@ -70,21 +65,12 @@ export function useAppState() {
 	};
 
 	const reset = () => {
-		setAppView(ViewType.SignIn);
-		setAuthMode(AuthMode.Signed);
-		setError(undefined);
 		apiState.client?.cancelRequests();
 	};
 
 	return {
-		appView,
-		authMode,
 		theme,
-		error,
-		setAppView,
-		setAuthMode,
 		setTheme,
-		setError,
 		signUp,
 		signDown,
 		signIn,

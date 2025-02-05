@@ -7,17 +7,13 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { NavigationUtils } from '../../utils/navigationUtils';
 
 interface IErrorViewProps {
-	error?: Error;
+	message?: string;
+	onClick?: () => void;
 }
 
 export const ErrorView: React.FC<IErrorViewProps> = (props: IErrorViewProps): JSX.Element => {
-	const handleClick = () => {
-		NavigationUtils.redirectToHome();
-	};
-
 	const render = () => {
 		return (
 			<>
@@ -82,11 +78,11 @@ export const ErrorView: React.FC<IErrorViewProps> = (props: IErrorViewProps): JS
 												sx={{
 													textAlign: 'center',
 												}}>
-												{props?.error?.message || 'Something went wrong'}
+												{props.message || 'Something went wrong'}
 											</Typography>
 											<Button
 												variant='contained'
-												onClick={handleClick}>
+												onClick={props.onClick}>
 												Return Home
 											</Button>
 										</Stack>

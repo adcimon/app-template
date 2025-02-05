@@ -9,7 +9,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import ErrorRoundedIcon from '@mui/icons-material/ErrorRounded';
 import InfoIcon from '@mui/icons-material/Info';
 import Stack from '@mui/material/Stack';
-import { useResponsive } from '../hooks/useResponsive';
+import { useResponsive } from '../../hooks/useResponsive';
 
 interface IGenericDialogProps {
 	title?: React.ReactNode;

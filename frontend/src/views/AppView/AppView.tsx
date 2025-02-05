@@ -1,51 +1,83 @@
 import React from 'react';
-import { ErrorView } from '../ErrorView/ErrorView';
-import { ForgotPasswordView } from '../ForgotPasswordView/ForgotPasswordView';
-import { MainView } from '../MainView/MainView';
-import { SignInView } from '../SignInView/SignInView';
-import { SignUpView } from '../SignUpView/SignUpView';
-import { useAppState } from '../../states/app/useAppState';
+import { ErrorView } from '../../views/ErrorView/ErrorView';
+import { ForgotPasswordView } from '../../views/ForgotPasswordView/ForgotPasswordView';
+import { LoadingView } from '../LoadingView/LoadingView';
+import { MainView } from '../../views/MainView/MainView';
+import { SignInView } from '../../views/SignInView/SignInView';
+import { SignUpView } from '../../views/SignUpView/SignUpView';
+import { Route } from '../../core/components/Router/Route';
+import { Router } from '../../core/components/Router/Router';
+import { useNavigator } from '../../core/hooks/useNavigator';
 import { useUserState } from '../../states/user/useUserState';
-import { AuthMode } from '../../types/authMode';
-import { ViewType } from '../../types/viewType';
+import { CryptoUtils } from '../../utils/cryptoUtils';
 
 export const AppView: React.FC = (): JSX.Element => {
-	const appState = useAppState();
+	const navigator = useNavigator();
 	const userState = useUserState();
 
+	const [initialized, setInitialized] = React.useState<boolean>(false);
+
 	React.useEffect(() => {
-		if (!appState.error) {
-			autoAuth();
-		}
+		init();
 	}, []);
+
+	const init = async () => {
+		await autoAuth();
+		setInitialized(true);
+	};
 
 	const autoAuth = async () => {
 		try {
 			await userState.get();
-			appState.setAppView(ViewType.Main);
-			appState.setAuthMode(AuthMode.Signed);
+			navigator.navigate('/', {
+				params: navigator.params,
+			});
 		} catch (error: any) {
 			// Ignore errors.
 		}
 	};
 
 	const render = () => {
-		if (appState.error) {
-			return <ErrorView error={appState.error} />;
+		if (!initialized) {
+			return <LoadingView />;
 		}
 
-		switch (appState.appView) {
-			case ViewType.SignIn:
-				return <SignInView />;
-			case ViewType.SignUp:
-				return <SignUpView />;
-			case ViewType.ForgotPassword:
-				return <ForgotPasswordView />;
-			case ViewType.Main:
-				return <MainView />;
-			default:
-				return <ErrorView />;
-		}
+		return (
+			<>
+				<Router>
+					<Route path='/'>
+						{userState.user ? (
+							<MainView />
+						) : !userState.user && navigator.hasParam('token') ? (
+							<MainView />
+						) : (
+							<SignInView />
+						)}
+					</Route>
+					<Route path='/sign-in'>
+						<SignInView />
+					</Route>
+					<Route path='/sign-up'>
+						<SignUpView />
+					</Route>
+					<Route path='/forgot-password'>
+						<ForgotPasswordView />
+					</Route>
+					<Route path='/error'>
+						<ErrorView
+							message={CryptoUtils.decodeBase64(navigator.getParam('message'))}
+							onClick={() => navigator.redirect('/')}
+						/>
+					</Route>
+					<Route path='*'>
+						<ErrorView
+							message={'Page not found'}
+							onClick={() => navigator.redirect('/')}
+						/>
+					</Route>
+				</Router>
+			</>
+		);
 	};
 
 	return render();

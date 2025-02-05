@@ -7,17 +7,18 @@ import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { Copyright } from '../../components/Copyright/Copyright';
+import { Copyright } from '../../core/components/Copyright/Copyright';
 import { LaunchView } from '../LaunchView/LaunchView';
 import { Logo } from '../../components/Logo/Logo';
-import { PasswordField } from '../../components/Field/PasswordField';
-import { PrivacyPolicyDialog } from '../../components/Dialog/PrivacyPolicyDialog';
-import { TermsOfServiceDialog } from '../../components/Dialog/TermsOfServiceDialog';
+import { PasswordField } from '../../core/components/Field/PasswordField';
+import { PrivacyPolicyDialog } from '../../core/components/Dialog/PrivacyPolicyDialog';
+import { TermsOfServiceDialog } from '../../core/components/Dialog/TermsOfServiceDialog';
+import { useNavigator } from '../../core/hooks/useNavigator';
 import { useAppState } from '../../states/app/useAppState';
-import { ViewType } from '../../types/viewType';
-import { Utils } from '../../utils/utils';
+import { AppUtils } from '../../utils/appUtils';
 
 export const SignUpView: React.FC = (): JSX.Element => {
+	const navigator = useNavigator();
 	const appState = useAppState();
 
 	const [email, setEmail] = React.useState<string>('');
@@ -28,7 +29,7 @@ export const SignUpView: React.FC = (): JSX.Element => {
 	const [openPrivacyPolicyDialog, setOpenPrivacyPolicyDialog] = React.useState<boolean>(false);
 
 	const validate = (): boolean => {
-		return Utils.EMAIL_REGEXP.test(email) && password !== '' && password === confirmPassword && legalAccepted;
+		return AppUtils.EMAIL_REGEXP.test(email) && password !== '' && password === confirmPassword && legalAccepted;
 	};
 
 	const handleOpenTermsOfService = (event: React.MouseEvent<HTMLElement>) => {
@@ -52,7 +53,7 @@ export const SignUpView: React.FC = (): JSX.Element => {
 	const handleSignUp = async () => {
 		try {
 			await appState.signUp(email, password);
-			appState.setAppView(ViewType.SignIn);
+			navigator.navigate('/sign-in');
 			toast.success('Verify your email');
 		} catch (error: any) {
 			toast.error(error.message);
@@ -60,7 +61,7 @@ export const SignUpView: React.FC = (): JSX.Element => {
 	};
 
 	const handleSignIn = () => {
-		appState.setAppView(ViewType.SignIn);
+		navigator.navigate('/sign-in');
 	};
 
 	const render = () => {
@@ -68,11 +69,7 @@ export const SignUpView: React.FC = (): JSX.Element => {
 			<>
 				<LaunchView>
 					<Logo />
-					<Typography
-						component='h1'
-						variant='h5'>
-						Sign Up
-					</Typography>
+					<Typography variant='h5'>Sign Up</Typography>
 					<TextField
 						label='Email'
 						value={email}
@@ -133,7 +130,7 @@ export const SignUpView: React.FC = (): JSX.Element => {
 						}}>
 						<Grid item>
 							<Link
-								href='#'
+								component='button'
 								variant='body2'
 								onClick={handleSignIn}>
 								← Already have an account? Sign in

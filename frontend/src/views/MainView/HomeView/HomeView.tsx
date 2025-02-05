@@ -5,7 +5,7 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { UserCard } from '../../../components/Card/UserCard';
+import { UserCard } from '../../../core/components/Card/UserCard';
 
 export const HomeView: React.FC = (): JSX.Element => {
 	const render = () => {

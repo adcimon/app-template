@@ -7,7 +7,7 @@ import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Typography from '@mui/material/Typography';
 import { UsersView } from './UsersView';
-import { Window } from '../../../../components/Window/Window';
+import { Window } from '../../../../core/components/Window/Window';
 
 interface IManagementWindowProps {
 	open: boolean;

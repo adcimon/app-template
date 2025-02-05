@@ -9,8 +9,8 @@ import CardHeader from '@mui/material/CardHeader';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import { ConfirmationDialog } from '../../../../../components/Dialog/ConfirmationDialog';
-import { PasswordField } from '../../../../../components/Field/PasswordField';
+import { ConfirmationDialog } from '../../../../../core/components/Dialog/ConfirmationDialog';
+import { PasswordField } from '../../../../../core/components/Field/PasswordField';
 import { useAppState } from '../../../../../states/app/useAppState';
 
 export const ProfilePasswordCard: React.FC = (): JSX.Element => {

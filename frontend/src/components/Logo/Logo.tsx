@@ -14,8 +14,7 @@ export const Logo: React.FC = (): JSX.Element => {
 						marginBottom: '10px',
 					}}>
 					<Typography
-						component='h2'
-						variant='h2'
+						variant='h3'
 						sx={{
 							color: '#0170cd',
 						}}>

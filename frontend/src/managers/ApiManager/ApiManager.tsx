@@ -1,11 +1,9 @@
 import React from 'react';
 import axios, { AxiosInstance } from 'axios';
 import { useApiState } from '../../states/api/useApiState';
-import { useAppState } from '../../states/app/useAppState';
 import { useUserState } from '../../states/user/useUserState';
 import { HttpParams } from '../../api/httpMethods';
 import { ApiClient } from '../../api/apiClient';
-import { ViewType } from '../../types/viewType';
 import { ConsoleUtils } from '../../utils/consoleUtils';
 
 interface IApiManagerProps {
@@ -14,7 +12,6 @@ interface IApiManagerProps {
 
 export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps): JSX.Element => {
 	const apiState = useApiState();
-	const appState = useAppState();
 	const userState = useUserState();
 
 	let endpoint: string = 'http://127.0.0.1:9000';
@@ -43,10 +40,6 @@ export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps):
 		}
 	};
 
-	const getBaseURL = () => {
-		return endpoint;
-	};
-
 	const getHttpConfig = (options: { useAuthorization?: boolean; useForm?: boolean }): any => {
 		const accessToken: string | undefined = localStorage.getItem('accessToken') ?? undefined;
 		const authorization: string | undefined =
@@ -64,7 +57,7 @@ export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps):
 		controller = new AbortController();
 
 		instance = axios.create({
-			baseURL: getBaseURL(),
+			baseURL: endpoint,
 			signal: controller.signal,
 		});
 
@@ -238,7 +231,6 @@ export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps):
 				localStorage.removeItem('refreshToken');
 
 				apiState.setClient(client);
-				appState.setAppView(ViewType.SignIn);
 				userState.reset();
 
 				throw error;

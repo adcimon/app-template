@@ -10,8 +10,8 @@ import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { CountrySelect } from '../../../../../components/Select/CountrySelect';
-import { TimezoneSelect } from '../../../../../components/Select/TimezoneSelect';
+import { CountrySelect } from '../../../../../core/components/Select/CountrySelect';
+import { TimezoneSelect } from '../../../../../core/components/Select/TimezoneSelect';
 import { useUserState } from '../../../../../states/user/useUserState';
 
 export const ProfileDetailsCard: React.FC = (): JSX.Element => {

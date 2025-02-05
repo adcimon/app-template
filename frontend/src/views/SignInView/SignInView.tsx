@@ -5,16 +5,18 @@ import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { Copyright } from '../../components/Copyright/Copyright';
+import { Copyright } from '../../core/components/Copyright/Copyright';
 import { LaunchView } from '../LaunchView/LaunchView';
 import { Logo } from '../../components/Logo/Logo';
-import { PasswordField } from '../../components/Field/PasswordField';
+import { PasswordField } from '../../core/components/Field/PasswordField';
+import { useNavigator } from '../../core/hooks/useNavigator';
 import { useAppState } from '../../states/app/useAppState';
-import { AuthMode } from '../../types/authMode';
-import { ViewType } from '../../types/viewType';
+import { useUserState } from '../../states/user/useUserState';
 
 export const SignInView: React.FC = (): JSX.Element => {
+	const navigator = useNavigator();
 	const appState = useAppState();
+	const userState = useUserState();
 
 	const [email, setEmail] = React.useState<string>('');
 	const [password, setPassword] = React.useState<string>('');
@@ -22,19 +24,19 @@ export const SignInView: React.FC = (): JSX.Element => {
 	const handleSignIn = async () => {
 		try {
 			await appState.signIn(email, password);
-			appState.setAppView(ViewType.Main);
-			appState.setAuthMode(AuthMode.Signed);
+			await userState.get();
+			navigator.navigate('/');
 		} catch (error: any) {
 			toast.error(error.message);
 		}
 	};
 
 	const handleForgotPassword = () => {
-		appState.setAppView(ViewType.ForgotPassword);
+		navigator.navigate('/forgot-password');
 	};
 
 	const handleSignUp = () => {
-		appState.setAppView(ViewType.SignUp);
+		navigator.navigate('/sign-up');
 	};
 
 	const render = () => {
@@ -42,11 +44,7 @@ export const SignInView: React.FC = (): JSX.Element => {
 			<>
 				<LaunchView>
 					<Logo />
-					<Typography
-						component='h1'
-						variant='h5'>
-						Sign In
-					</Typography>
+					<Typography variant='h5'>Sign In</Typography>
 					<TextField
 						label='Email'
 						autoComplete='email'
@@ -82,7 +80,7 @@ export const SignInView: React.FC = (): JSX.Element => {
 							item
 							xs>
 							<Link
-								href='#'
+								component='button'
 								variant='body2'
 								onClick={handleForgotPassword}>
 								Forgot your password?
@@ -90,10 +88,10 @@ export const SignInView: React.FC = (): JSX.Element => {
 						</Grid>
 						<Grid item>
 							<Link
-								href='#'
+								component='button'
 								variant='body2'
 								onClick={handleSignUp}>
-								{"Don't have an account? Sign Up"}
+								Don't have an account? Sign Up
 							</Link>
 						</Grid>
 					</Grid>

@@ -8,7 +8,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { CopyField } from '../Field/CopyField';
 import { GenericDialog } from './GenericDialog';
-const QRCode = require('qrcode');
+import QRCode from 'qrcode';
 
 interface IShareDialogProps {
 	label?: string;
