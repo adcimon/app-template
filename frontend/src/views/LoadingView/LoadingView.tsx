@@ -20,20 +20,20 @@ export const LoadingView: React.FC = (): JSX.Element => {
 						sx={{
 							alignItems: 'center',
 							height: '50%',
-							gap: '2rem',
+							gap: '3rem',
 							justifyContent: 'center',
 							width: '50%',
 						}}>
 						<Typography
 							sx={{
 								color: 'text.secondary',
-								fontSize: '2rem',
+								fontSize: '3rem',
 							}}>
 							Loading...
 						</Typography>
 						<LinearProgress
 							sx={{
-								width: '100%',
+								width: '70%',
 							}}
 						/>
 					</Stack>
