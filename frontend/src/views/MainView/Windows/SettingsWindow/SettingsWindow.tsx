@@ -14,7 +14,7 @@ import { ProfileView } from './ProfileView/ProfileView';
 import { UserAvatar } from './UserAvatar/UserAvatar';
 import { Window } from '../../../../core/components/Window/Window';
 import { useUserState } from '../../../../states/user/useUserState';
-import { AppUtils } from '../../../../utils/appUtils';
+import { Utils } from '../../../../core/utils/utils';
 
 interface ISettingsWindowProps {
 	open: boolean;
@@ -105,7 +105,7 @@ export const SettingsWindow: React.FC<ISettingsWindowProps> = (props: ISettingsW
 									</Typography>
 									<IconButton
 										size='small'
-										onClick={() => AppUtils.copyToClipboard(userState.user?.id ?? '')}>
+										onClick={() => Utils.copyToClipboard(userState.user?.id ?? '')}>
 										<ContentCopyIcon
 											fontSize='inherit'
 											sx={{
