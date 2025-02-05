@@ -8,10 +8,10 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 interface IGenericCardProps {
-	image?: string;
 	title?: string;
-	children?: React.ReactNode;
+	image?: string;
 	actions?: React.ReactNode;
+	children?: React.ReactNode;
 }
 
 export const GenericCard: React.FC<IGenericCardProps> = (props: IGenericCardProps): JSX.Element => {

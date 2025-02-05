@@ -64,10 +64,10 @@ export const HomeView: React.FC = (): JSX.Element => {
 							sm={6}
 							md={4}>
 							<UserCard
-								image='/images/walle_banner.jpg'
-								avatar='/images/walle.png'
 								title='WALL-E'
-								text='Waste Allocation Load Lifter: Earth-Class'>
+								text='Waste Allocation Load Lifter: Earth-Class'
+								image='/images/walle_banner.jpg'
+								avatar='/images/walle.png'>
 								<Button
 									href='https://en.wikipedia.org/wiki/WALL-E_(character)'
 									target='_blank'
@@ -82,10 +82,10 @@ export const HomeView: React.FC = (): JSX.Element => {
 							sm={6}
 							md={4}>
 							<UserCard
-								image='/images/r2d2_banner.jpg'
-								avatar='/images/r2d2.png'
 								title='R2-D2'
-								text='Second Generation Robotic Droid Series-2'>
+								text='Second Generation Robotic Droid Series-2'
+								image='/images/r2d2_banner.jpg'
+								avatar='/images/r2d2.png'>
 								<Button
 									href='https://en.wikipedia.org/wiki/R2-D2'
 									target='_blank'
@@ -100,10 +100,10 @@ export const HomeView: React.FC = (): JSX.Element => {
 							sm={6}
 							md={4}>
 							<UserCard
-								image='/images/iron_giant_banner.jpg'
-								avatar='/images/iron_giant.png'
 								title='Iron Giant'
-								text='Superman'>
+								text='Superman'
+								image='/images/iron_giant_banner.jpg'
+								avatar='/images/iron_giant.png'>
 								<Button
 									href='https://en.wikipedia.org/wiki/The_Iron_Giant'
 									target='_blank'

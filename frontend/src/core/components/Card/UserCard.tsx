@@ -10,10 +10,10 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 interface IUserCardProps {
-	image?: string;
-	avatar?: string;
 	title?: string;
 	text?: string;
+	image?: string;
+	avatar?: string;
 	children?: React.ReactNode;
 }
 
