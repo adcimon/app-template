@@ -1,7 +1,7 @@
 import * as Recoil from 'recoil';
-import { UserDto } from '../../dtos/userDto';
+import { User } from '../../model/user';
 
-export const UserState = Recoil.atom<UserDto | undefined>({
+export const UserState = Recoil.atom<User | undefined>({
 	key: 'User',
 	default: undefined,
 });

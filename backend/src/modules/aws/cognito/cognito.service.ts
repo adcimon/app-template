@@ -49,10 +49,11 @@ export class CognitoService implements OnModuleInit {
 		const command: AWS.InitiateAuthCommand = new AWS.InitiateAuthCommand(input);
 
 		const output: AWS.InitiateAuthCommandOutput = await this.client.send(command);
+		const idToken: string = output.AuthenticationResult?.IdToken ?? '';
 		const accessToken: string = output.AuthenticationResult?.AccessToken ?? '';
 		const refreshToken: string = output.AuthenticationResult?.RefreshToken ?? '';
 
-		return { accessToken, refreshToken };
+		return { idToken, accessToken, refreshToken };
 	}
 
 	public async signUp(email: string, password: string): Promise<UserDto> {
@@ -147,9 +148,10 @@ export class CognitoService implements OnModuleInit {
 		const command: AWS.InitiateAuthCommand = new AWS.InitiateAuthCommand(input);
 
 		const output: AWS.InitiateAuthCommandOutput = await this.client.send(command);
+		const idToken: string = output.AuthenticationResult?.IdToken ?? '';
 		const accessToken: string = output.AuthenticationResult?.AccessToken ?? '';
 
-		return { accessToken, refreshToken };
+		return { idToken, accessToken, refreshToken };
 	}
 
 	@Transform(StatusBooleanToDto)

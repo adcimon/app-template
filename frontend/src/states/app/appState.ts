@@ -1,6 +1,6 @@
 import * as Recoil from 'recoil';
 
-export const AppThemeState = Recoil.atom<number>({
-	key: 'AppTheme',
+export const ThemeState = Recoil.atom<number>({
+	key: 'Theme',
 	default: 0,
 });

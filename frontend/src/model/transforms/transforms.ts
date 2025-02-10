@@ -1,5 +1,5 @@
 import { UserTransform } from './userTransform';
 
-export namespace Transforms.ApiToDto {
+export namespace Transforms.Dto {
 	export const User = UserTransform;
 }
