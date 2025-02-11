@@ -31,7 +31,7 @@ export const AuthGuard = (...methods: AuthMethod[]) => {
 						request.user = user;
 						return true;
 					} catch (error: any) {
-						throw new UnauthorizedException(error?.message);
+						throw new UnauthorizedException(error.message);
 					}
 				}
 			}
