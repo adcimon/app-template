@@ -73,7 +73,7 @@ export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps):
 			(error: any) => {
 				return Promise.reject({
 					code: 'network_error',
-					message: error?.message,
+					message: error.message,
 					data: error,
 				});
 			},
@@ -102,7 +102,7 @@ export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps):
 					ConsoleUtils.logResponse(status, endpoint, error);
 					return Promise.reject({
 						code: 'network_error',
-						message: error?.message,
+						message: error.message,
 						data: error,
 					});
 				}
