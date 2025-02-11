@@ -65,7 +65,7 @@ export const Window: React.FC<IWindowProps> = (props: IWindowProps): JSX.Element
 							direction='column'
 							spacing={3}
 							sx={props.sx}>
-							{renderHeader()}
+							{(props.label || props.onClose) && renderHeader()}
 							{props.children}
 						</Stack>
 					</Container>
