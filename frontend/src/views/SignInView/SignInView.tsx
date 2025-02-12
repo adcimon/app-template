@@ -47,8 +47,8 @@ export const SignInView: React.FC = (): JSX.Element => {
 					<Typography variant='h5'>Sign In</Typography>
 					<EmailField
 						label='Email'
-						autoComplete='email'
 						value={email}
+						autoComplete='email'
 						required={true}
 						onChange={(event: any) => setEmail(event.target.value)}
 						fullWidth={true}

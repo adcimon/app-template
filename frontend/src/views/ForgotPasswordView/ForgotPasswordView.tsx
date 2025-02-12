@@ -97,6 +97,7 @@ export const ForgotPasswordView: React.FC = (): JSX.Element => {
 					<PasswordField
 						label='Password'
 						value={password}
+						autoComplete='new-password'
 						required={true}
 						onChange={(event: any) => setPassword(event.target.value)}
 						fullWidth={true}
