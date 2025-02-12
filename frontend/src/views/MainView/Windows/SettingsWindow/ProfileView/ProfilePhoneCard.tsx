@@ -9,9 +9,9 @@ import CardHeader from '@mui/material/CardHeader';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { ConfirmationDialog } from '../../../../../core/components/Dialog/ConfirmationDialog';
+import { PhoneField } from '../../../../../core/components/Field/PhoneField';
 import { VerificationBadge } from '../../../../../core/components/Badge/VerificationBadge';
 import { useUserState } from '../../../../../states/user/useUserState';
 import { AppUtils } from '../../../../../utils/appUtils';
@@ -86,9 +86,8 @@ export const ProfilePhoneCard: React.FC = (): JSX.Element => {
 									xs={12}
 									md={12}
 									lg={12}>
-									<TextField
+									<PhoneField
 										label='Phone'
-										type='tel'
 										value={phone}
 										onChange={(event: any) => setPhone(event.target.value)}
 										InputLabelProps={{
@@ -129,8 +128,7 @@ export const ProfilePhoneCard: React.FC = (): JSX.Element => {
 					onCancel={handleCancelChange}
 					onClose={handleCancelChange}>
 					<Typography>Confirm your new phone number to change it.</Typography>
-					<TextField
-						type='tel'
+					<PhoneField
 						variant='standard'
 						value={confirmPhone}
 						autoFocus={true}
