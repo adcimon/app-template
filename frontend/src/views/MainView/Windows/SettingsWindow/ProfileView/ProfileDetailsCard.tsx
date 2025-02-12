@@ -88,10 +88,12 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 										label='Name'
 										value={name}
 										onChange={(event: any) => setName(event.target.value)}
-										InputLabelProps={{
-											shrink: true,
-										}}
 										fullWidth={true}
+										slotProps={{
+											inputLabel: {
+												shrink: true,
+											},
+										}}
 									/>
 								</Grid>
 								<Grid
@@ -102,10 +104,12 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 										label='Surname'
 										value={surname}
 										onChange={(event: any) => setSurname(event.target.value)}
-										InputLabelProps={{
-											shrink: true,
-										}}
 										fullWidth={true}
+										slotProps={{
+											inputLabel: {
+												shrink: true,
+											},
+										}}
 									/>
 								</Grid>
 								<Grid
@@ -117,10 +121,12 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 										type='date'
 										value={birthdate}
 										onChange={(event: any) => setBirthdate(event.target.value)}
-										InputLabelProps={{
-											shrink: true,
-										}}
 										fullWidth={true}
+										slotProps={{
+											inputLabel: {
+												shrink: true,
+											},
+										}}
 									/>
 								</Grid>
 								<Grid
@@ -131,8 +137,10 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 										label='Country'
 										value={country}
 										onChange={(event: any) => setCountry(event.target.value?.code || '')}
-										InputLabelProps={{
-											shrink: true,
+										slotProps={{
+											inputLabel: {
+												shrink: true,
+											},
 										}}
 									/>
 								</Grid>
@@ -144,8 +152,10 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 										label='Timezone'
 										value={timezone}
 										onChange={(event: any) => setTimezone(event.target.value)}
-										InputLabelProps={{
-											shrink: true,
+										slotProps={{
+											inputLabel: {
+												shrink: true,
+											},
 										}}
 									/>
 								</Grid>

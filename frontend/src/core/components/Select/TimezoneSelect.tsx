@@ -1,6 +1,8 @@
 import React from 'react';
+import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import Autocomplete from '@mui/material/Autocomplete';
 import Box from '@mui/material/Box';
+import InputAdornment from '@mui/material/InputAdornment';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 
 type TimezoneSelectProps = TextFieldProps & {
@@ -41,17 +43,29 @@ export const TimezoneSelect: React.FC<TimezoneSelectProps> = ({
 						<TextField
 							{...params}
 							{...subprops}
-							inputProps={{
-								...params.inputProps,
-								...props.inputProps,
-								autoComplete: 'new-password', // Disable autocomplete and autofill.
-							}}
-							InputProps={{
-								...params.InputProps,
-								...props.InputProps,
-								sx: {
-									...props.sx,
-									height: '100%',
+							slotProps={{
+								input: {
+									...params.InputProps,
+									...props.slotProps?.input,
+									startAdornment: (
+										<InputAdornment
+											position='start'
+											sx={{
+												marginRight: '2px !important',
+												marginTop: '0 !important',
+											}}>
+											<AccessTimeFilledIcon fontSize='small' />
+										</InputAdornment>
+									),
+									sx: {
+										...props.sx,
+										height: '100%',
+									},
+								},
+								htmlInput: {
+									...params.inputProps,
+									...props.slotProps?.htmlInput,
+									autoComplete: 'new-password', // Disable autocomplete and autofill.
 								},
 							}}
 						/>

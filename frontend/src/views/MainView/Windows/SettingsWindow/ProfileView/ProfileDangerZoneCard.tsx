@@ -7,9 +7,9 @@ import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { ConfirmationDialog } from '../../../../../core/components/Dialog/ConfirmationDialog';
+import { PasswordField } from '../../../../../core/components/Field/PasswordField';
 import { useAppState } from '../../../../../states/app/useAppState';
 
 export const ProfileDangerZoneCard: React.FC = (): JSX.Element => {
@@ -90,7 +90,8 @@ export const ProfileDangerZoneCard: React.FC = (): JSX.Element => {
 													color: 'text.secondary',
 													marginTop: '5px',
 												}}>
-												This action is irreversible, there is no going back. Please be certain.
+												This action is irreversible, there is no going back.<br></br>Please be
+												certain.
 											</Typography>
 										</Box>
 										<Button
@@ -115,8 +116,7 @@ export const ProfileDangerZoneCard: React.FC = (): JSX.Element => {
 					onCancel={handleCancelDeleteAccount}
 					onClose={handleCancelDeleteAccount}>
 					<Typography>Confirm your password to delete your account.</Typography>
-					<TextField
-						type='password'
+					<PasswordField
 						variant='standard'
 						value={password}
 						autoFocus={true}
