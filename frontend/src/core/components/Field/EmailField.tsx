@@ -13,7 +13,7 @@ export const EmailField: React.FC<TextFieldProps> = (props: TextFieldProps): JSX
 						input: {
 							startAdornment: (
 								<InputAdornment position='start'>
-									<EmailIcon />
+									<EmailIcon fontSize='small' />
 								</InputAdornment>
 							),
 						},

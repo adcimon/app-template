@@ -29,7 +29,7 @@ export const PasswordField: React.FC<TextFieldProps> = (props: TextFieldProps): 
 						input: {
 							startAdornment: (
 								<InputAdornment position='start'>
-									<LockIcon />
+									<LockIcon fontSize='small' />
 								</InputAdornment>
 							),
 							endAdornment: (
@@ -37,7 +37,11 @@ export const PasswordField: React.FC<TextFieldProps> = (props: TextFieldProps): 
 									<IconButton
 										onClick={handleShowPassword}
 										onMouseDown={handleShowPassword}>
-										{showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+										{showPassword ? (
+											<VisibilityIcon fontSize='small' />
+										) : (
+											<VisibilityOffIcon fontSize='small' />
+										)}
 									</IconButton>
 								</InputAdornment>
 							),
