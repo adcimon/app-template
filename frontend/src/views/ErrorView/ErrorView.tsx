@@ -1,12 +1,10 @@
 import React from 'react';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { ErrorIcon } from './ErrorIcon';
+import { useResponsive } from '../../core/hooks/useResponsive';
 
 interface IErrorViewProps {
 	message?: string;
@@ -14,84 +12,95 @@ interface IErrorViewProps {
 }
 
 export const ErrorView: React.FC<IErrorViewProps> = (props: IErrorViewProps): JSX.Element => {
+	const responsive: boolean = useResponsive();
+
 	const render = () => {
 		return (
 			<>
-				<Container
-					maxWidth={false}
+				<Stack
+					direction='column'
 					sx={{
 						alignItems: 'center',
-						display: 'flex',
-						flexDirection: 'column',
 						height: '100vh',
 						justifyContent: 'center',
+						width: '100vw',
 					}}>
-					<Stack
-						direction='row'
-						spacing={2}
+					<Grid
+						container
 						sx={{
-							alignItems: 'center',
-							justifyContent: 'center',
+							height: '100%',
 						}}>
-						<Card>
-							<Grid container>
-								<Grid
-									item
-									xs={12}
-									md={6}
-									lg={6}>
-									<Box
+						<Grid
+							item
+							xs={12}
+							md={6}
+							lg={6}
+							sx={{
+								backgroundColor: '#f1f4f9',
+								height: responsive ? '50%' : '100%',
+								width: responsive ? '100%' : '50%',
+							}}>
+							<Stack
+								direction='column'
+								sx={{
+									alignItems: 'center',
+									height: '100%',
+									justifyContent: 'center',
+									width: '100%',
+								}}>
+								<ErrorIcon />
+							</Stack>
+						</Grid>
+						<Grid
+							item
+							xs={12}
+							md={6}
+							lg={6}
+							sx={{
+								height: responsive ? '50%' : '100%',
+								width: responsive ? '100%' : '50%',
+							}}>
+							<Stack
+								direction='column'
+								spacing={4}
+								sx={{
+									alignItems: 'center',
+									height: '100%',
+									justifyContent: 'center',
+									paddingX: '1rem',
+									width: '100%',
+								}}>
+								<Stack
+									direction='column'
+									spacing={1}
+									sx={{
+										alignItems: 'start',
+										justifyContent: 'center',
+									}}>
+									<Typography
+										variant='h3'
 										sx={{
-											height: { xs: '256px', md: '100%' },
-											width: '100%',
+											fontWeight: 'bold',
 										}}>
-										<img
-											src='/images/error.jpg'
-											style={{
-												height: '100%',
-												objectFit: 'cover',
-												width: '100%',
-											}}
-										/>
-									</Box>
-								</Grid>
-								<Grid
-									item
-									xs={12}
-									md={6}
-									lg={6}>
-									<CardContent
+										Oops!
+									</Typography>
+									<Typography
+										variant='h6'
 										sx={{
-											height: '100%',
-											width: '100%',
+											color: 'text.secondary',
 										}}>
-										<Stack
-											direction='column'
-											spacing={4}
-											sx={{
-												alignItems: 'center',
-												height: '100%',
-												justifyContent: 'center',
-											}}>
-											<Typography
-												variant='h4'
-												sx={{
-													textAlign: 'center',
-												}}>
-												{props.message || 'Something went wrong'}
-											</Typography>
-											<Button
-												variant='contained'
-												onClick={props.onClick}>
-												Return Home
-											</Button>
-										</Stack>
-									</CardContent>
-								</Grid>
-							</Grid>
-						</Card>
-					</Stack>
-				</Container>
+										{props.message || 'Something went wrong.'}
+									</Typography>
+								</Stack>
+								<Button
+									variant='contained'
+									onClick={props.onClick}>
+									Return Home
+								</Button>
+							</Stack>
+						</Grid>
+					</Grid>
+				</Stack>
 			</>
 		);
 	};

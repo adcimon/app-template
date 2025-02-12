@@ -3,11 +3,11 @@ import toast from 'react-hot-toast';
 import Badge from '@mui/material/Badge';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
-import InputAdornment from '@mui/material/InputAdornment';
 import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { Copyright } from '../../core/components/Copyright/Copyright';
+import { EmailField } from '../../core/components/Field/EmailField';
 import { LaunchView } from '../LaunchView/LaunchView';
 import { Logo } from '../LaunchView/Logo';
 import { PasswordField } from '../../core/components/Field/PasswordField';
@@ -61,32 +61,30 @@ export const ForgotPasswordView: React.FC = (): JSX.Element => {
 				<LaunchView>
 					<Logo />
 					<Typography variant='h5'>Forgot Password</Typography>
-					<TextField
+					<EmailField
 						label='Email'
 						value={email}
 						required={true}
 						onChange={(event: any) => setEmail(event.target.value)}
 						fullWidth={true}
 						margin='normal'
-						InputProps={{
-							endAdornment: (
-								<InputAdornment position='end'>
-									<Badge
-										color='primary'
-										badgeContent={1}>
-										<Button
-											variant='contained'
-											disabled={!validateSendCode()}
-											onClick={handleSendCode}
-											size='small'
-											fullWidth={true}>
-											Send Code
-										</Button>
-									</Badge>
-								</InputAdornment>
-							),
-						}}
 					/>
+					<Badge
+						color='primary'
+						badgeContent={1}
+						sx={{
+							marginTop: 1,
+							width: '100%',
+						}}>
+						<Button
+							variant='contained'
+							disabled={!validateSendCode()}
+							onClick={handleSendCode}
+							size='small'
+							fullWidth={true}>
+							Send Code
+						</Button>
+					</Badge>
 					<TextField
 						label='Code'
 						placeholder='Code sent to your email'
@@ -116,7 +114,7 @@ export const ForgotPasswordView: React.FC = (): JSX.Element => {
 						color='primary'
 						badgeContent={2}
 						sx={{
-							marginTop: 2,
+							marginTop: 1,
 							width: '100%',
 						}}>
 						<Button

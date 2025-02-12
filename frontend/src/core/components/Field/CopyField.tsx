@@ -27,21 +27,25 @@ export const CopyField: React.FC<TextFieldProps> = (props: TextFieldProps): JSX.
 				<TextField
 					{...props}
 					label={props.label || 'Text'}
-					InputProps={{
-						endAdornment: (
-							<InputAdornment position='end'>
-								<>
-									{!success && <IconButton onClick={handleClick}>{<ContentCopyIcon />}</IconButton>}
-									{success && (
-										<Zoom in={success}>
-											<IconButton disableRipple>
-												<TaskAltIcon color='success' />
-											</IconButton>
-										</Zoom>
-									)}
-								</>
-							</InputAdornment>
-						),
+					slotProps={{
+						input: {
+							endAdornment: (
+								<InputAdornment position='end'>
+									<>
+										{!success && (
+											<IconButton onClick={handleClick}>{<ContentCopyIcon />}</IconButton>
+										)}
+										{success && (
+											<Zoom in={success}>
+												<IconButton disableRipple>
+													<TaskAltIcon color='success' />
+												</IconButton>
+											</Zoom>
+										)}
+									</>
+								</InputAdornment>
+							),
+						},
 					}}
 				/>
 			</>

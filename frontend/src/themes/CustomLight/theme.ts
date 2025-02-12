@@ -1,10 +1,10 @@
 import { Theme, createTheme } from '@mui/material';
-import { createBreakpoints } from './breakpoints';
-import { createComponents } from './components';
-import { createPalette } from './palette';
-import { createShape } from './shape';
-import { createShadows } from './shadows';
-import { createTypography } from './typography';
+import { createBreakpoints } from './options/breakpoints';
+import { createComponents } from './options/components';
+import { createPalette } from './options/palette/palette';
+import { createShape } from './options/shape';
+import { createShadows } from './options/shadows';
+import { createTypography } from './options/typography';
 
 const newTheme = () => {
 	const breakpoints: any = createBreakpoints();

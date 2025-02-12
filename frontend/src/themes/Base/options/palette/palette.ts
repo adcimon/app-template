@@ -1,7 +1,10 @@
+import { background } from './background';
 import { error, info, neutral, primary, secondary, success, warning } from './colors';
+import { text } from './text';
 
 export function createPalette() {
 	return {
+		background,
 		error,
 		info,
 		mode: 'light',
@@ -9,6 +12,7 @@ export function createPalette() {
 		primary,
 		secondary,
 		success,
+		text,
 		warning,
 	};
 }

@@ -5,9 +5,9 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { Copyright } from '../../core/components/Copyright/Copyright';
+import { EmailField } from '../../core/components/Field/EmailField';
 import { LaunchView } from '../LaunchView/LaunchView';
 import { Logo } from '../LaunchView/Logo';
 import { PasswordField } from '../../core/components/Field/PasswordField';
@@ -70,7 +70,7 @@ export const SignUpView: React.FC = (): JSX.Element => {
 				<LaunchView>
 					<Logo />
 					<Typography variant='h5'>Sign Up</Typography>
-					<TextField
+					<EmailField
 						label='Email'
 						value={email}
 						required={true}

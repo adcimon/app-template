@@ -1,6 +1,7 @@
 import React from 'react';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
+import LockIcon from '@mui/icons-material/Lock';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
@@ -24,16 +25,23 @@ export const PasswordField: React.FC<TextFieldProps> = (props: TextFieldProps): 
 					{...props}
 					type={showPassword ? 'text' : 'password'}
 					onMouseLeave={handleMouseLeave}
-					InputProps={{
-						endAdornment: (
-							<InputAdornment position='end'>
-								<IconButton
-									onClick={handleShowPassword}
-									onMouseDown={handleShowPassword}>
-									{showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
-								</IconButton>
-							</InputAdornment>
-						),
+					slotProps={{
+						input: {
+							startAdornment: (
+								<InputAdornment position='start'>
+									<LockIcon />
+								</InputAdornment>
+							),
+							endAdornment: (
+								<InputAdornment position='end'>
+									<IconButton
+										onClick={handleShowPassword}
+										onMouseDown={handleShowPassword}>
+										{showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+									</IconButton>
+								</InputAdornment>
+							),
+						},
 					}}
 				/>
 			</>

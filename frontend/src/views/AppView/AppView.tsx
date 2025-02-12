@@ -71,7 +71,7 @@ export const AppView: React.FC = (): JSX.Element => {
 					</Route>
 					<Route path='*'>
 						<ErrorView
-							message={'Page not found'}
+							message="The page you're looking for could not be found."
 							onClick={() => navigator.redirect('/')}
 						/>
 					</Route>

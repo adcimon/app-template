@@ -3,9 +3,9 @@ import toast from 'react-hot-toast';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
-import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { Copyright } from '../../core/components/Copyright/Copyright';
+import { EmailField } from '../../core/components/Field/EmailField';
 import { LaunchView } from '../LaunchView/LaunchView';
 import { Logo } from '../LaunchView/Logo';
 import { PasswordField } from '../../core/components/Field/PasswordField';
@@ -45,11 +45,10 @@ export const SignInView: React.FC = (): JSX.Element => {
 				<LaunchView>
 					<Logo />
 					<Typography variant='h5'>Sign In</Typography>
-					<TextField
+					<EmailField
 						label='Email'
 						autoComplete='email'
 						value={email}
-						autoFocus={true}
 						required={true}
 						onChange={(event: any) => setEmail(event.target.value)}
 						fullWidth={true}
