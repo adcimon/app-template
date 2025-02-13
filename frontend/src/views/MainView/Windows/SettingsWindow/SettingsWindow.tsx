@@ -94,7 +94,15 @@ export const SettingsWindow: React.FC<ISettingsWindowProps> = (props: ISettingsW
 									sx={{
 										alignItems: 'center',
 									}}>
-									<IconBadge icon={<Grid3x3Icon fontSize='small' />} />
+									<IconBadge
+										icon={
+											<Grid3x3Icon
+												sx={{
+													fontSize: '1rem',
+												}}
+											/>
+										}
+									/>
 									<Typography
 										variant='body2'
 										noWrap={true}
