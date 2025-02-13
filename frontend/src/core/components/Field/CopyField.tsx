@@ -1,10 +1,10 @@
 import React from 'react';
-import Zoom from '@mui/material/Zoom';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
+import Zoom from '@mui/material/Zoom';
 import { Utils } from '../../utils/utils';
 
 export const CopyField: React.FC<TextFieldProps> = (props: TextFieldProps): JSX.Element => {

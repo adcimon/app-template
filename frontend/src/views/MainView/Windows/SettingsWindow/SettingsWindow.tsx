@@ -2,19 +2,19 @@ import React from 'react';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import IconButton from '@mui/material/IconButton';
+import Grid3x3Icon from '@mui/icons-material/Grid3x3';
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 import Stack from '@mui/material/Stack';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Typography from '@mui/material/Typography';
+import { CopyButton } from '../../../../core/components/Button/CopyButton';
+import { IconBadge } from '../../../../core/components/Badge/IconBadge';
 import { PreferencesView } from './PreferencesView/PreferencesView';
 import { ProfileView } from './ProfileView/ProfileView';
 import { UserAvatar } from './UserAvatar/UserAvatar';
 import { Window } from '../../../../core/components/Window/Window';
 import { useUserState } from '../../../../states/user/useUserState';
-import { Utils } from '../../../../core/utils/utils';
 
 interface ISettingsWindowProps {
 	open: boolean;
@@ -94,25 +94,21 @@ export const SettingsWindow: React.FC<ISettingsWindowProps> = (props: ISettingsW
 									sx={{
 										alignItems: 'center',
 									}}>
+									<IconBadge icon={<Grid3x3Icon fontSize='small' />} />
 									<Typography
 										variant='body2'
 										noWrap={true}
 										sx={{
 											color: '#919eab',
+											fontSize: '0.8rem',
 											width: '50%',
 										}}>
 										{userState.user?.id}
 									</Typography>
-									<IconButton
+									<CopyButton
+										text={userState.user?.id}
 										size='small'
-										onClick={() => Utils.copyToClipboard(userState.user?.id ?? '')}>
-										<ContentCopyIcon
-											fontSize='inherit'
-											sx={{
-												color: 'white',
-											}}
-										/>
-									</IconButton>
+									/>
 								</Stack>
 							</Stack>
 						</Stack>
