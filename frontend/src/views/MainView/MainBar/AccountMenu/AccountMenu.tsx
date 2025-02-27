@@ -42,7 +42,7 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 		setOpen(false);
 	};
 
-	const handleSettings = () => {
+	const handleClickSettings = () => {
 		setOpen(false);
 		setOpenSettingsWindow(true);
 	};
@@ -51,7 +51,7 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 		setOpenSettingsWindow(false);
 	};
 
-	const handleManagement = () => {
+	const handleClickManagement = () => {
 		setOpen(false);
 		setOpenManagementWindow(true);
 	};
@@ -60,7 +60,7 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 		setOpenManagementWindow(false);
 	};
 
-	const handleHelp = () => {
+	const handleClickHelp = () => {
 		setOpen(false);
 		setOpenHelpWindow(true);
 	};
@@ -69,7 +69,7 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 		setOpenHelpWindow(false);
 	};
 
-	const handleSignOut = () => {
+	const handleClickSignOut = () => {
 		setOpen(false);
 		setOpenSignOutDialog(true);
 	};
@@ -179,22 +179,22 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 							padding: '5px',
 							paddingBottom: '10px',
 						}}>
-						<MenuItem onClick={handleSettings}>
+						<MenuItem onClick={handleClickSettings}>
 							<SettingsIcon sx={iconSx} />
 							<Typography>Settings</Typography>
 						</MenuItem>
 						{userState.user?.isAdmin() && (
-							<MenuItem onClick={handleManagement}>
+							<MenuItem onClick={handleClickManagement}>
 								<SecurityIcon sx={iconSx} />
 								<Typography>Management</Typography>
 							</MenuItem>
 						)}
-						<MenuItem onClick={handleHelp}>
+						<MenuItem onClick={handleClickHelp}>
 							<HelpIcon sx={iconSx} />
 							<Typography>Help</Typography>
 						</MenuItem>
 						<MenuItem
-							onClick={handleSignOut}
+							onClick={handleClickSignOut}
 							sx={{
 								'& .MuiSvgIcon-root': {
 									color: 'error.dark',
