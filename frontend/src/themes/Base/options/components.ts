@@ -10,6 +10,15 @@ export function createComponents(config: any) {
 	};
 
 	return {
+		MuiAccordion: {
+			styleOverrides: {
+				root: {
+					'&:before': {
+						display: 'none',
+					},
+				},
+			},
+		},
 		MuiCssBaseline: {
 			styleOverrides: {
 				'*': {

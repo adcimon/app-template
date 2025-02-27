@@ -32,9 +32,7 @@ export const AppView: React.FC = (): JSX.Element => {
 			navigator.navigate('/', {
 				params: navigator.params,
 			});
-		} catch (error: any) {
-			// Ignore errors.
-		}
+		} catch {}
 	};
 
 	const render = () => {

@@ -22,6 +22,19 @@ export function createComponents(config: any) {
 	};
 
 	return {
+		MuiAccordion: {
+			styleOverrides: {
+				root: {
+					borderColor: palette.neutral.dark,
+					borderRadius: '10px',
+					borderStyle: 'solid',
+					borderWidth: '1px',
+					'&:before': {
+						display: 'none',
+					},
+				},
+			},
+		},
 		MuiAvatar: {
 			styleOverrides: {
 				root: {

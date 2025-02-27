@@ -33,9 +33,7 @@ export class ConfigService {
 		try {
 			const obj: object = JSON.parse(value);
 			return obj;
-		} catch (error: any) {
-			// Ignore errors.
-		}
+		} catch {}
 
 		const array: string[] = value.split(',');
 		if (array.length === 0) {
