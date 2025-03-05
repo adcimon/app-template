@@ -2,6 +2,7 @@ import React from 'react';
 import { keyframes } from '@mui/system';
 import Box from '@mui/material/Box';
 import { useWindowSize } from '../../hooks/useWindowSize';
+import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 
 interface IVideoGridProps {
 	aspectRatio?: number;
@@ -11,10 +12,14 @@ interface IVideoGridProps {
 
 export const VideoGrid: React.FC<IVideoGridProps> = (props: IVideoGridProps): JSX.Element => {
 	const aspectRatio: number = props.aspectRatio ?? 4 / 3;
-	const tileMargin: number = props.tileMargin ?? 10;
+	const tileMargin: number = props.tileMargin ?? 5;
 	const gridRef = React.useRef<HTMLDivElement>(null);
 
 	const windowSize = useWindowSize();
+
+	const visibilityObserver = useIntersectionObserver({
+		threshold: 0,
+	});
 
 	const [tileSize, setTileSize] = React.useState({
 		width: 0,
@@ -23,7 +28,7 @@ export const VideoGrid: React.FC<IVideoGridProps> = (props: IVideoGridProps): JS
 
 	React.useEffect(() => {
 		resize();
-	}, [windowSize, props.children]);
+	}, [windowSize, visibilityObserver.isIntersecting, props.children]);
 
 	const getTileCount = (): number => {
 		return React.Children.count(props.children);
@@ -133,12 +138,12 @@ export const VideoGrid: React.FC<IVideoGridProps> = (props: IVideoGridProps): JS
 		return (
 			<>
 				<Box
+					ref={visibilityObserver.ref}
 					sx={{
 						display: 'flex',
 						flex: '1',
-						gap: '1rem',
-						maxHeight: '100%',
-						maxWidth: '100%',
+						height: '100%',
+						width: '100%',
 					}}>
 					<Box
 						ref={gridRef}

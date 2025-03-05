@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React from 'react';
 import { useEventListener } from './useEventListener';
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 
@@ -8,7 +8,7 @@ type WindowSize = {
 };
 
 export function useWindowSize(): WindowSize {
-	const [windowSize, setWindowSize] = useState<WindowSize>(() => {
+	const [windowSize, setWindowSize] = React.useState<WindowSize>(() => {
 		return {
 			width: window.innerWidth,
 			height: window.innerHeight,
