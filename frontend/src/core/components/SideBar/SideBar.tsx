@@ -53,6 +53,7 @@ export const SideBar: React.FC<ISideBarProps> = (props: ISideBarProps): JSX.Elem
 						{props.divider && (
 							<Divider
 								sx={{
+									marginBottom: '1rem',
 									width: '100%',
 								}}
 							/>
