@@ -1,7 +1,7 @@
 export namespace AppUtils {
-	export const EMAIL_REGEXP: RegExp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-	export const PHONE_REGEXP: RegExp = /^\+[0-9]*$/;
-	export const AVATAR_REGEXP: RegExp = /^([^]*)(\.)(jpg|jpeg|png)$/;
+	export const EMAIL_REGEXP: RegExp = /^[^\s@]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/u;
+	export const PHONE_REGEXP: RegExp = /^\+\d{1,4}\d{6,14}$/;
+	export const AVATAR_REGEXP: RegExp = /^[\p{L}\p{N}_\-\s]+\.(jpg|jpeg|png)$/iu;
 
 	export const getAvatar = (user: any): string | undefined => {
 		if (!user) {
