@@ -12,6 +12,8 @@ import { EmailTakenException } from '../../../exceptions/email-taken.exception';
 import { CryptoUtils } from '../../../utils/crypto.utils';
 import * as AWS from '@aws-sdk/client-cognito-identity-provider';
 
+const RESOURCE_TYPE: string = 'user';
+
 @Injectable()
 export class CognitoService implements OnModuleInit {
 	private client: AWS.CognitoIdentityProviderClient = null;
@@ -276,7 +278,7 @@ export class CognitoService implements OnModuleInit {
 	public async getByEmail(email: string): Promise<UserDto> {
 		const users: UserDto[] = await this.getBy(`email = "${email}"`);
 		if (users.length !== 1) {
-			throw new ResourceNotFoundException('User', { email });
+			throw new ResourceNotFoundException(RESOURCE_TYPE, { email });
 		}
 
 		const user: UserDto = users[0];
