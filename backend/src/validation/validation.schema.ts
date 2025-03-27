@@ -3,17 +3,17 @@ import * as yup from 'yup';
 export namespace ValidationSchema {
 	/**
 	 * Explanation:
-	 *		[^\s@]+ → Local part (any unicode character except spaces and @).
+	 *		[^\s@]+ → Ensures it starts with the local part (any unicode character except spaces and @).
 	 *		@ → Ensures there is exactly one @ symbol.
-	 *		[a-zA-Z0-9.-]+ → Domain part (letters, numbers, dots and hyphens).
-	 *		\. → Requires at least one dot before the TLD.
+	 *		[a-zA-Z0-9.-]+ → Matches the domain part (letters, numbers, dots and hyphens).
+	 *		\. → Ensures there is at least one dot before the TLD.
 	 *		[a-zA-Z]{2,} → Ensures a valid TLD (e.g., .com, .net, .org, .ai) with at least 2 letters.
 	 * Examples:
 	 *		"user@example.com" → Yes.
 	 *		"contact@sub.domain.net" → Yes.
 	 *		"user@123.com" → Yes.
 	 *		"jöhn.dœ@unicøde.com" → No (domain part with unicode characters).
-	 *		"user@localhost" → No (TLD required).
+	 *		"user@localhost" → No (missing TLD).
 	 *		"@example.com" → No (missing local part).
 	 *		"user@com" → No (TLD too short).
 	 *		"user@@example.com" → No (double @).
@@ -24,9 +24,9 @@ export namespace ValidationSchema {
 
 	/**
 	 * Explanation:
-	 *		\+ → Ensures the number starts with a +.
-	 *		\d{1,4} → Country code (1 to 4 digits, e.g., +1, +44, +123).
-	 *		\d{6,14} → Ensures the rest of the number has only digits (between 6 and 14 digits, which covers most phone numbers).
+	 *		\+ → Ensures it starts with a +.
+	 *		\d{1,4} → Matches the country code (1 to 4 digits, e.g., +1, +44, +123).
+	 *		\d{6,14} → Ensures the rest has only digits (between 6 and 14 digits, which covers most phone numbers).
 	 * Examples:
 	 *		"+11234567890" → Yes.
 	 *		"+441234567890" → Yes.
@@ -63,9 +63,9 @@ export namespace ValidationSchema {
 
 	/**
 	 * Explanation:
-	 *		[\p{L}\p{N}_\-\s]+ → Matches filenames that contain unicode letters, numbers, underscores, hyphens, and spaces.
+	 *		[\p{L}\p{N}_\-\s]+ → Matches names that contain unicode letters, numbers, underscores, hyphens, and spaces.
 	 *		\. → Matches the dot before the extension.
-	 *		(jpg|jpeg|png) → Ensures the filename ends with jpg, jpeg, or png.
+	 *		(jpg|jpeg|png) → Ensures it ends with jpg, jpeg, or png.
 	 * Examples:
 	 *		"image.png" → Yes.
 	 *		"фото.jpeg" → Yes.
