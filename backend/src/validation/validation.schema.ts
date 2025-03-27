@@ -7,7 +7,7 @@ export namespace ValidationSchema {
 	 *		@ → Ensures there is exactly one @ symbol.
 	 *		[a-zA-Z0-9.-]+ → Matches the domain part (letters, numbers, dots and hyphens).
 	 *		\. → Ensures there is at least one dot before the TLD.
-	 *		[a-zA-Z]{2,} → Ensures a valid TLD (e.g., .com, .net, .org, .ai) with at least 2 letters.
+	 *		[a-zA-Z]{2,} → Ensures a valid TLD with at least 2 letters (e.g., .com, .net, .org, .ai).
 	 * Examples:
 	 *		"user@example.com" → Yes.
 	 *		"contact@sub.domain.net" → Yes.
