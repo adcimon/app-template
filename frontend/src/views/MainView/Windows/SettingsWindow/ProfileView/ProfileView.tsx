@@ -28,7 +28,6 @@ export const ProfileView: React.FC = (): JSX.Element => {
 			<>
 				<Grid2
 					container
-					spacing={3}
 					sx={{
 						width: '100%',
 						'& > *': {
