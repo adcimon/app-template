@@ -7,7 +7,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
+import Grid2 from '@mui/material/Grid2';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { CountrySelect } from '../../../../../core/components/Select/CountrySelect';
@@ -77,13 +77,14 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 								margin: -1.5,
 								padding: 2,
 							}}>
-							<Grid
+							<Grid2
 								container
 								spacing={3}>
-								<Grid
-									item
-									xs={12}
-									md={6}>
+								<Grid2
+									size={{
+										xs: 12,
+										sm: 6,
+									}}>
 									<TextField
 										label='Name'
 										value={name}
@@ -95,11 +96,12 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 											},
 										}}
 									/>
-								</Grid>
-								<Grid
-									item
-									xs={12}
-									md={6}>
+								</Grid2>
+								<Grid2
+									size={{
+										xs: 12,
+										sm: 6,
+									}}>
 									<TextField
 										label='Surname'
 										value={surname}
@@ -111,11 +113,12 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 											},
 										}}
 									/>
-								</Grid>
-								<Grid
-									item
-									xs={12}
-									md={6}>
+								</Grid2>
+								<Grid2
+									size={{
+										xs: 12,
+										sm: 6,
+									}}>
 									<TextField
 										label='Birthdate'
 										type='date'
@@ -128,11 +131,12 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 											},
 										}}
 									/>
-								</Grid>
-								<Grid
-									item
-									xs={12}
-									md={6}>
+								</Grid2>
+								<Grid2
+									size={{
+										xs: 12,
+										sm: 6,
+									}}>
 									<CountrySelect
 										label='Country'
 										value={country}
@@ -143,11 +147,12 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 											},
 										}}
 									/>
-								</Grid>
-								<Grid
-									item
-									xs={12}
-									md={6}>
+								</Grid2>
+								<Grid2
+									size={{
+										xs: 12,
+										sm: 6,
+									}}>
 									<TimezoneSelect
 										label='Timezone'
 										value={timezone}
@@ -158,8 +163,8 @@ export const ProfileDetailsCard: React.FC = (): JSX.Element => {
 											},
 										}}
 									/>
-								</Grid>
-							</Grid>
+								</Grid2>
+							</Grid2>
 						</Box>
 					</CardContent>
 					<Divider />

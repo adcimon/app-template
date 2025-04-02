@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
+import Grid2 from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { ErrorIcon } from './ErrorIcon';
@@ -25,16 +25,17 @@ export const ErrorView: React.FC<IErrorViewProps> = (props: IErrorViewProps): JS
 						justifyContent: 'center',
 						width: '100vw',
 					}}>
-					<Grid
+					<Grid2
 						container
 						sx={{
 							height: '100%',
 						}}>
-						<Grid
-							item
-							xs={12}
-							md={6}
-							lg={6}
+						<Grid2
+							size={{
+								xs: 12,
+								md: 6,
+								lg: 6,
+							}}
 							sx={{
 								backgroundColor: '#f1f4f9',
 								height: responsive ? '50%' : '100%',
@@ -50,12 +51,13 @@ export const ErrorView: React.FC<IErrorViewProps> = (props: IErrorViewProps): JS
 								}}>
 								<ErrorIcon />
 							</Stack>
-						</Grid>
-						<Grid
-							item
-							xs={12}
-							md={6}
-							lg={6}
+						</Grid2>
+						<Grid2
+							size={{
+								xs: 12,
+								md: 6,
+								lg: 6,
+							}}
 							sx={{
 								height: responsive ? '50%' : '100%',
 								width: responsive ? '100%' : '50%',
@@ -98,8 +100,8 @@ export const ErrorView: React.FC<IErrorViewProps> = (props: IErrorViewProps): JS
 									Return Home
 								</Button>
 							</Stack>
-						</Grid>
-					</Grid>
+						</Grid2>
+					</Grid2>
 				</Stack>
 			</>
 		);

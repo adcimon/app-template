@@ -7,7 +7,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
+import Grid2 from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
@@ -104,14 +104,15 @@ export const ProfileEmailCard: React.FC = (): JSX.Element => {
 								margin: -1.5,
 								padding: 2,
 							}}>
-							<Grid
+							<Grid2
 								container
 								spacing={3}>
-								<Grid
-									item
-									xs={12}
-									md={12}
-									lg={12}>
+								<Grid2
+									size={{
+										xs: 12,
+										sm: 12,
+										md: 12,
+									}}>
 									<EmailField
 										label='Email'
 										value={email}
@@ -129,8 +130,8 @@ export const ProfileEmailCard: React.FC = (): JSX.Element => {
 										}}>
 										Email change requires the email verification via a code sent to the new address.
 									</Typography>
-								</Grid>
-							</Grid>
+								</Grid2>
+							</Grid2>
 						</Box>
 					</CardContent>
 					<Divider />

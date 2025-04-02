@@ -2,8 +2,8 @@ import React from 'react';
 import toast from 'react-hot-toast';
 import Badge from '@mui/material/Badge';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { Copyright } from '../../core/components/Copyright/Copyright';
@@ -67,13 +67,11 @@ export const ForgotPasswordView: React.FC = (): JSX.Element => {
 						required={true}
 						onChange={(event: any) => setEmail(event.target.value)}
 						fullWidth={true}
-						margin='normal'
 					/>
 					<Badge
 						color='primary'
 						badgeContent={1}
 						sx={{
-							marginTop: 1,
 							width: '100%',
 						}}>
 						<Button
@@ -92,7 +90,6 @@ export const ForgotPasswordView: React.FC = (): JSX.Element => {
 						required={true}
 						onChange={(event: any) => setCode(event.target.value)}
 						fullWidth={true}
-						margin='normal'
 					/>
 					<PasswordField
 						label='Password'
@@ -101,7 +98,6 @@ export const ForgotPasswordView: React.FC = (): JSX.Element => {
 						required={true}
 						onChange={(event: any) => setPassword(event.target.value)}
 						fullWidth={true}
-						margin='normal'
 					/>
 					<PasswordField
 						label='Confirm Password'
@@ -109,13 +105,11 @@ export const ForgotPasswordView: React.FC = (): JSX.Element => {
 						required={true}
 						onChange={(event: any) => setConfirmPassword(event.target.value)}
 						fullWidth={true}
-						margin='normal'
 					/>
 					<Badge
 						color='primary'
 						badgeContent={2}
 						sx={{
-							marginTop: 1,
 							width: '100%',
 						}}>
 						<Button
@@ -126,21 +120,18 @@ export const ForgotPasswordView: React.FC = (): JSX.Element => {
 							Change
 						</Button>
 					</Badge>
-					<Grid
-						container
+					<Stack
+						direction='row'
 						sx={{
-							marginBottom: '25px',
-							marginTop: 2,
+							width: '100%',
 						}}>
-						<Grid item>
-							<Link
-								component='button'
-								variant='body2'
-								onClick={handleSignIn}>
-								← Already have an account? Sign in
-							</Link>
-						</Grid>
-					</Grid>
+						<Link
+							component='button'
+							variant='body2'
+							onClick={handleSignIn}>
+							← Already have an account? Sign in
+						</Link>
+					</Stack>
 					<Copyright />
 				</LaunchView>
 			</>

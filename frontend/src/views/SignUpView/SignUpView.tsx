@@ -3,8 +3,8 @@ import toast from 'react-hot-toast';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { Copyright } from '../../core/components/Copyright/Copyright';
 import { EmailField } from '../../core/components/Field/EmailField';
@@ -76,7 +76,6 @@ export const SignUpView: React.FC = (): JSX.Element => {
 						required={true}
 						onChange={(event: any) => setEmail(event.target.value)}
 						fullWidth={true}
-						margin='normal'
 					/>
 					<PasswordField
 						label='Password'
@@ -84,7 +83,6 @@ export const SignUpView: React.FC = (): JSX.Element => {
 						required={true}
 						onChange={(event: any) => setPassword(event.target.value)}
 						fullWidth={true}
-						margin='normal'
 					/>
 					<PasswordField
 						label='Confirm Password'
@@ -92,7 +90,6 @@ export const SignUpView: React.FC = (): JSX.Element => {
 						required={true}
 						onChange={(event: any) => setConfirmPassword(event.target.value)}
 						fullWidth={true}
-						margin='normal'
 					/>
 					<FormControlLabel
 						control={
@@ -116,27 +113,21 @@ export const SignUpView: React.FC = (): JSX.Element => {
 						disabled={!validate()}
 						variant='contained'
 						onClick={handleSignUp}
-						fullWidth={true}
-						sx={{
-							marginBottom: 2,
-							marginTop: 3,
-						}}>
+						fullWidth={true}>
 						Sign Up
 					</Button>
-					<Grid
-						container
+					<Stack
+						direction='row'
 						sx={{
-							marginBottom: '25px',
+							width: '100%',
 						}}>
-						<Grid item>
-							<Link
-								component='button'
-								variant='body2'
-								onClick={handleSignIn}>
-								← Already have an account? Sign in
-							</Link>
-						</Grid>
-					</Grid>
+						<Link
+							component='button'
+							variant='body2'
+							onClick={handleSignIn}>
+							← Already have an account? Sign in
+						</Link>
+					</Stack>
 					<Copyright />
 					<TermsOfServiceDialog
 						open={openTermsOfServiceDialog}

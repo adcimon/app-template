@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
+import Grid2 from '@mui/material/Grid2';
 
 interface ILaunchViewProps {
 	children?: React.ReactNode;
@@ -33,19 +33,23 @@ export const LaunchView: React.FC<ILaunchViewProps> = (props: ILaunchViewProps):
 					/>
 					<Container maxWidth='md'>
 						<Card>
-							<Grid container>
-								<Grid
-									item
-									xs={12}
-									md={6}
-									lg={6}>
+							<Grid2 container>
+								<Grid2
+									size={{
+										xs: 12,
+										md: 6,
+										lg: 6,
+									}}>
 									<Box
 										sx={{
-											height: { xs: '128px', md: '100%' },
+											height: {
+												xs: '128px',
+												md: '100%',
+											},
 											width: '100%',
 										}}>
 										<img
-											src='/images/app_banner.jpg'
+											src='/images/brainstorm_background.jpg'
 											style={{
 												height: '100%',
 												objectFit: 'cover',
@@ -53,23 +57,25 @@ export const LaunchView: React.FC<ILaunchViewProps> = (props: ILaunchViewProps):
 											}}
 										/>
 									</Box>
-								</Grid>
-								<Grid
-									item
-									xs={12}
-									md={6}
-									lg={6}>
+								</Grid2>
+								<Grid2
+									size={{
+										xs: 12,
+										md: 6,
+										lg: 6,
+									}}>
 									<CardContent
 										sx={{
 											alignItems: 'center',
 											display: 'flex',
 											flexDirection: 'column',
+											gap: '1rem',
 											justifyContent: 'center',
 										}}>
 										{props.children}
 									</CardContent>
-								</Grid>
-							</Grid>
+								</Grid2>
+							</Grid2>
 						</Card>
 					</Container>
 				</Container>

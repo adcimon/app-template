@@ -7,7 +7,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
+import Grid2 from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 import { ConfirmationDialog } from '../../../../../core/components/Dialog/ConfirmationDialog';
 import { PasswordField } from '../../../../../core/components/Field/PasswordField';
@@ -76,14 +76,15 @@ export const ProfilePasswordCard: React.FC = (): JSX.Element => {
 								margin: -1.5,
 								padding: 2,
 							}}>
-							<Grid
+							<Grid2
 								container
 								spacing={3}>
-								<Grid
-									item
-									xs={12}
-									md={12}
-									lg={12}>
+								<Grid2
+									size={{
+										xs: 12,
+										sm: 12,
+										md: 12,
+									}}>
 									<Typography
 										variant='body2'
 										sx={{
@@ -92,8 +93,8 @@ export const ProfilePasswordCard: React.FC = (): JSX.Element => {
 										Password change requires to insert your current password, the new one and
 										confirm it.
 									</Typography>
-								</Grid>
-							</Grid>
+								</Grid2>
+							</Grid2>
 						</Box>
 					</CardContent>
 					<Divider />

@@ -1,8 +1,8 @@
 import React from 'react';
 import toast from 'react-hot-toast';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
+import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { Copyright } from '../../core/components/Copyright/Copyright';
 import { EmailField } from '../../core/components/Field/EmailField';
@@ -52,7 +52,6 @@ export const SignInView: React.FC = (): JSX.Element => {
 						required={true}
 						onChange={(event: any) => setEmail(event.target.value)}
 						fullWidth={true}
-						margin='normal'
 					/>
 					<PasswordField
 						label='Password'
@@ -60,40 +59,32 @@ export const SignInView: React.FC = (): JSX.Element => {
 						required={true}
 						onChange={(event: any) => setPassword(event.target.value)}
 						fullWidth={true}
-						margin='normal'
 					/>
 					<Button
 						variant='contained'
 						onClick={handleSignIn}
-						fullWidth={true}
-						sx={{
-							marginBottom: 2,
-							marginTop: 3,
-						}}>
+						fullWidth={true}>
 						Sign In
 					</Button>
-					<Grid
-						container
-						sx={{ marginBottom: '25px' }}>
-						<Grid
-							item
-							xs>
-							<Link
-								component='button'
-								variant='body2'
-								onClick={handleForgotPassword}>
-								Forgot your password?
-							</Link>
-						</Grid>
-						<Grid item>
-							<Link
-								component='button'
-								variant='body2'
-								onClick={handleSignUp}>
-								Don't have an account? Sign Up
-							</Link>
-						</Grid>
-					</Grid>
+					<Stack
+						direction='row'
+						sx={{
+							justifyContent: 'space-between',
+							width: '100%',
+						}}>
+						<Link
+							component='button'
+							variant='body2'
+							onClick={handleForgotPassword}>
+							Forgot your password?
+						</Link>
+						<Link
+							component='button'
+							variant='body2'
+							onClick={handleSignUp}>
+							Don't have an account? Sign Up
+						</Link>
+					</Stack>
 					<Copyright />
 				</LaunchView>
 			</>

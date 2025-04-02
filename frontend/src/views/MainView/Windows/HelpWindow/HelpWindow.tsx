@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
+import Grid2 from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 import { GenericCard } from '../../../../core/components/Card/GenericCard';
 import { PrivacyPolicyDialog } from '../../../../core/components/Dialog/PrivacyPolicyDialog';
@@ -45,7 +45,7 @@ export const HelpWindow: React.FC<IHelpWindowProps> = (props: IHelpWindowProps):
 					label='Help'
 					open={props.open}
 					onClose={handleClose}>
-					<Grid
+					<Grid2
 						container
 						spacing={3}
 						sx={{
@@ -55,11 +55,12 @@ export const HelpWindow: React.FC<IHelpWindowProps> = (props: IHelpWindowProps):
 								padding: '10px !important',
 							},
 						}}>
-						<Grid
-							item
-							xs={12}
-							md={6}
-							lg={4}>
+						<Grid2
+							size={{
+								xs: 12,
+								sm: 6,
+								md: 4,
+							}}>
 							<GenericCard
 								image='/images/learn.jpg'
 								title='Help'
@@ -76,12 +77,13 @@ export const HelpWindow: React.FC<IHelpWindowProps> = (props: IHelpWindowProps):
 									the most of our features.
 								</Typography>
 							</GenericCard>
-						</Grid>
-						<Grid
-							item
-							xs={12}
-							md={6}
-							lg={4}>
+						</Grid2>
+						<Grid2
+							size={{
+								xs: 12,
+								sm: 6,
+								md: 4,
+							}}>
 							<GenericCard
 								image='/images/contact.jpg'
 								title='Contact Us'
@@ -98,12 +100,13 @@ export const HelpWindow: React.FC<IHelpWindowProps> = (props: IHelpWindowProps):
 									our support team via email or chat.
 								</Typography>
 							</GenericCard>
-						</Grid>
-						<Grid
-							item
-							xs={12}
-							md={6}
-							lg={4}>
+						</Grid2>
+						<Grid2
+							size={{
+								xs: 12,
+								sm: 6,
+								md: 4,
+							}}>
 							<GenericCard
 								image='/images/legal.jpg'
 								title='Legal'
@@ -126,8 +129,8 @@ export const HelpWindow: React.FC<IHelpWindowProps> = (props: IHelpWindowProps):
 									for using our application and how we collect, use, and protect your data.
 								</Typography>
 							</GenericCard>
-						</Grid>
-					</Grid>
+						</Grid2>
+					</Grid2>
 					<TermsOfServiceDialog
 						open={openTermsOfServiceDialog}
 						onClose={handleCloseTermsOfService}

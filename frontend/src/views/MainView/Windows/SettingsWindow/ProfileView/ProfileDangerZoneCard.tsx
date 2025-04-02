@@ -6,7 +6,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Divider from '@mui/material/Divider';
-import Grid from '@mui/material/Grid';
+import Grid2 from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 import { ConfirmationDialog } from '../../../../../core/components/Dialog/ConfirmationDialog';
 import { PasswordField } from '../../../../../core/components/Field/PasswordField';
@@ -68,14 +68,15 @@ export const ProfileDangerZoneCard: React.FC = (): JSX.Element => {
 								margin: -1.5,
 								padding: 2,
 							}}>
-							<Grid
+							<Grid2
 								container
 								spacing={3}>
-								<Grid
-									item
-									xs={12}
-									md={12}
-									lg={12}>
+								<Grid2
+									size={{
+										xs: 12,
+										sm: 12,
+										md: 12,
+									}}>
 									<Box
 										sx={{
 											alignItems: 'center',
@@ -101,8 +102,8 @@ export const ProfileDangerZoneCard: React.FC = (): JSX.Element => {
 											Delete
 										</Button>
 									</Box>
-								</Grid>
-							</Grid>
+								</Grid2>
+							</Grid2>
 						</Box>
 					</CardContent>
 					<Divider />

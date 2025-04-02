@@ -1,6 +1,6 @@
 import React from 'react';
 import toast from 'react-hot-toast';
-import Grid from '@mui/material/Grid';
+import Grid2 from '@mui/material/Grid2';
 import { ProfileDangerZoneCard } from './ProfileDangerZoneCard';
 import { ProfileDetailsCard } from './ProfileDetailsCard';
 import { ProfileEmailCard } from './ProfileEmailCard';
@@ -26,7 +26,7 @@ export const ProfileView: React.FC = (): JSX.Element => {
 	const render = () => {
 		return (
 			<>
-				<Grid
+				<Grid2
 					container
 					spacing={3}
 					sx={{
@@ -35,42 +35,47 @@ export const ProfileView: React.FC = (): JSX.Element => {
 							padding: '10px !important',
 						},
 					}}>
-					<Grid
-						item
-						xs={12}
-						md={6}
-						lg={12}>
+					<Grid2
+						size={{
+							xs: 12,
+							sm: 6,
+							md: 12,
+						}}>
 						<ProfileDetailsCard />
-					</Grid>
-					<Grid
-						item
-						xs={12}
-						md={6}
-						lg={6}>
+					</Grid2>
+					<Grid2
+						size={{
+							xs: 12,
+							sm: 6,
+							md: 6,
+						}}>
 						<ProfileEmailCard />
-					</Grid>
-					<Grid
-						item
-						xs={12}
-						md={6}
-						lg={6}>
+					</Grid2>
+					<Grid2
+						size={{
+							xs: 12,
+							sm: 6,
+							md: 6,
+						}}>
 						<ProfilePhoneCard />
-					</Grid>
-					<Grid
-						item
-						xs={12}
-						md={6}
-						lg={6}>
+					</Grid2>
+					<Grid2
+						size={{
+							xs: 12,
+							sm: 6,
+							md: 6,
+						}}>
 						<ProfilePasswordCard />
-					</Grid>
-					<Grid
-						item
-						xs={12}
-						md={6}
-						lg={6}>
+					</Grid2>
+					<Grid2
+						size={{
+							xs: 12,
+							sm: 6,
+							md: 6,
+						}}>
 						<ProfileDangerZoneCard />
-					</Grid>
-				</Grid>
+					</Grid2>
+				</Grid2>
 			</>
 		);
 	};

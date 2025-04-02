@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
-import Grid from '@mui/material/Grid';
+import Grid2 from '@mui/material/Grid2';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
@@ -31,14 +31,15 @@ export const PreferencesView: React.FC = (): JSX.Element => {
 								margin: -1.5,
 								padding: 2,
 							}}>
-							<Grid
+							<Grid2
 								container
 								spacing={3}>
-								<Grid
-									item
-									xs={12}
-									md={12}
-									lg={12}>
+								<Grid2
+									size={{
+										xs: 12,
+										sm: 12,
+										md: 12,
+									}}>
 									<Box
 										sx={{
 											alignItems: 'center',
@@ -64,8 +65,8 @@ export const PreferencesView: React.FC = (): JSX.Element => {
 											<MenuItem value={2}>Custom Dark</MenuItem>
 										</Select>
 									</Box>
-								</Grid>
-							</Grid>
+								</Grid2>
+							</Grid2>
 						</Box>
 					</CardContent>
 				</Card>

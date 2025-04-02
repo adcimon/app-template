@@ -2,7 +2,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
+import Grid2 from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { UserCard } from '../../../core/components/Card/UserCard';
@@ -52,17 +52,18 @@ export const HomeView: React.FC = (): JSX.Element => {
 					sx={{
 						marginBottom: '20px',
 					}}>
-					<Grid
+					<Grid2
 						container
 						spacing={4}
 						sx={{
 							justifyContent: 'center',
 						}}>
-						<Grid
-							item
-							xs={12}
-							sm={6}
-							md={4}>
+						<Grid2
+							size={{
+								xs: 12,
+								sm: 6,
+								md: 4,
+							}}>
 							<UserCard
 								title='WALL-E'
 								text='Waste Allocation Load Lifter: Earth-Class'
@@ -75,12 +76,13 @@ export const HomeView: React.FC = (): JSX.Element => {
 									Explore
 								</Button>
 							</UserCard>
-						</Grid>
-						<Grid
-							item
-							xs={12}
-							sm={6}
-							md={4}>
+						</Grid2>
+						<Grid2
+							size={{
+								xs: 12,
+								sm: 6,
+								md: 4,
+							}}>
 							<UserCard
 								title='R2-D2'
 								text='Second Generation Robotic Droid Series-2'
@@ -93,12 +95,13 @@ export const HomeView: React.FC = (): JSX.Element => {
 									Explore
 								</Button>
 							</UserCard>
-						</Grid>
-						<Grid
-							item
-							xs={12}
-							sm={6}
-							md={4}>
+						</Grid2>
+						<Grid2
+							size={{
+								xs: 12,
+								sm: 6,
+								md: 4,
+							}}>
 							<UserCard
 								title='Iron Giant'
 								text='Superman'
@@ -111,8 +114,8 @@ export const HomeView: React.FC = (): JSX.Element => {
 									Explore
 								</Button>
 							</UserCard>
-						</Grid>
-					</Grid>
+						</Grid2>
+					</Grid2>
 				</Container>
 			</>
 		);
