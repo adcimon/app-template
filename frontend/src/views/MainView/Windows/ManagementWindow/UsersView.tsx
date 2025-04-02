@@ -149,64 +149,74 @@ export const UsersView: React.FC = (): JSX.Element => {
 				<TextField
 					label='Email'
 					defaultValue={user?.email}
-					disabled
+					disabled={true}
 					fullWidth={true}
-					InputProps={{
-						readOnly: true,
-						startAdornment: (
-							<InputAdornment position='start'>
-								<VerificationBadge verified={user?.emailVerified} />
-							</InputAdornment>
-						),
-					}}
-					InputLabelProps={{
-						shrink: true,
+					slotProps={{
+						input: {
+							readOnly: true,
+							startAdornment: (
+								<InputAdornment position='start'>
+									<VerificationBadge verified={user?.emailVerified} />
+								</InputAdornment>
+							),
+						},
+						inputLabel: {
+							shrink: true,
+						},
 					}}
 				/>
 				<TextField
 					label='Phone'
 					defaultValue={user?.phone}
-					disabled
+					disabled={true}
 					fullWidth={true}
-					InputProps={{
-						readOnly: true,
-						startAdornment: (
-							<InputAdornment position='start'>
-								<VerificationBadge verified={user?.phoneVerified} />
-							</InputAdornment>
-						),
-					}}
-					InputLabelProps={{
-						shrink: true,
+					slotProps={{
+						input: {
+							readOnly: true,
+							startAdornment: (
+								<InputAdornment position='start'>
+									<VerificationBadge verified={user?.phoneVerified} />
+								</InputAdornment>
+							),
+						},
+						inputLabel: {
+							shrink: true,
+						},
 					}}
 				/>
 				<TextField
 					label='Birthdate'
 					type='date'
 					defaultValue={user?.birthdate}
-					disabled
+					disabled={true}
 					fullWidth={true}
-					InputProps={{
-						readOnly: true,
-					}}
-					InputLabelProps={{
-						shrink: true,
+					slotProps={{
+						input: {
+							readOnly: true,
+						},
+						inputLabel: {
+							shrink: true,
+						},
 					}}
 				/>
 				<CountrySelect
 					label='Country'
 					defaultValue={user?.country}
-					disabled
-					InputLabelProps={{
-						shrink: true,
+					disabled={true}
+					slotProps={{
+						inputLabel: {
+							shrink: true,
+						},
 					}}
 				/>
 				<TimezoneSelect
 					label='Timezone'
 					defaultValue={user?.timezone}
-					disabled
-					InputLabelProps={{
-						shrink: true,
+					disabled={true}
+					slotProps={{
+						inputLabel: {
+							shrink: true,
+						},
 					}}
 				/>
 			</>

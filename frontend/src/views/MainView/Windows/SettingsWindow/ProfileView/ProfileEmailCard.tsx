@@ -117,10 +117,12 @@ export const ProfileEmailCard: React.FC = (): JSX.Element => {
 										label='Email'
 										value={email}
 										onChange={(event: any) => setEmail(event.target.value)}
-										InputLabelProps={{
-											shrink: true,
-										}}
 										fullWidth={true}
+										slotProps={{
+											inputLabel: {
+												shrink: true,
+											},
+										}}
 									/>
 									<Typography
 										variant='body2'

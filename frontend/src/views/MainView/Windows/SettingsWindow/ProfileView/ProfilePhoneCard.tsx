@@ -91,10 +91,12 @@ export const ProfilePhoneCard: React.FC = (): JSX.Element => {
 										label='Phone'
 										value={phone}
 										onChange={(event: any) => setPhone(event.target.value)}
-										InputLabelProps={{
-											shrink: true,
-										}}
 										fullWidth={true}
+										slotProps={{
+											inputLabel: {
+												shrink: true,
+											},
+										}}
 									/>
 									<Typography
 										variant='body2'
