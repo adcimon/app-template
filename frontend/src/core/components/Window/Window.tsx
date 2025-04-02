@@ -49,9 +49,11 @@ export const Window: React.FC<IWindowProps> = (props: IWindowProps): JSX.Element
 					open={props.open}
 					closeAfterTransition={true}
 					fullScreen={true}
-					PaperProps={{
-						sx: {
-							backgroundColor: 'background.default',
+					slotProps={{
+						paper: {
+							sx: {
+								backgroundColor: 'background.default',
+							},
 						},
 					}}>
 					<Container

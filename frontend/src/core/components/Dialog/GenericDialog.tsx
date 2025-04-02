@@ -87,8 +87,10 @@ export const GenericDialog: React.FC<IGenericDialogProps> = (props: IGenericDial
 					closeAfterTransition={true}
 					onClose={props.onClose}
 					fullWidth={true}
-					PaperProps={{
-						sx: paperSx,
+					slotProps={{
+						paper: {
+							sx: paperSx,
+						},
 					}}>
 					{props.title && (
 						<DialogTitle>
