@@ -1,4 +1,5 @@
 import * as Recoil from 'recoil';
+import { User } from '../../model/user';
 import { useApiState } from '../api/useApiState';
 import { UsersState } from './adminState';
 
@@ -7,10 +8,10 @@ export function useAdminState() {
 
 	const [users, setUsers] = Recoil.useRecoilState(UsersState);
 
-	const getUsers = async (): Promise<any[]> => {
-		const dtos: any[] = await apiState.client?.adminService.getUsers();
-		setUsers(dtos);
-		return dtos;
+	const getUsers = async (): Promise<User[]> => {
+		const users: User[] = await apiState.client?.adminService.getUsers();
+		setUsers(users);
+		return users;
 	};
 
 	const reset = () => {

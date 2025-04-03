@@ -183,7 +183,7 @@ export const AccountMenu: React.FC = (): JSX.Element => {
 							<SettingsIcon sx={iconSx} />
 							<Typography>Settings</Typography>
 						</MenuItem>
-						{userState.user?.isAdmin() && (
+						{userState.user?.roles.includes('admin') && (
 							<MenuItem onClick={handleClickManagement}>
 								<SecurityIcon sx={iconSx} />
 								<Typography>Management</Typography>

@@ -11,13 +11,14 @@ import { CountrySelect } from '../../../../core/components/Select/CountrySelect'
 import { GenericTable } from '../../../../core/components/Table/GenericTable';
 import { TimezoneSelect } from '../../../../core/components/Select/TimezoneSelect';
 import { VerificationBadge } from '../../../../core/components/Badge/VerificationBadge';
+import { User } from '../../../../model/user';
 import { useAdminState } from '../../../../states/admin/useAdminState';
 import { AppUtils } from '../../../../utils/appUtils';
 
 export const UsersView: React.FC = (): JSX.Element => {
 	const adminState = useAdminState();
 
-	const [user, setUser] = React.useState<any>();
+	const [user, setUser] = React.useState<User>();
 
 	React.useEffect(() => {
 		getUsers();
@@ -35,7 +36,7 @@ export const UsersView: React.FC = (): JSX.Element => {
 		}
 	};
 
-	const handleSelect = (item: any) => {
+	const handleSelect = (item: User) => {
 		setUser(item);
 	};
 
@@ -43,7 +44,7 @@ export const UsersView: React.FC = (): JSX.Element => {
 		resetState();
 	};
 
-	const renderRow = (item: any) => {
+	const renderRow = (item: User) => {
 		const avatar: string | undefined = AppUtils.getAvatar(item);
 		return [
 			<>
@@ -227,7 +228,7 @@ export const UsersView: React.FC = (): JSX.Element => {
 		return (
 			<>
 				<Container maxWidth='xl'>
-					<GenericTable
+					<GenericTable<User>
 						itemName='User'
 						items={adminState.users}
 						head={['Name', 'Email', 'Phone']}

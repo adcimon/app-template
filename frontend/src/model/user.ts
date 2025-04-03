@@ -11,9 +11,4 @@ export class User {
 	timezone: string = '';
 	avatar: string = '';
 	roles: string[] = [];
-
-	isAdmin(): boolean {
-		const isAdmin: boolean = this.roles.includes('admin');
-		return isAdmin;
-	}
 }

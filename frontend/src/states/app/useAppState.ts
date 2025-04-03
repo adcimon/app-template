@@ -1,6 +1,7 @@
 import * as Recoil from 'recoil';
+import { Status } from '../../model/status';
+import { Credentials } from '../../model/credentials';
 import { User } from '../../model/user';
-import { Transforms } from '../../model/transforms/transforms';
 import { useApiState } from '../api/useApiState';
 import { ThemeState } from './appState';
 
@@ -9,15 +10,13 @@ export function useAppState() {
 
 	const [theme, setTheme] = Recoil.useRecoilState(ThemeState);
 
-	const signUp = async (email: string, password: string): Promise<any> => {
-		const dto: any = await apiState.client?.authService.signUp(email, password);
-		const user: User = Transforms.Dto.User(dto);
+	const signUp = async (email: string, password: string): Promise<User> => {
+		const user: User = await apiState.client?.authService.signUp(email, password);
 		return user;
 	};
 
-	const signDown = async (password: string): Promise<any> => {
-		const dto: any = await apiState.client?.authService.signDown(password);
-		const user: User = Transforms.Dto.User(dto);
+	const signDown = async (password: string): Promise<User> => {
+		const user: User = await apiState.client?.authService.signDown(password);
 
 		localStorage.removeItem('accessToken');
 		localStorage.removeItem('refreshToken');
@@ -25,44 +24,43 @@ export function useAppState() {
 		return user;
 	};
 
-	const signIn = async (email: string, password: string): Promise<any> => {
-		const dto: any = await apiState.client?.authService.signIn(email, password);
+	const signIn = async (email: string, password: string): Promise<Credentials> => {
+		const credentials: Credentials = await apiState.client?.authService.signIn(email, password);
 
-		const accessToken: string = dto.accessToken;
+		const accessToken: string = credentials.accessToken;
 		localStorage.setItem('accessToken', accessToken);
-		const refreshToken: string = dto.refreshToken;
+		const refreshToken: string = credentials.refreshToken;
 		localStorage.setItem('refreshToken', refreshToken);
 
-		return dto;
+		return credentials;
 	};
 
 	const signOut = async (): Promise<boolean> => {
-		const dto: any = await apiState.client?.authService.signOut();
+		const status: Status = await apiState.client?.authService.signOut();
 
 		localStorage.removeItem('accessToken');
 		localStorage.removeItem('refreshToken');
 
-		return dto.status;
+		return status.status;
 	};
 
 	const verifyEmail = async (code: string): Promise<boolean> => {
-		const dto: any = await apiState.client?.authService.verifyEmail(code);
-		return dto.status;
+		const status: Status = await apiState.client?.authService.verifyEmail(code);
+		return status.status;
 	};
 
 	const forgotPassword = async (email: string): Promise<boolean> => {
-		const dto: any = await apiState.client?.authService.forgotPassword(email);
-		return dto.status;
+		const status: Status = await apiState.client?.authService.forgotPassword(email);
+		return status.status;
 	};
 
 	const confirmPassword = async (email: string, code: string, password: string): Promise<boolean> => {
-		const dto: any = await apiState.client?.authService.confirmPassword(email, code, password);
-		return dto.status;
+		const status: Status = await apiState.client?.authService.confirmPassword(email, code, password);
+		return status.status;
 	};
 
 	const changePassword = async (currentPassword: string, newPassword: string): Promise<User> => {
-		const dto: any = await apiState.client?.authService.changePassword(currentPassword, newPassword);
-		const user: User = Transforms.Dto.User(dto);
+		const user: User = await apiState.client?.authService.changePassword(currentPassword, newPassword);
 		return user;
 	};
 

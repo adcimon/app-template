@@ -1,5 +1,6 @@
 import React from 'react';
 import axios, { AxiosInstance } from 'axios';
+import { Credentials } from '../../model/credentials';
 import { useApiState } from '../../states/api/useApiState';
 import { useUserState } from '../../states/user/useUserState';
 import { HttpParams } from '../../api/httpMethods';
@@ -217,7 +218,7 @@ export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps):
 			// Try to refresh the access token.
 			try {
 				const refreshToken: string = localStorage.getItem('refreshToken') || '';
-				const credentials: any = await client.authService.refreshToken(refreshToken);
+				const credentials: Credentials = await client.authService.refreshToken(refreshToken);
 
 				const accessToken: string = credentials.accessToken;
 				localStorage.setItem('accessToken', accessToken);
