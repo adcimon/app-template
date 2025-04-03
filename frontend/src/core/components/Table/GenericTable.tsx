@@ -54,12 +54,12 @@ export const GenericTable = <T,>(props: IGenericTableProps<T>): JSX.Element => {
 	const handleAcceptDialog = async () => {
 		if (!item) {
 			const created: boolean | undefined = await props.onCreate?.();
-			if (!created) {
+			if (created === false) {
 				return;
 			}
 		} else {
 			const updated: boolean | undefined = await props.onUpdate?.(item);
-			if (!updated) {
+			if (updated === false) {
 				return;
 			}
 		}
@@ -83,7 +83,7 @@ export const GenericTable = <T,>(props: IGenericTableProps<T>): JSX.Element => {
 
 	const handleAcceptDelete = async () => {
 		const deleted: boolean | undefined = await props.onDelete?.(item as T);
-		if (!deleted) {
+		if (deleted === false) {
 			return;
 		}
 
