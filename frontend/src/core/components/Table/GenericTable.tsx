@@ -46,28 +46,21 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 	};
 
 	const handleClickRow = (item: any) => {
-		if (props.onSelect) {
-			props.onSelect(item);
-		}
-
+		props.onSelect?.(item);
 		setItem(item);
 		setOpenItemDialog(true);
 	};
 
 	const handleAcceptDialog = async () => {
 		if (!item) {
-			if (props.onCreate) {
-				const created: boolean = await props.onCreate();
-				if (!created) {
-					return;
-				}
+			const created: boolean | undefined = await props.onCreate?.();
+			if (!created) {
+				return;
 			}
 		} else {
-			if (props.onUpdate) {
-				const updated: boolean = await props.onUpdate(item);
-				if (!updated) {
-					return;
-				}
+			const updated: boolean | undefined = await props.onUpdate?.(item);
+			if (!updated) {
+				return;
 			}
 		}
 
@@ -75,10 +68,7 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 	};
 
 	const handleCloseDialog = () => {
-		if (props.onDeselect) {
-			props.onDeselect();
-		}
-
+		props.onDeselect?.();
 		setOpenItemDialog(false);
 	};
 
@@ -92,11 +82,9 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 	};
 
 	const handleAcceptDelete = async () => {
-		if (props.onDelete) {
-			const deleted: boolean = await props.onDelete(item);
-			if (!deleted) {
-				return;
-			}
+		const deleted: boolean | undefined = await props.onDelete?.(item);
+		if (!deleted) {
+			return;
 		}
 
 		setOpenItemDialog(false);
