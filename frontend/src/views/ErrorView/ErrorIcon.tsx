@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTheme } from '@mui/material/styles';
 
-export const ErrorIcon: React.FC = (): JSX.Element => {
+export const ErrorIcon = (): JSX.Element => {
 	const theme = useTheme();
 
 	const render = () => {

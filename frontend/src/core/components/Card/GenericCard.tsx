@@ -14,7 +14,7 @@ interface IGenericCardProps {
 	children?: React.ReactNode;
 }
 
-export const GenericCard: React.FC<IGenericCardProps> = (props: IGenericCardProps): JSX.Element => {
+export const GenericCard = (props: IGenericCardProps): JSX.Element => {
 	const render = () => (
 		<>
 			<Card

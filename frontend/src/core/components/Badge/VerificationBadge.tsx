@@ -6,7 +6,7 @@ interface IVerificationBadgeProps {
 	verified?: boolean;
 }
 
-export const VerificationBadge: React.FC<IVerificationBadgeProps> = (props: IVerificationBadgeProps): JSX.Element => {
+export const VerificationBadge = (props: IVerificationBadgeProps): JSX.Element => {
 	const render = () => {
 		return (
 			<>

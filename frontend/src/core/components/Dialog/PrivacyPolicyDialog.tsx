@@ -11,9 +11,7 @@ interface IPrivacyPolicyDialogProps {
 	onClose?: (event: any) => void;
 }
 
-export const PrivacyPolicyDialog: React.FC<IPrivacyPolicyDialogProps> = (
-	props: IPrivacyPolicyDialogProps,
-): JSX.Element => {
+export const PrivacyPolicyDialog = (props: IPrivacyPolicyDialogProps): JSX.Element => {
 	const render = () => {
 		return (
 			<>

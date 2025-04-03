@@ -21,7 +21,7 @@ interface IShareDialogProps {
 	children?: React.ReactNode;
 }
 
-export const ShareDialog: React.FC<IShareDialogProps> = (props: IShareDialogProps): JSX.Element => {
+export const ShareDialog = (props: IShareDialogProps): JSX.Element => {
 	const copyFieldRef = React.useRef<any>(null);
 	const canvasRef = React.useRef<any>(null);
 	const acceptButtonRef = React.useRef<any>(null);

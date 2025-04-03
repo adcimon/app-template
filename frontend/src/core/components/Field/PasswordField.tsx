@@ -6,7 +6,7 @@ import TextField, { TextFieldProps } from '@mui/material/TextField';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
-export const PasswordField: React.FC<TextFieldProps> = (props: TextFieldProps): JSX.Element => {
+export const PasswordField = (props: TextFieldProps): JSX.Element => {
 	const [showPassword, setShowPassword] = React.useState<boolean>(false);
 
 	const handleMouseLeave = (event: any) => {

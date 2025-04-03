@@ -16,7 +16,7 @@ interface ISideBarProps {
 	children?: React.ReactNode;
 }
 
-export const SideBar: React.FC<ISideBarProps> = (props: ISideBarProps): JSX.Element => {
+export const SideBar = (props: ISideBarProps): JSX.Element => {
 	const responsive: boolean = useResponsive();
 
 	const render = () => {

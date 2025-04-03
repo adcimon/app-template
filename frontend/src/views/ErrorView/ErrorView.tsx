@@ -11,7 +11,7 @@ interface IErrorViewProps {
 	onClick?: () => void;
 }
 
-export const ErrorView: React.FC<IErrorViewProps> = (props: IErrorViewProps): JSX.Element => {
+export const ErrorView = (props: IErrorViewProps): JSX.Element => {
 	const responsive: boolean = useResponsive();
 
 	const render = () => {

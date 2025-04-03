@@ -2,7 +2,7 @@ import React from 'react';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 
-export const Copyright: React.FC = (): JSX.Element => {
+export const Copyright = (): JSX.Element => {
 	const render = () => {
 		const today: Date = new Date();
 		const year: number = today.getFullYear();

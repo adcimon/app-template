@@ -17,7 +17,7 @@ interface IUserCardProps {
 	children?: React.ReactNode;
 }
 
-export const UserCard: React.FC<IUserCardProps> = (props: IUserCardProps): JSX.Element => {
+export const UserCard = (props: IUserCardProps): JSX.Element => {
 	const theme: Theme = useTheme();
 	const render = () => (
 		<>

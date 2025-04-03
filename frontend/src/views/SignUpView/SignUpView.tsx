@@ -17,7 +17,7 @@ import { useNavigator } from '../../core/hooks/useNavigator';
 import { useAppState } from '../../states/app/useAppState';
 import { AppUtils } from '../../utils/appUtils';
 
-export const SignUpView: React.FC = (): JSX.Element => {
+export const SignUpView = (): JSX.Element => {
 	const navigator = useNavigator();
 	const appState = useAppState();
 

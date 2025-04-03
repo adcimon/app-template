@@ -5,7 +5,7 @@ interface IIconBadgeProps {
 	icon?: React.ReactElement;
 }
 
-export const IconBadge: React.FC<IIconBadgeProps> = (props: IIconBadgeProps): JSX.Element => {
+export const IconBadge = (props: IIconBadgeProps): JSX.Element => {
 	const render = () => {
 		return (
 			<>

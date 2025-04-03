@@ -9,7 +9,7 @@ interface ILoadingWindowProps {
 	text?: string;
 }
 
-export const LoadingWindow: React.FC<ILoadingWindowProps> = (props: ILoadingWindowProps): JSX.Element => {
+export const LoadingWindow = (props: ILoadingWindowProps): JSX.Element => {
 	const responsive: boolean = useResponsive();
 
 	const render = () => {

@@ -9,9 +9,7 @@ interface INotificationTooltipProps {
 	notification: any;
 }
 
-export const NotificationTooltip: React.FC<INotificationTooltipProps> = (
-	props: INotificationTooltipProps,
-): JSX.Element => {
+export const NotificationTooltip = (props: INotificationTooltipProps): JSX.Element => {
 	const render = () => {
 		return (
 			<>

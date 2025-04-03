@@ -7,7 +7,7 @@ import TextField, { TextFieldProps } from '@mui/material/TextField';
 import Zoom from '@mui/material/Zoom';
 import { Utils } from '../../utils/utils';
 
-export const CopyField: React.FC<TextFieldProps> = (props: TextFieldProps): JSX.Element => {
+export const CopyField = (props: TextFieldProps): JSX.Element => {
 	const [success, setSuccess] = React.useState<boolean>(false);
 
 	const handleClick = () => {

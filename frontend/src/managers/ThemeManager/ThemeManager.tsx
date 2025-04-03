@@ -11,7 +11,7 @@ interface IThemeManagerProps {
 	children?: React.ReactNode;
 }
 
-export const ThemeManager: React.FC<IThemeManagerProps> = (props: IThemeManagerProps): JSX.Element => {
+export const ThemeManager = (props: IThemeManagerProps): JSX.Element => {
 	const appState = useAppState();
 
 	const getTheme = (): Theme => {

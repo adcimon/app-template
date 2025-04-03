@@ -14,7 +14,7 @@ interface IManagementWindowProps {
 	onClose?: (event: any) => void;
 }
 
-export const ManagementWindow: React.FC<IManagementWindowProps> = (props: IManagementWindowProps): JSX.Element => {
+export const ManagementWindow = (props: IManagementWindowProps): JSX.Element => {
 	const [tab, setTab] = React.useState<number>(0);
 
 	const handleTabChange = (event: any, value: number) => {

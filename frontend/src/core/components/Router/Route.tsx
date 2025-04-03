@@ -6,7 +6,7 @@ export interface IRouteProps {
 	children?: React.ReactNode;
 }
 
-export const Route: React.FC<IRouteProps> = (props: IRouteProps) => {
+export const Route = (props: IRouteProps) => {
 	const { path } = React.useContext(RouterContext);
 
 	const render = () => {

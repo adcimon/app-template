@@ -6,7 +6,7 @@ interface INavigationMenuProps {
 	children?: React.ReactNode;
 }
 
-export const NavigationMenu: React.FC<INavigationMenuProps> = (props: INavigationMenuProps): JSX.Element => {
+export const NavigationMenu = (props: INavigationMenuProps): JSX.Element => {
 	const render = () => {
 		return (
 			<>

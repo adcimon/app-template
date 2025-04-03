@@ -15,9 +15,7 @@ interface IConfirmationDialogProps {
 	children?: React.ReactNode;
 }
 
-export const ConfirmationDialog: React.FC<IConfirmationDialogProps> = (
-	props: IConfirmationDialogProps,
-): JSX.Element => {
+export const ConfirmationDialog = (props: IConfirmationDialogProps): JSX.Element => {
 	const acceptButtonRef = React.useRef<any>(null);
 	const cancelButtonRef = React.useRef<any>(null);
 

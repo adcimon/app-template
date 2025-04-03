@@ -9,7 +9,7 @@ interface INavigationItemProps {
 	onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
-export const NavigationItem: React.FC<INavigationItemProps> = (props: INavigationItemProps): JSX.Element => {
+export const NavigationItem = (props: INavigationItemProps): JSX.Element => {
 	const render = () => {
 		return (
 			<>

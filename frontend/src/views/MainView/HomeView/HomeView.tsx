@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { UserCard } from '../../../core/components/Card/UserCard';
 
-export const HomeView: React.FC = (): JSX.Element => {
+export const HomeView = (): JSX.Element => {
 	const render = () => {
 		return (
 			<>

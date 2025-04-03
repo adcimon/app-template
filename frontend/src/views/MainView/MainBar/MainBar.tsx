@@ -9,7 +9,7 @@ interface IMainBarProps {
 	height?: string;
 }
 
-export const MainBar: React.FC<IMainBarProps> = (props: IMainBarProps): JSX.Element => {
+export const MainBar = (props: IMainBarProps): JSX.Element => {
 	const render = () => {
 		return (
 			<>

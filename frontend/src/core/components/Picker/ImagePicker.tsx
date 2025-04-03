@@ -18,7 +18,7 @@ interface IImagePickerProps {
 	onDelete?: () => void;
 }
 
-export const ImagePicker: React.FC<IImagePickerProps> = (props: IImagePickerProps): JSX.Element => {
+export const ImagePicker = (props: IImagePickerProps): JSX.Element => {
 	const ref = React.useRef<HTMLDivElement>(null);
 	const inputRef = React.useRef<HTMLInputElement>(null);
 

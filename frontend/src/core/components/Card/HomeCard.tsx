@@ -12,7 +12,7 @@ interface IHomeCardProps {
 	onClick?: (event: any) => void;
 }
 
-export const HomeCard: React.FC<IHomeCardProps> = (props: IHomeCardProps): JSX.Element => {
+export const HomeCard = (props: IHomeCardProps): JSX.Element => {
 	const handleClick = (event: any) => {
 		props.onClick?.(event);
 	};

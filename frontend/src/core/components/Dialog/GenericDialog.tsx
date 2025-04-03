@@ -21,7 +21,7 @@ interface IGenericDialogProps {
 	children?: React.ReactNode;
 }
 
-export const GenericDialog: React.FC<IGenericDialogProps> = (props: IGenericDialogProps): JSX.Element => {
+export const GenericDialog = (props: IGenericDialogProps): JSX.Element => {
 	const responsive: boolean = useResponsive();
 
 	const paperSx: SxProps = responsive

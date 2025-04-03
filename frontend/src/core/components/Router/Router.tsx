@@ -13,7 +13,7 @@ export const RouterContext = React.createContext<{
 	state: window.history.state,
 });
 
-export const Router: React.FC<IRouterProps> = (props: IRouterProps) => {
+export const Router = (props: IRouterProps) => {
 	const [path, setPath] = React.useState<string>(window.location.pathname);
 	const [state, setState] = React.useState<any>();
 

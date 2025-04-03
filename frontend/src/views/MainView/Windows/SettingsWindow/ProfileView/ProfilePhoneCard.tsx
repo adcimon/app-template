@@ -16,7 +16,7 @@ import { VerificationBadge } from '../../../../../core/components/Badge/Verifica
 import { useUserState } from '../../../../../states/user/useUserState';
 import { AppUtils } from '../../../../../utils/appUtils';
 
-export const ProfilePhoneCard: React.FC = (): JSX.Element => {
+export const ProfilePhoneCard = (): JSX.Element => {
 	const userState = useUserState();
 
 	const [phone, setPhone] = React.useState<string>(userState.user?.phone ?? '');

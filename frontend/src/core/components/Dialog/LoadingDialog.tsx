@@ -13,7 +13,7 @@ interface ILoadingDialogProps {
 	children?: React.ReactNode;
 }
 
-export const LoadingDialog: React.FC<ILoadingDialogProps> = (props: ILoadingDialogProps): JSX.Element => {
+export const LoadingDialog = (props: ILoadingDialogProps): JSX.Element => {
 	const cancelButtonRef = React.useRef<any>(null);
 
 	const handleCancel = async (event: any) => {

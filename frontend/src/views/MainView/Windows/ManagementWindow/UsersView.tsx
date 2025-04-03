@@ -15,7 +15,7 @@ import { User } from '../../../../model/user';
 import { useAdminState } from '../../../../states/admin/useAdminState';
 import { AppUtils } from '../../../../utils/appUtils';
 
-export const UsersView: React.FC = (): JSX.Element => {
+export const UsersView = (): JSX.Element => {
 	const adminState = useAdminState();
 
 	const [user, setUser] = React.useState<User>();

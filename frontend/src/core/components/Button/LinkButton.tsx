@@ -7,7 +7,7 @@ type LinkButtonProps = IconButtonProps & {
 	link?: string;
 };
 
-export const LinkButton: React.FC<LinkButtonProps> = (props: LinkButtonProps): JSX.Element => {
+export const LinkButton = (props: LinkButtonProps): JSX.Element => {
 	const render = () => {
 		return (
 			<>

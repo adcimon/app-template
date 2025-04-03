@@ -11,7 +11,7 @@ import { ConfirmationDialog } from '../../../../../core/components/Dialog/Confir
 import { useUserState } from '../../../../../states/user/useUserState';
 import { AppUtils } from '../../../../../utils/appUtils';
 
-export const UserAvatar: React.FC = (): JSX.Element => {
+export const UserAvatar = (): JSX.Element => {
 	const ref = React.useRef<HTMLDivElement>(null);
 
 	const userState = useUserState();

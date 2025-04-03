@@ -21,7 +21,7 @@ interface ISettingsWindowProps {
 	onClose?: (event: any) => void;
 }
 
-export const SettingsWindow: React.FC<ISettingsWindowProps> = (props: ISettingsWindowProps): JSX.Element => {
+export const SettingsWindow = (props: ISettingsWindowProps): JSX.Element => {
 	const userState = useUserState();
 
 	const [tab, setTab] = React.useState<number>(0);

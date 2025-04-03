@@ -18,7 +18,7 @@ import { useAppState } from '../../../../../states/app/useAppState';
 import { useUserState } from '../../../../../states/user/useUserState';
 import { AppUtils } from '../../../../../utils/appUtils';
 
-export const ProfileEmailCard: React.FC = (): JSX.Element => {
+export const ProfileEmailCard = (): JSX.Element => {
 	const appState = useAppState();
 	const userState = useUserState();
 

@@ -11,7 +11,7 @@ interface IApiManagerProps {
 	children?: React.ReactNode;
 }
 
-export const ApiManager: React.FC<IApiManagerProps> = (props: IApiManagerProps): JSX.Element => {
+export const ApiManager = (props: IApiManagerProps): JSX.Element => {
 	const apiState = useApiState();
 	const userState = useUserState();
 

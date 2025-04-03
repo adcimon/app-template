@@ -10,7 +10,7 @@ interface IPaginatorProps {
 	children?: React.ReactNode;
 }
 
-export const Paginator: React.FC<IPaginatorProps> = (props: IPaginatorProps): JSX.Element => {
+export const Paginator = (props: IPaginatorProps): JSX.Element => {
 	const paginationPercentageHeight: number = 8;
 
 	const [page, setPage] = React.useState<number>(1);

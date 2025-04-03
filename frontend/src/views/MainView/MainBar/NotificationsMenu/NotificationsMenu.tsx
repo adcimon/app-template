@@ -11,7 +11,7 @@ import Typography from '@mui/material/Typography';
 import { GenericPopover } from '../../../../core/components/Popover/GenericPopover';
 import { NotificationItem } from './NotificationItem';
 
-export const NotificationsMenu: React.FC = (): JSX.Element => {
+export const NotificationsMenu = (): JSX.Element => {
 	const ref = React.useRef<any>(null);
 
 	const [notifications, setNotifications] = React.useState<object[]>(defaultNotifications);

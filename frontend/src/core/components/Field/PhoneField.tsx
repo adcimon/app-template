@@ -3,7 +3,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import PhoneIcon from '@mui/icons-material/Phone';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 
-export const PhoneField: React.FC<TextFieldProps> = (props: TextFieldProps): JSX.Element => {
+export const PhoneField = (props: TextFieldProps): JSX.Element => {
 	const render = () => {
 		return (
 			<>

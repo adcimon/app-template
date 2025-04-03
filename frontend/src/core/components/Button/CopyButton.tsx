@@ -9,7 +9,7 @@ type CopyButtonProps = IconButtonProps & {
 	text?: string;
 };
 
-export const CopyButton: React.FC<CopyButtonProps> = (props: CopyButtonProps): JSX.Element => {
+export const CopyButton = (props: CopyButtonProps): JSX.Element => {
 	const [success, setSuccess] = React.useState<boolean>(false);
 
 	const handleClick = () => {

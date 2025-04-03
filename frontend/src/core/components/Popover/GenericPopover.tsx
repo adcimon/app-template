@@ -14,7 +14,7 @@ interface IGenericPopoverProps {
 	children?: React.ReactNode;
 }
 
-export const GenericPopover: React.FC<IGenericPopoverProps> = (props: IGenericPopoverProps): JSX.Element => {
+export const GenericPopover = (props: IGenericPopoverProps): JSX.Element => {
 	const responsive: boolean = useResponsive();
 
 	const render = () => {

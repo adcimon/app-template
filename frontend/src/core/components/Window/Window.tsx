@@ -15,7 +15,7 @@ interface IWindowProps {
 	children?: React.ReactNode;
 }
 
-export const Window: React.FC<IWindowProps> = (props: IWindowProps): JSX.Element => {
+export const Window = (props: IWindowProps): JSX.Element => {
 	const handleClose = (event: any) => {
 		props.onClose?.(event);
 	};

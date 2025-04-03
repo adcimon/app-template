@@ -11,9 +11,7 @@ interface ITermsOfServiceDialogProps {
 	onClose?: (event: any) => void;
 }
 
-export const TermsOfServiceDialog: React.FC<ITermsOfServiceDialogProps> = (
-	props: ITermsOfServiceDialogProps,
-): JSX.Element => {
+export const TermsOfServiceDialog = (props: ITermsOfServiceDialogProps): JSX.Element => {
 	const render = () => {
 		return (
 			<>

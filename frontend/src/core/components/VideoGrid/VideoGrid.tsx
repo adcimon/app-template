@@ -10,7 +10,7 @@ interface IVideoGridProps {
 	children?: React.ReactElement | Array<React.ReactElement>;
 }
 
-export const VideoGrid: React.FC<IVideoGridProps> = (props: IVideoGridProps): JSX.Element => {
+export const VideoGrid = (props: IVideoGridProps): JSX.Element => {
 	const aspectRatio: number = props.aspectRatio ?? 4 / 3;
 	const tileMargin: number = props.tileMargin ?? 5;
 	const gridRef = React.useRef<HTMLDivElement>(null);

@@ -22,7 +22,7 @@ import { useAppState } from '../../../../states/app/useAppState';
 import { useUserState } from '../../../../states/user/useUserState';
 import { AppUtils } from '../../../../utils/appUtils';
 
-export const AccountMenu: React.FC = (): JSX.Element => {
+export const AccountMenu = (): JSX.Element => {
 	const ref = React.useRef<any>(null);
 
 	const appState = useAppState();
