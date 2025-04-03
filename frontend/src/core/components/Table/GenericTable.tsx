@@ -17,27 +17,27 @@ import { ConfirmationDialog } from '../Dialog/ConfirmationDialog';
 const RowsPerPageRange = [5, 10, 25] as const;
 type RowsPerPageType = (typeof RowsPerPageRange)[number];
 
-interface IGenericTableProps {
+interface IGenericTableProps<T> {
 	title?: React.ReactNode;
 	itemName?: string;
-	items: any[];
+	items: T[];
 	head?: React.ReactNode[];
-	row?: (item: any) => React.ReactNode[];
+	row?: (item: T) => React.ReactNode[];
 	dialog?: React.ReactNode;
 	validate?: () => boolean;
 	rowsPerPage?: RowsPerPageType;
-	onSelect?: (item: any) => void;
+	onSelect?: (item: T) => void;
 	onDeselect?: () => void;
 	onCreate?: () => Promise<boolean>;
-	onUpdate?: (item: any) => Promise<boolean>;
-	onDelete?: (item: any) => Promise<boolean>;
+	onUpdate?: (item: T) => Promise<boolean>;
+	onDelete?: (item: T) => Promise<boolean>;
 }
 
-export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableProps): JSX.Element => {
+export const GenericTable = <T,>(props: IGenericTableProps<T>): JSX.Element => {
 	const itemName: string = props.itemName || '';
 	const [page, setPage] = React.useState<number>(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState<number>(props.rowsPerPage || RowsPerPageRange[0]);
-	const [item, setItem] = React.useState<any>();
+	const [item, setItem] = React.useState<T>();
 	const [openItemDialog, setOpenItemDialog] = React.useState<boolean>(false);
 	const [openDeleteDialog, setOpenDeleteDialog] = React.useState<boolean>(false);
 
@@ -45,7 +45,7 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 		return records.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 	};
 
-	const handleClickRow = (item: any) => {
+	const handleClickRow = (item: T) => {
 		props.onSelect?.(item);
 		setItem(item);
 		setOpenItemDialog(true);
@@ -82,7 +82,7 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 	};
 
 	const handleAcceptDelete = async () => {
-		const deleted: boolean | undefined = await props.onDelete?.(item);
+		const deleted: boolean | undefined = await props.onDelete?.(item as T);
 		if (!deleted) {
 			return;
 		}
@@ -128,7 +128,7 @@ export const GenericTable: React.FC<IGenericTableProps> = (props: IGenericTableP
 								</TableRow>
 							</TableHead>
 							<TableBody>
-								{applyPagination(props.items, page, rowsPerPage).map((item: any, index: number) => {
+								{applyPagination(props.items, page, rowsPerPage).map((item: T, index: number) => {
 									return (
 										<TableRow
 											key={index}

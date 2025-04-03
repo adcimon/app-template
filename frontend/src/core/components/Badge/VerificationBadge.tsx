@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import VerifiedIcon from '@mui/icons-material/Verified';
 
 interface IVerificationBadgeProps {
-	verified: boolean;
+	verified?: boolean;
 }
 
 export const VerificationBadge: React.FC<IVerificationBadgeProps> = (props: IVerificationBadgeProps): JSX.Element => {
