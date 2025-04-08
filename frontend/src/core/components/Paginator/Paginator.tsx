@@ -27,50 +27,48 @@ export const Paginator = (props: IPaginatorProps): JSX.Element => {
 
 	const render = () => {
 		return (
-			<>
-				<Box sx={props.sx}>
-					<Box
-						sx={{
-							height: `${100 - paginationPercentageHeight}%`,
-							width: '100%',
-						}}>
-						{React.Children.map(props.children, (child: React.ReactNode, index: number) => {
-							const selected: boolean = index + 1 === page;
-							return (
-								<Slide
-									direction={direction}
-									in={selected}>
-									<Box
-										sx={{
-											display: selected ? undefined : 'none',
-											height: '100%',
-											width: '100%',
-										}}>
-										{child}
-									</Box>
-								</Slide>
-							);
-						})}
-					</Box>
-					<Stack
-						direction='row'
-						sx={{
-							alignItems: 'center',
-							height: `${paginationPercentageHeight}%`,
-							justifyContent: 'center',
-							width: '100%',
-						}}>
-						<Pagination
-							count={getCount()}
-							page={page}
-							color='primary'
-							showFirstButton={getCount() > 5}
-							showLastButton={getCount() > 5}
-							onChange={handleChangePage}
-						/>
-					</Stack>
+			<Box sx={props.sx}>
+				<Box
+					sx={{
+						height: `${100 - paginationPercentageHeight}%`,
+						width: '100%',
+					}}>
+					{React.Children.map(props.children, (child: React.ReactNode, index: number) => {
+						const selected: boolean = index + 1 === page;
+						return (
+							<Slide
+								direction={direction}
+								in={selected}>
+								<Box
+									sx={{
+										display: selected ? undefined : 'none',
+										height: '100%',
+										width: '100%',
+									}}>
+									{child}
+								</Box>
+							</Slide>
+						);
+					})}
 				</Box>
-			</>
+				<Stack
+					direction='row'
+					sx={{
+						alignItems: 'center',
+						height: `${paginationPercentageHeight}%`,
+						justifyContent: 'center',
+						width: '100%',
+					}}>
+					<Pagination
+						count={getCount()}
+						page={page}
+						color='primary'
+						showFirstButton={getCount() > 5}
+						showLastButton={getCount() > 5}
+						onChange={handleChangePage}
+					/>
+				</Stack>
+			</Box>
 		);
 	};
 

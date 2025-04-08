@@ -8,20 +8,18 @@ interface IIconBadgeProps {
 export const IconBadge = (props: IIconBadgeProps): JSX.Element => {
 	const render = () => {
 		return (
-			<>
-				<Stack
-					direction='row'
-					sx={{
-						alignItems: 'center',
-						backgroundColor: '#d2d6db1f',
-						borderRadius: '100%',
-						color: 'neutral.light',
-						justifyContent: 'center',
-						padding: '0.25rem',
-					}}>
-					{props.icon}
-				</Stack>
-			</>
+			<Stack
+				direction='row'
+				sx={{
+					alignItems: 'center',
+					backgroundColor: '#d2d6db1f',
+					borderRadius: '100%',
+					color: 'neutral.light',
+					justifyContent: 'center',
+					padding: '0.25rem',
+				}}>
+				{props.icon}
+			</Stack>
 		);
 	};
 

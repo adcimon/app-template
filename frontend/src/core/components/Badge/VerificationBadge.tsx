@@ -9,47 +9,45 @@ interface IVerificationBadgeProps {
 export const VerificationBadge = (props: IVerificationBadgeProps): JSX.Element => {
 	const render = () => {
 		return (
-			<>
+			<Box
+				style={{
+					alignItems: 'center',
+					display: 'inline-flex',
+					height: '1.5rem',
+					justifyContent: 'center',
+					position: 'relative',
+					width: '1.5rem',
+				}}>
 				<Box
 					style={{
-						alignItems: 'center',
-						display: 'inline-flex',
-						height: '1.5rem',
-						justifyContent: 'center',
-						position: 'relative',
-						width: '1.5rem',
-					}}>
-					<Box
-						style={{
-							backgroundColor: 'white',
-							borderRadius: '50%',
-							height: '60%',
-							position: 'absolute',
-							width: '60%',
+						backgroundColor: 'white',
+						borderRadius: '50%',
+						height: '60%',
+						position: 'absolute',
+						width: '60%',
+					}}
+				/>
+				{props.verified === true && (
+					<VerifiedIcon
+						sx={{
+							fill: 'green',
+							marginLeft: '0 !important',
+							transform: 'none !important',
+							zIndex: '10',
 						}}
 					/>
-					{props.verified === true && (
-						<VerifiedIcon
-							sx={{
-								fill: 'green',
-								marginLeft: '0 !important',
-								transform: 'none !important',
-								zIndex: '10',
-							}}
-						/>
-					)}
-					{props.verified !== true && (
-						<VerifiedIcon
-							sx={{
-								fill: 'gray',
-								marginLeft: '0 !important',
-								transform: 'none !important',
-								zIndex: '10',
-							}}
-						/>
-					)}
-				</Box>
-			</>
+				)}
+				{props.verified !== true && (
+					<VerifiedIcon
+						sx={{
+							fill: 'gray',
+							marginLeft: '0 !important',
+							transform: 'none !important',
+							zIndex: '10',
+						}}
+					/>
+				)}
+			</Box>
 		);
 	};
 

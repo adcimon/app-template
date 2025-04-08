@@ -16,50 +16,48 @@ interface IGenericCardProps {
 
 export const GenericCard = (props: IGenericCardProps): JSX.Element => {
 	const render = () => (
-		<>
-			<Card
+		<Card
+			sx={{
+				display: 'flex',
+				flexDirection: 'column',
+				height: '100%',
+			}}>
+			<CardMedia
+				component='div'
+				image={props.image}
 				sx={{
-					display: 'flex',
-					flexDirection: 'column',
-					height: '100%',
+					paddingTop: '56.25%' /* 16:9 */,
+				}}
+			/>
+			<CardContent
+				sx={{
+					flexGrow: 1,
 				}}>
-				<CardMedia
-					component='div'
-					image={props.image}
+				<Stack
+					direction='column'
 					sx={{
-						paddingTop: '56.25%' /* 16:9 */,
-					}}
-				/>
-				<CardContent
-					sx={{
-						flexGrow: 1,
+						alignItems: 'center',
 					}}>
-					<Stack
-						direction='column'
-						sx={{
-							alignItems: 'center',
-						}}>
-						<Typography
-							variant='h6'
-							gutterBottom>
-							{props.title}
-						</Typography>
-						{props.children}
-					</Stack>
-				</CardContent>
-				<Divider
-					sx={{
-						borderStyle: 'dashed',
-					}}
-				/>
-				<CardActions
-					sx={{
-						justifyContent: 'space-between',
-					}}>
-					{props.actions}
-				</CardActions>
-			</Card>
-		</>
+					<Typography
+						variant='h6'
+						gutterBottom>
+						{props.title}
+					</Typography>
+					{props.children}
+				</Stack>
+			</CardContent>
+			<Divider
+				sx={{
+					borderStyle: 'dashed',
+				}}
+			/>
+			<CardActions
+				sx={{
+					justifyContent: 'space-between',
+				}}>
+				{props.actions}
+			</CardActions>
+		</Card>
 	);
 
 	return render();

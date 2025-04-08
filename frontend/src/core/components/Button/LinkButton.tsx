@@ -10,18 +10,16 @@ type LinkButtonProps = IconButtonProps & {
 export const LinkButton = (props: LinkButtonProps): JSX.Element => {
 	const render = () => {
 		return (
-			<>
-				<Link
-					href={props.link}
-					target='_blank'>
-					<IconButton {...props}>
-						<LaunchIcon
-							color='primary'
-							fontSize='inherit'
-						/>
-					</IconButton>
-				</Link>
-			</>
+			<Link
+				href={props.link}
+				target='_blank'>
+				<IconButton {...props}>
+					<LaunchIcon
+						color='primary'
+						fontSize='inherit'
+					/>
+				</IconButton>
+			</Link>
 		);
 	};
 

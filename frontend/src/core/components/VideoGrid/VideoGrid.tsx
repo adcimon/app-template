@@ -136,31 +136,29 @@ export const VideoGrid = (props: IVideoGridProps): JSX.Element => {
 
 	const render = () => {
 		return (
-			<>
+			<Box
+				ref={visibilityObserver.ref}
+				sx={{
+					display: 'flex',
+					flex: '1',
+					height: '100%',
+					width: '100%',
+				}}>
 				<Box
-					ref={visibilityObserver.ref}
+					ref={gridRef}
 					sx={{
+						alignContent: 'center',
+						alignItems: 'center',
 						display: 'flex',
 						flex: '1',
-						height: '100%',
-						width: '100%',
+						flexWrap: 'wrap',
+						justifyContent: 'center',
+						overflow: 'auto',
+						verticalAlign: 'middle',
 					}}>
-					<Box
-						ref={gridRef}
-						sx={{
-							alignContent: 'center',
-							alignItems: 'center',
-							display: 'flex',
-							flex: '1',
-							flexWrap: 'wrap',
-							justifyContent: 'center',
-							overflow: 'auto',
-							verticalAlign: 'middle',
-						}}>
-						{renderTiles()}
-					</Box>
+					{renderTiles()}
 				</Box>
-			</>
+			</Box>
 		);
 	};
 

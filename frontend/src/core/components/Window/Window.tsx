@@ -22,57 +22,53 @@ export const Window = (props: IWindowProps): JSX.Element => {
 
 	const renderHeader = () => {
 		return (
-			<>
-				<Stack
-					direction='row'
+			<Stack
+				direction='row'
+				sx={{
+					justifyContent: 'space-between',
+					width: '100%',
+				}}>
+				<Typography variant='h4'>{props.label}</Typography>
+				<IconButton
+					onClick={handleClose}
 					sx={{
-						justifyContent: 'space-between',
-						width: '100%',
+						border: '1px solid',
 					}}>
-					<Typography variant='h4'>{props.label}</Typography>
-					<IconButton
-						onClick={handleClose}
-						sx={{
-							border: '1px solid',
-						}}>
-						<CloseIcon />
-					</IconButton>
-				</Stack>
-			</>
+					<CloseIcon />
+				</IconButton>
+			</Stack>
 		);
 	};
 
 	const render = () => {
 		return (
-			<>
-				<Dialog
-					open={props.open}
-					closeAfterTransition={true}
-					fullScreen={true}
-					slotProps={{
-						paper: {
-							sx: {
-								backgroundColor: 'background.default',
-							},
+			<Dialog
+				open={props.open}
+				closeAfterTransition={true}
+				fullScreen={true}
+				slotProps={{
+					paper: {
+						sx: {
+							backgroundColor: 'background.default',
 						},
+					},
+				}}>
+				<Container
+					sx={{
+						height: '100%',
+						marginBottom: '20px',
+						maxWidth: 'lg',
+						paddingTop: 3,
 					}}>
-					<Container
-						sx={{
-							height: '100%',
-							marginBottom: '20px',
-							maxWidth: 'lg',
-							paddingTop: 3,
-						}}>
-						<Stack
-							direction='column'
-							spacing={3}
-							sx={props.sx}>
-							{(props.label || props.onClose) && renderHeader()}
-							{props.children}
-						</Stack>
-					</Container>
-				</Dialog>
-			</>
+					<Stack
+						direction='column'
+						spacing={3}
+						sx={props.sx}>
+						{(props.label || props.onClose) && renderHeader()}
+						{props.children}
+					</Stack>
+				</Container>
+			</Dialog>
 		);
 	};
 

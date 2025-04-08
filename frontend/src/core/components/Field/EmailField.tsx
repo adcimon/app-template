@@ -6,20 +6,18 @@ import TextField, { TextFieldProps } from '@mui/material/TextField';
 export const EmailField = (props: TextFieldProps): JSX.Element => {
 	const render = () => {
 		return (
-			<>
-				<TextField
-					{...props}
-					slotProps={{
-						input: {
-							startAdornment: (
-								<InputAdornment position='start'>
-									<EmailIcon fontSize='small' />
-								</InputAdornment>
-							),
-						},
-					}}
-				/>
-			</>
+			<TextField
+				{...props}
+				slotProps={{
+					input: {
+						startAdornment: (
+							<InputAdornment position='start'>
+								<EmailIcon fontSize='small' />
+							</InputAdornment>
+						),
+					},
+				}}
+			/>
 		);
 	};
 

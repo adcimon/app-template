@@ -35,32 +35,30 @@ export const SearchField = ({ onSearch, ...props }: SearchFieldProps): JSX.Eleme
 
 	const render = () => {
 		return (
-			<>
-				<TextField
-					{...props}
-					value={value}
-					onChange={handleChange}
-					onKeyDown={handleKeyDown}
-					hiddenLabel
-					slotProps={{
-						input: {
-							startAdornment: (
-								<InputAdornment position='start'>
-									<SearchIcon />
-								</InputAdornment>
-							),
-							endAdornment: (
-								<InputAdornment position='end'>
-									{value !== '' && <IconButton onClick={handleClear}>{<CloseIcon />}</IconButton>}
-								</InputAdornment>
-							),
-						},
-						inputLabel: {
-							shrink: false,
-						},
-					}}
-				/>
-			</>
+			<TextField
+				{...props}
+				value={value}
+				onChange={handleChange}
+				onKeyDown={handleKeyDown}
+				hiddenLabel
+				slotProps={{
+					input: {
+						startAdornment: (
+							<InputAdornment position='start'>
+								<SearchIcon />
+							</InputAdornment>
+						),
+						endAdornment: (
+							<InputAdornment position='end'>
+								{value !== '' && <IconButton onClick={handleClear}>{<CloseIcon />}</IconButton>}
+							</InputAdornment>
+						),
+					},
+					inputLabel: {
+						shrink: false,
+					},
+				}}
+			/>
 		);
 	};
 

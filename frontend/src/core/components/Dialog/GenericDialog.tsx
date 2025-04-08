@@ -81,35 +81,33 @@ export const GenericDialog = (props: IGenericDialogProps): JSX.Element => {
 
 	const render = () => {
 		return (
-			<>
-				<Dialog
-					open={props.open}
-					closeAfterTransition={true}
-					onClose={props.onClose}
-					fullWidth={true}
-					slotProps={{
-						paper: {
-							sx: paperSx,
-						},
-					}}>
-					{props.title && (
-						<DialogTitle>
-							<Stack
-								direction='row'
-								sx={{
-									alignItems: 'center',
-									height: '100%',
-									width: '100%',
-								}}>
-								{renderIcon()}
-								{props.title}
-							</Stack>
-						</DialogTitle>
-					)}
-					<DialogContent sx={props.sx}>{props.children}</DialogContent>
-					{props.actions && <DialogActions>{props.actions}</DialogActions>}
-				</Dialog>
-			</>
+			<Dialog
+				open={props.open}
+				closeAfterTransition={true}
+				onClose={props.onClose}
+				fullWidth={true}
+				slotProps={{
+					paper: {
+						sx: paperSx,
+					},
+				}}>
+				{props.title && (
+					<DialogTitle>
+						<Stack
+							direction='row'
+							sx={{
+								alignItems: 'center',
+								height: '100%',
+								width: '100%',
+							}}>
+							{renderIcon()}
+							{props.title}
+						</Stack>
+					</DialogTitle>
+				)}
+				<DialogContent sx={props.sx}>{props.children}</DialogContent>
+				{props.actions && <DialogActions>{props.actions}</DialogActions>}
+			</Dialog>
 		);
 	};
 

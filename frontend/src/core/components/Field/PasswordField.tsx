@@ -20,35 +20,33 @@ export const PasswordField = (props: TextFieldProps): JSX.Element => {
 
 	const render = () => {
 		return (
-			<>
-				<TextField
-					{...props}
-					type={showPassword ? 'text' : 'password'}
-					onMouseLeave={handleMouseLeave}
-					slotProps={{
-						input: {
-							startAdornment: (
-								<InputAdornment position='start'>
-									<LockIcon fontSize='small' />
-								</InputAdornment>
-							),
-							endAdornment: (
-								<InputAdornment position='end'>
-									<IconButton
-										onClick={handleShowPassword}
-										onMouseDown={handleShowPassword}>
-										{showPassword ? (
-											<VisibilityIcon fontSize='small' />
-										) : (
-											<VisibilityOffIcon fontSize='small' />
-										)}
-									</IconButton>
-								</InputAdornment>
-							),
-						},
-					}}
-				/>
-			</>
+			<TextField
+				{...props}
+				type={showPassword ? 'text' : 'password'}
+				onMouseLeave={handleMouseLeave}
+				slotProps={{
+					input: {
+						startAdornment: (
+							<InputAdornment position='start'>
+								<LockIcon fontSize='small' />
+							</InputAdornment>
+						),
+						endAdornment: (
+							<InputAdornment position='end'>
+								<IconButton
+									onClick={handleShowPassword}
+									onMouseDown={handleShowPassword}>
+									{showPassword ? (
+										<VisibilityIcon fontSize='small' />
+									) : (
+										<VisibilityOffIcon fontSize='small' />
+									)}
+								</IconButton>
+							</InputAdornment>
+						),
+					},
+				}}
+			/>
 		);
 	};
 

@@ -74,90 +74,88 @@ export const ImagePicker = (props: IImagePickerProps): JSX.Element => {
 
 	const render = () => {
 		return (
-			<>
-				<Box
-					onMouseEnter={handleMouseEnter}
-					onMouseLeave={handleMouseLeave}
+			<Box
+				onMouseEnter={handleMouseEnter}
+				onMouseLeave={handleMouseLeave}
+				sx={{
+					position: 'relative',
+				}}>
+				<Avatar
+					ref={ref}
+					src={src || props.src}
 					sx={{
-						position: 'relative',
+						backgroundColor: 'neutral.light',
+						border: '2px solid white',
+						height: '128px',
+						width: '128px',
 					}}>
-					<Avatar
-						ref={ref}
-						src={src || props.src}
+					{renderIcon()}
+				</Avatar>
+				<Stack
+					sx={{
+						alignItems: 'center',
+						cursor: 'pointer',
+						height: '128px',
+						justifyContent: 'center',
+						left: '0',
+						opacity: !showOverlay ? '0' : '1',
+						position: 'absolute',
+						transition: 'all 0.2s',
+						top: '0',
+						visibility: !showOverlay ? 'hidden' : 'visible',
+						width: '128px',
+					}}>
+					<Box
 						sx={{
-							backgroundColor: 'neutral.light',
-							border: '2px solid white',
-							height: '128px',
-							width: '128px',
-						}}>
-						{renderIcon()}
-					</Avatar>
-					<Stack
-						sx={{
-							alignItems: 'center',
-							cursor: 'pointer',
-							height: '128px',
-							justifyContent: 'center',
+							backgroundColor: 'neutral.dark',
+							border: '1px solid grey',
+							borderRadius: '100%',
+							height: '100%',
 							left: '0',
-							opacity: !showOverlay ? '0' : '1',
+							opacity: '0.8',
 							position: 'absolute',
-							transition: 'all 0.2s',
 							top: '0',
-							visibility: !showOverlay ? 'hidden' : 'visible',
-							width: '128px',
+							width: '100%',
+						}}
+					/>
+					<input
+						ref={inputRef}
+						type='file'
+						accept={props.accept || '.jpg,.png'}
+						onChange={handleChange}
+						hidden
+					/>
+					<IconButton
+						onClick={handleClick}
+						sx={{
+							zIndex: '1',
 						}}>
-						<Box
+						<EditIcon
+							fontSize='inherit'
 							sx={{
-								backgroundColor: 'neutral.dark',
-								border: '1px solid grey',
-								borderRadius: '100%',
-								height: '100%',
-								left: '0',
-								opacity: '0.8',
-								position: 'absolute',
-								top: '0',
-								width: '100%',
+								color: 'neutral.light',
+								fontSize: '2.5rem',
 							}}
 						/>
-						<input
-							ref={inputRef}
-							type='file'
-							accept={props.accept || '.jpg,.png'}
-							onChange={handleChange}
-							hidden
-						/>
+					</IconButton>
+					{props.onDelete && (
 						<IconButton
-							onClick={handleClick}
+							size='small'
+							onClick={handleDelete}
 							sx={{
-								zIndex: '1',
+								backgroundColor: 'error.dark',
+								bottom: '0',
+								position: 'absolute',
+								right: '0',
+								'&:hover': {
+									backgroundColor: 'error.main',
+								},
 							}}>
-							<EditIcon
-								fontSize='inherit'
-								sx={{
-									color: 'neutral.light',
-									fontSize: '2.5rem',
-								}}
-							/>
+							<DeleteIcon fontSize='inherit' />
 						</IconButton>
-						{props.onDelete && (
-							<IconButton
-								size='small'
-								onClick={handleDelete}
-								sx={{
-									backgroundColor: 'error.dark',
-									bottom: '0',
-									position: 'absolute',
-									right: '0',
-									'&:hover': {
-										backgroundColor: 'error.main',
-									},
-								}}>
-								<DeleteIcon fontSize='inherit' />
-							</IconButton>
-						)}
-					</Stack>
-				</Box>
-			</>
+					)}
+				</Stack>
+			</Box>
 		);
 	};
 

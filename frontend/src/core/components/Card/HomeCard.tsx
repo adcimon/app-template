@@ -22,59 +22,57 @@ export const HomeCard = (props: IHomeCardProps): JSX.Element => {
 			? `linear-gradient(${props.tint}, ${props.tint}), url("${props.image}")`
 			: `url("${props.image}")`;
 		return (
-			<>
-				<Box
+			<Box
+				sx={{
+					alignItems: 'center',
+					backgroundAttachment: 'scroll scroll',
+					backgroundClip: 'border-box border-box',
+					backgroundImage: backgroundImage,
+					backgroundOrigin: 'padding-box, padding-box',
+					backgroundPosition: 'center center',
+					backgroundRepeat: 'no-repeat',
+					backgroundSize: 'cover',
+					display: 'flex',
+					flex: '1',
+					flexDirection: 'column',
+					gap: '20px',
+					justifyContent: 'center',
+					height: '100%',
+					paddingX: '20px',
+					width: '100%',
+				}}>
+				<Typography
+					variant='h3'
+					color='neutral.light'>
+					{props.title}
+				</Typography>
+				<Typography
+					variant='h6'
+					color='neutral.light'
 					sx={{
-						alignItems: 'center',
-						backgroundAttachment: 'scroll scroll',
-						backgroundClip: 'border-box border-box',
-						backgroundImage: backgroundImage,
-						backgroundOrigin: 'padding-box, padding-box',
-						backgroundPosition: 'center center',
-						backgroundRepeat: 'no-repeat',
-						backgroundSize: 'cover',
-						display: 'flex',
-						flex: '1',
-						flexDirection: 'column',
-						gap: '20px',
-						justifyContent: 'center',
-						height: '100%',
-						paddingX: '20px',
-						width: '100%',
+						textAlign: 'center',
 					}}>
-					<Typography
-						variant='h3'
-						color='neutral.light'>
-						{props.title}
-					</Typography>
-					<Typography
-						variant='h6'
-						color='neutral.light'
-						sx={{
-							textAlign: 'center',
-						}}>
-						{props.text}
-					</Typography>
-					<Button
-						variant='outlined'
-						onClick={handleClick}
-						sx={{
+					{props.text}
+				</Typography>
+				<Button
+					variant='outlined'
+					onClick={handleClick}
+					sx={{
+						borderColor: 'white',
+						borderRadius: '5px',
+						color: 'white',
+						fontWeight: 'bold',
+						width: '150px',
+						'&:hover': {
+							backgroundColor: 'white',
 							borderColor: 'white',
 							borderRadius: '5px',
-							color: 'white',
-							fontWeight: 'bold',
-							width: '150px',
-							'&:hover': {
-								backgroundColor: 'white',
-								borderColor: 'white',
-								borderRadius: '5px',
-								color: 'neutral.dark',
-							},
-						}}>
-						{props.label}
-					</Button>
-				</Box>
-			</>
+							color: 'neutral.dark',
+						},
+					}}>
+					{props.label}
+				</Button>
+			</Box>
 		);
 	};
 

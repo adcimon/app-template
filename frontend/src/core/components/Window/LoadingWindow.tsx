@@ -14,48 +14,46 @@ export const LoadingWindow = (props: ILoadingWindowProps): JSX.Element => {
 
 	const render = () => {
 		return (
-			<>
-				<Window
-					open={true}
+			<Window
+				open={true}
+				sx={{
+					height: '100%',
+					width: '100%',
+				}}>
+				<Stack
+					direction='column'
 					sx={{
+						alignItems: 'center',
 						height: '100%',
+						justifyContent: 'center',
 						width: '100%',
 					}}>
 					<Stack
 						direction='column'
 						sx={{
 							alignItems: 'center',
-							height: '100%',
+							height: '50%',
+							gap: '2.5rem',
 							justifyContent: 'center',
-							width: '100%',
+							width: responsive ? '80%' : '50%',
 						}}>
-						<Stack
-							direction='column'
+						<Typography
 							sx={{
-								alignItems: 'center',
-								height: '50%',
-								gap: '2.5rem',
-								justifyContent: 'center',
-								width: responsive ? '80%' : '50%',
+								color: 'text.secondary',
+								fontSize: responsive ? '2rem' : '2.5rem',
+								paddingLeft: responsive ? '1rem' : '',
+								paddingRight: responsive ? '1rem' : '',
 							}}>
-							<Typography
-								sx={{
-									color: 'text.secondary',
-									fontSize: responsive ? '2rem' : '2.5rem',
-									paddingLeft: responsive ? '1rem' : '',
-									paddingRight: responsive ? '1rem' : '',
-								}}>
-								{props.text || 'Loading...'}
-							</Typography>
-							<LinearProgress
-								sx={{
-									width: '100%',
-								}}
-							/>
-						</Stack>
+							{props.text || 'Loading...'}
+						</Typography>
+						<LinearProgress
+							sx={{
+								width: '100%',
+							}}
+						/>
 					</Stack>
-				</Window>
-			</>
+				</Stack>
+			</Window>
 		);
 	};
 

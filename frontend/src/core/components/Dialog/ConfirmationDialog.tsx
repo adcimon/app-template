@@ -55,36 +55,34 @@ export const ConfirmationDialog = (props: IConfirmationDialogProps): JSX.Element
 		const acceptable: boolean =
 			props.acceptable === undefined || props.acceptable === null ? true : props.acceptable;
 		return (
-			<>
-				<GenericDialog
-					title={props.title}
-					variant={props.variant}
-					open={props.open}
-					actions={
-						<>
-							{props.onCancel && (
-								<Button
-									ref={cancelButtonRef}
-									onClick={handleCancel}>
-									Cancel
-								</Button>
-							)}
-							{props.onAccept && (
-								<Button
-									ref={acceptButtonRef}
-									disabled={!acceptable}
-									autoFocus={true}
-									onClick={handleAccept}>
-									Accept
-								</Button>
-							)}
-						</>
-					}
-					onClose={props.onClose}
-					sx={props.sx}>
-					{props.children}
-				</GenericDialog>
-			</>
+			<GenericDialog
+				title={props.title}
+				variant={props.variant}
+				open={props.open}
+				actions={
+					<>
+						{props.onCancel && (
+							<Button
+								ref={cancelButtonRef}
+								onClick={handleCancel}>
+								Cancel
+							</Button>
+						)}
+						{props.onAccept && (
+							<Button
+								ref={acceptButtonRef}
+								disabled={!acceptable}
+								autoFocus={true}
+								onClick={handleAccept}>
+								Accept
+							</Button>
+						)}
+					</>
+				}
+				onClose={props.onClose}
+				sx={props.sx}>
+				{props.children}
+			</GenericDialog>
 		);
 	};
 

@@ -65,93 +65,91 @@ export const ShareDialog = (props: IShareDialogProps): JSX.Element => {
 
 	const render = () => {
 		return (
-			<>
-				<GenericDialog
-					title={
-						<>
-							<Stack
-								direction='row'
-								spacing={1}
+			<GenericDialog
+				title={
+					<>
+						<Stack
+							direction='row'
+							spacing={1}
+							sx={{
+								alignItems: 'center',
+								marginY: '5px',
+							}}>
+							<IconButton
+								disableRipple
 								sx={{
-									alignItems: 'center',
-									marginY: '5px',
+									backgroundColor: 'primary.main',
+									transform: 'scale(0.9)',
 								}}>
-								<IconButton
-									disableRipple
+								<ShareIcon
 									sx={{
-										backgroundColor: 'primary.main',
-										transform: 'scale(0.9)',
-									}}>
-									<ShareIcon
-										sx={{
-											color: 'white',
-										}}
-									/>
-								</IconButton>
-								<Typography variant='h5'>Share</Typography>
-							</Stack>
-						</>
-					}
-					actions={
-						<>
-							{props.onAccept && (
-								<Button
-									ref={acceptButtonRef}
-									autoFocus={true}
-									onClick={handleAccept}>
-									Accept
-								</Button>
-							)}
-						</>
-					}
-					open={props.open}
-					onClose={props.onClose}
-					sx={props.sx}>
-					<Stack
-						direction='column'
-						spacing={3}
-						sx={{
-							marginTop: '5px',
-						}}>
-						<CopyField
-							inputRef={copyFieldRef}
-							label={props.label}
-							value={props.text}
-							onFocus={(event: any) => event.target.select()}
-							fullWidth={true}
-							slotProps={{
-								input: {
-									readOnly: true,
-								},
-								inputLabel: {
-									shrink: true,
-								},
-							}}
-						/>
-						{props.showQR && (
-							<Stack
-								direction='column'
-								sx={{
-									alignItems: 'center',
-								}}>
-								<Box
-									sx={{
-										height: '200px',
-										width: '200px',
-									}}>
-									<canvas
-										ref={canvasRef}
-										style={{
-											maxHeight: '100%',
-											maxWidth: '100%',
-										}}
-									/>
-								</Box>
-							</Stack>
+										color: 'white',
+									}}
+								/>
+							</IconButton>
+							<Typography variant='h5'>Share</Typography>
+						</Stack>
+					</>
+				}
+				actions={
+					<>
+						{props.onAccept && (
+							<Button
+								ref={acceptButtonRef}
+								autoFocus={true}
+								onClick={handleAccept}>
+								Accept
+							</Button>
 						)}
-					</Stack>
-				</GenericDialog>
-			</>
+					</>
+				}
+				open={props.open}
+				onClose={props.onClose}
+				sx={props.sx}>
+				<Stack
+					direction='column'
+					spacing={3}
+					sx={{
+						marginTop: '5px',
+					}}>
+					<CopyField
+						inputRef={copyFieldRef}
+						label={props.label}
+						value={props.text}
+						onFocus={(event: any) => event.target.select()}
+						fullWidth={true}
+						slotProps={{
+							input: {
+								readOnly: true,
+							},
+							inputLabel: {
+								shrink: true,
+							},
+						}}
+					/>
+					{props.showQR && (
+						<Stack
+							direction='column'
+							sx={{
+								alignItems: 'center',
+							}}>
+							<Box
+								sx={{
+									height: '200px',
+									width: '200px',
+								}}>
+								<canvas
+									ref={canvasRef}
+									style={{
+										maxHeight: '100%',
+										maxWidth: '100%',
+									}}
+								/>
+							</Box>
+						</Stack>
+					)}
+				</Stack>
+			</GenericDialog>
 		);
 	};
 

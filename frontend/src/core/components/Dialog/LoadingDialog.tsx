@@ -38,35 +38,33 @@ export const LoadingDialog = (props: ILoadingDialogProps): JSX.Element => {
 
 	const render = () => {
 		return (
-			<>
-				<GenericDialog
-					title={props.title}
-					actions={
-						<>
-							{props.onCancel && (
-								<Button
-									ref={cancelButtonRef}
-									onClick={handleCancel}>
-									Cancel
-								</Button>
-							)}
-						</>
-					}
-					open={props.open}
-					onClose={handleClose}
-					sx={props.sx}>
-					<Stack
-						direction='row'
-						gap={2}
-						sx={{
-							alignItems: 'center',
-							justifyContent: 'center',
-						}}>
-						<CircularProgress size='5rem' />
-					</Stack>
-					{props.children}
-				</GenericDialog>
-			</>
+			<GenericDialog
+				title={props.title}
+				actions={
+					<>
+						{props.onCancel && (
+							<Button
+								ref={cancelButtonRef}
+								onClick={handleCancel}>
+								Cancel
+							</Button>
+						)}
+					</>
+				}
+				open={props.open}
+				onClose={handleClose}
+				sx={props.sx}>
+				<Stack
+					direction='row'
+					gap={2}
+					sx={{
+						alignItems: 'center',
+						justifyContent: 'center',
+					}}>
+					<CircularProgress size='5rem' />
+				</Stack>
+				{props.children}
+			</GenericDialog>
 		);
 	};
 

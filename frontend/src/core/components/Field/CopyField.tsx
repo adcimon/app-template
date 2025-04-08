@@ -23,32 +23,28 @@ export const CopyField = (props: TextFieldProps): JSX.Element => {
 
 	const render = () => {
 		return (
-			<>
-				<TextField
-					{...props}
-					label={props.label || 'Text'}
-					slotProps={{
-						input: {
-							endAdornment: (
-								<InputAdornment position='end'>
-									<>
-										{!success && (
-											<IconButton onClick={handleClick}>{<ContentCopyIcon />}</IconButton>
-										)}
-										{success && (
-											<Zoom in={success}>
-												<IconButton disableRipple>
-													<TaskAltIcon color='success' />
-												</IconButton>
-											</Zoom>
-										)}
-									</>
-								</InputAdornment>
-							),
-						},
-					}}
-				/>
-			</>
+			<TextField
+				{...props}
+				label={props.label || 'Text'}
+				slotProps={{
+					input: {
+						endAdornment: (
+							<InputAdornment position='end'>
+								<>
+									{!success && <IconButton onClick={handleClick}>{<ContentCopyIcon />}</IconButton>}
+									{success && (
+										<Zoom in={success}>
+											<IconButton disableRipple>
+												<TaskAltIcon color='success' />
+											</IconButton>
+										</Zoom>
+									)}
+								</>
+							</InputAdornment>
+						),
+					},
+				}}
+			/>
 		);
 	};
 
