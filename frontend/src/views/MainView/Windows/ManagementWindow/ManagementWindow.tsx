@@ -8,6 +8,7 @@ import Tabs from '@mui/material/Tabs';
 import Typography from '@mui/material/Typography';
 import { UsersView } from './UsersView';
 import { Window } from '../../../../core/components/Window/Window';
+import { useResponsive } from '../../../../core/hooks/useResponsive';
 
 interface IManagementWindowProps {
 	open: boolean;
@@ -15,6 +16,11 @@ interface IManagementWindowProps {
 }
 
 export const ManagementWindow = (props: IManagementWindowProps): JSX.Element => {
+	const headerHeight: string = '290px';
+	const responsiveHeaderHeight: string = '190px';
+
+	const responsive: boolean = useResponsive();
+
 	const [tab, setTab] = React.useState<number>(0);
 
 	const handleTabChange = (event: any, value: number) => {
@@ -41,7 +47,7 @@ export const ManagementWindow = (props: IManagementWindowProps): JSX.Element => 
 							backgroundOrigin: 'padding-box, padding-box',
 							backgroundPosition: 'center center',
 							backgroundSize: 'cover',
-							height: '290px',
+							height: responsive ? responsiveHeaderHeight : headerHeight,
 							position: 'relative',
 						}}
 					/>
@@ -50,8 +56,8 @@ export const ManagementWindow = (props: IManagementWindowProps): JSX.Element => 
 						onChange={handleTabChange}
 						sx={{
 							'& .MuiTabs-flexContainer': {
-								justifyContent: 'flex-end',
-								marginRight: '30px',
+								justifyContent: responsive ? 'flex-start' : 'flex-end',
+								paddingX: '2rem',
 							},
 						}}>
 						<Tab

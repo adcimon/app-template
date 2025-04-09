@@ -14,6 +14,7 @@ import { PreferencesView } from './PreferencesView/PreferencesView';
 import { ProfileView } from './ProfileView/ProfileView';
 import { UserAvatar } from './UserAvatar/UserAvatar';
 import { Window } from '../../../../core/components/Window/Window';
+import { useResponsive } from '../../../../core/hooks/useResponsive';
 import { useUserState } from '../../../../states/user/useUserState';
 
 interface ISettingsWindowProps {
@@ -22,6 +23,13 @@ interface ISettingsWindowProps {
 }
 
 export const SettingsWindow = (props: ISettingsWindowProps): JSX.Element => {
+	const headerHeight: string = '290px';
+	const responsiveHeaderHeight: string = '190px';
+	const avatarPosition: string = '-180px';
+	const responsiveAvatarPosition: string = '-30px';
+
+	const responsive: boolean = useResponsive();
+
 	const userState = useUserState();
 
 	const [tab, setTab] = React.useState<number>(0);
@@ -63,14 +71,14 @@ export const SettingsWindow = (props: ISettingsWindowProps): JSX.Element => {
 							backgroundOrigin: 'padding-box, padding-box',
 							backgroundPosition: 'center center',
 							backgroundSize: 'cover',
-							height: '290px',
+							height: responsive ? responsiveHeaderHeight : headerHeight,
 							position: 'relative',
 						}}>
 						<Stack
 							direction='row'
 							spacing={3}
 							sx={{
-								bottom: '-180px',
+								bottom: responsive ? responsiveAvatarPosition : avatarPosition,
 								left: '32px',
 								position: 'relative',
 								zIndex: '10',
@@ -124,8 +132,7 @@ export const SettingsWindow = (props: ISettingsWindowProps): JSX.Element => {
 					<Stack
 						direction='row'
 						sx={{
-							justifyContent: 'flex-end',
-							paddingX: '20px',
+							justifyContent: responsive ? 'flex-start' : 'flex-end',
 							width: '100%',
 						}}>
 						<Tabs

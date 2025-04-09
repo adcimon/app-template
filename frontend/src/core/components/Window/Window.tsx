@@ -32,7 +32,8 @@ export const Window = (props: IWindowProps): JSX.Element => {
 				<IconButton
 					onClick={handleClose}
 					sx={{
-						border: '1px solid',
+						borderStyle: 'solid',
+						borderWidth: '1px',
 					}}>
 					<CloseIcon />
 				</IconButton>
@@ -56,14 +57,16 @@ export const Window = (props: IWindowProps): JSX.Element => {
 				<Container
 					sx={{
 						height: '100%',
-						marginBottom: '20px',
 						maxWidth: 'lg',
-						paddingTop: 3,
+						paddingTop: '2rem',
 					}}>
 					<Stack
 						direction='column'
 						spacing={3}
-						sx={props.sx}>
+						sx={{
+							paddingBottom: '2rem',
+							...props.sx,
+						}}>
 						{(props.label || props.onClose) && renderHeader()}
 						{props.children}
 					</Stack>
