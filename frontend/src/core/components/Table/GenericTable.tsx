@@ -24,6 +24,7 @@ interface IGenericTableProps<T> {
 	head?: React.ReactNode[];
 	row?: (item: T) => React.ReactNode[];
 	dialog?: React.ReactNode;
+	deleteDialog?: React.ReactNode;
 	validate?: () => boolean;
 	rowsPerPage?: RowsPerPageType;
 	onSelect?: (item: T) => void;
@@ -221,7 +222,7 @@ export const GenericTable = <T,>(props: IGenericTableProps<T>): JSX.Element => {
 					onAccept={handleAcceptDelete}
 					onCancel={handleCancelDelete}
 					onClose={handleCancelDelete}>
-					<Typography>Do you want to delete it?</Typography>
+					{props.deleteDialog ? props.deleteDialog : <Typography>Do you want to delete it?</Typography>}
 				</ConfirmationDialog>
 			</>
 		);
