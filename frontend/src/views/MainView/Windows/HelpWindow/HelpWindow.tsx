@@ -40,107 +40,105 @@ export const HelpWindow = (props: IHelpWindowProps): JSX.Element => {
 
 	const render = () => {
 		return (
-			<>
-				<Window
-					label='Help'
-					open={props.open}
-					onClose={handleClose}>
+			<Window
+				label='Help'
+				open={props.open}
+				onClose={handleClose}>
+				<Grid2
+					container
+					spacing={3}
+					sx={{
+						justifyContent: 'center',
+						width: '100%',
+						'& > *': {
+							padding: '10px !important',
+						},
+					}}>
 					<Grid2
-						container
-						spacing={3}
-						sx={{
-							justifyContent: 'center',
-							width: '100%',
-							'& > *': {
-								padding: '10px !important',
-							},
+						size={{
+							xs: 12,
+							sm: 6,
+							md: 4,
 						}}>
-						<Grid2
-							size={{
-								xs: 12,
-								sm: 6,
-								md: 4,
-							}}>
-							<GenericCard
-								image='/images/learn.jpg'
-								title='Help'
-								actions={
-									<Button
-										size='small'
-										href=''
-										target='_blank'>
-										Start Learning
-									</Button>
-								}>
-								<Typography color='text.secondary'>
-									New to the app? Get started with our helpful guides and tutorials. Learn how to make
-									the most of our features.
-								</Typography>
-							</GenericCard>
-						</Grid2>
-						<Grid2
-							size={{
-								xs: 12,
-								sm: 6,
-								md: 4,
-							}}>
-							<GenericCard
-								image='/images/contact.jpg'
-								title='Contact Us'
-								actions={
-									<Button
-										size='small'
-										href=''
-										target='_blank'>
-										Contact
-									</Button>
-								}>
-								<Typography color='text.secondary'>
-									Have a question, suggestion, or feedback? We'd love to hear from you! Reach out to
-									our support team via email or chat.
-								</Typography>
-							</GenericCard>
-						</Grid2>
-						<Grid2
-							size={{
-								xs: 12,
-								sm: 6,
-								md: 4,
-							}}>
-							<GenericCard
-								image='/images/legal.jpg'
-								title='Legal'
-								actions={
-									<>
-										<Button
-											size='small'
-											onClick={handleOpenTermsOfService}>
-											Terms of Service
-										</Button>
-										<Button
-											size='small'
-											onClick={handleOpenPrivacyPolicy}>
-											Privacy Policy
-										</Button>
-									</>
-								}>
-								<Typography color='text.secondary'>
-									Read our Terms of Service and Privacy Policy to understand the rules and guidelines
-									for using our application and how we collect, use, and protect your data.
-								</Typography>
-							</GenericCard>
-						</Grid2>
+						<GenericCard
+							image='/images/learn.jpg'
+							title='Help'
+							actions={
+								<Button
+									size='small'
+									href=''
+									target='_blank'>
+									Start Learning
+								</Button>
+							}>
+							<Typography color='text.secondary'>
+								New to the app? Get started with our helpful guides and tutorials. Learn how to make the
+								most of our features.
+							</Typography>
+						</GenericCard>
 					</Grid2>
-					<TermsOfServiceDialog
-						open={openTermsOfServiceDialog}
-						onClose={handleCloseTermsOfService}
-					/>
-					<PrivacyPolicyDialog
-						open={openPrivacyPolicyDialog}
-						onClose={handleClosePrivacyPolicy}
-					/>
-				</Window>
-			</>
+					<Grid2
+						size={{
+							xs: 12,
+							sm: 6,
+							md: 4,
+						}}>
+						<GenericCard
+							image='/images/contact.jpg'
+							title='Contact Us'
+							actions={
+								<Button
+									size='small'
+									href=''
+									target='_blank'>
+									Contact
+								</Button>
+							}>
+							<Typography color='text.secondary'>
+								Have a question, suggestion, or feedback? We'd love to hear from you! Reach out to our
+								support team via email or chat.
+							</Typography>
+						</GenericCard>
+					</Grid2>
+					<Grid2
+						size={{
+							xs: 12,
+							sm: 6,
+							md: 4,
+						}}>
+						<GenericCard
+							image='/images/legal.jpg'
+							title='Legal'
+							actions={
+								<>
+									<Button
+										size='small'
+										onClick={handleOpenTermsOfService}>
+										Terms of Service
+									</Button>
+									<Button
+										size='small'
+										onClick={handleOpenPrivacyPolicy}>
+										Privacy Policy
+									</Button>
+								</>
+							}>
+							<Typography color='text.secondary'>
+								Read our Terms of Service and Privacy Policy to understand the rules and guidelines for
+								using our application and how we collect, use, and protect your data.
+							</Typography>
+						</GenericCard>
+					</Grid2>
+				</Grid2>
+				<TermsOfServiceDialog
+					open={openTermsOfServiceDialog}
+					onClose={handleCloseTermsOfService}
+				/>
+				<PrivacyPolicyDialog
+					open={openPrivacyPolicyDialog}
+					onClose={handleClosePrivacyPolicy}
+				/>
+			</Window>
 		);
 	};
 

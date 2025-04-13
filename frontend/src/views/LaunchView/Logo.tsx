@@ -5,23 +5,21 @@ import Typography from '@mui/material/Typography';
 export const Logo = (): JSX.Element => {
 	const render = () => {
 		return (
-			<>
-				<Stack
-					direction='column'
+			<Stack
+				direction='column'
+				sx={{
+					alignItems: 'center',
+					justifyContent: 'center',
+					marginBottom: '10px',
+				}}>
+				<Typography
+					variant='h3'
 					sx={{
-						alignItems: 'center',
-						justifyContent: 'center',
-						marginBottom: '10px',
+						color: '#0170cd',
 					}}>
-					<Typography
-						variant='h3'
-						sx={{
-							color: '#0170cd',
-						}}>
-						App Template
-					</Typography>
-				</Stack>
-			</>
+					App Template
+				</Typography>
+			</Stack>
 		);
 	};
 

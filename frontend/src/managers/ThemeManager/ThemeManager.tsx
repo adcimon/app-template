@@ -29,12 +29,10 @@ export const ThemeManager = (props: IThemeManagerProps): JSX.Element => {
 
 	const render = () => {
 		return (
-			<>
-				<ThemeProvider theme={getTheme()}>
-					<CssBaseline />
-					{props.children}
-				</ThemeProvider>
-			</>
+			<ThemeProvider theme={getTheme()}>
+				<CssBaseline />
+				{props.children}
+			</ThemeProvider>
 		);
 	};
 

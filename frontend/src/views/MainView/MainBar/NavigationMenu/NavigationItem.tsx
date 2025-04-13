@@ -12,23 +12,21 @@ interface INavigationItemProps {
 export const NavigationItem = (props: INavigationItemProps): JSX.Element => {
 	const render = () => {
 		return (
-			<>
-				<Chip
-					label={<Typography color='primary.contrastText'>{props.label}</Typography>}
-					icon={props.icon}
-					disabled={props.disabled}
-					onClick={props.onClick}
-					sx={{
-						backgroundColor: 'transparent',
-						'& .MuiChip-icon': {
-							color: 'primary.contrastText',
-						},
-						'&:hover': {
-							backgroundColor: 'primary.dark',
-						},
-					}}
-				/>
-			</>
+			<Chip
+				label={<Typography color='primary.contrastText'>{props.label}</Typography>}
+				icon={props.icon}
+				disabled={props.disabled}
+				onClick={props.onClick}
+				sx={{
+					backgroundColor: 'transparent',
+					'& .MuiChip-icon': {
+						color: 'primary.contrastText',
+					},
+					'&:hover': {
+						backgroundColor: 'primary.dark',
+					},
+				}}
+			/>
 		);
 	};
 

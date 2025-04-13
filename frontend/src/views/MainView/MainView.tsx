@@ -26,24 +26,22 @@ export const MainView = (): JSX.Element => {
 
 	const render = () => {
 		return (
-			<>
-				<Stack
-					direction='column'
+			<Stack
+				direction='column'
+				sx={{
+					alignItems: 'center',
+					height: '100vh',
+					width: '100vw',
+				}}>
+				<MainBar height={mainBarHeight} />
+				<Box
 					sx={{
-						alignItems: 'center',
-						height: '100vh',
-						width: '100vw',
+						height: `calc(100% - ${mainBarHeight})`,
+						width: '100%',
 					}}>
-					<MainBar height={mainBarHeight} />
-					<Box
-						sx={{
-							height: `calc(100% - ${mainBarHeight})`,
-							width: '100%',
-						}}>
-						<HomeView />
-					</Box>
-				</Stack>
-			</>
+					<HomeView />
+				</Box>
+			</Stack>
 		);
 	};
 

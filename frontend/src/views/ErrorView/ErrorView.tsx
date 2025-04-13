@@ -16,94 +16,92 @@ export const ErrorView = (props: IErrorViewProps): JSX.Element => {
 
 	const render = () => {
 		return (
-			<>
-				<Stack
-					direction='column'
+			<Stack
+				direction='column'
+				sx={{
+					alignItems: 'center',
+					height: '100vh',
+					justifyContent: 'center',
+					width: '100vw',
+				}}>
+				<Grid2
+					container
 					sx={{
-						alignItems: 'center',
-						height: '100vh',
-						justifyContent: 'center',
-						width: '100vw',
+						height: '100%',
 					}}>
 					<Grid2
-						container
+						size={{
+							xs: 12,
+							md: 6,
+							lg: 6,
+						}}
 						sx={{
-							height: '100%',
+							backgroundColor: '#f1f4f9',
+							height: responsive ? '50%' : '100%',
+							width: responsive ? '100%' : '50%',
 						}}>
-						<Grid2
-							size={{
-								xs: 12,
-								md: 6,
-								lg: 6,
-							}}
+						<Stack
+							direction='column'
 							sx={{
-								backgroundColor: '#f1f4f9',
-								height: responsive ? '50%' : '100%',
-								width: responsive ? '100%' : '50%',
+								alignItems: 'center',
+								height: '100%',
+								justifyContent: 'center',
+								width: '100%',
 							}}>
-							<Stack
-								direction='column'
-								sx={{
-									alignItems: 'center',
-									height: '100%',
-									justifyContent: 'center',
-									width: '100%',
-								}}>
-								<ErrorIcon />
-							</Stack>
-						</Grid2>
-						<Grid2
-							size={{
-								xs: 12,
-								md: 6,
-								lg: 6,
-							}}
-							sx={{
-								height: responsive ? '50%' : '100%',
-								width: responsive ? '100%' : '50%',
-							}}>
-							<Stack
-								direction='column'
-								spacing={4}
-								sx={{
-									alignItems: 'center',
-									height: '100%',
-									justifyContent: 'center',
-									paddingX: '1rem',
-									width: '100%',
-								}}>
-								<Stack
-									direction='column'
-									spacing={1}
-									sx={{
-										alignItems: 'start',
-										justifyContent: 'center',
-									}}>
-									<Typography
-										variant='h3'
-										sx={{
-											fontWeight: 'bold',
-										}}>
-										Oops!
-									</Typography>
-									<Typography
-										variant='h6'
-										sx={{
-											color: 'text.secondary',
-										}}>
-										{props.message || 'Something went wrong.'}
-									</Typography>
-								</Stack>
-								<Button
-									variant='contained'
-									onClick={props.onClick}>
-									Return Home
-								</Button>
-							</Stack>
-						</Grid2>
+							<ErrorIcon />
+						</Stack>
 					</Grid2>
-				</Stack>
-			</>
+					<Grid2
+						size={{
+							xs: 12,
+							md: 6,
+							lg: 6,
+						}}
+						sx={{
+							height: responsive ? '50%' : '100%',
+							width: responsive ? '100%' : '50%',
+						}}>
+						<Stack
+							direction='column'
+							spacing={4}
+							sx={{
+								alignItems: 'center',
+								height: '100%',
+								justifyContent: 'center',
+								paddingX: '1rem',
+								width: '100%',
+							}}>
+							<Stack
+								direction='column'
+								spacing={1}
+								sx={{
+									alignItems: 'start',
+									justifyContent: 'center',
+								}}>
+								<Typography
+									variant='h3'
+									sx={{
+										fontWeight: 'bold',
+									}}>
+									Oops!
+								</Typography>
+								<Typography
+									variant='h6'
+									sx={{
+										color: 'text.secondary',
+									}}>
+									{props.message || 'Something went wrong.'}
+								</Typography>
+							</Stack>
+							<Button
+								variant='contained'
+								onClick={props.onClick}>
+								Return Home
+							</Button>
+						</Stack>
+					</Grid2>
+				</Grid2>
+			</Stack>
 		);
 	};
 

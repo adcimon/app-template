@@ -41,40 +41,38 @@ export const AppView = (): JSX.Element => {
 		}
 
 		return (
-			<>
-				<Router>
-					<Route path='/'>
-						{userState.user ? (
-							<MainView />
-						) : !userState.user && navigator.hasParam('token') ? (
-							<MainView />
-						) : (
-							<SignInView />
-						)}
-					</Route>
-					<Route path='/sign-in'>
+			<Router>
+				<Route path='/'>
+					{userState.user ? (
+						<MainView />
+					) : !userState.user && navigator.hasParam('token') ? (
+						<MainView />
+					) : (
 						<SignInView />
-					</Route>
-					<Route path='/sign-up'>
-						<SignUpView />
-					</Route>
-					<Route path='/forgot-password'>
-						<ForgotPasswordView />
-					</Route>
-					<Route path='/error'>
-						<ErrorView
-							message={CryptoUtils.decodeBase64(navigator.getParam('message'))}
-							onClick={() => navigator.redirect('/')}
-						/>
-					</Route>
-					<Route path='*'>
-						<ErrorView
-							message="The page you're looking for could not be found."
-							onClick={() => navigator.redirect('/')}
-						/>
-					</Route>
-				</Router>
-			</>
+					)}
+				</Route>
+				<Route path='/sign-in'>
+					<SignInView />
+				</Route>
+				<Route path='/sign-up'>
+					<SignUpView />
+				</Route>
+				<Route path='/forgot-password'>
+					<ForgotPasswordView />
+				</Route>
+				<Route path='/error'>
+					<ErrorView
+						message={CryptoUtils.decodeBase64(navigator.getParam('message'))}
+						onClick={() => navigator.redirect('/')}
+					/>
+				</Route>
+				<Route path='*'>
+					<ErrorView
+						message="The page you're looking for could not be found."
+						onClick={() => navigator.redirect('/')}
+					/>
+				</Route>
+			</Router>
 		);
 	};
 

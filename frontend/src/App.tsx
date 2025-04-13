@@ -7,23 +7,21 @@ import { AppView } from './views/AppView/AppView';
 
 export default function App() {
 	return (
-		<>
-			<RecoilRoot>
-				<ThemeManager>
-					<ApiManager>
-						<Toaster
-							position='top-center'
-							toastOptions={{
-								duration: 5000,
-							}}
-							containerStyle={{
-								top: '10px',
-							}}
-						/>
-						<AppView />
-					</ApiManager>
-				</ThemeManager>
-			</RecoilRoot>
-		</>
+		<RecoilRoot>
+			<ThemeManager>
+				<ApiManager>
+					<Toaster
+						position='top-center'
+						toastOptions={{
+							duration: 5000,
+						}}
+						containerStyle={{
+							top: '10px',
+						}}
+					/>
+					<AppView />
+				</ApiManager>
+			</ThemeManager>
+		</RecoilRoot>
 	);
 }

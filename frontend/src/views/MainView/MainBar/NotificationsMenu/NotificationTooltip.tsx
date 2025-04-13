@@ -12,59 +12,57 @@ interface INotificationTooltipProps {
 export const NotificationTooltip = (props: INotificationTooltipProps): JSX.Element => {
 	const render = () => {
 		return (
-			<>
-				<Box
-					sx={{
-						margin: '3px',
-						minWidth: '200px',
-					}}>
-					<Box>
+			<Box
+				sx={{
+					margin: '3px',
+					minWidth: '200px',
+				}}>
+				<Box>
+					<Stack
+						direction='row'
+						spacing={0.5}
+						sx={{
+							alignItems: 'center',
+						}}>
+						<NotificationsIcon
+							sx={{
+								fontSize: '1rem',
+							}}
+						/>
+						<strong>{props.notification.title}</strong>
+					</Stack>
+				</Box>
+				<Box>
+					<Stack
+						direction='row'
+						spacing={0.5}
+						sx={{
+							alignItems: 'center',
+							justifyContent: 'space-between',
+						}}>
 						<Stack
 							direction='row'
 							spacing={0.5}
 							sx={{
 								alignItems: 'center',
 							}}>
-							<NotificationsIcon
+							<EventIcon
 								sx={{
 									fontSize: '1rem',
 								}}
 							/>
-							<strong>{props.notification.title}</strong>
+							<strong>{props.notification.date}</strong>
 						</Stack>
-					</Box>
-					<Box>
-						<Stack
-							direction='row'
-							spacing={0.5}
-							sx={{
-								alignItems: 'center',
-								justifyContent: 'space-between',
-							}}>
-							<Stack
-								direction='row'
-								spacing={0.5}
-								sx={{
-									alignItems: 'center',
-								}}>
-								<EventIcon
-									sx={{
-										fontSize: '1rem',
-									}}
-								/>
-								<strong>{props.notification.date}</strong>
-							</Stack>
-						</Stack>
-					</Box>
-					<Divider
-						sx={{
-							backgroundColor: 'grey',
-							marginY: '5px',
-						}}
-					/>
-					<Box>{props.notification.description}</Box>
+					</Stack>
 				</Box>
-			</>
+				<Divider
+					sx={{
+						backgroundColor: 'grey',
+						marginY: '5px',
+					}}
+				/>
+				<Box>{props.notification.description}</Box>
+			</Box>
 		);
 	};
 

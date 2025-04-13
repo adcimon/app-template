@@ -18,9 +18,7 @@ export const NotificationItem = (props: INotificationItemProps): JSX.Element => 
 	const handleDelete = (event: React.MouseEvent<HTMLElement>) => {
 		event.stopPropagation();
 		event.preventDefault();
-		if (props.onDelete) {
-			props.onDelete(props.notification);
-		}
+		props.onDelete?.(props.notification);
 	};
 
 	const render = () => {

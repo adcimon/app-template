@@ -57,84 +57,82 @@ export const ForgotPasswordView = (): JSX.Element => {
 
 	const render = () => {
 		return (
-			<>
-				<LaunchView>
-					<Logo />
-					<Typography variant='h5'>Forgot Password</Typography>
-					<EmailField
-						label='Email'
-						value={email}
-						required={true}
-						onChange={(event: any) => setEmail(event.target.value)}
-						fullWidth={true}
-					/>
-					<Badge
-						color='primary'
-						badgeContent={1}
-						sx={{
-							width: '100%',
-						}}>
-						<Button
-							variant='contained'
-							disabled={!validateSendCode()}
-							onClick={handleSendCode}
-							size='small'
-							fullWidth={true}>
-							Send Code
-						</Button>
-					</Badge>
-					<TextField
-						label='Code'
-						placeholder='Code sent to your email'
-						value={code}
-						required={true}
-						onChange={(event: any) => setCode(event.target.value)}
-						fullWidth={true}
-					/>
-					<PasswordField
-						label='Password'
-						value={password}
-						autoComplete='new-password'
-						required={true}
-						onChange={(event: any) => setPassword(event.target.value)}
-						fullWidth={true}
-					/>
-					<PasswordField
-						label='Confirm Password'
-						value={confirmPassword}
-						required={true}
-						onChange={(event: any) => setConfirmPassword(event.target.value)}
-						fullWidth={true}
-					/>
-					<Badge
-						color='primary'
-						badgeContent={2}
-						sx={{
-							width: '100%',
-						}}>
-						<Button
-							variant='contained'
-							disabled={!validateChange()}
-							onClick={handleChange}
-							fullWidth={true}>
-							Change
-						</Button>
-					</Badge>
-					<Stack
-						direction='row'
-						sx={{
-							width: '100%',
-						}}>
-						<Link
-							component='button'
-							variant='body2'
-							onClick={handleSignIn}>
-							← Already have an account? Sign in
-						</Link>
-					</Stack>
-					<Copyright />
-				</LaunchView>
-			</>
+			<LaunchView>
+				<Logo />
+				<Typography variant='h5'>Forgot Password</Typography>
+				<EmailField
+					label='Email'
+					value={email}
+					required={true}
+					onChange={(event: any) => setEmail(event.target.value)}
+					fullWidth={true}
+				/>
+				<Badge
+					color='primary'
+					badgeContent={1}
+					sx={{
+						width: '100%',
+					}}>
+					<Button
+						variant='contained'
+						disabled={!validateSendCode()}
+						onClick={handleSendCode}
+						size='small'
+						fullWidth={true}>
+						Send Code
+					</Button>
+				</Badge>
+				<TextField
+					label='Code'
+					placeholder='Code sent to your email'
+					value={code}
+					required={true}
+					onChange={(event: any) => setCode(event.target.value)}
+					fullWidth={true}
+				/>
+				<PasswordField
+					label='Password'
+					value={password}
+					autoComplete='new-password'
+					required={true}
+					onChange={(event: any) => setPassword(event.target.value)}
+					fullWidth={true}
+				/>
+				<PasswordField
+					label='Confirm Password'
+					value={confirmPassword}
+					required={true}
+					onChange={(event: any) => setConfirmPassword(event.target.value)}
+					fullWidth={true}
+				/>
+				<Badge
+					color='primary'
+					badgeContent={2}
+					sx={{
+						width: '100%',
+					}}>
+					<Button
+						variant='contained'
+						disabled={!validateChange()}
+						onClick={handleChange}
+						fullWidth={true}>
+						Change
+					</Button>
+				</Badge>
+				<Stack
+					direction='row'
+					sx={{
+						width: '100%',
+					}}>
+					<Link
+						component='button'
+						variant='body2'
+						onClick={handleSignIn}>
+						← Already have an account? Sign in
+					</Link>
+				</Stack>
+				<Copyright />
+			</LaunchView>
 		);
 	};
 

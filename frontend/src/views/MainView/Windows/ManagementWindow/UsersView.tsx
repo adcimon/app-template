@@ -90,25 +90,21 @@ export const UsersView = (): JSX.Element => {
 			<>
 				{/* Phone */}
 				{item.phone && (
-					<>
-						<Stack
-							direction='row'
-							spacing={0.5}>
-							<Typography variant='body2'>{item.phone}</Typography>
-							<VerificationBadge verified={item.phoneVerified} />
-						</Stack>
-					</>
+					<Stack
+						direction='row'
+						spacing={0.5}>
+						<Typography variant='body2'>{item.phone}</Typography>
+						<VerificationBadge verified={item.phoneVerified} />
+					</Stack>
 				)}
 				{!item.phone && (
-					<>
-						<Typography
-							variant='body2'
-							sx={{
-								fontSize: 'small',
-							}}>
-							-
-						</Typography>
-					</>
+					<Typography
+						variant='body2'
+						sx={{
+							fontSize: 'small',
+						}}>
+						-
+					</Typography>
 				)}
 			</>,
 		];
@@ -226,19 +222,17 @@ export const UsersView = (): JSX.Element => {
 
 	const render = () => {
 		return (
-			<>
-				<Container maxWidth='xl'>
-					<GenericTable<User>
-						itemName='User'
-						items={adminState.users}
-						head={['Name', 'Email', 'Phone']}
-						row={renderRow}
-						dialog={renderDialog()}
-						onSelect={handleSelect}
-						onDeselect={handleDeselect}
-					/>
-				</Container>
-			</>
+			<Container maxWidth='xl'>
+				<GenericTable<User>
+					itemName='User'
+					items={adminState.users}
+					head={['Name', 'Email', 'Phone']}
+					row={renderRow}
+					dialog={renderDialog()}
+					onSelect={handleSelect}
+					onDeselect={handleDeselect}
+				/>
+			</Container>
 		);
 	};
 

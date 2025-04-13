@@ -78,21 +78,19 @@ export const ProfileEmailCard = (): JSX.Element => {
 				<Card>
 					<CardHeader
 						subheader={
-							<>
-								<Stack
-									direction='row'
-									spacing={0.5}>
-									<Typography
-										sx={{
-											color: 'text.primary',
-											display: 'inline',
-											fontWeight: 'bold',
-										}}>
-										Email
-									</Typography>
-									<VerificationBadge verified={userState.user?.emailVerified ?? false} />
-								</Stack>
-							</>
+							<Stack
+								direction='row'
+								spacing={0.5}>
+								<Typography
+									sx={{
+										color: 'text.primary',
+										display: 'inline',
+										fontWeight: 'bold',
+									}}>
+									Email
+								</Typography>
+								<VerificationBadge verified={userState.user?.emailVerified ?? false} />
+							</Stack>
 						}
 					/>
 					<CardContent

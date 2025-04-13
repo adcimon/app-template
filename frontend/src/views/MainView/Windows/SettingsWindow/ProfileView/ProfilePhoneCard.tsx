@@ -52,21 +52,19 @@ export const ProfilePhoneCard = (): JSX.Element => {
 				<Card>
 					<CardHeader
 						subheader={
-							<>
-								<Stack
-									direction='row'
-									spacing={0.5}>
-									<Typography
-										sx={{
-											color: 'text.primary',
-											display: 'inline',
-											fontWeight: 'bold',
-										}}>
-										Phone
-									</Typography>
-									<VerificationBadge verified={userState.user?.phoneVerified ?? false} />
-								</Stack>
-							</>
+							<Stack
+								direction='row'
+								spacing={0.5}>
+								<Typography
+									sx={{
+										color: 'text.primary',
+										display: 'inline',
+										fontWeight: 'bold',
+									}}>
+									Phone
+								</Typography>
+								<VerificationBadge verified={userState.user?.phoneVerified ?? false} />
+							</Stack>
 						}
 					/>
 					<CardContent

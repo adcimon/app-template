@@ -9,21 +9,19 @@ interface INavigationMenuProps {
 export const NavigationMenu = (props: INavigationMenuProps): JSX.Element => {
 	const render = () => {
 		return (
-			<>
-				<Breadcrumbs
-					separator={
-						<Typography
-							variant='h6'
-							sx={{
-								color: 'neutral.light',
-								fontWeight: 'bold',
-							}}>
-							/
-						</Typography>
-					}>
-					{props.children}
-				</Breadcrumbs>
-			</>
+			<Breadcrumbs
+				separator={
+					<Typography
+						variant='h6'
+						sx={{
+							color: 'neutral.light',
+							fontWeight: 'bold',
+						}}>
+						/
+					</Typography>
+				}>
+				{props.children}
+			</Breadcrumbs>
 		);
 	};
 

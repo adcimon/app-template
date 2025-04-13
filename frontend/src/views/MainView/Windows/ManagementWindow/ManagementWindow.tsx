@@ -36,63 +36,62 @@ export const ManagementWindow = (props: IManagementWindowProps): JSX.Element => 
 
 	const renderHeader = () => {
 		return (
-			<>
-				<Card>
-					<Box
-						sx={{
-							backgroundAttachment: 'scroll scroll',
-							backgroundClip: 'border-box border-box',
-							backgroundImage:
-								'linear-gradient(rgba(0, 79, 225, 0.8), rgba(1, 41, 114, 0.8)), url("/images/admin_banner.jpg")',
-							backgroundOrigin: 'padding-box, padding-box',
-							backgroundPosition: 'center center',
-							backgroundSize: 'cover',
-							height: responsive ? responsiveHeaderHeight : headerHeight,
-							position: 'relative',
-						}}
+			<Card>
+				<Box
+					sx={{
+						backgroundAttachment: 'scroll scroll',
+						backgroundClip: 'border-box border-box',
+						backgroundImage:
+							'linear-gradient(rgba(0, 79, 225, 0.8), rgba(1, 41, 114, 0.8)), url("/images/admin_banner.jpg")',
+						backgroundOrigin: 'padding-box, padding-box',
+						backgroundPosition: 'center center',
+						backgroundSize: 'cover',
+						height: responsive ? responsiveHeaderHeight : headerHeight,
+						position: 'relative',
+					}}
+				/>
+				<Tabs
+					value={tab}
+					onChange={handleTabChange}
+					sx={{
+						'& .MuiTabs-flexContainer': {
+							justifyContent: responsive ? 'flex-start' : 'flex-end',
+							paddingX: '2rem',
+						},
+					}}>
+					<Tab
+						label={
+							<Stack
+								direction='row'
+								spacing={0.5}>
+								<PeopleAltIcon />
+								<Typography>Users</Typography>
+							</Stack>
+						}
 					/>
-					<Tabs
-						value={tab}
-						onChange={handleTabChange}
-						sx={{
-							'& .MuiTabs-flexContainer': {
-								justifyContent: responsive ? 'flex-start' : 'flex-end',
-								paddingX: '2rem',
-							},
-						}}>
-						<Tab
-							label={
-								<>
-									<Stack
-										direction='row'
-										spacing={0.5}>
-										<PeopleAltIcon />
-										<Typography>Users</Typography>
-									</Stack>
-								</>
-							}
-						/>
-					</Tabs>
-				</Card>
-			</>
+				</Tabs>
+			</Card>
 		);
 	};
 
 	const renderTab = () => {
-		return <>{tab === 0 && <UsersView />}</>;
+		switch (tab) {
+			case 0:
+				return <UsersView />;
+			default:
+				return <></>;
+		}
 	};
 
 	const render = () => {
 		return (
-			<>
-				<Window
-					label='Management'
-					open={props.open}
-					onClose={handleClose}>
-					{renderHeader()}
-					{renderTab()}
-				</Window>
-			</>
+			<Window
+				label='Management'
+				open={props.open}
+				onClose={handleClose}>
+				{renderHeader()}
+				{renderTab()}
+			</Window>
 		);
 	};
 

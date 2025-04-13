@@ -66,79 +66,75 @@ export const SignUpView = (): JSX.Element => {
 
 	const render = () => {
 		return (
-			<>
-				<LaunchView>
-					<Logo />
-					<Typography variant='h5'>Sign Up</Typography>
-					<EmailField
-						label='Email'
-						value={email}
-						required={true}
-						onChange={(event: any) => setEmail(event.target.value)}
-						fullWidth={true}
-					/>
-					<PasswordField
-						label='Password'
-						value={password}
-						required={true}
-						onChange={(event: any) => setPassword(event.target.value)}
-						fullWidth={true}
-					/>
-					<PasswordField
-						label='Confirm Password'
-						value={confirmPassword}
-						required={true}
-						onChange={(event: any) => setConfirmPassword(event.target.value)}
-						fullWidth={true}
-					/>
-					<FormControlLabel
-						control={
-							<Checkbox
-								color='primary'
-								value={legalAccepted}
-								onChange={(event: any, checked: boolean) => setLegalAccepted(checked)}
-							/>
-						}
-						label={
-							<>
-								<Typography variant='subtitle2'>
-									I have read and agree to the{' '}
-									<Link onClick={handleOpenTermsOfService}>Terms of Service</Link> and{' '}
-									<Link onClick={handleOpenPrivacyPolicy}>Privacy Policy</Link>.
-								</Typography>
-							</>
-						}
-					/>
-					<Button
-						disabled={!validate()}
-						variant='contained'
-						onClick={handleSignUp}
-						fullWidth={true}>
-						Sign Up
-					</Button>
-					<Stack
-						direction='row'
-						sx={{
-							width: '100%',
-						}}>
-						<Link
-							component='button'
-							variant='body2'
-							onClick={handleSignIn}>
-							← Already have an account? Sign in
-						</Link>
-					</Stack>
-					<Copyright />
-					<TermsOfServiceDialog
-						open={openTermsOfServiceDialog}
-						onClose={handleAcceptTermsOfService}
-					/>
-					<PrivacyPolicyDialog
-						open={openPrivacyPolicyDialog}
-						onClose={handleAcceptPrivacyPolicy}
-					/>
-				</LaunchView>
-			</>
+			<LaunchView>
+				<Logo />
+				<Typography variant='h5'>Sign Up</Typography>
+				<EmailField
+					label='Email'
+					value={email}
+					required={true}
+					onChange={(event: any) => setEmail(event.target.value)}
+					fullWidth={true}
+				/>
+				<PasswordField
+					label='Password'
+					value={password}
+					required={true}
+					onChange={(event: any) => setPassword(event.target.value)}
+					fullWidth={true}
+				/>
+				<PasswordField
+					label='Confirm Password'
+					value={confirmPassword}
+					required={true}
+					onChange={(event: any) => setConfirmPassword(event.target.value)}
+					fullWidth={true}
+				/>
+				<FormControlLabel
+					control={
+						<Checkbox
+							color='primary'
+							value={legalAccepted}
+							onChange={(event: any, checked: boolean) => setLegalAccepted(checked)}
+						/>
+					}
+					label={
+						<Typography variant='subtitle2'>
+							I have read and agree to the{' '}
+							<Link onClick={handleOpenTermsOfService}>Terms of Service</Link> and{' '}
+							<Link onClick={handleOpenPrivacyPolicy}>Privacy Policy</Link>.
+						</Typography>
+					}
+				/>
+				<Button
+					disabled={!validate()}
+					variant='contained'
+					onClick={handleSignUp}
+					fullWidth={true}>
+					Sign Up
+				</Button>
+				<Stack
+					direction='row'
+					sx={{
+						width: '100%',
+					}}>
+					<Link
+						component='button'
+						variant='body2'
+						onClick={handleSignIn}>
+						← Already have an account? Sign in
+					</Link>
+				</Stack>
+				<Copyright />
+				<TermsOfServiceDialog
+					open={openTermsOfServiceDialog}
+					onClose={handleAcceptTermsOfService}
+				/>
+				<PrivacyPolicyDialog
+					open={openPrivacyPolicyDialog}
+					onClose={handleAcceptPrivacyPolicy}
+				/>
+			</LaunchView>
 		);
 	};
 

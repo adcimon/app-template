@@ -41,53 +41,51 @@ export const SignInView = (): JSX.Element => {
 
 	const render = () => {
 		return (
-			<>
-				<LaunchView>
-					<Logo />
-					<Typography variant='h5'>Sign In</Typography>
-					<EmailField
-						label='Email'
-						value={email}
-						autoComplete='email'
-						required={true}
-						onChange={(event: any) => setEmail(event.target.value)}
-						fullWidth={true}
-					/>
-					<PasswordField
-						label='Password'
-						value={password}
-						required={true}
-						onChange={(event: any) => setPassword(event.target.value)}
-						fullWidth={true}
-					/>
-					<Button
-						variant='contained'
-						onClick={handleSignIn}
-						fullWidth={true}>
-						Sign In
-					</Button>
-					<Stack
-						direction='row'
-						sx={{
-							justifyContent: 'space-between',
-							width: '100%',
-						}}>
-						<Link
-							component='button'
-							variant='body2'
-							onClick={handleForgotPassword}>
-							Forgot your password?
-						</Link>
-						<Link
-							component='button'
-							variant='body2'
-							onClick={handleSignUp}>
-							Don't have an account? Sign Up
-						</Link>
-					</Stack>
-					<Copyright />
-				</LaunchView>
-			</>
+			<LaunchView>
+				<Logo />
+				<Typography variant='h5'>Sign In</Typography>
+				<EmailField
+					label='Email'
+					value={email}
+					autoComplete='email'
+					required={true}
+					onChange={(event: any) => setEmail(event.target.value)}
+					fullWidth={true}
+				/>
+				<PasswordField
+					label='Password'
+					value={password}
+					required={true}
+					onChange={(event: any) => setPassword(event.target.value)}
+					fullWidth={true}
+				/>
+				<Button
+					variant='contained'
+					onClick={handleSignIn}
+					fullWidth={true}>
+					Sign In
+				</Button>
+				<Stack
+					direction='row'
+					sx={{
+						justifyContent: 'space-between',
+						width: '100%',
+					}}>
+					<Link
+						component='button'
+						variant='body2'
+						onClick={handleForgotPassword}>
+						Forgot your password?
+					</Link>
+					<Link
+						component='button'
+						variant='body2'
+						onClick={handleSignUp}>
+						Don't have an account? Sign Up
+					</Link>
+				</Stack>
+				<Copyright />
+			</LaunchView>
 		);
 	};
 

@@ -52,146 +52,138 @@ export const SettingsWindow = (props: ISettingsWindowProps): JSX.Element => {
 
 	const handleClose = (event: any) => {
 		setTab(0);
-		if (props.onClose) {
-			props.onClose(event);
-		}
+		props.onClose?.(event);
 	};
 
 	const renderHeader = () => {
 		const id: string = getId();
 		return (
-			<>
-				<Card>
-					<Box
-						sx={{
-							backgroundAttachment: 'scroll scroll',
-							backgroundClip: 'border-box border-box',
-							backgroundImage:
-								'linear-gradient(rgba(0, 79, 225, 0.8), rgba(1, 41, 114, 0.8)), url("/images/user_banner.jpg")',
-							backgroundOrigin: 'padding-box, padding-box',
-							backgroundPosition: 'center center',
-							backgroundSize: 'cover',
-							height: responsive ? responsiveHeaderHeight : headerHeight,
-							position: 'relative',
-						}}>
-						<Stack
-							direction='row'
-							spacing={3}
-							sx={{
-								bottom: responsive ? responsiveAvatarPosition : avatarPosition,
-								left: '32px',
-								position: 'relative',
-								zIndex: '10',
-							}}>
-							<UserAvatar />
-							<Stack
-								direction='column'
-								sx={{
-									justifyContent: 'center',
-								}}>
-								<Typography
-									variant='h5'
-									gutterBottom
-									sx={{
-										color: 'white',
-									}}>
-									{id}
-								</Typography>
-								<Stack
-									direction='row'
-									sx={{
-										alignItems: 'center',
-									}}>
-									<IconBadge
-										icon={
-											<Grid3x3Icon
-												sx={{
-													fontSize: '1rem',
-												}}
-											/>
-										}
-									/>
-									<Typography
-										variant='body2'
-										noWrap={true}
-										sx={{
-											color: '#919eab',
-											fontSize: '0.8rem',
-											width: '50%',
-										}}>
-										{userState.user?.id}
-									</Typography>
-									<CopyButton
-										text={userState.user?.id}
-										size='small'
-									/>
-								</Stack>
-							</Stack>
-						</Stack>
-					</Box>
+			<Card>
+				<Box
+					sx={{
+						backgroundAttachment: 'scroll scroll',
+						backgroundClip: 'border-box border-box',
+						backgroundImage:
+							'linear-gradient(rgba(0, 79, 225, 0.8), rgba(1, 41, 114, 0.8)), url("/images/user_banner.jpg")',
+						backgroundOrigin: 'padding-box, padding-box',
+						backgroundPosition: 'center center',
+						backgroundSize: 'cover',
+						height: responsive ? responsiveHeaderHeight : headerHeight,
+						position: 'relative',
+					}}>
 					<Stack
 						direction='row'
+						spacing={3}
 						sx={{
-							justifyContent: responsive ? 'flex-start' : 'flex-end',
-							width: '100%',
+							bottom: responsive ? responsiveAvatarPosition : avatarPosition,
+							left: '32px',
+							position: 'relative',
+							zIndex: '10',
 						}}>
-						<Tabs
-							variant='scrollable'
-							value={tab}
-							onChange={handleTabChange}
-							scrollButtons
-							allowScrollButtonsMobile>
-							<Tab
-								label={
-									<>
-										<Stack
-											direction='row'
-											spacing={0.5}>
-											<AccountBoxIcon />
-											<Typography>Profile</Typography>
-										</Stack>
-									</>
-								}
-							/>
-							<Tab
-								label={
-									<>
-										<Stack
-											direction='row'
-											spacing={0.5}>
-											<SettingsSuggestIcon />
-											<Typography>Preferences</Typography>
-										</Stack>
-									</>
-								}
-							/>
-						</Tabs>
+						<UserAvatar />
+						<Stack
+							direction='column'
+							sx={{
+								justifyContent: 'center',
+							}}>
+							<Typography
+								variant='h5'
+								gutterBottom
+								sx={{
+									color: 'white',
+								}}>
+								{id}
+							</Typography>
+							<Stack
+								direction='row'
+								sx={{
+									alignItems: 'center',
+								}}>
+								<IconBadge
+									icon={
+										<Grid3x3Icon
+											sx={{
+												fontSize: '1rem',
+											}}
+										/>
+									}
+								/>
+								<Typography
+									variant='body2'
+									noWrap={true}
+									sx={{
+										color: '#919eab',
+										fontSize: '0.8rem',
+										width: '50%',
+									}}>
+									{userState.user?.id}
+								</Typography>
+								<CopyButton
+									text={userState.user?.id}
+									size='small'
+								/>
+							</Stack>
+						</Stack>
 					</Stack>
-				</Card>
-			</>
+				</Box>
+				<Stack
+					direction='row'
+					sx={{
+						justifyContent: responsive ? 'flex-start' : 'flex-end',
+						width: '100%',
+					}}>
+					<Tabs
+						variant='scrollable'
+						value={tab}
+						onChange={handleTabChange}
+						scrollButtons
+						allowScrollButtonsMobile>
+						<Tab
+							label={
+								<Stack
+									direction='row'
+									spacing={0.5}>
+									<AccountBoxIcon />
+									<Typography>Profile</Typography>
+								</Stack>
+							}
+						/>
+						<Tab
+							label={
+								<Stack
+									direction='row'
+									spacing={0.5}>
+									<SettingsSuggestIcon />
+									<Typography>Preferences</Typography>
+								</Stack>
+							}
+						/>
+					</Tabs>
+				</Stack>
+			</Card>
 		);
 	};
 
 	const renderTab = () => {
-		return (
-			<>
-				{tab === 0 && <ProfileView />}
-				{tab === 1 && <PreferencesView />}
-			</>
-		);
+		switch (tab) {
+			case 0:
+				return <ProfileView />;
+			case 1:
+				return <PreferencesView />;
+			default:
+				return <></>;
+		}
 	};
 
 	const render = () => {
 		return (
-			<>
-				<Window
-					label='Settings'
-					open={props.open}
-					onClose={handleClose}>
-					{renderHeader()}
-					{renderTab()}
-				</Window>
-			</>
+			<Window
+				label='Settings'
+				open={props.open}
+				onClose={handleClose}>
+				{renderHeader()}
+				{renderTab()}
+			</Window>
 		);
 	};
 

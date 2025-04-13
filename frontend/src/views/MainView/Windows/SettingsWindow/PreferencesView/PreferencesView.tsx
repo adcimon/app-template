@@ -19,58 +19,56 @@ export const PreferencesView = (): JSX.Element => {
 
 	const render = () => {
 		return (
-			<>
-				<Card>
-					<CardHeader />
-					<CardContent
+			<Card>
+				<CardHeader />
+				<CardContent
+					sx={{
+						paddingTop: 0,
+					}}>
+					<Box
 						sx={{
-							paddingTop: 0,
+							margin: -1.5,
+							padding: 2,
 						}}>
-						<Box
-							sx={{
-								margin: -1.5,
-								padding: 2,
-							}}>
+						<Grid2
+							container
+							spacing={3}>
 							<Grid2
-								container
-								spacing={3}>
-								<Grid2
-									size={{
-										xs: 12,
-										sm: 12,
-										md: 12,
+								size={{
+									xs: 12,
+									sm: 12,
+									md: 12,
+								}}>
+								<Box
+									sx={{
+										alignItems: 'center',
+										display: 'flex',
+										justifyContent: 'space-between',
 									}}>
-									<Box
-										sx={{
-											alignItems: 'center',
-											display: 'flex',
-											justifyContent: 'space-between',
-										}}>
-										<Box>
-											<Typography>Theme</Typography>
-											<Typography
-												variant='body2'
-												sx={{
-													color: 'text.secondary',
-													marginTop: '5px',
-												}}>
-												Change the appearance of the application.
-											</Typography>
-										</Box>
-										<Select
-											value={appState.theme.toString()}
-											onChange={handleChangeTheme}>
-											<MenuItem value={0}>Base</MenuItem>
-											<MenuItem value={1}>Custom Light</MenuItem>
-											<MenuItem value={2}>Custom Dark</MenuItem>
-										</Select>
+									<Box>
+										<Typography>Theme</Typography>
+										<Typography
+											variant='body2'
+											sx={{
+												color: 'text.secondary',
+												marginTop: '5px',
+											}}>
+											Change the appearance of the application.
+										</Typography>
 									</Box>
-								</Grid2>
+									<Select
+										value={appState.theme.toString()}
+										onChange={handleChangeTheme}>
+										<MenuItem value={0}>Base</MenuItem>
+										<MenuItem value={1}>Custom Light</MenuItem>
+										<MenuItem value={2}>Custom Dark</MenuItem>
+									</Select>
+								</Box>
 							</Grid2>
-						</Box>
-					</CardContent>
-				</Card>
-			</>
+						</Grid2>
+					</Box>
+				</CardContent>
+			</Card>
 		);
 	};
 

@@ -6,39 +6,37 @@ import Typography from '@mui/material/Typography';
 export const LoadingView = (): JSX.Element => {
 	const render = () => {
 		return (
-			<>
+			<Stack
+				direction='column'
+				sx={{
+					alignItems: 'center',
+					height: '100vh',
+					justifyContent: 'center',
+					width: '100vw',
+				}}>
 				<Stack
 					direction='column'
 					sx={{
 						alignItems: 'center',
-						height: '100vh',
+						height: '50%',
+						gap: '3rem',
 						justifyContent: 'center',
-						width: '100vw',
+						width: '50%',
 					}}>
-					<Stack
-						direction='column'
+					<Typography
 						sx={{
-							alignItems: 'center',
-							height: '50%',
-							gap: '3rem',
-							justifyContent: 'center',
-							width: '50%',
+							color: 'text.secondary',
+							fontSize: '3rem',
 						}}>
-						<Typography
-							sx={{
-								color: 'text.secondary',
-								fontSize: '3rem',
-							}}>
-							Loading...
-						</Typography>
-						<LinearProgress
-							sx={{
-								width: '70%',
-							}}
-						/>
-					</Stack>
+						Loading...
+					</Typography>
+					<LinearProgress
+						sx={{
+							width: '70%',
+						}}
+					/>
 				</Stack>
-			</>
+			</Stack>
 		);
 	};
 

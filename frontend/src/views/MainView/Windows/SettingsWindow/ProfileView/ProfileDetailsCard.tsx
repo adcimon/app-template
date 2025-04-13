@@ -56,131 +56,129 @@ export const ProfileDetailsCard = (): JSX.Element => {
 
 	const render = () => {
 		return (
-			<>
-				<Card>
-					<CardHeader
-						subheader={
-							<Typography
-								sx={{
-									fontWeight: 'bold',
-								}}>
-								Details
-							</Typography>
-						}
-					/>
-					<CardContent
-						sx={{
-							paddingTop: 0,
-						}}>
-						<Box
+			<Card>
+				<CardHeader
+					subheader={
+						<Typography
 							sx={{
-								margin: -1.5,
-								padding: 2,
+								fontWeight: 'bold',
 							}}>
-							<Grid2
-								container
-								spacing={3}>
-								<Grid2
-									size={{
-										xs: 12,
-										sm: 6,
-									}}>
-									<TextField
-										label='Name'
-										value={name}
-										onChange={(event: any) => setName(event.target.value)}
-										fullWidth={true}
-										slotProps={{
-											inputLabel: {
-												shrink: true,
-											},
-										}}
-									/>
-								</Grid2>
-								<Grid2
-									size={{
-										xs: 12,
-										sm: 6,
-									}}>
-									<TextField
-										label='Surname'
-										value={surname}
-										onChange={(event: any) => setSurname(event.target.value)}
-										fullWidth={true}
-										slotProps={{
-											inputLabel: {
-												shrink: true,
-											},
-										}}
-									/>
-								</Grid2>
-								<Grid2
-									size={{
-										xs: 12,
-										sm: 6,
-									}}>
-									<TextField
-										label='Birthdate'
-										type='date'
-										value={birthdate}
-										onChange={(event: any) => setBirthdate(event.target.value)}
-										fullWidth={true}
-										slotProps={{
-											inputLabel: {
-												shrink: true,
-											},
-										}}
-									/>
-								</Grid2>
-								<Grid2
-									size={{
-										xs: 12,
-										sm: 6,
-									}}>
-									<CountrySelect
-										label='Country'
-										value={country}
-										onChange={(event: any) => setCountry(event.target.value?.code || '')}
-										slotProps={{
-											inputLabel: {
-												shrink: true,
-											},
-										}}
-									/>
-								</Grid2>
-								<Grid2
-									size={{
-										xs: 12,
-										sm: 6,
-									}}>
-									<TimezoneSelect
-										label='Timezone'
-										value={timezone}
-										onChange={(event: any) => setTimezone(event.target.value)}
-										slotProps={{
-											inputLabel: {
-												shrink: true,
-											},
-										}}
-									/>
-								</Grid2>
-							</Grid2>
-						</Box>
-					</CardContent>
-					<Divider />
-					<CardActions
+							Details
+						</Typography>
+					}
+				/>
+				<CardContent
+					sx={{
+						paddingTop: 0,
+					}}>
+					<Box
 						sx={{
-							justifyContent: 'flex-end',
+							margin: -1.5,
+							padding: 2,
 						}}>
-						<Button
-							disabled={!validate()}
-							variant='contained'
-							onClick={handleSave}>
-							Save
-						</Button>
-					</CardActions>
-				</Card>
-			</>
+						<Grid2
+							container
+							spacing={3}>
+							<Grid2
+								size={{
+									xs: 12,
+									sm: 6,
+								}}>
+								<TextField
+									label='Name'
+									value={name}
+									onChange={(event: any) => setName(event.target.value)}
+									fullWidth={true}
+									slotProps={{
+										inputLabel: {
+											shrink: true,
+										},
+									}}
+								/>
+							</Grid2>
+							<Grid2
+								size={{
+									xs: 12,
+									sm: 6,
+								}}>
+								<TextField
+									label='Surname'
+									value={surname}
+									onChange={(event: any) => setSurname(event.target.value)}
+									fullWidth={true}
+									slotProps={{
+										inputLabel: {
+											shrink: true,
+										},
+									}}
+								/>
+							</Grid2>
+							<Grid2
+								size={{
+									xs: 12,
+									sm: 6,
+								}}>
+								<TextField
+									label='Birthdate'
+									type='date'
+									value={birthdate}
+									onChange={(event: any) => setBirthdate(event.target.value)}
+									fullWidth={true}
+									slotProps={{
+										inputLabel: {
+											shrink: true,
+										},
+									}}
+								/>
+							</Grid2>
+							<Grid2
+								size={{
+									xs: 12,
+									sm: 6,
+								}}>
+								<CountrySelect
+									label='Country'
+									value={country}
+									onChange={(event: any) => setCountry(event.target.value?.code || '')}
+									slotProps={{
+										inputLabel: {
+											shrink: true,
+										},
+									}}
+								/>
+							</Grid2>
+							<Grid2
+								size={{
+									xs: 12,
+									sm: 6,
+								}}>
+								<TimezoneSelect
+									label='Timezone'
+									value={timezone}
+									onChange={(event: any) => setTimezone(event.target.value)}
+									slotProps={{
+										inputLabel: {
+											shrink: true,
+										},
+									}}
+								/>
+							</Grid2>
+						</Grid2>
+					</Box>
+				</CardContent>
+				<Divider />
+				<CardActions
+					sx={{
+						justifyContent: 'flex-end',
+					}}>
+					<Button
+						disabled={!validate()}
+						variant='contained'
+						onClick={handleSave}>
+						Save
+					</Button>
+				</CardActions>
+			</Card>
 		);
 	};
 

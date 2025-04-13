@@ -25,57 +25,55 @@ export const ProfileView = (): JSX.Element => {
 
 	const render = () => {
 		return (
-			<>
+			<Grid2
+				container
+				sx={{
+					width: '100%',
+					'& > *': {
+						padding: '10px !important',
+					},
+				}}>
 				<Grid2
-					container
-					sx={{
-						width: '100%',
-						'& > *': {
-							padding: '10px !important',
-						},
+					size={{
+						xs: 12,
+						sm: 6,
+						md: 12,
 					}}>
-					<Grid2
-						size={{
-							xs: 12,
-							sm: 6,
-							md: 12,
-						}}>
-						<ProfileDetailsCard />
-					</Grid2>
-					<Grid2
-						size={{
-							xs: 12,
-							sm: 6,
-							md: 6,
-						}}>
-						<ProfileEmailCard />
-					</Grid2>
-					<Grid2
-						size={{
-							xs: 12,
-							sm: 6,
-							md: 6,
-						}}>
-						<ProfilePhoneCard />
-					</Grid2>
-					<Grid2
-						size={{
-							xs: 12,
-							sm: 6,
-							md: 6,
-						}}>
-						<ProfilePasswordCard />
-					</Grid2>
-					<Grid2
-						size={{
-							xs: 12,
-							sm: 6,
-							md: 6,
-						}}>
-						<ProfileDangerZoneCard />
-					</Grid2>
+					<ProfileDetailsCard />
 				</Grid2>
-			</>
+				<Grid2
+					size={{
+						xs: 12,
+						sm: 6,
+						md: 6,
+					}}>
+					<ProfileEmailCard />
+				</Grid2>
+				<Grid2
+					size={{
+						xs: 12,
+						sm: 6,
+						md: 6,
+					}}>
+					<ProfilePhoneCard />
+				</Grid2>
+				<Grid2
+					size={{
+						xs: 12,
+						sm: 6,
+						md: 6,
+					}}>
+					<ProfilePasswordCard />
+				</Grid2>
+				<Grid2
+					size={{
+						xs: 12,
+						sm: 6,
+						md: 6,
+					}}>
+					<ProfileDangerZoneCard />
+				</Grid2>
+			</Grid2>
 		);
 	};
 
