@@ -8,7 +8,7 @@ import { ProfilePasswordCard } from './ProfilePasswordCard';
 import { ProfilePhoneCard } from './ProfilePhoneCard';
 import { useUserState } from '../../../../../states/user/useUserState';
 
-export const ProfileView = (): JSX.Element => {
+export const ProfileMenu = (): JSX.Element => {
 	const userState = useUserState();
 
 	React.useEffect(() => {

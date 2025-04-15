@@ -10,8 +10,8 @@ import Tabs from '@mui/material/Tabs';
 import Typography from '@mui/material/Typography';
 import { CopyButton } from '../../../../core/components/Button/CopyButton';
 import { IconBadge } from '../../../../core/components/Badge/IconBadge';
-import { PreferencesView } from './PreferencesView/PreferencesView';
-import { ProfileView } from './ProfileView/ProfileView';
+import { PreferencesMenu } from './PreferencesMenu/PreferencesMenu';
+import { ProfileMenu } from './ProfileMenu/ProfileMenu';
 import { UserAvatar } from './UserAvatar/UserAvatar';
 import { Window } from '../../../../core/components/Window/Window';
 import { useResponsive } from '../../../../core/hooks/useResponsive';
@@ -167,9 +167,9 @@ export const SettingsWindow = (props: ISettingsWindowProps): JSX.Element => {
 	const renderTab = () => {
 		switch (tab) {
 			case 0:
-				return <ProfileView />;
+				return <ProfileMenu />;
 			case 1:
-				return <PreferencesView />;
+				return <PreferencesMenu />;
 			default:
 				return <></>;
 		}

@@ -9,7 +9,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
 import { useAppState } from '../../../../../states/app/useAppState';
 
-export const PreferencesView = (): JSX.Element => {
+export const PreferencesMenu = (): JSX.Element => {
 	const appState = useAppState();
 
 	const handleChangeTheme = (event: SelectChangeEvent) => {

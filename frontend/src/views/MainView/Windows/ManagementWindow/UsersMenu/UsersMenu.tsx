@@ -7,15 +7,15 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { CountrySelect } from '../../../../core/components/Select/CountrySelect';
-import { GenericTable } from '../../../../core/components/Table/GenericTable';
-import { TimezoneSelect } from '../../../../core/components/Select/TimezoneSelect';
-import { VerificationBadge } from '../../../../core/components/Badge/VerificationBadge';
-import { User } from '../../../../model/user';
-import { useAdminState } from '../../../../states/admin/useAdminState';
-import { AppUtils } from '../../../../utils/appUtils';
+import { CountrySelect } from '../../../../../core/components/Select/CountrySelect';
+import { GenericTable } from '../../../../../core/components/Table/GenericTable';
+import { TimezoneSelect } from '../../../../../core/components/Select/TimezoneSelect';
+import { VerificationBadge } from '../../../../../core/components/Badge/VerificationBadge';
+import { User } from '../../../../../model/user';
+import { useAdminState } from '../../../../../states/admin/useAdminState';
+import { AppUtils } from '../../../../../utils/appUtils';
 
-export const UsersView = (): JSX.Element => {
+export const UsersMenu = (): JSX.Element => {
 	const adminState = useAdminState();
 
 	const [user, setUser] = React.useState<User>();

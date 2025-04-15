@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Typography from '@mui/material/Typography';
-import { UsersView } from './UsersView';
+import { UsersMenu } from './UsersMenu/UsersMenu';
 import { Window } from '../../../../core/components/Window/Window';
 import { useResponsive } from '../../../../core/hooks/useResponsive';
 
@@ -77,7 +77,7 @@ export const ManagementWindow = (props: IManagementWindowProps): JSX.Element => 
 	const renderTab = () => {
 		switch (tab) {
 			case 0:
-				return <UsersView />;
+				return <UsersMenu />;
 			default:
 				return <></>;
 		}
