@@ -1,5 +1,4 @@
 import React from 'react';
-import toast from 'react-hot-toast';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -9,6 +8,7 @@ import CardHeader from '@mui/material/CardHeader';
 import Divider from '@mui/material/Divider';
 import Grid2 from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
+import { ToastManager } from '../../../../../managers/ToastManager/ToastManager';
 import { ConfirmationDialog } from '../../../../../core/components/Dialog/ConfirmationDialog';
 import { PasswordField } from '../../../../../core/components/Field/PasswordField';
 import { useAppState } from '../../../../../states/app/useAppState';
@@ -35,9 +35,9 @@ export const ProfilePasswordCard = (): JSX.Element => {
 	const handleAcceptChange = async () => {
 		try {
 			await appState.changePassword(currentPassword, newPassword);
-			toast.success('Password changed');
+			ToastManager.success('Password changed');
 		} catch (error: any) {
-			toast.error(error.message);
+			ToastManager.error(error.message);
 		}
 
 		setCurrentPassword('');

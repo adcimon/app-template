@@ -1,5 +1,4 @@
 import React from 'react';
-import toast from 'react-hot-toast';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -11,6 +10,7 @@ import Grid2 from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { ToastManager } from '../../../../../managers/ToastManager/ToastManager';
 import { ConfirmationDialog } from '../../../../../core/components/Dialog/ConfirmationDialog';
 import { EmailField } from '../../../../../core/components/Field/EmailField';
 import { VerificationBadge } from '../../../../../core/components/Badge/VerificationBadge';
@@ -41,9 +41,9 @@ export const ProfileEmailCard = (): JSX.Element => {
 		try {
 			await appState.verifyEmail(code);
 			await userState.get();
-			toast.success('Email changed');
+			ToastManager.success('Email changed');
 		} catch (error: any) {
-			toast.error(error.message);
+			ToastManager.error(error.message);
 		}
 
 		setOpenVerifyDialog(false);
@@ -60,9 +60,9 @@ export const ProfileEmailCard = (): JSX.Element => {
 	const handleAcceptChange = async () => {
 		try {
 			await userState.updateEmail(email);
-			toast.success('Verification code sent');
+			ToastManager.success('Verification code sent');
 		} catch (error: any) {
-			toast.error(error.message);
+			ToastManager.error(error.message);
 		}
 
 		setOpenChangeDialog(false);

@@ -1,7 +1,7 @@
 import React from 'react';
-import toast from 'react-hot-toast';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import { ToastManager } from '../../managers/ToastManager/ToastManager';
 import { HomeView } from './HomeView/HomeView';
 import { MainBar } from './MainBar/MainBar';
 import { useUserState } from '../../states/user/useUserState';
@@ -12,7 +12,7 @@ export const MainView = (): JSX.Element => {
 	const userState = useUserState();
 
 	React.useEffect(() => {
-		toast.success('Welcome!');
+		ToastManager.success('Welcome!');
 		getMyUser();
 	}, []);
 
@@ -20,7 +20,7 @@ export const MainView = (): JSX.Element => {
 		try {
 			await userState.get();
 		} catch (error: any) {
-			toast.error(error.message);
+			ToastManager.error(error.message);
 		}
 	};
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import toast from 'react-hot-toast';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -7,6 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { ToastManager } from '../../../../../managers/ToastManager/ToastManager';
 import { ConfirmationDialog } from '../../../../../core/components/Dialog/ConfirmationDialog';
 import { useUserState } from '../../../../../states/user/useUserState';
 import { AppUtils } from '../../../../../utils/appUtils';
@@ -42,9 +42,9 @@ export const UserAvatar = (): JSX.Element => {
 			try {
 				await userState.updateAvatar(avatar);
 				setOpenDialog(false);
-				toast.success('Avatar changed');
+				ToastManager.success('Avatar changed');
 			} catch (error: any) {
-				toast.error(error.message);
+				ToastManager.error(error.message);
 			}
 		};
 
@@ -59,7 +59,7 @@ export const UserAvatar = (): JSX.Element => {
 				update();
 			})
 			.catch(() => {
-				toast.error('Invalid URL');
+				ToastManager.error('Invalid URL');
 			});
 	};
 

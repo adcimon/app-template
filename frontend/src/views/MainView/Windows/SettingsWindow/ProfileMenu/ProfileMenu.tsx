@@ -1,6 +1,6 @@
 import React from 'react';
-import toast from 'react-hot-toast';
 import Grid2 from '@mui/material/Grid2';
+import { ToastManager } from '../../../../../managers/ToastManager/ToastManager';
 import { ProfileDangerZoneCard } from './ProfileDangerZoneCard';
 import { ProfileDetailsCard } from './ProfileDetailsCard';
 import { ProfileEmailCard } from './ProfileEmailCard';
@@ -19,7 +19,7 @@ export const ProfileMenu = (): JSX.Element => {
 		try {
 			await userState.get();
 		} catch (error: any) {
-			toast.error(error.message);
+			ToastManager.error(error.message);
 		}
 	};
 

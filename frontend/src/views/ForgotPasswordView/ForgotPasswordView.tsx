@@ -1,11 +1,11 @@
 import React from 'react';
-import toast from 'react-hot-toast';
 import Badge from '@mui/material/Badge';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { ToastManager } from '../../managers/ToastManager/ToastManager';
 import { Copyright } from '../../core/components/Copyright/Copyright';
 import { EmailField } from '../../core/components/Field/EmailField';
 import { LaunchView } from '../LaunchView/LaunchView';
@@ -35,9 +35,9 @@ export const ForgotPasswordView = (): JSX.Element => {
 	const handleSendCode = async () => {
 		try {
 			await appState.forgotPassword(email);
-			toast.success('Code sent');
+			ToastManager.success('Code sent');
 		} catch (error: any) {
-			toast.error(error.message);
+			ToastManager.error(error.message);
 		}
 	};
 
@@ -45,9 +45,9 @@ export const ForgotPasswordView = (): JSX.Element => {
 		try {
 			await appState.confirmPassword(email, code, password);
 			navigator.navigate('/sign-in');
-			toast.success('Password changed');
+			ToastManager.success('Password changed');
 		} catch (error: any) {
-			toast.error(error.message);
+			ToastManager.error(error.message);
 		}
 	};
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import { RecoilRoot } from 'recoil';
-import { ThemeManager } from './managers/ThemeManager/ThemeManager';
 import { ApiManager } from './managers/ApiManager/ApiManager';
-import { Toaster } from 'react-hot-toast';
+import { ThemeManager } from './managers/ThemeManager/ThemeManager';
+import { ToastManager } from './managers/ToastManager/ToastManager';
 import { AppView } from './views/AppView/AppView';
 
 export default function App() {
@@ -10,15 +10,7 @@ export default function App() {
 		<RecoilRoot>
 			<ThemeManager>
 				<ApiManager>
-					<Toaster
-						position='top-center'
-						toastOptions={{
-							duration: 5000,
-						}}
-						containerStyle={{
-							top: '10px',
-						}}
-					/>
+					<ToastManager />
 					<AppView />
 				</ApiManager>
 			</ThemeManager>

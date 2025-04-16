@@ -1,5 +1,4 @@
 import React from 'react';
-import toast from 'react-hot-toast';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
@@ -7,6 +6,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { ToastManager } from '../../../../../managers/ToastManager/ToastManager';
 import { CountrySelect } from '../../../../../core/components/Select/CountrySelect';
 import { GenericTable } from '../../../../../core/components/Table/GenericTable';
 import { TimezoneSelect } from '../../../../../core/components/Select/TimezoneSelect';
@@ -32,7 +32,7 @@ export const UsersMenu = (): JSX.Element => {
 		try {
 			await adminState.getUsers();
 		} catch (error: any) {
-			toast.error(error.message);
+			ToastManager.error(error.message);
 		}
 	};
 

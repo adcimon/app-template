@@ -1,5 +1,4 @@
 import React from 'react';
-import toast from 'react-hot-toast';
 import { SxProps } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -13,6 +12,7 @@ import SecurityIcon from '@mui/icons-material/Security';
 import SettingsIcon from '@mui/icons-material/Settings';
 import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
+import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
 import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
 import { GenericPopover } from '../../../../core/components/Popover/GenericPopover';
 import { HelpWindow } from '../../Windows/HelpWindow/HelpWindow';
@@ -80,7 +80,7 @@ export const AccountMenu = (): JSX.Element => {
 		} catch (error: any) {
 			// Ignore errors.
 		} finally {
-			toast.success('See you soon!');
+			ToastManager.success('See you soon!');
 			appState.reset();
 			userState.reset();
 		}

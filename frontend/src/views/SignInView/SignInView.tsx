@@ -1,9 +1,9 @@
 import React from 'react';
-import toast from 'react-hot-toast';
 import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { ToastManager } from '../../managers/ToastManager/ToastManager';
 import { Copyright } from '../../core/components/Copyright/Copyright';
 import { EmailField } from '../../core/components/Field/EmailField';
 import { LaunchView } from '../LaunchView/LaunchView';
@@ -27,7 +27,7 @@ export const SignInView = (): JSX.Element => {
 			await userState.get();
 			navigator.navigate('/');
 		} catch (error: any) {
-			toast.error(error.message);
+			ToastManager.error(error.message);
 		}
 	};
 
