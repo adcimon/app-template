@@ -1,13 +1,14 @@
 import React from 'react';
-import { Stack, Switch, Typography } from '@mui/material';
+import * as MUI from '@mui/material';
+import { Stack, Typography } from '@mui/material';
 
-interface GenericSwitchProps {
+interface SwitchProps {
 	label?: React.ReactNode;
 	checked?: boolean;
 	onChange?: (checked: boolean) => void;
 }
 
-export const GenericSwitch = (props: GenericSwitchProps): JSX.Element => {
+export const Switch = (props: SwitchProps): JSX.Element => {
 	const render = () => {
 		return (
 			<Stack
@@ -22,7 +23,7 @@ export const GenericSwitch = (props: GenericSwitchProps): JSX.Element => {
 					}}>
 					{props.label}
 				</Typography>
-				<Switch
+				<MUI.Switch
 					checked={props.checked}
 					onChange={(event: any, checked: boolean) => props.onChange?.(checked)}
 				/>

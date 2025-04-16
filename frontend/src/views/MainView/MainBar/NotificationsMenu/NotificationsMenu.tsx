@@ -8,8 +8,8 @@ import MenuList from '@mui/material/MenuList';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import { GenericPopover } from '../../../../core/components/Popover/GenericPopover';
 import { NotificationItem } from './NotificationItem';
+import { Popover } from '../../../../core/components/Popover/Popover';
 
 export const NotificationsMenu = (): JSX.Element => {
 	const ref = React.useRef<any>(null);
@@ -62,7 +62,7 @@ export const NotificationsMenu = (): JSX.Element => {
 						</Badge>
 					</IconButton>
 				</Tooltip>
-				<GenericPopover
+				<Popover
 					anchorEl={ref}
 					open={open}
 					onClose={handleClose}
@@ -101,7 +101,7 @@ export const NotificationsMenu = (): JSX.Element => {
 							/>
 						))}
 					</MenuList>
-				</GenericPopover>
+				</Popover>
 			</>
 		);
 	};

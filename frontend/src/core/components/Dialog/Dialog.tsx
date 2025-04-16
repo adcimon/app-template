@@ -1,12 +1,13 @@
 import React from 'react';
-import { Dialog, DialogActions, DialogContent, DialogTitle, Stack, SxProps } from '@mui/material';
+import * as MUI from '@mui/material';
+import { DialogActions, DialogContent, DialogTitle, Stack, SxProps } from '@mui/material';
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorRoundedIcon from '@mui/icons-material/ErrorRounded';
 import InfoIcon from '@mui/icons-material/Info';
 import { useResponsive } from '../../hooks/useResponsive';
 
-interface GenericDialogProps {
+interface DialogProps {
 	title?: React.ReactNode;
 	variant?: 'info' | 'success' | 'warning' | 'error';
 	actions?: React.ReactNode;
@@ -16,7 +17,7 @@ interface GenericDialogProps {
 	children?: React.ReactNode;
 }
 
-export const GenericDialog = (props: GenericDialogProps): JSX.Element => {
+export const Dialog = (props: DialogProps): JSX.Element => {
 	const responsive: boolean = useResponsive();
 
 	const paperSx: SxProps = responsive
@@ -76,7 +77,7 @@ export const GenericDialog = (props: GenericDialogProps): JSX.Element => {
 
 	const render = () => {
 		return (
-			<Dialog
+			<MUI.Dialog
 				open={props.open}
 				closeAfterTransition={true}
 				onClose={props.onClose}
@@ -102,7 +103,7 @@ export const GenericDialog = (props: GenericDialogProps): JSX.Element => {
 				)}
 				<DialogContent sx={props.sx}>{props.children}</DialogContent>
 				{props.actions && <DialogActions>{props.actions}</DialogActions>}
-			</Dialog>
+			</MUI.Dialog>
 		);
 	};
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, SxProps } from '@mui/material';
-import { GenericDialog } from './GenericDialog';
+import { Dialog } from './Dialog';
 
 interface ConfirmationDialogProps {
 	title?: React.ReactNode;
@@ -54,7 +54,7 @@ export const ConfirmationDialog = (props: ConfirmationDialogProps): JSX.Element 
 		const acceptable: boolean =
 			props.acceptable === undefined || props.acceptable === null ? true : props.acceptable;
 		return (
-			<GenericDialog
+			<Dialog
 				title={props.title}
 				variant={props.variant}
 				open={props.open}
@@ -81,7 +81,7 @@ export const ConfirmationDialog = (props: ConfirmationDialogProps): JSX.Element 
 				onClose={props.onClose}
 				sx={props.sx}>
 				{props.children}
-			</GenericDialog>
+			</Dialog>
 		);
 	};
 

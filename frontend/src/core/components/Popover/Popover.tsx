@@ -1,9 +1,10 @@
 import React from 'react';
-import { Popover, PopoverOrigin, SxProps } from '@mui/material';
-import { GenericDialog } from '../Dialog/GenericDialog';
+import * as MUI from '@mui/material';
+import { PopoverOrigin, SxProps } from '@mui/material';
+import { Dialog } from '../Dialog/Dialog';
 import { useResponsive } from '../../hooks/useResponsive';
 
-interface GenericPopoverProps {
+interface PopoverProps {
 	anchorEl?: React.MutableRefObject<any>;
 	anchorOrigin?: PopoverOrigin;
 	transformOrigin?: PopoverOrigin;
@@ -13,14 +14,14 @@ interface GenericPopoverProps {
 	children?: React.ReactNode;
 }
 
-export const GenericPopover = (props: GenericPopoverProps): JSX.Element => {
+export const Popover = (props: PopoverProps): JSX.Element => {
 	const responsive: boolean = useResponsive();
 
 	const render = () => {
 		return (
 			<>
 				{!responsive && (
-					<Popover
+					<MUI.Popover
 						anchorEl={props.anchorEl?.current}
 						anchorOrigin={props.anchorOrigin || { horizontal: 'right', vertical: 'bottom' }}
 						transformOrigin={props.transformOrigin || { horizontal: 'right', vertical: 'top' }}
@@ -32,17 +33,17 @@ export const GenericPopover = (props: GenericPopoverProps): JSX.Element => {
 							},
 						}}>
 						{props.children}
-					</Popover>
+					</MUI.Popover>
 				)}
 				{responsive && (
-					<GenericDialog
+					<Dialog
 						open={props.open}
 						onClose={props.onClose}
 						sx={{
 							paddingX: '0',
 						}}>
 						{props.children}
-					</GenericDialog>
+					</Dialog>
 				)}
 			</>
 		);

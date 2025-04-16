@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, CircularProgress, Stack, SxProps } from '@mui/material';
-import { GenericDialog } from './GenericDialog';
+import { Dialog } from './Dialog';
 
 interface LoadingDialogProps {
 	title?: React.ReactNode;
@@ -35,7 +35,7 @@ export const LoadingDialog = (props: LoadingDialogProps): JSX.Element => {
 
 	const render = () => {
 		return (
-			<GenericDialog
+			<Dialog
 				title={props.title}
 				actions={
 					<>
@@ -61,7 +61,7 @@ export const LoadingDialog = (props: LoadingDialogProps): JSX.Element => {
 					<CircularProgress size='5rem' />
 				</Stack>
 				{props.children}
-			</GenericDialog>
+			</Dialog>
 		);
 	};
 

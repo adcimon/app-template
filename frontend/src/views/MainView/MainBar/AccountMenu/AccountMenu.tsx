@@ -14,9 +14,9 @@ import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
 import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
 import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
-import { GenericPopover } from '../../../../core/components/Popover/GenericPopover';
 import { HelpWindow } from '../../Windows/HelpWindow/HelpWindow';
 import { ManagementWindow } from '../../Windows/ManagementWindow/ManagementWindow';
+import { Popover } from '../../../../core/components/Popover/Popover';
 import { SettingsWindow } from '../../Windows/SettingsWindow/SettingsWindow';
 import { useAppState } from '../../../../states/app/useAppState';
 import { useUserState } from '../../../../states/user/useUserState';
@@ -141,7 +141,7 @@ export const AccountMenu = (): JSX.Element => {
 						},
 					}}
 				/>
-				<GenericPopover
+				<Popover
 					anchorEl={ref}
 					open={open}
 					onClose={handleClose}
@@ -216,7 +216,7 @@ export const AccountMenu = (): JSX.Element => {
 							<Typography>Sign Out</Typography>
 						</MenuItem>
 					</MenuList>
-				</GenericPopover>
+				</Popover>
 				<SettingsWindow
 					open={openSettingsWindow}
 					onClose={handleCloseSettings}

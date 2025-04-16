@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Button, IconButton, Stack, SxProps, Typography } from '@mui/material';
 import ShareIcon from '@mui/icons-material/Share';
 import { CopyField } from '../Field/CopyField';
-import { GenericDialog } from './GenericDialog';
+import { Dialog } from './Dialog';
 import QRCode from 'qrcode';
 
 interface ShareDialogProps {
@@ -60,7 +60,7 @@ export const ShareDialog = (props: ShareDialogProps): JSX.Element => {
 
 	const render = () => {
 		return (
-			<GenericDialog
+			<Dialog
 				title={
 					<Stack
 						direction='row'
@@ -142,7 +142,7 @@ export const ShareDialog = (props: ShareDialogProps): JSX.Element => {
 						</Stack>
 					)}
 				</Stack>
-			</GenericDialog>
+			</Dialog>
 		);
 	};
 
