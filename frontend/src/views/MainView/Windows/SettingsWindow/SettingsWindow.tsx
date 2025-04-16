@@ -2,14 +2,12 @@ import React from 'react';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import Grid3x3Icon from '@mui/icons-material/Grid3x3';
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 import Stack from '@mui/material/Stack';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Typography from '@mui/material/Typography';
-import { CopyButton } from '../../../../core/components/Button/CopyButton';
-import { IconBadge } from '../../../../core/components/Badge/IconBadge';
+import { IdBadge } from '../../../../core/components/Badge/IdBadge';
 import { PreferencesMenu } from './PreferencesMenu/PreferencesMenu';
 import { ProfileMenu } from './ProfileMenu/ProfileMenu';
 import { UserAvatar } from './UserAvatar/UserAvatar';
@@ -94,35 +92,7 @@ export const SettingsWindow = (props: ISettingsWindowProps): JSX.Element => {
 								}}>
 								{id}
 							</Typography>
-							<Stack
-								direction='row'
-								sx={{
-									alignItems: 'center',
-								}}>
-								<IconBadge
-									icon={
-										<Grid3x3Icon
-											sx={{
-												fontSize: '1rem',
-											}}
-										/>
-									}
-								/>
-								<Typography
-									variant='body2'
-									noWrap={true}
-									sx={{
-										color: '#919eab',
-										fontSize: '0.8rem',
-										width: '50%',
-									}}>
-									{userState.user?.id}
-								</Typography>
-								<CopyButton
-									text={userState.user?.id}
-									size='small'
-								/>
-							</Stack>
+							{userState.user?.id && <IdBadge id={userState.user?.id} />}
 						</Stack>
 					</Stack>
 				</Box>

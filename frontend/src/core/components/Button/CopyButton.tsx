@@ -7,6 +7,7 @@ import { Utils } from '../../utils/utils';
 
 type CopyButtonProps = IconButtonProps & {
 	text?: string;
+	fontSize?: string;
 };
 
 export const CopyButton = (props: CopyButtonProps): JSX.Element => {
@@ -30,14 +31,13 @@ export const CopyButton = (props: CopyButtonProps): JSX.Element => {
 					<IconButton
 						{...props}
 						onClick={handleClick}>
-						{
-							<ContentCopyIcon
-								fontSize='inherit'
-								sx={{
-									color: 'neutral.light',
-								}}
-							/>
-						}
+						<ContentCopyIcon
+							fontSize={props.size}
+							sx={{
+								color: 'neutral.light',
+								fontSize: props.fontSize,
+							}}
+						/>
 					</IconButton>
 				)}
 				{success && (
@@ -46,9 +46,10 @@ export const CopyButton = (props: CopyButtonProps): JSX.Element => {
 							{...props}
 							disableRipple>
 							<TaskAltIcon
-								fontSize='inherit'
+								fontSize={props.size}
 								sx={{
 									color: 'success.main',
+									fontSize: props.fontSize,
 								}}
 							/>
 						</IconButton>
