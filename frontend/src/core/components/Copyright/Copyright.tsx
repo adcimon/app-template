@@ -1,6 +1,5 @@
 import React from 'react';
-import Link from '@mui/material/Link';
-import Typography from '@mui/material/Typography';
+import { Link, Typography } from '@mui/material';
 
 export const Copyright = (): JSX.Element => {
 	const render = () => {

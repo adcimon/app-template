@@ -1,5 +1,5 @@
 import React from 'react';
-import { IRouteProps } from './Route';
+import { RouteProps } from './Route';
 
 interface RouterProps {
 	children?: React.ReactNode;
@@ -31,7 +31,7 @@ export const Router = (props: RouterProps) => {
 		let match = null;
 		const routes = React.Children.toArray(props.children);
 		for (const child of routes) {
-			if (React.isValidElement<IRouteProps>(child) && (child.props.path === path || child.props.path === '*')) {
+			if (React.isValidElement<RouteProps>(child) && (child.props.path === path || child.props.path === '*')) {
 				match = child;
 				break;
 			}

@@ -1,11 +1,6 @@
 import React from 'react';
-import { SxProps } from '@mui/system';
+import { Container, Dialog, IconButton, Stack, SxProps, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import Container from '@mui/material/Container';
-import Dialog from '@mui/material/Dialog';
-import IconButton from '@mui/material/IconButton';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
 
 interface WindowProps {
 	label?: React.ReactNode;

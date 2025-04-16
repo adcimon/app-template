@@ -1,9 +1,6 @@
 import React from 'react';
+import { Autocomplete, Box, InputAdornment, TextField, TextFieldProps } from '@mui/material';
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
-import Autocomplete from '@mui/material/Autocomplete';
-import Box from '@mui/material/Box';
-import InputAdornment from '@mui/material/InputAdornment';
-import TextField, { TextFieldProps } from '@mui/material/TextField';
 
 type TimezoneSelectProps = TextFieldProps & {
 	disableClearable?: boolean;

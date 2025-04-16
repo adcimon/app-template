@@ -1,8 +1,5 @@
 import React from 'react';
-import Chip from '@mui/material/Chip';
-import MenuItem from '@mui/material/MenuItem';
-import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
+import { Chip, MenuItem, Stack, SxProps, TextField } from '@mui/material';
 
 interface MultipleSelectProps {
 	label?: React.ReactNode;
@@ -11,6 +8,7 @@ interface MultipleSelectProps {
 	values?: string[];
 	onChange?: (values: string[]) => void;
 	renderValue?: (value: string) => void;
+	sx?: SxProps;
 }
 
 export const MultipleSelect = (props: MultipleSelectProps): JSX.Element => {
@@ -66,7 +64,8 @@ export const MultipleSelect = (props: MultipleSelectProps): JSX.Element => {
 							);
 						},
 					},
-				}}>
+				}}
+				sx={props.sx}>
 				{props.options?.map((value: string, index: number) => (
 					<MenuItem
 						key={index}

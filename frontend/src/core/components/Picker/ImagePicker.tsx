@@ -1,13 +1,9 @@
 import React from 'react';
-import { SxProps } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
-import Box from '@mui/material/Box';
+import { Avatar, Box, IconButton, Stack, SxProps } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import IconButton from '@mui/material/IconButton';
 import ImageIcon from '@mui/icons-material/Image';
 import PersonIcon from '@mui/icons-material/Person';
-import Stack from '@mui/material/Stack';
 import { Utils } from '../../utils/utils';
 
 interface ImagePickerProps {

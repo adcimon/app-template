@@ -1,5 +1,5 @@
 import React from 'react';
-import Chip from '@mui/material/Chip';
+import { Chip } from '@mui/material';
 import Grid3x3Icon from '@mui/icons-material/Grid3x3';
 import { CopyButton } from '../Button/CopyButton';
 

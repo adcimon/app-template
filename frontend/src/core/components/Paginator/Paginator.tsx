@@ -1,9 +1,5 @@
 import React from 'react';
-import { SxProps } from '@mui/system';
-import Box from '@mui/material/Box';
-import Pagination from '@mui/material/Pagination';
-import Slide from '@mui/material/Slide';
-import Stack from '@mui/material/Stack';
+import { Box, Pagination, Slide, Stack, SxProps } from '@mui/material';
 
 interface PaginatorProps {
 	sx?: SxProps;

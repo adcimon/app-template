@@ -1,8 +1,5 @@
 import React from 'react';
-import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import Stack from '@mui/material/Stack';
+import { Box, Divider, Drawer, Stack } from '@mui/material';
 import { useResponsive } from '../../hooks/useResponsive';
 
 interface SideBarProps {

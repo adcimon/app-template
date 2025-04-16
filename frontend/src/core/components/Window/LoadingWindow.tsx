@@ -1,7 +1,5 @@
 import React from 'react';
-import LinearProgress from '@mui/material/LinearProgress';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import { LinearProgress, Stack, Typography } from '@mui/material';
 import { Window } from './Window';
 import { useResponsive } from '../../hooks/useResponsive';
 

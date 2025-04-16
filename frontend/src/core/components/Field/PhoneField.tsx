@@ -1,7 +1,6 @@
 import React from 'react';
-import InputAdornment from '@mui/material/InputAdornment';
+import { InputAdornment, TextField, TextFieldProps } from '@mui/material';
 import PhoneIcon from '@mui/icons-material/Phone';
-import TextField, { TextFieldProps } from '@mui/material/TextField';
 
 export const PhoneField = (props: TextFieldProps): JSX.Element => {
 	const render = () => {

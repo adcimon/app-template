@@ -1,8 +1,6 @@
 import React from 'react';
 import { SxProps } from '@mui/system';
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
+import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 interface GenericAccordionProps {

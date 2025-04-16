@@ -1,14 +1,9 @@
 import React from 'react';
-import { SxProps } from '@mui/system';
+import { Dialog, DialogActions, DialogContent, DialogTitle, Stack, SxProps } from '@mui/material';
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
 import ErrorRoundedIcon from '@mui/icons-material/ErrorRounded';
 import InfoIcon from '@mui/icons-material/Info';
-import Stack from '@mui/material/Stack';
 import { useResponsive } from '../../hooks/useResponsive';
 
 interface GenericDialogProps {

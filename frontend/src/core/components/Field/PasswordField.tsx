@@ -1,8 +1,6 @@
 import React from 'react';
-import IconButton from '@mui/material/IconButton';
-import InputAdornment from '@mui/material/InputAdornment';
+import { IconButton, InputAdornment, TextField, TextFieldProps } from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
-import TextField, { TextFieldProps } from '@mui/material/TextField';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 

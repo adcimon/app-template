@@ -1,8 +1,5 @@
 import React from 'react';
-import { SxProps } from '@mui/system';
-import Button from '@mui/material/Button';
-import CircularProgress from '@mui/material/CircularProgress';
-import Stack from '@mui/material/Stack';
+import { Button, CircularProgress, Stack, SxProps } from '@mui/material';
 import { GenericDialog } from './GenericDialog';
 
 interface LoadingDialogProps {

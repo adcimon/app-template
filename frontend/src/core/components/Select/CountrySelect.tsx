@@ -1,9 +1,6 @@
 import React from 'react';
-import Autocomplete from '@mui/material/Autocomplete';
-import Box from '@mui/material/Box';
-import InputAdornment from '@mui/material/InputAdornment';
+import { Autocomplete, Box, InputAdornment, TextField, TextFieldProps } from '@mui/material';
 import PublicIcon from '@mui/icons-material/Public';
-import TextField, { TextFieldProps } from '@mui/material/TextField';
 
 type CountrySelectProps = TextFieldProps & {
 	disableClearable?: boolean;

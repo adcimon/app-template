@@ -1,8 +1,7 @@
 import React from 'react';
+import { IconButton, IconButtonProps, Zoom } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
-import Zoom from '@mui/material/Zoom';
 import { Utils } from '../../utils/utils';
 
 type CopyButtonProps = IconButtonProps & {

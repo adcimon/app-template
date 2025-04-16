@@ -1,6 +1,5 @@
 import React from 'react';
-import { SxProps } from '@mui/material';
-import Checkbox from '@mui/material/Checkbox';
+import { Checkbox, SxProps } from '@mui/material';
 import PushPinIcon from '@mui/icons-material/PushPin';
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
 

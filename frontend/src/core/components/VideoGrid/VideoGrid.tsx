@@ -1,6 +1,5 @@
 import React from 'react';
-import { keyframes } from '@mui/system';
-import Box from '@mui/material/Box';
+import { Box, keyframes } from '@mui/material';
 import { useWindowSize } from '../../hooks/useWindowSize';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 

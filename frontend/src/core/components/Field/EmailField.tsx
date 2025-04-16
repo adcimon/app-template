@@ -1,7 +1,6 @@
 import React from 'react';
+import { InputAdornment, TextField, TextFieldProps } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email';
-import InputAdornment from '@mui/material/InputAdornment';
-import TextField, { TextFieldProps } from '@mui/material/TextField';
 
 export const EmailField = (props: TextFieldProps): JSX.Element => {
 	const render = () => {

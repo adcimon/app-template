@@ -1,8 +1,6 @@
 import React from 'react';
-import Fab from '@mui/material/Fab';
-import InputAdornment from '@mui/material/InputAdornment';
+import { Fab, InputAdornment, TextField, TextFieldProps } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
-import TextField, { TextFieldProps } from '@mui/material/TextField';
 
 type SendFieldProps = TextFieldProps & {
 	onSend?: () => void;

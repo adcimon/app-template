@@ -1,6 +1,5 @@
 import React from 'react';
-import { SxProps } from '@mui/system';
-import Button from '@mui/material/Button';
+import { Button, SxProps } from '@mui/material';
 import { GenericDialog } from './GenericDialog';
 
 interface ConfirmationDialogProps {

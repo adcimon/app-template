@@ -1,13 +1,16 @@
 import React from 'react';
-import { Theme, useTheme } from '@mui/material/styles';
-import Avatar from '@mui/material/Avatar';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Divider from '@mui/material/Divider';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import {
+	Avatar,
+	Card,
+	CardActions,
+	CardContent,
+	CardMedia,
+	Divider,
+	Stack,
+	Theme,
+	Typography,
+	useTheme,
+} from '@mui/material';
 
 interface UserCardProps {
 	title?: string;

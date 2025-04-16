@@ -1,7 +1,6 @@
 import React from 'react';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
+import { IconButton, IconButtonProps, Link } from '@mui/material';
 import LaunchIcon from '@mui/icons-material/Launch';
-import Link from '@mui/material/Link';
 
 type LinkButtonProps = IconButtonProps & {
 	link?: string;

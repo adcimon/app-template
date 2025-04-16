@@ -1,6 +1,5 @@
 import React from 'react';
-import { SxProps } from '@mui/system';
-import Popover, { PopoverOrigin } from '@mui/material/Popover';
+import { Popover, PopoverOrigin, SxProps } from '@mui/material';
 import { GenericDialog } from '../Dialog/GenericDialog';
 import { useResponsive } from '../../hooks/useResponsive';
 

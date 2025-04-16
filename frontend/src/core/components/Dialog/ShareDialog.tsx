@@ -1,11 +1,6 @@
 import React from 'react';
-import { SxProps } from '@mui/system';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
+import { Box, Button, IconButton, Stack, SxProps, Typography } from '@mui/material';
 import ShareIcon from '@mui/icons-material/Share';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
 import { CopyField } from '../Field/CopyField';
 import { GenericDialog } from './GenericDialog';
 import QRCode from 'qrcode';
@@ -67,29 +62,27 @@ export const ShareDialog = (props: ShareDialogProps): JSX.Element => {
 		return (
 			<GenericDialog
 				title={
-					<>
-						<Stack
-							direction='row'
-							spacing={1}
+					<Stack
+						direction='row'
+						spacing={1}
+						sx={{
+							alignItems: 'center',
+							marginY: '5px',
+						}}>
+						<IconButton
+							disableRipple
 							sx={{
-								alignItems: 'center',
-								marginY: '5px',
+								backgroundColor: 'primary.main',
+								transform: 'scale(0.9)',
 							}}>
-							<IconButton
-								disableRipple
+							<ShareIcon
 								sx={{
-									backgroundColor: 'primary.main',
-									transform: 'scale(0.9)',
-								}}>
-								<ShareIcon
-									sx={{
-										color: 'white',
-									}}
-								/>
-							</IconButton>
-							<Typography variant='h5'>Share</Typography>
-						</Stack>
-					</>
+									color: 'white',
+								}}
+							/>
+						</IconButton>
+						<Typography variant='h5'>Share</Typography>
+					</Stack>
 				}
 				actions={
 					<>
