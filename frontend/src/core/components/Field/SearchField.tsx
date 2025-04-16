@@ -40,7 +40,7 @@ export const SearchField = ({ onSearch, ...props }: SearchFieldProps): JSX.Eleme
 				value={value}
 				onChange={handleChange}
 				onKeyDown={handleKeyDown}
-				hiddenLabel
+				hiddenLabel={true}
 				slotProps={{
 					input: {
 						startAdornment: (
