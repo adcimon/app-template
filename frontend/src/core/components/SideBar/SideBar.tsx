@@ -5,7 +5,7 @@ import Drawer from '@mui/material/Drawer';
 import Stack from '@mui/material/Stack';
 import { useResponsive } from '../../hooks/useResponsive';
 
-interface ISideBarProps {
+interface SideBarProps {
 	title?: React.ReactNode;
 	open: boolean;
 	responsive?: boolean;
@@ -16,7 +16,7 @@ interface ISideBarProps {
 	children?: React.ReactNode;
 }
 
-export const SideBar = (props: ISideBarProps): JSX.Element => {
+export const SideBar = (props: SideBarProps): JSX.Element => {
 	const responsive: boolean = useResponsive();
 
 	const render = () => {

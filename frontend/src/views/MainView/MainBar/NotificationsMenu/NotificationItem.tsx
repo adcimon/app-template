@@ -9,12 +9,12 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import { NotificationTooltip } from './NotificationTooltip';
 
-interface INotificationItemProps {
+interface NotificationItemProps {
 	notification: any;
 	onDelete?: (notification: any) => void;
 }
 
-export const NotificationItem = (props: INotificationItemProps): JSX.Element => {
+export const NotificationItem = (props: NotificationItemProps): JSX.Element => {
 	const handleDelete = (event: React.MouseEvent<HTMLElement>) => {
 		event.stopPropagation();
 		event.preventDefault();

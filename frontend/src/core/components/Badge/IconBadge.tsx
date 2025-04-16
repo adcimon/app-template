@@ -1,11 +1,11 @@
 import React from 'react';
 import Stack from '@mui/material/Stack';
 
-interface IIconBadgeProps {
+interface IconBadgeProps {
 	icon?: React.ReactElement;
 }
 
-export const IconBadge = (props: IIconBadgeProps): JSX.Element => {
+export const IconBadge = (props: IconBadgeProps): JSX.Element => {
 	const render = () => {
 		return (
 			<Stack

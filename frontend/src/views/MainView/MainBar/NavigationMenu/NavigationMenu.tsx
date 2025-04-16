@@ -2,11 +2,11 @@ import React from 'react';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Typography from '@mui/material/Typography';
 
-interface INavigationMenuProps {
+interface NavigationMenuProps {
 	children?: React.ReactNode;
 }
 
-export const NavigationMenu = (props: INavigationMenuProps): JSX.Element => {
+export const NavigationMenu = (props: NavigationMenuProps): JSX.Element => {
 	const render = () => {
 		return (
 			<Breadcrumbs

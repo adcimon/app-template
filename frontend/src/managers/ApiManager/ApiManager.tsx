@@ -7,11 +7,11 @@ import { HttpParams } from '../../api/httpMethods';
 import { ApiClient } from '../../api/apiClient';
 import { ConsoleUtils } from '../../utils/consoleUtils';
 
-interface IApiManagerProps {
+interface ApiManagerProps {
 	children?: React.ReactNode;
 }
 
-export const ApiManager = (props: IApiManagerProps): JSX.Element => {
+export const ApiManager = (props: ApiManagerProps): JSX.Element => {
 	const apiState = useApiState();
 	const userState = useUserState();
 

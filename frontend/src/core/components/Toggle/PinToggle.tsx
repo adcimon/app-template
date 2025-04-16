@@ -4,14 +4,14 @@ import Checkbox from '@mui/material/Checkbox';
 import PushPinIcon from '@mui/icons-material/PushPin';
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
 
-interface IPinToggleProps {
+interface PinToggleProps {
 	pinned?: boolean;
 	size?: 'small' | 'medium' | 'large';
 	color?: string;
 	onChange?: (pinned: boolean) => void;
 }
 
-export const PinToggle = (props: IPinToggleProps): JSX.Element => {
+export const PinToggle = (props: PinToggleProps): JSX.Element => {
 	const render = () => {
 		const iconSx: SxProps = {
 			color: props.color ?? 'text.primary',

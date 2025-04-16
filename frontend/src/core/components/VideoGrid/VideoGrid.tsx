@@ -4,13 +4,13 @@ import Box from '@mui/material/Box';
 import { useWindowSize } from '../../hooks/useWindowSize';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 
-interface IVideoGridProps {
+interface VideoGridProps {
 	aspectRatio?: number;
 	tileMargin?: number;
 	children?: React.ReactElement | Array<React.ReactElement>;
 }
 
-export const VideoGrid = (props: IVideoGridProps): JSX.Element => {
+export const VideoGrid = (props: VideoGridProps): JSX.Element => {
 	const aspectRatio: number = props.aspectRatio ?? 4 / 3;
 	const tileMargin: number = props.tileMargin ?? 5;
 	const gridRef = React.useRef<HTMLDivElement>(null);

@@ -6,12 +6,12 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-interface ITermsOfServiceDialogProps {
+interface TermsOfServiceDialogProps {
 	open: boolean;
 	onClose?: (event: any) => void;
 }
 
-export const TermsOfServiceDialog = (props: ITermsOfServiceDialogProps): JSX.Element => {
+export const TermsOfServiceDialog = (props: TermsOfServiceDialogProps): JSX.Element => {
 	const render = () => {
 		return (
 			<Dialog

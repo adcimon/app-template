@@ -7,12 +7,12 @@ import { PrivacyPolicyDialog } from '../../../../core/components/Dialog/PrivacyP
 import { TermsOfServiceDialog } from '../../../../core/components/Dialog/TermsOfServiceDialog';
 import { Window } from '../../../../core/components/Window/Window';
 
-interface IHelpWindowProps {
+interface HelpWindowProps {
 	open: boolean;
 	onClose?: (event: any) => void;
 }
 
-export const HelpWindow = (props: IHelpWindowProps): JSX.Element => {
+export const HelpWindow = (props: HelpWindowProps): JSX.Element => {
 	const [openTermsOfServiceDialog, setOpenTermsOfServiceDialog] = React.useState<boolean>(false);
 	const [openPrivacyPolicyDialog, setOpenPrivacyPolicyDialog] = React.useState<boolean>(false);
 

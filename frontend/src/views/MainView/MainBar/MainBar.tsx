@@ -5,11 +5,11 @@ import Toolbar from '@mui/material/Toolbar';
 import { AccountMenu } from './AccountMenu/AccountMenu';
 import { NotificationsMenu } from './NotificationsMenu/NotificationsMenu';
 
-interface IMainBarProps {
+interface MainBarProps {
 	height?: string;
 }
 
-export const MainBar = (props: IMainBarProps): JSX.Element => {
+export const MainBar = (props: MainBarProps): JSX.Element => {
 	const render = () => {
 		return (
 			<>

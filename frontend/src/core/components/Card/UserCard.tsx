@@ -9,7 +9,7 @@ import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-interface IUserCardProps {
+interface UserCardProps {
 	title?: string;
 	text?: string;
 	image?: string;
@@ -17,7 +17,7 @@ interface IUserCardProps {
 	children?: React.ReactNode;
 }
 
-export const UserCard = (props: IUserCardProps): JSX.Element => {
+export const UserCard = (props: UserCardProps): JSX.Element => {
 	const theme: Theme = useTheme();
 	const render = () => (
 		<Card

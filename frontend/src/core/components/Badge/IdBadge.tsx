@@ -3,11 +3,11 @@ import Chip from '@mui/material/Chip';
 import Grid3x3Icon from '@mui/icons-material/Grid3x3';
 import { CopyButton } from '../Button/CopyButton';
 
-interface IIdBadgeProps {
+interface IdBadgeProps {
 	id?: string;
 }
 
-export const IdBadge = (props: IIdBadgeProps): JSX.Element => {
+export const IdBadge = (props: IdBadgeProps): JSX.Element => {
 	const render = () => {
 		return (
 			<Chip

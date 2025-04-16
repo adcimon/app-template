@@ -15,12 +15,12 @@ import { Window } from '../../../../core/components/Window/Window';
 import { useResponsive } from '../../../../core/hooks/useResponsive';
 import { useUserState } from '../../../../states/user/useUserState';
 
-interface ISettingsWindowProps {
+interface SettingsWindowProps {
 	open: boolean;
 	onClose?: (event: any) => void;
 }
 
-export const SettingsWindow = (props: ISettingsWindowProps): JSX.Element => {
+export const SettingsWindow = (props: SettingsWindowProps): JSX.Element => {
 	const headerHeight: string = '290px';
 	const responsiveHeaderHeight: string = '190px';
 	const avatarPosition: string = '-180px';

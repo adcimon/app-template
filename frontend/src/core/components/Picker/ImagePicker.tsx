@@ -10,7 +10,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import Stack from '@mui/material/Stack';
 import { Utils } from '../../utils/utils';
 
-interface IImagePickerProps {
+interface ImagePickerProps {
 	src?: string;
 	accept?: string;
 	icon?: 'image' | 'user';
@@ -18,7 +18,7 @@ interface IImagePickerProps {
 	onDelete?: () => void;
 }
 
-export const ImagePicker = (props: IImagePickerProps): JSX.Element => {
+export const ImagePicker = (props: ImagePickerProps): JSX.Element => {
 	const ref = React.useRef<HTMLDivElement>(null);
 	const inputRef = React.useRef<HTMLInputElement>(null);
 

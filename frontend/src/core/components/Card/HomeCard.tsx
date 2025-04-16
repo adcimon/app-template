@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-interface IHomeCardProps {
+interface HomeCardProps {
 	title?: string;
 	text?: string;
 	label?: string;
@@ -12,7 +12,7 @@ interface IHomeCardProps {
 	onClick?: (event: any) => void;
 }
 
-export const HomeCard = (props: IHomeCardProps): JSX.Element => {
+export const HomeCard = (props: HomeCardProps): JSX.Element => {
 	const handleClick = (event: any) => {
 		props.onClick?.(event);
 	};

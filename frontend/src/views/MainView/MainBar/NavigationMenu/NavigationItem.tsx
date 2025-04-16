@@ -2,14 +2,14 @@ import React from 'react';
 import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 
-interface INavigationItemProps {
+interface NavigationItemProps {
 	label?: string;
 	icon?: React.ReactElement<any, string | React.JSXElementConstructor<any>>;
 	disabled?: boolean;
 	onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
-export const NavigationItem = (props: INavigationItemProps): JSX.Element => {
+export const NavigationItem = (props: NavigationItemProps): JSX.Element => {
 	const render = () => {
 		return (
 			<Chip

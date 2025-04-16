@@ -11,7 +11,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import Stack from '@mui/material/Stack';
 import { useResponsive } from '../../hooks/useResponsive';
 
-interface IGenericDialogProps {
+interface GenericDialogProps {
 	title?: React.ReactNode;
 	variant?: 'info' | 'success' | 'warning' | 'error';
 	actions?: React.ReactNode;
@@ -21,7 +21,7 @@ interface IGenericDialogProps {
 	children?: React.ReactNode;
 }
 
-export const GenericDialog = (props: IGenericDialogProps): JSX.Element => {
+export const GenericDialog = (props: GenericDialogProps): JSX.Element => {
 	const responsive: boolean = useResponsive();
 
 	const paperSx: SxProps = responsive

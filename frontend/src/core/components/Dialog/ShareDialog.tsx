@@ -10,7 +10,7 @@ import { CopyField } from '../Field/CopyField';
 import { GenericDialog } from './GenericDialog';
 import QRCode from 'qrcode';
 
-interface IShareDialogProps {
+interface ShareDialogProps {
 	label?: string;
 	text?: string;
 	open: boolean;
@@ -21,7 +21,7 @@ interface IShareDialogProps {
 	children?: React.ReactNode;
 }
 
-export const ShareDialog = (props: IShareDialogProps): JSX.Element => {
+export const ShareDialog = (props: ShareDialogProps): JSX.Element => {
 	const copyFieldRef = React.useRef<any>(null);
 	const canvasRef = React.useRef<any>(null);
 	const acceptButtonRef = React.useRef<any>(null);

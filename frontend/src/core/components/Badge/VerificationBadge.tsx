@@ -2,11 +2,11 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import VerifiedIcon from '@mui/icons-material/Verified';
 
-interface IVerificationBadgeProps {
+interface VerificationBadgeProps {
 	verified?: boolean;
 }
 
-export const VerificationBadge = (props: IVerificationBadgeProps): JSX.Element => {
+export const VerificationBadge = (props: VerificationBadgeProps): JSX.Element => {
 	const render = () => {
 		return (
 			<Box

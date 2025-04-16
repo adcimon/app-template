@@ -1,7 +1,7 @@
 import React from 'react';
 import { IRouteProps } from './Route';
 
-interface IRouterProps {
+interface RouterProps {
 	children?: React.ReactNode;
 }
 
@@ -13,7 +13,7 @@ export const RouterContext = React.createContext<{
 	state: window.history.state,
 });
 
-export const Router = (props: IRouterProps) => {
+export const Router = (props: RouterProps) => {
 	const [path, setPath] = React.useState<string>(window.location.pathname);
 	const [state, setState] = React.useState<any>();
 

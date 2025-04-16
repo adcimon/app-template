@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-interface IWindowProps {
+interface WindowProps {
 	label?: React.ReactNode;
 	open: boolean;
 	onClose?: React.MouseEventHandler<HTMLButtonElement>;
@@ -15,7 +15,7 @@ interface IWindowProps {
 	children?: React.ReactNode;
 }
 
-export const Window = (props: IWindowProps): JSX.Element => {
+export const Window = (props: WindowProps): JSX.Element => {
 	const handleClose = (event: any) => {
 		props.onClose?.(event);
 	};

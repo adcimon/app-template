@@ -5,12 +5,12 @@ import Pagination from '@mui/material/Pagination';
 import Slide from '@mui/material/Slide';
 import Stack from '@mui/material/Stack';
 
-interface IPaginatorProps {
+interface PaginatorProps {
 	sx?: SxProps;
 	children?: React.ReactNode;
 }
 
-export const Paginator = (props: IPaginatorProps): JSX.Element => {
+export const Paginator = (props: PaginatorProps): JSX.Element => {
 	const paginationPercentageHeight: number = 8;
 
 	const [page, setPage] = React.useState<number>(1);

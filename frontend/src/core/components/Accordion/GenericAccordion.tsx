@@ -5,7 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
-interface IGenericAccordionProps {
+interface GenericAccordionProps {
 	header?: React.ReactNode;
 	defaultExpanded?: boolean;
 	expanded?: boolean;
@@ -14,7 +14,7 @@ interface IGenericAccordionProps {
 	children?: React.ReactNode;
 }
 
-export const GenericAccordion = (props: IGenericAccordionProps): JSX.Element => {
+export const GenericAccordion = (props: GenericAccordionProps): JSX.Element => {
 	const render = () => {
 		return (
 			<Accordion

@@ -7,11 +7,11 @@ import CustomLight from '../../themes/customLight/theme';
 import CustomDark from '../../themes/customDark/theme';
 import { useAppState } from '../../states/app/useAppState';
 
-interface IThemeManagerProps {
+interface ThemeManagerProps {
 	children?: React.ReactNode;
 }
 
-export const ThemeManager = (props: IThemeManagerProps): JSX.Element => {
+export const ThemeManager = (props: ThemeManagerProps): JSX.Element => {
 	const appState = useAppState();
 
 	const getTheme = (): Theme => {

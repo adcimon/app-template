@@ -1,12 +1,12 @@
 import React from 'react';
 import { RouterContext } from './Router';
 
-export interface IRouteProps {
+export interface RouteProps {
 	path: string;
 	children?: React.ReactNode;
 }
 
-export const Route = (props: IRouteProps) => {
+export const Route = (props: RouteProps) => {
 	const { path } = React.useContext(RouterContext);
 
 	const render = () => {

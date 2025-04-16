@@ -6,12 +6,12 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
-interface IPrivacyPolicyDialogProps {
+interface PrivacyPolicyDialogProps {
 	open: boolean;
 	onClose?: (event: any) => void;
 }
 
-export const PrivacyPolicyDialog = (props: IPrivacyPolicyDialogProps): JSX.Element => {
+export const PrivacyPolicyDialog = (props: PrivacyPolicyDialogProps): JSX.Element => {
 	const render = () => {
 		return (
 			<Dialog

@@ -7,14 +7,14 @@ import Divider from '@mui/material/Divider';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-interface IGenericCardProps {
+interface GenericCardProps {
 	title?: string;
 	image?: string;
 	actions?: React.ReactNode;
 	children?: React.ReactNode;
 }
 
-export const GenericCard = (props: IGenericCardProps): JSX.Element => {
+export const GenericCard = (props: GenericCardProps): JSX.Element => {
 	const render = () => (
 		<Card
 			sx={{

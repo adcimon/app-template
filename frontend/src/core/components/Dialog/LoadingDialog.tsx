@@ -5,7 +5,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Stack from '@mui/material/Stack';
 import { GenericDialog } from './GenericDialog';
 
-interface ILoadingDialogProps {
+interface LoadingDialogProps {
 	title?: React.ReactNode;
 	open: boolean;
 	onCancel?: (event: any) => void;
@@ -13,7 +13,7 @@ interface ILoadingDialogProps {
 	children?: React.ReactNode;
 }
 
-export const LoadingDialog = (props: ILoadingDialogProps): JSX.Element => {
+export const LoadingDialog = (props: LoadingDialogProps): JSX.Element => {
 	const cancelButtonRef = React.useRef<any>(null);
 
 	const handleCancel = async (event: any) => {

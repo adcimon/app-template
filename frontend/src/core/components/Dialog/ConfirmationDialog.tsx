@@ -3,7 +3,7 @@ import { SxProps } from '@mui/system';
 import Button from '@mui/material/Button';
 import { GenericDialog } from './GenericDialog';
 
-interface IConfirmationDialogProps {
+interface ConfirmationDialogProps {
 	title?: React.ReactNode;
 	variant?: 'info' | 'success' | 'warning' | 'error';
 	open: boolean;
@@ -15,7 +15,7 @@ interface IConfirmationDialogProps {
 	children?: React.ReactNode;
 }
 
-export const ConfirmationDialog = (props: IConfirmationDialogProps): JSX.Element => {
+export const ConfirmationDialog = (props: ConfirmationDialogProps): JSX.Element => {
 	const acceptButtonRef = React.useRef<any>(null);
 	const cancelButtonRef = React.useRef<any>(null);
 

@@ -6,12 +6,12 @@ import Typography from '@mui/material/Typography';
 import { ErrorIcon } from './ErrorIcon';
 import { useResponsive } from '../../core/hooks/useResponsive';
 
-interface IErrorViewProps {
+interface ErrorViewProps {
 	message?: string;
 	onClick?: () => void;
 }
 
-export const ErrorView = (props: IErrorViewProps): JSX.Element => {
+export const ErrorView = (props: ErrorViewProps): JSX.Element => {
 	const responsive: boolean = useResponsive();
 
 	const render = () => {

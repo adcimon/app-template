@@ -10,12 +10,12 @@ import { UsersMenu } from './UsersMenu/UsersMenu';
 import { Window } from '../../../../core/components/Window/Window';
 import { useResponsive } from '../../../../core/hooks/useResponsive';
 
-interface IManagementWindowProps {
+interface ManagementWindowProps {
 	open: boolean;
 	onClose?: (event: any) => void;
 }
 
-export const ManagementWindow = (props: IManagementWindowProps): JSX.Element => {
+export const ManagementWindow = (props: ManagementWindowProps): JSX.Element => {
 	const headerHeight: string = '290px';
 	const responsiveHeaderHeight: string = '190px';
 

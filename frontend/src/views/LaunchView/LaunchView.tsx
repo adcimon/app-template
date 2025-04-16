@@ -5,11 +5,11 @@ import CardContent from '@mui/material/CardContent';
 import Container from '@mui/material/Container';
 import Grid2 from '@mui/material/Grid2';
 
-interface ILaunchViewProps {
+interface LaunchViewProps {
 	children?: React.ReactNode;
 }
 
-export const LaunchView = (props: ILaunchViewProps): JSX.Element => {
+export const LaunchView = (props: LaunchViewProps): JSX.Element => {
 	const render = () => {
 		return (
 			<Container

@@ -5,11 +5,11 @@ import EventIcon from '@mui/icons-material/Event';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Stack from '@mui/material/Stack';
 
-interface INotificationTooltipProps {
+interface NotificationTooltipProps {
 	notification: any;
 }
 
-export const NotificationTooltip = (props: INotificationTooltipProps): JSX.Element => {
+export const NotificationTooltip = (props: NotificationTooltipProps): JSX.Element => {
 	const render = () => {
 		return (
 			<Box

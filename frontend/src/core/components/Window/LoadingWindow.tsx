@@ -5,11 +5,11 @@ import Typography from '@mui/material/Typography';
 import { Window } from './Window';
 import { useResponsive } from '../../hooks/useResponsive';
 
-interface ILoadingWindowProps {
+interface LoadingWindowProps {
 	text?: string;
 }
 
-export const LoadingWindow = (props: ILoadingWindowProps): JSX.Element => {
+export const LoadingWindow = (props: LoadingWindowProps): JSX.Element => {
 	const responsive: boolean = useResponsive();
 
 	const render = () => {

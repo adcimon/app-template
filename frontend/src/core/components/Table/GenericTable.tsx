@@ -17,7 +17,7 @@ import { ConfirmationDialog } from '../Dialog/ConfirmationDialog';
 const RowsPerPageRange = [5, 10, 25] as const;
 type RowsPerPageType = (typeof RowsPerPageRange)[number];
 
-interface IGenericTableProps<T> {
+interface GenericTableProps<T> {
 	title?: React.ReactNode;
 	itemName?: string;
 	items: T[];
@@ -34,7 +34,7 @@ interface IGenericTableProps<T> {
 	onDelete?: (item: T) => Promise<boolean>;
 }
 
-export const GenericTable = <T,>(props: IGenericTableProps<T>): JSX.Element => {
+export const GenericTable = <T,>(props: GenericTableProps<T>): JSX.Element => {
 	const itemName: string = props.itemName || '';
 	const [page, setPage] = React.useState<number>(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState<number>(props.rowsPerPage || RowsPerPageRange[0]);

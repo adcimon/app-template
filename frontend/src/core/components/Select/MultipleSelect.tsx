@@ -4,7 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 
-interface IMultipleSelectProps {
+interface MultipleSelectProps {
 	label?: React.ReactNode;
 	helperText?: React.ReactNode;
 	options?: string[];
@@ -13,7 +13,7 @@ interface IMultipleSelectProps {
 	renderValue?: (value: string) => void;
 }
 
-export const MultipleSelect = (props: IMultipleSelectProps): JSX.Element => {
+export const MultipleSelect = (props: MultipleSelectProps): JSX.Element => {
 	const [editable, setEditable] = React.useState<boolean>(true);
 
 	React.useEffect(() => {

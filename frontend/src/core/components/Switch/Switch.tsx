@@ -3,13 +3,13 @@ import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
 import Typography from '@mui/material/Typography';
 
-interface IGenericSwitchProps {
+interface GenericSwitchProps {
 	label?: React.ReactNode;
 	checked?: boolean;
 	onChange?: (checked: boolean) => void;
 }
 
-export const GenericSwitch = (props: IGenericSwitchProps): JSX.Element => {
+export const GenericSwitch = (props: GenericSwitchProps): JSX.Element => {
 	const render = () => {
 		return (
 			<Stack
