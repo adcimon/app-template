@@ -34,7 +34,7 @@ export const GenericCard = (props: GenericCardProps): JSX.Element => {
 					}}>
 					<Typography
 						variant='h6'
-						gutterBottom>
+						gutterBottom={true}>
 						{props.title}
 					</Typography>
 					{props.children}

@@ -86,7 +86,7 @@ export const SettingsWindow = (props: SettingsWindowProps): JSX.Element => {
 							}}>
 							<Typography
 								variant='h5'
-								gutterBottom
+								gutterBottom={true}
 								sx={{
 									color: 'white',
 								}}>

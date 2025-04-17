@@ -19,7 +19,7 @@ export const HomeView = (): JSX.Element => {
 					<Container maxWidth='sm'>
 						<Typography
 							variant='h4'
-							gutterBottom
+							gutterBottom={true}
 							sx={{
 								color: 'text.primary',
 								textAlign: 'center',

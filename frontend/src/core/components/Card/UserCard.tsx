@@ -74,7 +74,7 @@ export const UserCard = (props: UserCardProps): JSX.Element => {
 					}}>
 					<Typography
 						variant='h6'
-						gutterBottom>
+						gutterBottom={true}>
 						{props.title}
 					</Typography>
 					<Typography color='text.secondary'>{props.text}</Typography>
