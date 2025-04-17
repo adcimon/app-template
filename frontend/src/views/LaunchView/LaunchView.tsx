@@ -9,7 +9,7 @@ interface LaunchViewProps {
 	children?: React.ReactNode;
 }
 
-export const LaunchView = (props: LaunchViewProps): JSX.Element => {
+export const LaunchView = (props: LaunchViewProps): React.JSX.Element => {
 	const render = () => {
 		return (
 			<Container

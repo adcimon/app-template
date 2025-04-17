@@ -8,7 +8,7 @@ interface LinkButtonProps {
 	sx?: SxProps;
 }
 
-export const LinkButton = (props: LinkButtonProps): JSX.Element => {
+export const LinkButton = (props: LinkButtonProps): React.JSX.Element => {
 	const render = () => {
 		return (
 			<Link

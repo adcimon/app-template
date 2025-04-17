@@ -6,7 +6,7 @@ interface VerificationBadgeProps {
 	verified?: boolean;
 }
 
-export const VerificationBadge = (props: VerificationBadgeProps): JSX.Element => {
+export const VerificationBadge = (props: VerificationBadgeProps): React.JSX.Element => {
 	const render = () => {
 		return (
 			<Box

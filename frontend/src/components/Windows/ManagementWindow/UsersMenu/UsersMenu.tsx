@@ -15,7 +15,7 @@ import { User } from '../../../../model/api/user';
 import { useAdminState } from '../../../../states/admin/useAdminState';
 import { AppUtils } from '../../../../utils/appUtils';
 
-export const UsersMenu = (): JSX.Element => {
+export const UsersMenu = (): React.JSX.Element => {
 	const adminState = useAdminState();
 
 	const [user, setUser] = React.useState<User>();

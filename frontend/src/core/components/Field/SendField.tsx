@@ -6,7 +6,7 @@ type SendFieldProps = TextFieldProps & {
 	onSend?: () => void;
 };
 
-export const SendField = ({ onSend, ...props }: SendFieldProps): JSX.Element => {
+export const SendField = ({ onSend, ...props }: SendFieldProps): React.JSX.Element => {
 	const handleKeyDown = (event: any) => {
 		props.onKeyDown?.(event);
 

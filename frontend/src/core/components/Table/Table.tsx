@@ -36,7 +36,7 @@ interface TableProps<T> {
 	onDelete?: (item: T) => Promise<boolean>;
 }
 
-export const Table = <T,>(props: TableProps<T>): JSX.Element => {
+export const Table = <T,>(props: TableProps<T>): React.JSX.Element => {
 	const itemName: string = props.itemName || '';
 	const [page, setPage] = React.useState<number>(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState<number>(props.rowsPerPage || RowsPerPageRange[0]);

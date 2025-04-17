@@ -7,7 +7,7 @@ interface LoadingWindowProps {
 	text?: string;
 }
 
-export const LoadingWindow = (props: LoadingWindowProps): JSX.Element => {
+export const LoadingWindow = (props: LoadingWindowProps): React.JSX.Element => {
 	const responsive: boolean = useResponsive();
 
 	const render = () => {

@@ -11,7 +11,7 @@ interface MultipleSelectProps {
 	sx?: SxProps;
 }
 
-export const MultipleSelect = (props: MultipleSelectProps): JSX.Element => {
+export const MultipleSelect = (props: MultipleSelectProps): React.JSX.Element => {
 	const [editable, setEditable] = React.useState<boolean>(true);
 
 	React.useEffect(() => {

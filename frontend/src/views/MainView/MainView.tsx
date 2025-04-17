@@ -6,7 +6,7 @@ import { HomeView } from './HomeView/HomeView';
 import { MainBar } from '../../components/MainBar/MainBar';
 import { useUserState } from '../../states/user/useUserState';
 
-export const MainView = (): JSX.Element => {
+export const MainView = (): React.JSX.Element => {
 	const mainBarHeight: string = '64px';
 
 	const userState = useUserState();

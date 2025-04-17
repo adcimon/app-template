@@ -12,7 +12,7 @@ import { ConfirmationDialog } from '../../../../core/components/Dialog/Confirmat
 import { PasswordField } from '../../../../core/components/Field/PasswordField';
 import { useAppState } from '../../../../states/app/useAppState';
 
-export const ProfileDangerZoneCard = (): JSX.Element => {
+export const ProfileDangerZoneCard = (): React.JSX.Element => {
 	const appState = useAppState();
 
 	const [password, setPassword] = React.useState<string>('');

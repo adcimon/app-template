@@ -9,7 +9,7 @@ interface NavigationItemProps {
 	onClick?: React.MouseEventHandler<HTMLDivElement>;
 }
 
-export const NavigationItem = (props: NavigationItemProps): JSX.Element => {
+export const NavigationItem = (props: NavigationItemProps): React.JSX.Element => {
 	const render = () => {
 		return (
 			<Chip

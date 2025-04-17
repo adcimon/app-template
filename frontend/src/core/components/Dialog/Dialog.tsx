@@ -17,7 +17,7 @@ interface DialogProps {
 	children?: React.ReactNode;
 }
 
-export const Dialog = (props: DialogProps): JSX.Element => {
+export const Dialog = (props: DialogProps): React.JSX.Element => {
 	const responsive: boolean = useResponsive();
 
 	const paperSx: SxProps = responsive

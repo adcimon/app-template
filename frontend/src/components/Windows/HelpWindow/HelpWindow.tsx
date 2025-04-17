@@ -12,7 +12,7 @@ interface HelpWindowProps {
 	onClose?: (event: any) => void;
 }
 
-export const HelpWindow = (props: HelpWindowProps): JSX.Element => {
+export const HelpWindow = (props: HelpWindowProps): React.JSX.Element => {
 	const [openTermsOfServiceDialog, setOpenTermsOfServiceDialog] = React.useState<boolean>(false);
 	const [openPrivacyPolicyDialog, setOpenPrivacyPolicyDialog] = React.useState<boolean>(false);
 

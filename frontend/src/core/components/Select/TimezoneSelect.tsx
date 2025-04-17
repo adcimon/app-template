@@ -6,7 +6,7 @@ type TimezoneSelectProps = TextFieldProps & {
 	disableClearable?: boolean;
 };
 
-export const TimezoneSelect = ({ disableClearable, ...props }: TimezoneSelectProps): JSX.Element => {
+export const TimezoneSelect = ({ disableClearable, ...props }: TimezoneSelectProps): React.JSX.Element => {
 	const render = () => {
 		const defaultValue =
 			timezones[timezones.findIndex((timezone: string) => timezone === props.defaultValue)] || null;

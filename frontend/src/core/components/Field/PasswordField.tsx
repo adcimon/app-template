@@ -4,7 +4,7 @@ import LockIcon from '@mui/icons-material/Lock';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
-export const PasswordField = (props: TextFieldProps): JSX.Element => {
+export const PasswordField = (props: TextFieldProps): React.JSX.Element => {
 	const [showPassword, setShowPassword] = React.useState<boolean>(false);
 
 	const handleMouseLeave = (event: any) => {

@@ -11,7 +11,7 @@ import { useNavigator } from '../../core/hooks/useNavigator';
 import { useUserState } from '../../states/user/useUserState';
 import { CryptoUtils } from '../../utils/cryptoUtils';
 
-export const AppView = (): JSX.Element => {
+export const AppView = (): React.JSX.Element => {
 	const navigator = useNavigator();
 	const userState = useUserState();
 

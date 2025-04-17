@@ -9,7 +9,7 @@ interface MainBarProps {
 	height?: string;
 }
 
-export const MainBar = (props: MainBarProps): JSX.Element => {
+export const MainBar = (props: MainBarProps): React.JSX.Element => {
 	const render = () => {
 		return (
 			<AppBar

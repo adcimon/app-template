@@ -12,7 +12,7 @@ interface AccordionProps {
 	children?: React.ReactNode;
 }
 
-export const Accordion = (props: AccordionProps): JSX.Element => {
+export const Accordion = (props: AccordionProps): React.JSX.Element => {
 	const render = () => {
 		return (
 			<MUI.Accordion

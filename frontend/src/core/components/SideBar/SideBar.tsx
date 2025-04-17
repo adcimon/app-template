@@ -13,7 +13,7 @@ interface SideBarProps {
 	children?: React.ReactNode;
 }
 
-export const SideBar = (props: SideBarProps): JSX.Element => {
+export const SideBar = (props: SideBarProps): React.JSX.Element => {
 	const responsive: boolean = useResponsive();
 
 	const render = () => {

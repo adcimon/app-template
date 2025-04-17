@@ -11,7 +11,7 @@ interface ErrorViewProps {
 	onClick?: () => void;
 }
 
-export const ErrorView = (props: ErrorViewProps): JSX.Element => {
+export const ErrorView = (props: ErrorViewProps): React.JSX.Element => {
 	const responsive: boolean = useResponsive();
 
 	const render = () => {

@@ -20,7 +20,7 @@ interface SettingsWindowProps {
 	onClose?: (event: any) => void;
 }
 
-export const SettingsWindow = (props: SettingsWindowProps): JSX.Element => {
+export const SettingsWindow = (props: SettingsWindowProps): React.JSX.Element => {
 	const headerHeight: string = '290px';
 	const responsiveHeaderHeight: string = '190px';
 	const avatarPosition: string = '-180px';

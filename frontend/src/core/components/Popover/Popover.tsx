@@ -14,7 +14,7 @@ interface PopoverProps {
 	children?: React.ReactNode;
 }
 
-export const Popover = (props: PopoverProps): JSX.Element => {
+export const Popover = (props: PopoverProps): React.JSX.Element => {
 	const responsive: boolean = useResponsive();
 
 	const render = () => {

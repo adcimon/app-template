@@ -6,7 +6,7 @@ interface PaginatorProps {
 	children?: React.ReactNode;
 }
 
-export const Paginator = (props: PaginatorProps): JSX.Element => {
+export const Paginator = (props: PaginatorProps): React.JSX.Element => {
 	const paginationPercentageHeight: number = 8;
 
 	const [page, setPage] = React.useState<number>(1);

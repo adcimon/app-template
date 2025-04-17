@@ -14,7 +14,7 @@ interface ConfirmationDialogProps {
 	children?: React.ReactNode;
 }
 
-export const ConfirmationDialog = (props: ConfirmationDialogProps): JSX.Element => {
+export const ConfirmationDialog = (props: ConfirmationDialogProps): React.JSX.Element => {
 	const acceptButtonRef = React.useRef<any>(null);
 	const cancelButtonRef = React.useRef<any>(null);
 

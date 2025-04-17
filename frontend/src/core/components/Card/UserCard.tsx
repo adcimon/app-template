@@ -20,7 +20,7 @@ interface UserCardProps {
 	children?: React.ReactNode;
 }
 
-export const UserCard = (props: UserCardProps): JSX.Element => {
+export const UserCard = (props: UserCardProps): React.JSX.Element => {
 	const theme: Theme = useTheme();
 	const render = () => (
 		<Card

@@ -2,7 +2,7 @@ import React from 'react';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-export const Logo = (): JSX.Element => {
+export const Logo = (): React.JSX.Element => {
 	const render = () => {
 		return (
 			<Stack

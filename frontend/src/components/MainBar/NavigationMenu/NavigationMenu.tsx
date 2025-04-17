@@ -6,7 +6,7 @@ interface NavigationMenuProps {
 	children?: React.ReactNode;
 }
 
-export const NavigationMenu = (props: NavigationMenuProps): JSX.Element => {
+export const NavigationMenu = (props: NavigationMenuProps): React.JSX.Element => {
 	const render = () => {
 		return (
 			<Breadcrumbs

@@ -7,7 +7,7 @@ type SearchFieldProps = TextFieldProps & {
 	onSearch?: (query: string) => void;
 };
 
-export const SearchField = ({ onSearch, ...props }: SearchFieldProps): JSX.Element => {
+export const SearchField = ({ onSearch, ...props }: SearchFieldProps): React.JSX.Element => {
 	const [value, setValue] = React.useState<string>('');
 
 	const handleChange = (event: any) => {

@@ -3,7 +3,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-export const LoadingView = (): JSX.Element => {
+export const LoadingView = (): React.JSX.Element => {
 	const render = () => {
 		return (
 			<Stack

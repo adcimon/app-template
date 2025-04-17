@@ -10,7 +10,7 @@ interface CopyButtonProps {
 	fontSize?: string;
 }
 
-export const CopyButton = (props: CopyButtonProps): JSX.Element => {
+export const CopyButton = (props: CopyButtonProps): React.JSX.Element => {
 	const [success, setSuccess] = React.useState<boolean>(false);
 
 	const handleClick = () => {

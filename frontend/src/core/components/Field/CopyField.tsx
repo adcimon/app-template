@@ -4,7 +4,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import { Utils } from '../../utils/utils';
 
-export const CopyField = (props: TextFieldProps): JSX.Element => {
+export const CopyField = (props: TextFieldProps): React.JSX.Element => {
 	const [success, setSuccess] = React.useState<boolean>(false);
 
 	const handleClick = () => {

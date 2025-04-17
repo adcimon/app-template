@@ -10,7 +10,7 @@ interface LoadingDialogProps {
 	children?: React.ReactNode;
 }
 
-export const LoadingDialog = (props: LoadingDialogProps): JSX.Element => {
+export const LoadingDialog = (props: LoadingDialogProps): React.JSX.Element => {
 	const cancelButtonRef = React.useRef<any>(null);
 
 	const handleCancel = async (event: any) => {

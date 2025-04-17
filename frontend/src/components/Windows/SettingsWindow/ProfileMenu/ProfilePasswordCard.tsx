@@ -13,7 +13,7 @@ import { ConfirmationDialog } from '../../../../core/components/Dialog/Confirmat
 import { PasswordField } from '../../../../core/components/Field/PasswordField';
 import { useAppState } from '../../../../states/app/useAppState';
 
-export const ProfilePasswordCard = (): JSX.Element => {
+export const ProfilePasswordCard = (): React.JSX.Element => {
 	const appState = useAppState();
 
 	const [currentPassword, setCurrentPassword] = React.useState<string>('');

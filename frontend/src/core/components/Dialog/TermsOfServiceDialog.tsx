@@ -6,7 +6,7 @@ interface TermsOfServiceDialogProps {
 	onClose?: (event: any) => void;
 }
 
-export const TermsOfServiceDialog = (props: TermsOfServiceDialogProps): JSX.Element => {
+export const TermsOfServiceDialog = (props: TermsOfServiceDialogProps): React.JSX.Element => {
 	const render = () => {
 		return (
 			<Dialog

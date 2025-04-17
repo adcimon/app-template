@@ -8,7 +8,7 @@ interface SwitchProps {
 	onChange?: (checked: boolean) => void;
 }
 
-export const Switch = (props: SwitchProps): JSX.Element => {
+export const Switch = (props: SwitchProps): React.JSX.Element => {
 	const render = () => {
 		return (
 			<Stack

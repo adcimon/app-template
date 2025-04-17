@@ -14,7 +14,7 @@ import { CountrySelect } from '../../../../core/components/Select/CountrySelect'
 import { TimezoneSelect } from '../../../../core/components/Select/TimezoneSelect';
 import { useUserState } from '../../../../states/user/useUserState';
 
-export const ProfileDetailsCard = (): JSX.Element => {
+export const ProfileDetailsCard = (): React.JSX.Element => {
 	const userState = useUserState();
 
 	const [name, setName] = React.useState<string>(userState.user?.name || '');

@@ -1,7 +1,7 @@
 import React from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 
-export const ToastManager = (): JSX.Element => {
+export const ToastManager = (): React.JSX.Element => {
 	const render = () => {
 		return (
 			<Toaster

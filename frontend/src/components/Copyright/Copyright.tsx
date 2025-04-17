@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, Typography } from '@mui/material';
 
-export const Copyright = (): JSX.Element => {
+export const Copyright = (): React.JSX.Element => {
 	const render = () => {
 		const today: Date = new Date();
 		const year: number = today.getFullYear();

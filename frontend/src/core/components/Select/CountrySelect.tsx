@@ -12,7 +12,7 @@ interface CountryType {
 	phone: string;
 }
 
-export const CountrySelect = ({ disableClearable, ...props }: CountrySelectProps): JSX.Element => {
+export const CountrySelect = ({ disableClearable, ...props }: CountrySelectProps): React.JSX.Element => {
 	const render = () => {
 		const defaultValue =
 			countries[countries.findIndex((country: CountryType) => country.code === props.defaultValue)] || null;

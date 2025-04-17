@@ -14,7 +14,7 @@ interface NotificationItemProps {
 	onDelete?: (notification: any) => void;
 }
 
-export const NotificationItem = (props: NotificationItemProps): JSX.Element => {
+export const NotificationItem = (props: NotificationItemProps): React.JSX.Element => {
 	const handleDelete = (event: React.MouseEvent<HTMLElement>) => {
 		event.stopPropagation();
 		event.preventDefault();

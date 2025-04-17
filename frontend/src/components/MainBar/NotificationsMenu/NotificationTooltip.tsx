@@ -9,7 +9,7 @@ interface NotificationTooltipProps {
 	notification: any;
 }
 
-export const NotificationTooltip = (props: NotificationTooltipProps): JSX.Element => {
+export const NotificationTooltip = (props: NotificationTooltipProps): React.JSX.Element => {
 	const render = () => {
 		return (
 			<Box

@@ -10,7 +10,7 @@ interface WindowProps {
 	children?: React.ReactNode;
 }
 
-export const Window = (props: WindowProps): JSX.Element => {
+export const Window = (props: WindowProps): React.JSX.Element => {
 	const renderHeader = () => {
 		return (
 			<Stack

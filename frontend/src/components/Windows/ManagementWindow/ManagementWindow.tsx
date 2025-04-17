@@ -15,7 +15,7 @@ interface ManagementWindowProps {
 	onClose?: (event: any) => void;
 }
 
-export const ManagementWindow = (props: ManagementWindowProps): JSX.Element => {
+export const ManagementWindow = (props: ManagementWindowProps): React.JSX.Element => {
 	const headerHeight: string = '290px';
 	const responsiveHeaderHeight: string = '190px';
 

@@ -7,7 +7,7 @@ interface IdBadgeProps {
 	id?: string;
 }
 
-export const IdBadge = (props: IdBadgeProps): JSX.Element => {
+export const IdBadge = (props: IdBadgeProps): React.JSX.Element => {
 	const render = () => {
 		return (
 			<Chip

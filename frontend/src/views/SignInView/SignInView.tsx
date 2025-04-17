@@ -13,7 +13,7 @@ import { useNavigator } from '../../core/hooks/useNavigator';
 import { useAppState } from '../../states/app/useAppState';
 import { useUserState } from '../../states/user/useUserState';
 
-export const SignInView = (): JSX.Element => {
+export const SignInView = (): React.JSX.Element => {
 	const navigator = useNavigator();
 	const appState = useAppState();
 	const userState = useUserState();

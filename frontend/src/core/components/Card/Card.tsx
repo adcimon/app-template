@@ -9,7 +9,7 @@ interface CardProps {
 	children?: React.ReactNode;
 }
 
-export const Card = (props: CardProps): JSX.Element => {
+export const Card = (props: CardProps): React.JSX.Element => {
 	const render = () => (
 		<MUI.Card
 			sx={{

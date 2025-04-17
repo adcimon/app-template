@@ -10,7 +10,7 @@ interface PinToggleProps {
 	onChange?: (pinned: boolean) => void;
 }
 
-export const PinToggle = (props: PinToggleProps): JSX.Element => {
+export const PinToggle = (props: PinToggleProps): React.JSX.Element => {
 	const render = () => {
 		const iconSx: SxProps = {
 			color: props.color ?? 'text.primary',

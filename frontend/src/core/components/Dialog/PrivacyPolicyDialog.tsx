@@ -6,7 +6,7 @@ interface PrivacyPolicyDialogProps {
 	onClose?: (event: any) => void;
 }
 
-export const PrivacyPolicyDialog = (props: PrivacyPolicyDialogProps): JSX.Element => {
+export const PrivacyPolicyDialog = (props: PrivacyPolicyDialogProps): React.JSX.Element => {
 	const render = () => {
 		return (
 			<Dialog

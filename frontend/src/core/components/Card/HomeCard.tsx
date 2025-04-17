@@ -10,7 +10,7 @@ interface HomeCardProps {
 	onClick?: (event: any) => void;
 }
 
-export const HomeCard = (props: HomeCardProps): JSX.Element => {
+export const HomeCard = (props: HomeCardProps): React.JSX.Element => {
 	const handleClick = (event: any) => {
 		props.onClick?.(event);
 	};
