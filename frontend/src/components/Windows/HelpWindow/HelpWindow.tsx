@@ -2,7 +2,7 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import Grid2 from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
-import { GenericCard } from '../../../core/components/Card/GenericCard';
+import { Card } from '../../../core/components/Card/Card';
 import { PrivacyPolicyDialog } from '../../../core/components/Dialog/PrivacyPolicyDialog';
 import { TermsOfServiceDialog } from '../../../core/components/Dialog/TermsOfServiceDialog';
 import { Window } from '../../../core/components/Window/Window';
@@ -60,7 +60,7 @@ export const HelpWindow = (props: HelpWindowProps): JSX.Element => {
 							sm: 6,
 							md: 4,
 						}}>
-						<GenericCard
+						<Card
 							image='/images/learn.jpg'
 							title='Help'
 							actions={
@@ -75,7 +75,7 @@ export const HelpWindow = (props: HelpWindowProps): JSX.Element => {
 								New to the app? Get started with our helpful guides and tutorials. Learn how to make the
 								most of our features.
 							</Typography>
-						</GenericCard>
+						</Card>
 					</Grid2>
 					<Grid2
 						size={{
@@ -83,7 +83,7 @@ export const HelpWindow = (props: HelpWindowProps): JSX.Element => {
 							sm: 6,
 							md: 4,
 						}}>
-						<GenericCard
+						<Card
 							image='/images/contact.jpg'
 							title='Contact Us'
 							actions={
@@ -98,7 +98,7 @@ export const HelpWindow = (props: HelpWindowProps): JSX.Element => {
 								Have a question, suggestion, or feedback? We'd love to hear from you! Reach out to our
 								support team via email or chat.
 							</Typography>
-						</GenericCard>
+						</Card>
 					</Grid2>
 					<Grid2
 						size={{
@@ -106,7 +106,7 @@ export const HelpWindow = (props: HelpWindowProps): JSX.Element => {
 							sm: 6,
 							md: 4,
 						}}>
-						<GenericCard
+						<Card
 							image='/images/legal.jpg'
 							title='Legal'
 							actions={
@@ -127,7 +127,7 @@ export const HelpWindow = (props: HelpWindowProps): JSX.Element => {
 								Read our Terms of Service and Privacy Policy to understand the rules and guidelines for
 								using our application and how we collect, use, and protect your data.
 							</Typography>
-						</GenericCard>
+						</Card>
 					</Grid2>
 				</Grid2>
 				<TermsOfServiceDialog

@@ -1,16 +1,17 @@
 import React from 'react';
-import { Card, CardActions, CardContent, CardMedia, Divider, Stack, Typography } from '@mui/material';
+import * as MUI from '@mui/material';
+import { CardActions, CardContent, CardMedia, Divider, Stack, Typography } from '@mui/material';
 
-interface GenericCardProps {
+interface CardProps {
 	title?: string;
 	image?: string;
 	actions?: React.ReactNode;
 	children?: React.ReactNode;
 }
 
-export const GenericCard = (props: GenericCardProps): JSX.Element => {
+export const Card = (props: CardProps): JSX.Element => {
 	const render = () => (
-		<Card
+		<MUI.Card
 			sx={{
 				display: 'flex',
 				flexDirection: 'column',
@@ -51,7 +52,7 @@ export const GenericCard = (props: GenericCardProps): JSX.Element => {
 				}}>
 				{props.actions}
 			</CardActions>
-		</Card>
+		</MUI.Card>
 	);
 
 	return render();
