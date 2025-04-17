@@ -43,7 +43,7 @@ export const CopyButton = (props: CopyButtonProps): JSX.Element => {
 					<Zoom in={success}>
 						<IconButton
 							{...props}
-							disableRipple>
+							disableRipple={true}>
 							<TaskAltIcon
 								fontSize={props.size}
 								sx={{

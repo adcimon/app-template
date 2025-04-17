@@ -70,7 +70,7 @@ export const ShareDialog = (props: ShareDialogProps): JSX.Element => {
 							marginY: '5px',
 						}}>
 						<IconButton
-							disableRipple
+							disableRipple={true}
 							sx={{
 								backgroundColor: 'primary.main',
 								transform: 'scale(0.9)',

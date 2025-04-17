@@ -31,7 +31,7 @@ export const CopyField = (props: TextFieldProps): JSX.Element => {
 									{!success && <IconButton onClick={handleClick}>{<ContentCopyIcon />}</IconButton>}
 									{success && (
 										<Zoom in={success}>
-											<IconButton disableRipple>
+											<IconButton disableRipple={true}>
 												<TaskAltIcon color='success' />
 											</IconButton>
 										</Zoom>
