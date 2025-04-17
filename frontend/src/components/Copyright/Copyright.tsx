@@ -14,10 +14,10 @@ export const Copyright = (): JSX.Element => {
 				}}>
 				{'Copyright © '}
 				<Link
-					href='https://www.brainstorm3d.com/'
+					href='https://https://github.com/adcimon'
 					target='_blank'
 					color='inherit'>
-					Brainstorm
+					adcimon
 				</Link>{' '}
 				{year}
 			</Typography>

@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { ToastManager } from '../../managers/ToastManager/ToastManager';
-import { Copyright } from '../../core/components/Copyright/Copyright';
+import { Copyright } from '../../components/Copyright/Copyright';
 import { EmailField } from '../../core/components/Field/EmailField';
 import { LaunchView } from '../LaunchView/LaunchView';
 import { Logo } from '../LaunchView/Logo';
