@@ -1,10 +1,10 @@
 import React from 'react';
+import * as MUI from '@mui/material';
 import {
 	Box,
 	Card,
 	IconButton,
 	Stack,
-	Table,
 	TableBody,
 	TableCell,
 	TableHead,
@@ -19,7 +19,7 @@ import { ConfirmationDialog } from '../Dialog/ConfirmationDialog';
 const RowsPerPageRange = [5, 10, 25] as const;
 type RowsPerPageType = (typeof RowsPerPageRange)[number];
 
-interface GenericTableProps<T> {
+interface TableProps<T> {
 	title?: React.ReactNode;
 	itemName?: string;
 	items: T[];
@@ -36,7 +36,7 @@ interface GenericTableProps<T> {
 	onDelete?: (item: T) => Promise<boolean>;
 }
 
-export const GenericTable = <T,>(props: GenericTableProps<T>): JSX.Element => {
+export const Table = <T,>(props: TableProps<T>): JSX.Element => {
 	const itemName: string = props.itemName || '';
 	const [page, setPage] = React.useState<number>(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState<number>(props.rowsPerPage || RowsPerPageRange[0]);
@@ -122,7 +122,7 @@ export const GenericTable = <T,>(props: GenericTableProps<T>): JSX.Element => {
 					}}>
 					{props.title && <Box>{props.title}</Box>}
 					<Card>
-						<Table>
+						<MUI.Table>
 							<TableHead>
 								<TableRow>
 									{props.head?.map((node: React.ReactNode, index: number) => {
@@ -149,7 +149,7 @@ export const GenericTable = <T,>(props: GenericTableProps<T>): JSX.Element => {
 									);
 								})}
 							</TableBody>
-						</Table>
+						</MUI.Table>
 						<Stack
 							direction='row'
 							sx={{

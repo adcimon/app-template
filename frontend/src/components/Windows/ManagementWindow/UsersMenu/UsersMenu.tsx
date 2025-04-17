@@ -8,7 +8,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
 import { CountrySelect } from '../../../../core/components/Select/CountrySelect';
-import { GenericTable } from '../../../../core/components/Table/GenericTable';
+import { Table } from '../../../../core/components/Table/Table';
 import { TimezoneSelect } from '../../../../core/components/Select/TimezoneSelect';
 import { VerificationBadge } from '../../../../core/components/Badge/VerificationBadge';
 import { User } from '../../../../model/api/user';
@@ -223,7 +223,7 @@ export const UsersMenu = (): JSX.Element => {
 	const render = () => {
 		return (
 			<Container maxWidth='xl'>
-				<GenericTable<User>
+				<Table<User>
 					itemName='User'
 					items={adminState.users}
 					head={['Name', 'Email', 'Phone']}
