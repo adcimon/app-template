@@ -18,6 +18,7 @@ import { HelpWindow } from '../../Windows/HelpWindow/HelpWindow';
 import { ManagementWindow } from '../../Windows/ManagementWindow/ManagementWindow';
 import { Popover } from '../../../../core/components/Popover/Popover';
 import { SettingsWindow } from '../../Windows/SettingsWindow/SettingsWindow';
+import { Role } from '../../../../model/api/role';
 import { useAppState } from '../../../../states/app/useAppState';
 import { useUserState } from '../../../../states/user/useUserState';
 import { AppUtils } from '../../../../utils/appUtils';
@@ -183,7 +184,7 @@ export const AccountMenu = (): JSX.Element => {
 							<SettingsIcon sx={iconSx} />
 							<Typography>Settings</Typography>
 						</MenuItem>
-						{userState.user?.roles.includes('admin') && (
+						{userState.user?.roles.includes(Role.Admin) && (
 							<MenuItem onClick={handleClickManagement}>
 								<SecurityIcon sx={iconSx} />
 								<Typography>Management</Typography>

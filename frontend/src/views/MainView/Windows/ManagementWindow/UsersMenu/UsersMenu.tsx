@@ -11,7 +11,7 @@ import { CountrySelect } from '../../../../../core/components/Select/CountrySele
 import { GenericTable } from '../../../../../core/components/Table/GenericTable';
 import { TimezoneSelect } from '../../../../../core/components/Select/TimezoneSelect';
 import { VerificationBadge } from '../../../../../core/components/Badge/VerificationBadge';
-import { User } from '../../../../../model/user';
+import { User } from '../../../../../model/api/user';
 import { useAdminState } from '../../../../../states/admin/useAdminState';
 import { AppUtils } from '../../../../../utils/appUtils';
 

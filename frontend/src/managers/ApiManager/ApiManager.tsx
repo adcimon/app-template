@@ -1,6 +1,6 @@
 import React from 'react';
 import axios, { AxiosInstance } from 'axios';
-import { Credentials } from '../../model/credentials';
+import { Credentials } from '../../model/api/credentials';
 import { useApiState } from '../../states/api/useApiState';
 import { useUserState } from '../../states/user/useUserState';
 import { HttpParams } from '../../api/httpMethods';

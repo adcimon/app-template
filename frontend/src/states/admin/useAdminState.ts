@@ -1,5 +1,5 @@
 import * as Recoil from 'recoil';
-import { User } from '../../model/user';
+import { User } from '../../model/api/user';
 import { useApiState } from '../api/useApiState';
 import { UsersState } from './adminState';
 

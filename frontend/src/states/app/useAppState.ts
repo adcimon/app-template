@@ -1,7 +1,7 @@
 import * as Recoil from 'recoil';
-import { Status } from '../../model/status';
-import { Credentials } from '../../model/credentials';
-import { User } from '../../model/user';
+import { Status } from '../../model/api/status';
+import { Credentials } from '../../model/api/credentials';
+import { User } from '../../model/api/user';
 import { useApiState } from '../api/useApiState';
 import { ThemeState } from './appState';
 
