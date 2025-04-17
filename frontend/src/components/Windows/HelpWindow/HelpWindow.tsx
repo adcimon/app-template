@@ -2,10 +2,10 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import Grid2 from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
-import { GenericCard } from '../../../../core/components/Card/GenericCard';
-import { PrivacyPolicyDialog } from '../../../../core/components/Dialog/PrivacyPolicyDialog';
-import { TermsOfServiceDialog } from '../../../../core/components/Dialog/TermsOfServiceDialog';
-import { Window } from '../../../../core/components/Window/Window';
+import { GenericCard } from '../../../core/components/Card/GenericCard';
+import { PrivacyPolicyDialog } from '../../../core/components/Dialog/PrivacyPolicyDialog';
+import { TermsOfServiceDialog } from '../../../core/components/Dialog/TermsOfServiceDialog';
+import { Window } from '../../../core/components/Window/Window';
 
 interface HelpWindowProps {
 	open: boolean;

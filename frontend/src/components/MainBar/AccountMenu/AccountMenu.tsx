@@ -12,16 +12,16 @@ import SecurityIcon from '@mui/icons-material/Security';
 import SettingsIcon from '@mui/icons-material/Settings';
 import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
-import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
-import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
+import { ToastManager } from '../../../managers/ToastManager/ToastManager';
+import { ConfirmationDialog } from '../../../core/components/Dialog/ConfirmationDialog';
 import { HelpWindow } from '../../Windows/HelpWindow/HelpWindow';
 import { ManagementWindow } from '../../Windows/ManagementWindow/ManagementWindow';
-import { Popover } from '../../../../core/components/Popover/Popover';
+import { Popover } from '../../../core/components/Popover/Popover';
 import { SettingsWindow } from '../../Windows/SettingsWindow/SettingsWindow';
-import { Role } from '../../../../model/api/role';
-import { useAppState } from '../../../../states/app/useAppState';
-import { useUserState } from '../../../../states/user/useUserState';
-import { AppUtils } from '../../../../utils/appUtils';
+import { Role } from '../../../model/api/role';
+import { useAppState } from '../../../states/app/useAppState';
+import { useUserState } from '../../../states/user/useUserState';
+import { AppUtils } from '../../../utils/appUtils';
 
 export const AccountMenu = (): JSX.Element => {
 	const ref = React.useRef<any>(null);

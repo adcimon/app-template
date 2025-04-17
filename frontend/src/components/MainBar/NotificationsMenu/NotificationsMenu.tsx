@@ -9,7 +9,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import { NotificationItem } from './NotificationItem';
-import { Popover } from '../../../../core/components/Popover/Popover';
+import { Popover } from '../../../core/components/Popover/Popover';
 
 export const NotificationsMenu = (): JSX.Element => {
 	const ref = React.useRef<any>(null);

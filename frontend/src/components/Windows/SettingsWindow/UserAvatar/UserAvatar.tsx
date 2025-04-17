@@ -6,10 +6,10 @@ import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { ToastManager } from '../../../../../managers/ToastManager/ToastManager';
-import { ConfirmationDialog } from '../../../../../core/components/Dialog/ConfirmationDialog';
-import { useUserState } from '../../../../../states/user/useUserState';
-import { AppUtils } from '../../../../../utils/appUtils';
+import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
+import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
+import { useUserState } from '../../../../states/user/useUserState';
+import { AppUtils } from '../../../../utils/appUtils';
 
 export const UserAvatar = (): JSX.Element => {
 	const ref = React.useRef<HTMLDivElement>(null);

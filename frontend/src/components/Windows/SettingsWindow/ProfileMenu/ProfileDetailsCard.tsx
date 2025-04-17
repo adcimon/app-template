@@ -9,10 +9,10 @@ import Divider from '@mui/material/Divider';
 import Grid2 from '@mui/material/Grid2';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { ToastManager } from '../../../../../managers/ToastManager/ToastManager';
-import { CountrySelect } from '../../../../../core/components/Select/CountrySelect';
-import { TimezoneSelect } from '../../../../../core/components/Select/TimezoneSelect';
-import { useUserState } from '../../../../../states/user/useUserState';
+import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
+import { CountrySelect } from '../../../../core/components/Select/CountrySelect';
+import { TimezoneSelect } from '../../../../core/components/Select/TimezoneSelect';
+import { useUserState } from '../../../../states/user/useUserState';
 
 export const ProfileDetailsCard = (): JSX.Element => {
 	const userState = useUserState();

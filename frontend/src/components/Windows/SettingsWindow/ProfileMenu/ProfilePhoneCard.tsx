@@ -9,12 +9,12 @@ import Divider from '@mui/material/Divider';
 import Grid2 from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { ToastManager } from '../../../../../managers/ToastManager/ToastManager';
-import { ConfirmationDialog } from '../../../../../core/components/Dialog/ConfirmationDialog';
-import { PhoneField } from '../../../../../core/components/Field/PhoneField';
-import { VerificationBadge } from '../../../../../core/components/Badge/VerificationBadge';
-import { useUserState } from '../../../../../states/user/useUserState';
-import { AppUtils } from '../../../../../utils/appUtils';
+import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
+import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
+import { PhoneField } from '../../../../core/components/Field/PhoneField';
+import { VerificationBadge } from '../../../../core/components/Badge/VerificationBadge';
+import { useUserState } from '../../../../states/user/useUserState';
+import { AppUtils } from '../../../../utils/appUtils';
 
 export const ProfilePhoneCard = (): JSX.Element => {
 	const userState = useUserState();

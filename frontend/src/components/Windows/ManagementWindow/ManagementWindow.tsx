@@ -7,8 +7,8 @@ import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Typography from '@mui/material/Typography';
 import { UsersMenu } from './UsersMenu/UsersMenu';
-import { Window } from '../../../../core/components/Window/Window';
-import { useResponsive } from '../../../../core/hooks/useResponsive';
+import { Window } from '../../../core/components/Window/Window';
+import { useResponsive } from '../../../core/hooks/useResponsive';
 
 interface ManagementWindowProps {
 	open: boolean;

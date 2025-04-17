@@ -8,10 +8,10 @@ import CardHeader from '@mui/material/CardHeader';
 import Divider from '@mui/material/Divider';
 import Grid2 from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
-import { ToastManager } from '../../../../../managers/ToastManager/ToastManager';
-import { ConfirmationDialog } from '../../../../../core/components/Dialog/ConfirmationDialog';
-import { PasswordField } from '../../../../../core/components/Field/PasswordField';
-import { useAppState } from '../../../../../states/app/useAppState';
+import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
+import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
+import { PasswordField } from '../../../../core/components/Field/PasswordField';
+import { useAppState } from '../../../../states/app/useAppState';
 
 export const ProfilePasswordCard = (): JSX.Element => {
 	const appState = useAppState();

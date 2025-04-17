@@ -10,13 +10,13 @@ import Grid2 from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { ToastManager } from '../../../../../managers/ToastManager/ToastManager';
-import { ConfirmationDialog } from '../../../../../core/components/Dialog/ConfirmationDialog';
-import { EmailField } from '../../../../../core/components/Field/EmailField';
-import { VerificationBadge } from '../../../../../core/components/Badge/VerificationBadge';
-import { useAppState } from '../../../../../states/app/useAppState';
-import { useUserState } from '../../../../../states/user/useUserState';
-import { AppUtils } from '../../../../../utils/appUtils';
+import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
+import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
+import { EmailField } from '../../../../core/components/Field/EmailField';
+import { VerificationBadge } from '../../../../core/components/Badge/VerificationBadge';
+import { useAppState } from '../../../../states/app/useAppState';
+import { useUserState } from '../../../../states/user/useUserState';
+import { AppUtils } from '../../../../utils/appUtils';
 
 export const ProfileEmailCard = (): JSX.Element => {
 	const appState = useAppState();

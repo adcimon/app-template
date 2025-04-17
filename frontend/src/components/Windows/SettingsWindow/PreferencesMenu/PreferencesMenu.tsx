@@ -7,7 +7,7 @@ import Grid2 from '@mui/material/Grid2';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
-import { useAppState } from '../../../../../states/app/useAppState';
+import { useAppState } from '../../../../states/app/useAppState';
 
 export const PreferencesMenu = (): JSX.Element => {
 	const appState = useAppState();

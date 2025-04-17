@@ -7,13 +7,13 @@ import Stack from '@mui/material/Stack';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Typography from '@mui/material/Typography';
-import { IdBadge } from '../../../../core/components/Badge/IdBadge';
+import { IdBadge } from '../../../core/components/Badge/IdBadge';
 import { PreferencesMenu } from './PreferencesMenu/PreferencesMenu';
 import { ProfileMenu } from './ProfileMenu/ProfileMenu';
 import { UserAvatar } from './UserAvatar/UserAvatar';
-import { Window } from '../../../../core/components/Window/Window';
-import { useResponsive } from '../../../../core/hooks/useResponsive';
-import { useUserState } from '../../../../states/user/useUserState';
+import { Window } from '../../../core/components/Window/Window';
+import { useResponsive } from '../../../core/hooks/useResponsive';
+import { useUserState } from '../../../states/user/useUserState';
 
 interface SettingsWindowProps {
 	open: boolean;

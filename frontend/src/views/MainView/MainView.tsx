@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import { ToastManager } from '../../managers/ToastManager/ToastManager';
 import { HomeView } from './HomeView/HomeView';
-import { MainBar } from './MainBar/MainBar';
+import { MainBar } from '../../components/MainBar/MainBar';
 import { useUserState } from '../../states/user/useUserState';
 
 export const MainView = (): JSX.Element => {
