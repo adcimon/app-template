@@ -1,12 +1,10 @@
 import React from 'react';
-import { IconButton, Link, SxProps } from '@mui/material';
+import { IconButton, IconButtonProps, Link } from '@mui/material';
 import LaunchIcon from '@mui/icons-material/Launch';
 
-interface LinkButtonProps {
+type LinkButtonProps = IconButtonProps & {
 	link?: string;
-	size?: 'small' | 'medium' | 'large';
-	sx?: SxProps;
-}
+};
 
 export const LinkButton = (props: LinkButtonProps): React.JSX.Element => {
 	const render = () => {
@@ -14,9 +12,7 @@ export const LinkButton = (props: LinkButtonProps): React.JSX.Element => {
 			<Link
 				href={props.link}
 				target='_blank'>
-				<IconButton
-					size={props.size}
-					sx={props.sx}>
+				<IconButton {...props}>
 					<LaunchIcon
 						color='primary'
 						fontSize='inherit'

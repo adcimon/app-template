@@ -1,52 +1,43 @@
 import React from 'react';
-import { Chip, MenuItem, Stack, SxProps, TextField } from '@mui/material';
+import { Chip, MenuItem, Stack, TextField, TextFieldProps } from '@mui/material';
 
-interface MultipleSelectProps {
-	label?: React.ReactNode;
-	helperText?: React.ReactNode;
-	options?: string[];
-	values?: string[];
-	onChange?: (values: string[]) => void;
-	renderValue?: (value: string) => void;
-	sx?: SxProps;
-}
+export type MultipleSelectProps<T> = TextFieldProps & {
+	options?: T[];
+	renderValue?: (value: T) => React.JSX.Element;
+};
 
-export const MultipleSelect = (props: MultipleSelectProps): React.JSX.Element => {
+export const MultipleSelect = <T,>({ options, renderValue, ...props }: MultipleSelectProps<T>): React.JSX.Element => {
 	const [editable, setEditable] = React.useState<boolean>(true);
 
 	React.useEffect(() => {
 		setEditable(true);
-	}, [props.values]);
+	}, [props.value]);
 
 	const handleChange = (event: any) => {
-		const values: string[] = event.target.value;
 		if (editable && props.onChange) {
-			props.onChange(values);
+			props.onChange(event);
 			setEditable(false);
 		}
 	};
 
 	const render = () => {
-		const sortedValues: string[] =
-			props.values
-				?.slice()
-				.sort((v1: string, v2: string) =>
-					props.options ? props.options.indexOf(v1) - props.options.indexOf(v2) : 0,
-				) ?? [];
+		const sortedValue: T[] = (props.value as any)
+			?.slice()
+			.sort((v1: T, v2: T) => (options ? options.indexOf(v1) - options.indexOf(v2) : 0));
 		return (
 			<TextField
-				label={props.label}
-				helperText={props.helperText}
+				{...props}
 				select={true}
+				hiddenLabel={!props.label}
 				slotProps={{
 					inputLabel: {
 						shrink: true,
 					},
 					select: {
 						multiple: true,
-						value: sortedValues,
+						value: sortedValue,
 						onChange: handleChange,
-						renderValue: (values: any) => {
+						renderValue: (value: any) => {
 							return (
 								<Stack
 									direction='row'
@@ -54,26 +45,25 @@ export const MultipleSelect = (props: MultipleSelectProps): React.JSX.Element =>
 										alignItems: 'center',
 										gap: '0.25rem',
 									}}>
-									{values.map((value: string, index: number) => (
+									{value?.map((v: T, i: number) => (
 										<Chip
-											key={index}
-											label={props.renderValue?.(value) ?? value}
+											key={i}
+											label={renderValue?.(v) ?? v?.toString()}
 										/>
 									))}
 								</Stack>
 							);
 						},
 					},
-				}}
-				sx={props.sx}>
-				{props.options?.map((value: string, index: number) => (
+				}}>
+				{options?.map((value: T, index: number) => (
 					<MenuItem
 						key={index}
-						value={value}
+						value={typeof value === 'number' ? value : value?.toString()}
 						sx={{
 							margin: '2px',
 						}}>
-						{props.renderValue?.(value) ?? value}
+						{renderValue?.(value) ?? value?.toString()}
 					</MenuItem>
 				))}
 			</TextField>

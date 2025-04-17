@@ -20,7 +20,7 @@ export const CountrySelect = ({ disableClearable, ...props }: CountrySelectProps
 		return (
 			<Autocomplete
 				defaultValue={defaultValue}
-				value={value || defaultValue}
+				value={value ?? defaultValue}
 				onChange={(event: any, value: any) => props.onChange?.({ ...event, target: { value: value } })}
 				options={countries}
 				disabled={props.disabled}

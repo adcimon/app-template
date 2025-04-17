@@ -5,14 +5,14 @@ import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Grid2 from '@mui/material/Grid2';
 import MenuItem from '@mui/material/MenuItem';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Typography from '@mui/material/Typography';
+import { Select } from '../../../../core/components/Select/Select';
 import { useAppState } from '../../../../states/app/useAppState';
 
 export const PreferencesMenu = (): React.JSX.Element => {
 	const appState = useAppState();
 
-	const handleChangeTheme = (event: SelectChangeEvent) => {
+	const handleChangeTheme = (event: any) => {
 		const theme: number = parseInt(event.target.value);
 		appState.setTheme(theme);
 	};

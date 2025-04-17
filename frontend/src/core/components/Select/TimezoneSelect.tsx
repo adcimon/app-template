@@ -14,7 +14,7 @@ export const TimezoneSelect = ({ disableClearable, ...props }: TimezoneSelectPro
 		return (
 			<Autocomplete
 				defaultValue={defaultValue}
-				value={value || defaultValue}
+				value={value ?? defaultValue}
 				onChange={(event: any, value: any) => props.onChange?.({ ...event, target: { value: value } })}
 				options={timezones}
 				disabled={props.disabled}

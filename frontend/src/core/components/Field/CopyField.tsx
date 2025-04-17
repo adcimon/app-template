@@ -22,7 +22,6 @@ export const CopyField = (props: TextFieldProps): React.JSX.Element => {
 		return (
 			<TextField
 				{...props}
-				label={props.label || 'Text'}
 				slotProps={{
 					input: {
 						endAdornment: (

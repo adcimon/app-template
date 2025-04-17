@@ -2,13 +2,11 @@ import React from 'react';
 import * as MUI from '@mui/material';
 import { Stack, Typography } from '@mui/material';
 
-interface SwitchProps {
+type SwitchProps = MUI.SwitchProps & {
 	label?: React.ReactNode;
-	checked?: boolean;
-	onChange?: (checked: boolean) => void;
-}
+};
 
-export const Switch = (props: SwitchProps): React.JSX.Element => {
+export const Switch = ({ label, ...props }: SwitchProps): React.JSX.Element => {
 	const render = () => {
 		return (
 			<Stack
@@ -21,12 +19,9 @@ export const Switch = (props: SwitchProps): React.JSX.Element => {
 						fontSize: '0.9rem',
 						transform: 'translateY(-3px)',
 					}}>
-					{props.label}
+					{label}
 				</Typography>
-				<MUI.Switch
-					checked={props.checked}
-					onChange={(event: any, checked: boolean) => props.onChange?.(checked)}
-				/>
+				<MUI.Switch {...props} />
 			</Stack>
 		);
 	};
