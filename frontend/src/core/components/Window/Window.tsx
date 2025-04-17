@@ -5,16 +5,12 @@ import CloseIcon from '@mui/icons-material/Close';
 interface WindowProps {
 	label?: React.ReactNode;
 	open: boolean;
-	onClose?: React.MouseEventHandler<HTMLButtonElement>;
+	onClose?: (event: any) => void;
 	sx?: SxProps;
 	children?: React.ReactNode;
 }
 
 export const Window = (props: WindowProps): JSX.Element => {
-	const handleClose = (event: any) => {
-		props.onClose?.(event);
-	};
-
 	const renderHeader = () => {
 		return (
 			<Stack
@@ -25,7 +21,7 @@ export const Window = (props: WindowProps): JSX.Element => {
 				}}>
 				<Typography variant='h4'>{props.label}</Typography>
 				<IconButton
-					onClick={handleClose}
+					onClick={props.onClose}
 					sx={{
 						borderStyle: 'solid',
 						borderWidth: '1px',

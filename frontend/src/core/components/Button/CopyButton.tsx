@@ -1,13 +1,14 @@
 import React from 'react';
-import { IconButton, IconButtonProps, Zoom } from '@mui/material';
+import { IconButton, Zoom } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import TaskAltIcon from '@mui/icons-material/TaskAlt';
 import { Utils } from '../../utils/utils';
 
-type CopyButtonProps = IconButtonProps & {
+interface CopyButtonProps {
 	text?: string;
+	size?: 'small' | 'medium' | 'large';
 	fontSize?: string;
-};
+}
 
 export const CopyButton = (props: CopyButtonProps): JSX.Element => {
 	const [success, setSuccess] = React.useState<boolean>(false);
@@ -28,7 +29,7 @@ export const CopyButton = (props: CopyButtonProps): JSX.Element => {
 			<>
 				{!success && (
 					<IconButton
-						{...props}
+						size={props.size}
 						onClick={handleClick}>
 						<ContentCopyIcon
 							fontSize={props.size}
@@ -42,7 +43,7 @@ export const CopyButton = (props: CopyButtonProps): JSX.Element => {
 				{success && (
 					<Zoom in={success}>
 						<IconButton
-							{...props}
+							size={props.size}
 							disableRipple={true}>
 							<TaskAltIcon
 								fontSize={props.size}

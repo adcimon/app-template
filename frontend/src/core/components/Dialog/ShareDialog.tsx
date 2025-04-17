@@ -64,9 +64,9 @@ export const ShareDialog = (props: ShareDialogProps): JSX.Element => {
 				title={
 					<Stack
 						direction='row'
-						spacing={1}
 						sx={{
 							alignItems: 'center',
+							gap: '0.5rem',
 							marginY: '5px',
 						}}>
 						<IconButton
@@ -101,8 +101,8 @@ export const ShareDialog = (props: ShareDialogProps): JSX.Element => {
 				sx={props.sx}>
 				<Stack
 					direction='column'
-					spacing={3}
 					sx={{
+						gap: '2rem',
 						marginTop: '5px',
 					}}>
 					<CopyField

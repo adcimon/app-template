@@ -28,14 +28,14 @@ export const IdBadge = (props: IdBadgeProps): JSX.Element => {
 				}
 				onDelete={() => true}
 				sx={{
+					paddingX: '5px',
 					'.MuiChip-label': {
 						fontSize: '0.7rem',
-						marginRight: '3px',
-						paddingX: '5px',
+						paddingX: '3px',
 						userSelect: 'text',
 					},
 					'.MuiChip-icon': {
-						marginLeft: '8px',
+						marginLeft: '3px',
 						marginRight: '0',
 					},
 				}}

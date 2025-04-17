@@ -41,13 +41,15 @@ export const HomeCard = (props: HomeCardProps): JSX.Element => {
 				}}>
 				<Typography
 					variant='h3'
-					color='neutral.light'>
+					sx={{
+						color: 'neutral.light',
+					}}>
 					{props.title}
 				</Typography>
 				<Typography
 					variant='h6'
-					color='neutral.light'
 					sx={{
+						color: 'neutral.light',
 						textAlign: 'center',
 					}}>
 					{props.text}

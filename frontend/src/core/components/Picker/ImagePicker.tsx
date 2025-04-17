@@ -53,18 +53,18 @@ export const ImagePicker = (props: ImagePickerProps): JSX.Element => {
 	};
 
 	const renderIcon = () => {
-		const iconSx: SxProps = {
+		const sx: SxProps = {
 			color: 'neutral.dark',
 			height: '60%',
 			width: '60%',
 		};
 		switch (props.icon) {
 			case 'image':
-				return <ImageIcon sx={iconSx} />;
+				return <ImageIcon sx={sx} />;
 			case 'user':
-				return <PersonIcon sx={iconSx} />;
+				return <PersonIcon sx={sx} />;
 			default:
-				return <ImageIcon sx={iconSx} />;
+				return <ImageIcon sx={sx} />;
 		}
 	};
 
