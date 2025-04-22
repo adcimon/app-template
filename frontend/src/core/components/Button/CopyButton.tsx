@@ -10,7 +10,7 @@ type CopyButtonProps = IconButtonProps & {
 	fontSize?: string;
 };
 
-export const CopyButton = (props: CopyButtonProps): React.JSX.Element => {
+export const CopyButton = ({ iconColor, fontSize, ...props }: CopyButtonProps): React.JSX.Element => {
 	const [success, setSuccess] = React.useState<boolean>(false);
 
 	const handleClick = () => {
@@ -37,8 +37,8 @@ export const CopyButton = (props: CopyButtonProps): React.JSX.Element => {
 					<ContentCopyIcon
 						fontSize={props.size}
 						sx={{
-							color: props.iconColor,
-							fontSize: props.fontSize,
+							color: iconColor,
+							fontSize: fontSize,
 						}}
 					/>
 				</IconButton>
@@ -57,7 +57,7 @@ export const CopyButton = (props: CopyButtonProps): React.JSX.Element => {
 							fontSize={props.size}
 							sx={{
 								color: 'success.main',
-								fontSize: props.fontSize,
+								fontSize: fontSize,
 							}}
 						/>
 					</IconButton>
