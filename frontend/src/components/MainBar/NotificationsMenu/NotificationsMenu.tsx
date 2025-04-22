@@ -84,8 +84,8 @@ export const NotificationsMenu = (): React.JSX.Element => {
 					</Box>
 					<Divider />
 					<MenuList
-						disablePadding
-						dense
+						disablePadding={true}
+						dense={true}
 						sx={{
 							padding: '5px',
 							paddingBottom: '10px',
