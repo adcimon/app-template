@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Typography from '@mui/material/Typography';
-import { IdBadge } from '../../../core/components/Badge/IdBadge';
+import { IdentityBadge } from '../../../core/components/Badge/IdentityBadge';
 import { PreferencesMenu } from './PreferencesMenu/PreferencesMenu';
 import { ProfileMenu } from './ProfileMenu/ProfileMenu';
 import { UserAvatar } from './UserAvatar/UserAvatar';
@@ -92,7 +92,12 @@ export const SettingsWindow = (props: SettingsWindowProps): React.JSX.Element =>
 								}}>
 								{id}
 							</Typography>
-							{userState.user?.id && <IdBadge id={userState.user?.id} />}
+							{userState.user?.id && (
+								<IdentityBadge
+									id={userState.user?.id}
+									color='neutral.light'
+								/>
+							)}
 						</Stack>
 					</Stack>
 				</Box>

@@ -6,6 +6,7 @@ import { Utils } from '../../utils/utils';
 
 type CopyButtonProps = IconButtonProps & {
 	text?: string;
+	iconColor?: string;
 	fontSize?: string;
 };
 
@@ -24,46 +25,45 @@ export const CopyButton = (props: CopyButtonProps): React.JSX.Element => {
 	};
 
 	const render = () => {
-		return (
-			<>
-				{!success && (
+		if (!success) {
+			return (
+				<IconButton
+					{...props}
+					onClick={handleClick}
+					sx={{
+						...props.sx,
+						marginX: '0 !important',
+					}}>
+					<ContentCopyIcon
+						fontSize={props.size}
+						sx={{
+							color: props.iconColor,
+							fontSize: props.fontSize,
+						}}
+					/>
+				</IconButton>
+			);
+		} else {
+			return (
+				<Zoom in={success}>
 					<IconButton
 						{...props}
-						onClick={handleClick}
+						disableRipple={true}
 						sx={{
 							...props.sx,
 							marginX: '0 !important',
 						}}>
-						<ContentCopyIcon
+						<TaskAltIcon
 							fontSize={props.size}
 							sx={{
-								color: 'neutral.light',
+								color: 'success.main',
 								fontSize: props.fontSize,
 							}}
 						/>
 					</IconButton>
-				)}
-				{success && (
-					<Zoom in={success}>
-						<IconButton
-							{...props}
-							disableRipple={true}
-							sx={{
-								...props.sx,
-								marginX: '0 !important',
-							}}>
-							<TaskAltIcon
-								fontSize={props.size}
-								sx={{
-									color: 'success.main',
-									fontSize: props.fontSize,
-								}}
-							/>
-						</IconButton>
-					</Zoom>
-				)}
-			</>
-		);
+				</Zoom>
+			);
+		}
 	};
 
 	return render();
