@@ -3,8 +3,8 @@ import Button from '@mui/material/Button';
 import Grid2 from '@mui/material/Grid2';
 import Typography from '@mui/material/Typography';
 import { Card } from '../../../core/components/Card/Card';
-import { PrivacyPolicyDialog } from '../../../core/components/Dialog/PrivacyPolicyDialog';
-import { TermsOfServiceDialog } from '../../../core/components/Dialog/TermsOfServiceDialog';
+import { PrivacyPolicyDialog } from '../../Dialog/PrivacyPolicyDialog';
+import { TermsOfServiceDialog } from '../../Dialog/TermsOfServiceDialog';
 import { Window } from '../../../core/components/Window/Window';
 
 interface HelpWindowProps {
