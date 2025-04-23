@@ -3,11 +3,12 @@ import { Status } from '../../model/api/status';
 import { Credentials } from '../../model/api/credentials';
 import { User } from '../../model/api/user';
 import { useApiState } from '../api/useApiState';
-import { ThemeState } from './appState';
+import { MetadataState, ThemeState } from './appState';
 
 export function useAppState() {
 	const apiState = useApiState();
 
+	const [metadata, setMetadata] = Recoil.useRecoilState(MetadataState);
 	const [theme, setTheme] = Recoil.useRecoilState(ThemeState);
 
 	const signUp = async (email: string, password: string): Promise<User> => {
@@ -69,7 +70,9 @@ export function useAppState() {
 	};
 
 	return {
+		metadata,
 		theme,
+		setMetadata,
 		setTheme,
 		signUp,
 		signDown,

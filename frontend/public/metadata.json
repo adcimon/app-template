@@ -1,0 +1,12 @@
+{
+	"company": {
+		"address": "Bag End, Hobbiton, The Shire",
+		"country": "Middle Earth",
+		"name": "App Template",
+		"url": "https://app.template.com/"
+	},
+	"date": "1 January 2020",
+	"description": "App template.",
+	"email": "app@template.com",
+	"name": "AppTemplate"
+}
