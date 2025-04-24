@@ -119,16 +119,16 @@ export const countries: CountryType[] = [
 		label: 'Afghanistan',
 		phone: '93',
 	},
-	{
-		code: 'AG',
-		label: 'Antigua and Barbuda',
-		phone: '1-268',
-	},
-	{
-		code: 'AI',
-		label: 'Anguilla',
-		phone: '1-264',
-	},
+	// {
+	// 	code: 'AG',
+	// 	label: 'Antigua and Barbuda',
+	// 	phone: '1-268',
+	// },
+	// {
+	// 	code: 'AI',
+	// 	label: 'Anguilla',
+	// 	phone: '1-264',
+	// },
 	{
 		code: 'AL',
 		label: 'Albania',
@@ -154,11 +154,11 @@ export const countries: CountryType[] = [
 		label: 'Argentina',
 		phone: '54',
 	},
-	{
-		code: 'AS',
-		label: 'American Samoa',
-		phone: '1-684',
-	},
+	// {
+	// 	code: 'AS',
+	// 	label: 'American Samoa',
+	// 	phone: '1-684',
+	// },
 	{
 		code: 'AT',
 		label: 'Austria',
@@ -189,11 +189,11 @@ export const countries: CountryType[] = [
 		label: 'Bosnia and Herzegovina',
 		phone: '387',
 	},
-	{
-		code: 'BB',
-		label: 'Barbados',
-		phone: '1-246',
-	},
+	// {
+	// 	code: 'BB',
+	// 	label: 'Barbados',
+	// 	phone: '1-246',
+	// },
 	{
 		code: 'BD',
 		label: 'Bangladesh',
@@ -234,11 +234,11 @@ export const countries: CountryType[] = [
 		label: 'Saint Barthelemy',
 		phone: '590',
 	},
-	{
-		code: 'BM',
-		label: 'Bermuda',
-		phone: '1-441',
-	},
+	// {
+	// 	code: 'BM',
+	// 	label: 'Bermuda',
+	// 	phone: '1-441',
+	// },
 	{
 		code: 'BN',
 		label: 'Brunei Darussalam',
@@ -254,11 +254,11 @@ export const countries: CountryType[] = [
 		label: 'Brazil',
 		phone: '55',
 	},
-	{
-		code: 'BS',
-		label: 'Bahamas',
-		phone: '1-242',
-	},
+	// {
+	// 	code: 'BS',
+	// 	label: 'Bahamas',
+	// 	phone: '1-242',
+	// },
 	{
 		code: 'BT',
 		label: 'Bhutan',
@@ -394,16 +394,16 @@ export const countries: CountryType[] = [
 		label: 'Denmark',
 		phone: '45',
 	},
-	{
-		code: 'DM',
-		label: 'Dominica',
-		phone: '1-767',
-	},
-	{
-		code: 'DO',
-		label: 'Dominican Republic',
-		phone: '1-809',
-	},
+	// {
+	// 	code: 'DM',
+	// 	label: 'Dominica',
+	// 	phone: '1-767',
+	// },
+	// {
+	// 	code: 'DO',
+	// 	label: 'Dominican Republic',
+	// 	phone: '1-809',
+	// },
 	{
 		code: 'DZ',
 		label: 'Algeria',
@@ -484,11 +484,11 @@ export const countries: CountryType[] = [
 		label: 'United Kingdom',
 		phone: '44',
 	},
-	{
-		code: 'GD',
-		label: 'Grenada',
-		phone: '1-473',
-	},
+	// {
+	// 	code: 'GD',
+	// 	label: 'Grenada',
+	// 	phone: '1-473',
+	// },
 	{
 		code: 'GE',
 		label: 'Georgia',
@@ -554,11 +554,11 @@ export const countries: CountryType[] = [
 		label: 'Guatemala',
 		phone: '502',
 	},
-	{
-		code: 'GU',
-		label: 'Guam',
-		phone: '1-671',
-	},
+	// {
+	// 	code: 'GU',
+	// 	label: 'Guam',
+	// 	phone: '1-671',
+	// },
 	{
 		code: 'GW',
 		label: 'Guinea-Bissau',
@@ -654,11 +654,11 @@ export const countries: CountryType[] = [
 		label: 'Jersey',
 		phone: '44',
 	},
-	{
-		code: 'JM',
-		label: 'Jamaica',
-		phone: '1-876',
-	},
+	// {
+	// 	code: 'JM',
+	// 	label: 'Jamaica',
+	// 	phone: '1-876',
+	// },
 	{
 		code: 'JO',
 		label: 'Jordan',
@@ -694,11 +694,11 @@ export const countries: CountryType[] = [
 		label: 'Comoros',
 		phone: '269',
 	},
-	{
-		code: 'KN',
-		label: 'Saint Kitts and Nevis',
-		phone: '1-869',
-	},
+	// {
+	// 	code: 'KN',
+	// 	label: 'Saint Kitts and Nevis',
+	// 	phone: '1-869',
+	// },
 	{
 		code: 'KP',
 		label: "Korea, Democratic People's Republic of",
@@ -714,11 +714,11 @@ export const countries: CountryType[] = [
 		label: 'Kuwait',
 		phone: '965',
 	},
-	{
-		code: 'KY',
-		label: 'Cayman Islands',
-		phone: '1-345',
-	},
+	// {
+	// 	code: 'KY',
+	// 	label: 'Cayman Islands',
+	// 	phone: '1-345',
+	// },
 	{
 		code: 'KZ',
 		label: 'Kazakhstan',
@@ -734,11 +734,11 @@ export const countries: CountryType[] = [
 		label: 'Lebanon',
 		phone: '961',
 	},
-	{
-		code: 'LC',
-		label: 'Saint Lucia',
-		phone: '1-758',
-	},
+	// {
+	// 	code: 'LC',
+	// 	label: 'Saint Lucia',
+	// 	phone: '1-758',
+	// },
 	{
 		code: 'LI',
 		label: 'Liechtenstein',
@@ -839,11 +839,11 @@ export const countries: CountryType[] = [
 		label: 'Macao',
 		phone: '853',
 	},
-	{
-		code: 'MP',
-		label: 'Northern Mariana Islands',
-		phone: '1-670',
-	},
+	// {
+	// 	code: 'MP',
+	// 	label: 'Northern Mariana Islands',
+	// 	phone: '1-670',
+	// },
 	{
 		code: 'MQ',
 		label: 'Martinique',
@@ -854,11 +854,11 @@ export const countries: CountryType[] = [
 		label: 'Mauritania',
 		phone: '222',
 	},
-	{
-		code: 'MS',
-		label: 'Montserrat',
-		phone: '1-664',
-	},
+	// {
+	// 	code: 'MS',
+	// 	label: 'Montserrat',
+	// 	phone: '1-664',
+	// },
 	{
 		code: 'MT',
 		label: 'Malta',
@@ -1149,11 +1149,11 @@ export const countries: CountryType[] = [
 		label: 'El Salvador',
 		phone: '503',
 	},
-	{
-		code: 'SX',
-		label: 'Sint Maarten (Dutch part)',
-		phone: '1-721',
-	},
+	// {
+	// 	code: 'SX',
+	// 	label: 'Sint Maarten (Dutch part)',
+	// 	phone: '1-721',
+	// },
 	{
 		code: 'SY',
 		label: 'Syrian Arab Republic',
@@ -1164,11 +1164,11 @@ export const countries: CountryType[] = [
 		label: 'Swaziland',
 		phone: '268',
 	},
-	{
-		code: 'TC',
-		label: 'Turks and Caicos Islands',
-		phone: '1-649',
-	},
+	// {
+	// 	code: 'TC',
+	// 	label: 'Turks and Caicos Islands',
+	// 	phone: '1-649',
+	// },
 	{
 		code: 'TD',
 		label: 'Chad',
@@ -1224,11 +1224,11 @@ export const countries: CountryType[] = [
 		label: 'Turkey',
 		phone: '90',
 	},
-	{
-		code: 'TT',
-		label: 'Trinidad and Tobago',
-		phone: '1-868',
-	},
+	// {
+	// 	code: 'TT',
+	// 	label: 'Trinidad and Tobago',
+	// 	phone: '1-868',
+	// },
 	{
 		code: 'TV',
 		label: 'Tuvalu',
@@ -1274,26 +1274,26 @@ export const countries: CountryType[] = [
 		label: 'Holy See (Vatican City State)',
 		phone: '379',
 	},
-	{
-		code: 'VC',
-		label: 'Saint Vincent and the Grenadines',
-		phone: '1-784',
-	},
+	// {
+	// 	code: 'VC',
+	// 	label: 'Saint Vincent and the Grenadines',
+	// 	phone: '1-784',
+	// },
 	{
 		code: 'VE',
 		label: 'Venezuela',
 		phone: '58',
 	},
-	{
-		code: 'VG',
-		label: 'British Virgin Islands',
-		phone: '1-284',
-	},
-	{
-		code: 'VI',
-		label: 'US Virgin Islands',
-		phone: '1-340',
-	},
+	// {
+	// 	code: 'VG',
+	// 	label: 'British Virgin Islands',
+	// 	phone: '1-284',
+	// },
+	// {
+	// 	code: 'VI',
+	// 	label: 'US Virgin Islands',
+	// 	phone: '1-340',
+	// },
 	{
 		code: 'VN',
 		label: 'Vietnam',
