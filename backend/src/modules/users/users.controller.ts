@@ -29,7 +29,7 @@ export class UsersController {
 			name: body.name,
 			surname: body.surname,
 			birthdate: body.birthdate,
-			country: body.country,
+			locale: body.locale,
 			timezone: body.timezone,
 		});
 	}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Autocomplete, Box, InputAdornment, TextField, TextFieldProps } from '@mui/material';
+import { Autocomplete, Box, InputAdornment, TextField, TextFieldProps, Typography } from '@mui/material';
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 
 type TimezoneSelectProps = TextFieldProps & {
@@ -27,7 +27,7 @@ export const TimezoneSelect = ({ disableClearable, ...props }: TimezoneSelectPro
 							key={key}
 							component='li'
 							{...subprops}>
-							{option}
+							<Typography>{option}</Typography>
 						</Box>
 					);
 				}}
@@ -37,6 +37,7 @@ export const TimezoneSelect = ({ disableClearable, ...props }: TimezoneSelectPro
 						<TextField
 							{...params}
 							{...subprops}
+							label={props.label ?? 'Timezone'}
 							slotProps={{
 								input: {
 									...params.InputProps,
@@ -73,8 +74,8 @@ export const TimezoneSelect = ({ disableClearable, ...props }: TimezoneSelectPro
 	return render();
 };
 
-// IANA Time Zone Database (https://www.iana.org/time-zones).
-const timezones: string[] = [
+// IANA Time Zones (https://www.iana.org/time-zones).
+export const timezones: string[] = [
 	'Africa/Abidjan',
 	'Africa/Accra',
 	'Africa/Addis_Ababa',

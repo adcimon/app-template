@@ -26,7 +26,7 @@ export class UsersService {
 		name?: string;
 		surname?: string;
 		birthdate?: string;
-		country?: string;
+		locale?: string;
 		timezone?: string;
 	}): Promise<any> => {
 		return this.httpPatch({
@@ -35,7 +35,7 @@ export class UsersService {
 				name: params?.name,
 				surname: params?.surname,
 				birthdate: params?.birthdate,
-				country: params?.country,
+				locale: params?.locale,
 				timezone: params?.timezone,
 			},
 			useAuthorization: true,

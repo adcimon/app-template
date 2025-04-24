@@ -10,7 +10,7 @@ import Grid2 from '@mui/material/Grid2';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
-import { CountrySelect } from '../../../../core/components/Select/CountrySelect';
+import { LocaleSelect } from '../../../../core/components/Select/LocaleSelect';
 import { TimezoneSelect } from '../../../../core/components/Select/TimezoneSelect';
 import { useUserState } from '../../../../states/user/useUserState';
 
@@ -20,21 +20,21 @@ export const ProfileDetailsCard = (): React.JSX.Element => {
 	const [name, setName] = React.useState<string>(userState.user?.name || '');
 	const [surname, setSurname] = React.useState<string>(userState.user?.surname || '');
 	const [birthdate, setBirthdate] = React.useState<string>(userState.user?.birthdate || '');
-	const [country, setCountry] = React.useState<string>(userState.user?.country || '');
+	const [locale, setLocale] = React.useState<string>(userState.user?.locale || '');
 	const [timezone, setTimezone] = React.useState<string>(userState.user?.timezone || '');
 
 	const validate = (): boolean => {
 		const userName: string = userState.user?.name || '';
 		const userSurname: string = userState.user?.surname || '';
 		const userBirthdate: string = userState.user?.birthdate || '';
-		const userCountry: string = userState.user?.country || '';
+		const userLocale: string = userState.user?.locale || '';
 		const userTimezone: string = userState.user?.timezone || '';
 
 		return !(
 			name === userName &&
 			surname === userSurname &&
 			birthdate === userBirthdate &&
-			country === userCountry &&
+			locale === userLocale &&
 			timezone === userTimezone
 		);
 	};
@@ -45,7 +45,7 @@ export const ProfileDetailsCard = (): React.JSX.Element => {
 				name: name,
 				surname: surname,
 				birthdate: birthdate,
-				country: country,
+				locale: locale,
 				timezone: timezone,
 			});
 			ToastManager.success('Profile updated');
@@ -82,7 +82,7 @@ export const ProfileDetailsCard = (): React.JSX.Element => {
 							<Grid2
 								size={{
 									xs: 12,
-									sm: 6,
+									md: 6,
 								}}>
 								<TextField
 									label='Name'
@@ -99,7 +99,7 @@ export const ProfileDetailsCard = (): React.JSX.Element => {
 							<Grid2
 								size={{
 									xs: 12,
-									sm: 6,
+									md: 6,
 								}}>
 								<TextField
 									label='Surname'
@@ -116,7 +116,7 @@ export const ProfileDetailsCard = (): React.JSX.Element => {
 							<Grid2
 								size={{
 									xs: 12,
-									sm: 6,
+									md: 6,
 								}}>
 								<TextField
 									label='Birthdate'
@@ -134,12 +134,11 @@ export const ProfileDetailsCard = (): React.JSX.Element => {
 							<Grid2
 								size={{
 									xs: 12,
-									sm: 6,
+									md: 6,
 								}}>
-								<CountrySelect
-									label='Country'
-									value={country}
-									onChange={(event: any) => setCountry(event.target.value?.code || '')}
+								<LocaleSelect
+									value={locale}
+									onChange={(event: any) => setLocale(event.target.value?.code || '')}
 									slotProps={{
 										inputLabel: {
 											shrink: true,
@@ -150,10 +149,9 @@ export const ProfileDetailsCard = (): React.JSX.Element => {
 							<Grid2
 								size={{
 									xs: 12,
-									sm: 6,
+									md: 6,
 								}}>
 								<TimezoneSelect
-									label='Timezone'
 									value={timezone}
 									onChange={(event: any) => setTimezone(event.target.value)}
 									slotProps={{

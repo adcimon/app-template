@@ -75,14 +75,29 @@ export namespace ValidationSchema {
 	const AvatarRegExp = /^[\p{L}\p{N}_\-\s]+\.(jpg|jpeg|png)$/iu;
 	const AvatarMessage = 'Avatars only support jpg, jpeg and png files.';
 
-	export const EmailSchema = yup.string().email();
 	export const PasswordSchema = yup.string();
-	export const PhoneSchema = yup.string().matches(PhoneRegExp, PhoneMessage);
-	export const NameSchema = yup.string().matches(NameRegExp, NameMessage);
-	export const SurnameSchema = yup.string().matches(SurnameRegExp, SurnameMessage);
+
+	export const EmailSchema = yup.string().email();
+	export const PhoneSchema = yup.string().matches(PhoneRegExp, {
+		excludeEmptyString: true,
+		message: PhoneMessage,
+	});
+
+	export const NameSchema = yup.string().matches(NameRegExp, {
+		excludeEmptyString: true,
+		message: NameMessage,
+	});
+	export const SurnameSchema = yup.string().matches(SurnameRegExp, {
+		excludeEmptyString: true,
+		message: SurnameMessage,
+	});
+
+	export const DateSchema = yup.string(); // ISO 8601
+	export const LocaleSchema = yup.string(); // BCP 47 Language Tag
+	export const TimezoneSchema = yup.string(); // IANA Time Zone
+
 	export const BirthdateSchema = yup.string();
-	export const CountrySchema = yup.string();
-	export const TimezoneSchema = yup.string();
+
 	export const AvatarSchema = yup.string().url().matches(AvatarRegExp, AvatarMessage);
 
 	export const RefreshTokenSchema = yup.string();

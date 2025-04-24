@@ -6,7 +6,7 @@ export namespace UsersSchema {
 		name: ValidationSchema.NameSchema.required('Name is required'),
 		surname: ValidationSchema.SurnameSchema.notRequired(),
 		birthdate: ValidationSchema.BirthdateSchema.notRequired(),
-		country: ValidationSchema.CountrySchema.notRequired(),
+		locale: ValidationSchema.LocaleSchema.notRequired(),
 		timezone: ValidationSchema.TimezoneSchema.notRequired(),
 	});
 

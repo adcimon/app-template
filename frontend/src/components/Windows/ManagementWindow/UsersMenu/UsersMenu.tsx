@@ -198,7 +198,7 @@ export const UsersMenu = (): React.JSX.Element => {
 				/>
 				<CountrySelect
 					label='Country'
-					defaultValue={user?.country}
+					defaultValue={user?.locale}
 					disabled={true}
 					slotProps={{
 						inputLabel: {

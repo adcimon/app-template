@@ -88,6 +88,14 @@ export class CognitoService implements OnModuleInit {
 					Name: 'name',
 					Value: name,
 				},
+				{
+					Name: 'locale',
+					Value: 'en-US',
+				},
+				{
+					Name: 'zoneinfo',
+					Value: 'UTC',
+				},
 			],
 		};
 
@@ -305,7 +313,7 @@ export class CognitoService implements OnModuleInit {
 			name?: string;
 			surname?: string;
 			birthdate?: string;
-			country?: string;
+			locale?: string;
 			timezone?: string;
 		},
 	): Promise<UserDto> {
@@ -321,8 +329,8 @@ export class CognitoService implements OnModuleInit {
 		if (params.birthdate !== undefined && params.birthdate !== null) {
 			attributes.push({ Name: 'birthdate', Value: params.birthdate });
 		}
-		if (params.country !== undefined && params.country !== null) {
-			attributes.push({ Name: 'locale', Value: params.country });
+		if (params.locale !== undefined && params.locale !== null) {
+			attributes.push({ Name: 'locale', Value: params.locale });
 		}
 		if (params.timezone !== undefined && params.timezone !== null) {
 			attributes.push({ Name: 'zoneinfo', Value: params.timezone });

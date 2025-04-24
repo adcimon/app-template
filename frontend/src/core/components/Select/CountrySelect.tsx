@@ -1,12 +1,12 @@
 import React from 'react';
-import { Autocomplete, Box, InputAdornment, TextField, TextFieldProps } from '@mui/material';
+import { Autocomplete, Box, InputAdornment, TextField, TextFieldProps, Typography } from '@mui/material';
 import PublicIcon from '@mui/icons-material/Public';
 
 type CountrySelectProps = TextFieldProps & {
 	disableClearable?: boolean;
 };
 
-interface CountryType {
+export interface CountryType {
 	code: string;
 	label: string;
 	phone: string;
@@ -46,7 +46,15 @@ export const CountrySelect = ({ disableClearable, ...props }: CountrySelectProps
 								alt=''
 								width='20'
 							/>
-							({option.code}) {option.label} +{option.phone}
+							<Typography>
+								({option.code}) {option.label}
+							</Typography>
+							<Typography
+								sx={{
+									color: 'neutral.main',
+									fontSize: '0.8rem',
+									marginLeft: '0.25rem',
+								}}>{`+${option.phone}`}</Typography>
 						</Box>
 					);
 				}}
@@ -56,6 +64,7 @@ export const CountrySelect = ({ disableClearable, ...props }: CountrySelectProps
 						<TextField
 							{...params}
 							{...subprops}
+							label={props.label ?? 'Country'}
 							slotProps={{
 								input: {
 									...params.InputProps,
@@ -92,8 +101,9 @@ export const CountrySelect = ({ disableClearable, ...props }: CountrySelectProps
 	return render();
 };
 
-// https://bitbucket.org/atlassian/atlaskit-mk-2/raw/4ad0e56649c3e6c973e226b7efaeb28cb240ccb0/packages/core/select/src/data/countries.js
-const countries: readonly CountryType[] = [
+// ISO 3166 Telephone Country Codes (https://www.iso.org/iso-3166-country-codes.html).
+// Atlassian Countries (https://bitbucket.org/atlassian/atlaskit-mk-2/raw/4ad0e56649c3e6c973e226b7efaeb28cb240ccb0/packages/core/select/src/data/countries.js).
+export const countries: CountryType[] = [
 	{
 		code: 'AD',
 		label: 'Andorra',

@@ -20,7 +20,7 @@ export function UserCognitoToDto(user: AWS.UserType | AWS.GetUserResponse | AWS.
 	dto.emailVerified = values.email_verified === 'true' ? true : false;
 	dto.phone = values.phone_number || '';
 	dto.phoneVerified = values.phone_number_verified === 'true' ? true : false;
-	dto.country = values.locale || '';
+	dto.locale = values.locale || '';
 	dto.timezone = values.zoneinfo || '';
 	dto.avatar = values.picture || '';
 	dto.roles = values.roles ? values.roles.split(',') : [];

@@ -18,7 +18,7 @@ export function useUserState<T extends User>() {
 		name?: string;
 		surname?: string;
 		birthdate?: string;
-		country?: string;
+		locale?: string;
 		timezone?: string;
 	}): Promise<T> => {
 		const user: T = await apiState.client?.usersService.updateMyUser(params);

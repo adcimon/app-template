@@ -35,7 +35,7 @@ export class UsersService {
 			name: string;
 			surname: string;
 			birthdate: string;
-			country: string;
+			locale: string;
 			timezone: string;
 		},
 	): Promise<UserDto> {

@@ -7,7 +7,7 @@ export class User {
 	emailVerified: boolean = false;
 	phone: string = '';
 	phoneVerified: boolean = false;
-	country: string = '';
+	locale: string = '';
 	timezone: string = '';
 	avatar: string = '';
 	roles: string[] = [];

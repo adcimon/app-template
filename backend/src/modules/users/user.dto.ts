@@ -7,7 +7,7 @@ export class UserDto {
 	emailVerified: boolean;
 	phone: string;
 	phoneVerified: boolean;
-	country: string;
+	locale: string;
 	timezone: string;
 	avatar: string;
 	roles: string[];
