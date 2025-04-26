@@ -13,8 +13,8 @@ export const HomeView = (): React.JSX.Element => {
 			<>
 				<Box
 					sx={{
-						paddingBottom: 6,
-						paddingTop: 8,
+						paddingBottom: '3rem',
+						paddingTop: '4rem',
 					}}>
 					<Container maxWidth='sm'>
 						<Typography
@@ -40,7 +40,7 @@ export const HomeView = (): React.JSX.Element => {
 							spacing={2}
 							sx={{
 								justifyContent: 'center',
-								paddingTop: 4,
+								paddingTop: '2rem',
 							}}>
 							<Button variant='contained'>Play</Button>
 							<Button variant='outlined'>Prepare</Button>

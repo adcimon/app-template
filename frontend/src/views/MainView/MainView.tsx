@@ -37,6 +37,7 @@ export const MainView = (): React.JSX.Element => {
 				<Box
 					sx={{
 						height: `calc(100% - ${mainBarHeight})`,
+						overflow: 'auto',
 						width: '100%',
 					}}>
 					<HomeView />
