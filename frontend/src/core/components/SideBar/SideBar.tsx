@@ -9,7 +9,7 @@ interface SideBarProps {
 	divider?: boolean;
 	height?: number | string;
 	width?: number | string;
-	onClose?: (event: {}, reason: 'backdropClick' | 'escapeKeyDown') => void;
+	onClose?: (event: any) => void;
 	children?: React.ReactNode;
 }
 

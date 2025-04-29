@@ -1,6 +1,6 @@
 import React from 'react';
 import * as MUI from '@mui/material';
-import { DialogActions, DialogContent, DialogTitle, Stack, SxProps } from '@mui/material';
+import { DialogActions, DialogContent, DialogTitle, Divider, Stack, SxProps } from '@mui/material';
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorRoundedIcon from '@mui/icons-material/ErrorRounded';
@@ -12,6 +12,7 @@ interface DialogProps {
 	variant?: 'info' | 'success' | 'warning' | 'error';
 	actions?: React.ReactNode;
 	open: boolean;
+	divider?: boolean;
 	onClose?: (event: any) => void;
 	sx?: SxProps;
 	children?: React.ReactNode;
@@ -100,6 +101,14 @@ export const Dialog = (props: DialogProps): React.JSX.Element => {
 							{props.title}
 						</Stack>
 					</DialogTitle>
+				)}
+				{props.divider && (
+					<Divider
+						sx={{
+							marginBottom: '1rem',
+							width: '100%',
+						}}
+					/>
 				)}
 				<DialogContent sx={props.sx}>{props.children}</DialogContent>
 				{props.actions && <DialogActions>{props.actions}</DialogActions>}

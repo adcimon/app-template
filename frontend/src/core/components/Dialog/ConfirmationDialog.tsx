@@ -6,6 +6,7 @@ interface ConfirmationDialogProps {
 	title?: React.ReactNode;
 	variant?: 'info' | 'success' | 'warning' | 'error';
 	open: boolean;
+	divider?: boolean;
 	acceptable?: boolean;
 	onAccept?: (event: any) => void;
 	onCancel?: (event: any) => void;
@@ -58,6 +59,7 @@ export const ConfirmationDialog = (props: ConfirmationDialogProps): React.JSX.El
 				title={props.title}
 				variant={props.variant}
 				open={props.open}
+				divider={props.divider}
 				actions={
 					<>
 						{props.onCancel && (
