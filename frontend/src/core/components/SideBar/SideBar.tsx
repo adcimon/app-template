@@ -7,8 +7,8 @@ interface SideBarProps {
 	open: boolean;
 	responsive?: boolean;
 	divider?: boolean;
-	height?: number | string;
-	width?: number | string;
+	height?: React.CSSProperties['height'];
+	width?: React.CSSProperties['width'];
 	onClose?: (event: any) => void;
 	children?: React.ReactNode;
 }
