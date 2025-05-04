@@ -16,13 +16,13 @@ export function useAppState() {
 		return user;
 	};
 
-	const signDown = async (password: string): Promise<User> => {
-		const user: User = await apiState.client?.authService.signDown(password);
+	const signDown = async (password: string): Promise<boolean> => {
+		const status: Status = await apiState.client?.authService.signDown(password);
 
 		localStorage.removeItem('accessToken');
 		localStorage.removeItem('refreshToken');
 
-		return user;
+		return status.status;
 	};
 
 	const signIn = async (email: string, password: string): Promise<Credentials> => {

@@ -16,9 +16,9 @@ export class AuthService {
 		return user;
 	}
 
-	public async signDown(accessToken: string, password: string): Promise<UserDto> {
-		const user: UserDto = await this.cognitoService.signDown(accessToken, password);
-		return user;
+	public async signDown(accessToken: string, password: string): Promise<StatusDto> {
+		const status: StatusDto = await this.cognitoService.signDown(accessToken, password);
+		return status;
 	}
 
 	public async signIn(email: string, password: string): Promise<CredentialsDto> {

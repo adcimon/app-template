@@ -10,9 +10,11 @@ import Typography from '@mui/material/Typography';
 import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
 import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
 import { PasswordField } from '../../../../core/components/Field/PasswordField';
+import { useNavigator } from '../../../../core/hooks/useNavigator';
 import { useAppState } from '../../../../states/app/useAppState';
 
 export const ProfileDangerZoneCard = (): React.JSX.Element => {
+	const navigator = useNavigator();
 	const appState = useAppState();
 
 	const [password, setPassword] = React.useState<string>('');
@@ -30,13 +32,12 @@ export const ProfileDangerZoneCard = (): React.JSX.Element => {
 		try {
 			await appState.signDown(password);
 			ToastManager.success('Account deleted');
+			appState.reset();
+			setOpenDialog(false);
+			navigator.navigate('/sign-in');
 		} catch (error: any) {
 			ToastManager.error(error.message);
-		} finally {
-			appState.reset();
 		}
-
-		setOpenDialog(false);
 	};
 
 	const handleCancelDeleteAccount = async () => {

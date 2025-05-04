@@ -58,6 +58,36 @@ export class CognitoService implements OnModuleInit {
 		return { idToken, accessToken, refreshToken };
 	}
 
+	private async enableUser(id: string): Promise<StatusDto> {
+		const userPoolId: string = await this.configService.getVariable('AWS_USER_POOL_ID');
+
+		const input: AWS.AdminEnableUserCommandInput = {
+			UserPoolId: userPoolId,
+			Username: id,
+		};
+
+		const command: AWS.AdminEnableUserCommand = new AWS.AdminEnableUserCommand(input);
+
+		await this.client.send(command);
+
+		return true as any;
+	}
+
+	private async disableUser(id: string): Promise<StatusDto> {
+		const userPoolId: string = await this.configService.getVariable('AWS_USER_POOL_ID');
+
+		const input: AWS.AdminDisableUserCommandInput = {
+			UserPoolId: userPoolId,
+			Username: id,
+		};
+
+		const command: AWS.AdminDisableUserCommand = new AWS.AdminDisableUserCommand(input);
+
+		await this.client.send(command);
+
+		return true as any;
+	}
+
 	public async signUp(email: string, password: string): Promise<UserDto> {
 		// Check whether the email is taken.
 		let emailTaken: UserDto = null;
@@ -108,7 +138,8 @@ export class CognitoService implements OnModuleInit {
 		return user;
 	}
 
-	public async signDown(accessToken: string, password: string): Promise<UserDto> {
+	@Transform(StatusBooleanToDto)
+	public async signDown(accessToken: string, password: string): Promise<StatusDto> {
 		// Check whether the user exists.
 		const user: UserDto = await this.getMyUser(accessToken);
 
@@ -116,7 +147,7 @@ export class CognitoService implements OnModuleInit {
 
 		await this.deleteMyUser(accessToken);
 
-		return user;
+		return true as any;
 	}
 
 	@Transform(CredentialsObjectToDto)

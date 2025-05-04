@@ -26,7 +26,7 @@ export class AuthController {
 	async signDown(
 		@Request() request,
 		@Body(new ValidationPipe(AuthSchema.SignDownSchema)) body: any,
-	): Promise<UserDto> {
+	): Promise<StatusDto> {
 		return await this.service.signDown(request.accessToken, body.password);
 	}
 
