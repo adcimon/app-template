@@ -21,10 +21,12 @@ export const ToastManager = (): React.JSX.Element => {
 
 ToastManager.success = (message: string) => {
 	message = message.charAt(0).toUpperCase() + message.slice(1);
+	message = message.endsWith('.') ? message : message + '.';
 	toast.success(message);
 };
 
 ToastManager.error = (message: string) => {
 	message = message.charAt(0).toUpperCase() + message.slice(1);
+	message = message.endsWith('.') ? message : message + '.';
 	toast.error(message);
 };
