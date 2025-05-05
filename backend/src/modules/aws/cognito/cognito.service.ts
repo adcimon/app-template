@@ -197,9 +197,6 @@ export class CognitoService implements OnModuleInit {
 
 	@Transform(StatusBooleanToDto)
 	public async verifyEmail(accessToken: string, code: string): Promise<StatusDto> {
-		// Check whether the user exists.
-		await this.getMyUser(accessToken);
-
 		const input: AWS.VerifyUserAttributeCommandInput = {
 			AccessToken: accessToken,
 			AttributeName: 'email',
@@ -253,7 +250,8 @@ export class CognitoService implements OnModuleInit {
 		return true as any;
 	}
 
-	public async changePassword(accessToken: string, currentPassword: string, newPassword: string): Promise<UserDto> {
+	@Transform(StatusBooleanToDto)
+	public async changePassword(accessToken: string, currentPassword: string, newPassword: string): Promise<StatusDto> {
 		const input: AWS.ChangePasswordCommandInput = {
 			AccessToken: accessToken,
 			PreviousPassword: currentPassword,
@@ -264,7 +262,7 @@ export class CognitoService implements OnModuleInit {
 
 		await this.client.send(command);
 
-		return await this.getMyUser(accessToken);
+		return true as any;
 	}
 
 	@Transform(UserCognitoToDto)

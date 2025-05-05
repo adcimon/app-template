@@ -60,9 +60,9 @@ export function useAppState() {
 		return status.status;
 	};
 
-	const changePassword = async (currentPassword: string, newPassword: string): Promise<User> => {
-		const user: User = await apiState.client?.authService.changePassword(currentPassword, newPassword);
-		return user;
+	const changePassword = async (currentPassword: string, newPassword: string): Promise<boolean> => {
+		const status: Status = await apiState.client?.authService.changePassword(currentPassword, newPassword);
+		return status.status;
 	};
 
 	const reset = () => {

@@ -80,7 +80,7 @@ export class AuthController {
 	async changePassword(
 		@Request() request,
 		@Body(new ValidationPipe(AuthSchema.ChangePasswordBody)) body: any,
-	): Promise<UserDto> {
+	): Promise<StatusDto> {
 		return await this.service.changePassword(request.accessToken, body.currentPassword, body.newPassword);
 	}
 }

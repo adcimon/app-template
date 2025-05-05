@@ -51,8 +51,8 @@ export class AuthService {
 		return status;
 	}
 
-	public async changePassword(accessToken: string, currentPassword: string, newPassword: string): Promise<UserDto> {
-		const user: UserDto = await this.cognitoService.changePassword(accessToken, currentPassword, newPassword);
-		return user;
+	public async changePassword(accessToken: string, currentPassword: string, newPassword: string): Promise<StatusDto> {
+		const status: StatusDto = await this.cognitoService.changePassword(accessToken, currentPassword, newPassword);
+		return status;
 	}
 }
