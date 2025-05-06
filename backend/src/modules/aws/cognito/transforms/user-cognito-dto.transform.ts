@@ -13,17 +13,17 @@ export function UserCognitoToDto(user: AWS.UserType | AWS.GetUserResponse | AWS.
 	});
 
 	dto.id = user.Username;
-	dto.name = values.name || '';
-	dto.surname = values.family_name || '';
-	dto.birthdate = values.birthdate || '';
-	dto.email = values.email || '';
+	dto.name = values.name ?? '';
+	dto.surname = values.family_name ?? '';
+	dto.birthdate = values.birthdate ?? '';
+	dto.email = values.email ?? '';
 	dto.emailVerified = values.email_verified === 'true' ? true : false;
-	dto.phone = values.phone_number || '';
+	dto.phone = values.phone_number ?? '';
 	dto.phoneVerified = values.phone_number_verified === 'true' ? true : false;
-	dto.locale = values.locale || '';
-	dto.timezone = values.zoneinfo || '';
-	dto.avatar = values.picture || '';
-	dto.roles = values.roles ? values.roles.split(',') : [];
+	dto.locale = values.locale ?? '';
+	dto.timezone = values.zoneinfo ?? '';
+	dto.avatar = values.picture ?? '';
+	dto.roles = values.roles ? values.roles?.split(',') : [];
 
 	return dto;
 }
