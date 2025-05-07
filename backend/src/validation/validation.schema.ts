@@ -19,8 +19,8 @@ export namespace ValidationSchema {
 	 *		"user@@example.com" → No (double @).
 	 *		"user example@domain.com" → No (spaces are not allowed).
 	 */
-	const EmailRegExp = /^[^\s@]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/u;
-	const EmailMessage = 'Emails must have valid local, domain and a top-level domain parts';
+	const EmailRegExp: RegExp = /^[^\s@]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/u;
+	const EmailMessage: string = 'Emails must have valid local, domain and a top-level domain parts';
 
 	/**
 	 * Explanation:
@@ -37,8 +37,8 @@ export namespace ValidationSchema {
 	 *		"+44-1234567890" → No (hyphens are not allowed).
 	 *		"+abc1234567890" → No (letters are not allowed).
 	 */
-	const PhoneRegExp = /^\+\d{1,4}\d{6,14}$/;
-	const PhoneMessage = 'Phones must start with a country code and contain numeric characters';
+	const PhoneRegExp: RegExp = /^\+\d{1,4}\d{6,14}$/;
+	const PhoneMessage: string = 'Phones must start with a country code and contain numeric characters';
 
 	/**
 	 * Explanation:
@@ -55,11 +55,11 @@ export namespace ValidationSchema {
 	 *		"Hola mundo" → Yes.
 	 *		"123Hello" → No (must start with a letter).
 	 */
-	const NameRegExp = /^\p{L}+[\p{L}\p{N}]*( [\p{L}\p{N}]+)*$/u;
-	const NameMessage = 'Names must start with an alpha character and contain alphanumeric characters';
+	const NameRegExp: RegExp = /^\p{L}+[\p{L}\p{N}]*( [\p{L}\p{N}]+)*$/u;
+	const NameMessage: string = 'Names must start with an alpha character and contain alphanumeric characters';
 
-	const SurnameRegExp = NameRegExp;
-	const SurnameMessage = 'Surnames must start with an alpha character and contain alphanumeric characters';
+	const SurnameRegExp: RegExp = NameRegExp;
+	const SurnameMessage: string = 'Surnames must start with an alpha character and contain alphanumeric characters';
 
 	/**
 	 * Explanation:
@@ -72,8 +72,8 @@ export namespace ValidationSchema {
 	 *		"日本の写真.jpg" → Yes.
 	 *		"my-image_123.PNG" → Yes.
 	 */
-	const AvatarRegExp = /^[\p{L}\p{N}_\-\s]+\.(jpg|jpeg|png)$/iu;
-	const AvatarMessage = 'Avatars only support jpg, jpeg and png files.';
+	const AvatarRegExp: RegExp = /^[\p{L}\p{N}_\-\s]+\.(jpg|jpeg|png)$/iu;
+	const AvatarMessage: string = 'Avatars only support jpg, jpeg and png files.';
 
 	export const PasswordSchema = yup.string();
 
