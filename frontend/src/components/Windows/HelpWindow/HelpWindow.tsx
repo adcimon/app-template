@@ -39,6 +39,12 @@ export const HelpWindow = (props: HelpWindowProps): React.JSX.Element => {
 	};
 
 	const render = () => {
+		const size = {
+			xs: 10,
+			sm: 6,
+			md: 4,
+			lg: 4,
+		};
 		return (
 			<Window
 				label='Help'
@@ -46,7 +52,6 @@ export const HelpWindow = (props: HelpWindowProps): React.JSX.Element => {
 				onClose={handleClose}>
 				<Grid2
 					container
-					spacing={3}
 					sx={{
 						justifyContent: 'center',
 						width: '100%',
@@ -54,12 +59,7 @@ export const HelpWindow = (props: HelpWindowProps): React.JSX.Element => {
 							padding: '10px !important',
 						},
 					}}>
-					<Grid2
-						size={{
-							xs: 12,
-							sm: 6,
-							md: 4,
-						}}>
+					<Grid2 size={size}>
 						<Card
 							image='/images/learn.jpg'
 							title='Help'
@@ -77,12 +77,7 @@ export const HelpWindow = (props: HelpWindowProps): React.JSX.Element => {
 							</Typography>
 						</Card>
 					</Grid2>
-					<Grid2
-						size={{
-							xs: 12,
-							sm: 6,
-							md: 4,
-						}}>
+					<Grid2 size={size}>
 						<Card
 							image='/images/contact.jpg'
 							title='Contact Us'
@@ -100,12 +95,7 @@ export const HelpWindow = (props: HelpWindowProps): React.JSX.Element => {
 							</Typography>
 						</Card>
 					</Grid2>
-					<Grid2
-						size={{
-							xs: 12,
-							sm: 6,
-							md: 4,
-						}}>
+					<Grid2 size={size}>
 						<Card
 							image='/images/legal.jpg'
 							title='Legal'
