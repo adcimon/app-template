@@ -22,21 +22,23 @@ export class UsersService {
 		});
 	};
 
-	updateMyUser = async (params?: {
-		name?: string;
-		surname?: string;
-		birthdate?: string;
-		locale?: string;
-		timezone?: string;
-	}): Promise<any> => {
+	updateMyUser = async (
+		params: Partial<{
+			name: string;
+			surname: string;
+			birthdate: string;
+			locale: string;
+			timezone: string;
+		}> = {},
+	): Promise<any> => {
 		return this.httpPatch({
 			endpoint: '/users/me',
 			data: {
-				name: params?.name,
-				surname: params?.surname,
-				birthdate: params?.birthdate,
-				locale: params?.locale,
-				timezone: params?.timezone,
+				name: params.name,
+				surname: params.surname,
+				birthdate: params.birthdate,
+				locale: params.locale,
+				timezone: params.timezone,
 			},
 			useAuthorization: true,
 		});

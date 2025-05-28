@@ -14,13 +14,15 @@ export function useUserState<T extends User>() {
 		return user;
 	};
 
-	const update = async (params?: {
-		name?: string;
-		surname?: string;
-		birthdate?: string;
-		locale?: string;
-		timezone?: string;
-	}): Promise<T> => {
+	const update = async (
+		params: Partial<{
+			name: string;
+			surname: string;
+			birthdate: string;
+			locale: string;
+			timezone: string;
+		}> = {},
+	): Promise<T> => {
 		const user: T = await apiState.client?.usersService.updateMyUser(params);
 		setUser(user);
 		return user;

@@ -31,13 +31,13 @@ export class UsersService {
 
 	public async update(
 		id: string,
-		params?: {
+		params: Partial<{
 			name: string;
 			surname: string;
 			birthdate: string;
 			locale: string;
 			timezone: string;
-		},
+		}> = {},
 	): Promise<UserDto> {
 		const user: UserDto = await this.cognitoService.update(id, params);
 		return user;

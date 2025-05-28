@@ -337,13 +337,13 @@ export class CognitoService implements OnModuleInit {
 
 	public async update(
 		id: string,
-		params?: {
-			name?: string;
-			surname?: string;
-			birthdate?: string;
-			locale?: string;
-			timezone?: string;
-		},
+		params: Partial<{
+			name: string;
+			surname: string;
+			birthdate: string;
+			locale: string;
+			timezone: string;
+		}> = {},
 	): Promise<UserDto> {
 		const userPoolId: string = await this.configService.getVariable('AWS_USER_POOL_ID');
 
