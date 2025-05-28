@@ -1,9 +1,9 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '../../config/config.service';
-import { Transform } from '../../../decorators/transform.decorator';
-import { StatusBooleanToDto } from '../../../transforms/status-boolean-dto.transform';
-import { CredentialsObjectToDto } from './transforms/credentials-object-dto.transform';
-import { UserCognitoToDto } from './transforms/user-cognito-dto.transform';
+import { Map } from '../../../decorators/map.decorator';
+import { StatusBooleanToDto } from '../../../maps/status-boolean-dto.map';
+import { CredentialsObjectToDto } from './maps/credentials-object-dto.map';
+import { UserCognitoToDto } from './maps/user-cognito-dto.map';
 import { StatusDto } from '../../../dtos/status.dto';
 import { CredentialsDto } from '../../auth/credentials.dto';
 import { UserDto } from '../../users/user.dto';
@@ -137,7 +137,7 @@ export class CognitoService implements OnModuleInit {
 		return user;
 	}
 
-	@Transform(StatusBooleanToDto)
+	@Map(StatusBooleanToDto)
 	public async signDown(accessToken: string, password: string): Promise<StatusDto> {
 		// Check whether the user exists.
 		const user: UserDto = await this.getMyUser(accessToken);
@@ -149,7 +149,7 @@ export class CognitoService implements OnModuleInit {
 		return true as any;
 	}
 
-	@Transform(CredentialsObjectToDto)
+	@Map(CredentialsObjectToDto)
 	public async signIn(email: string, password: string): Promise<CredentialsDto> {
 		// Check whether the user exists.
 		const user: UserDto = await this.getByEmail(email);
@@ -160,7 +160,7 @@ export class CognitoService implements OnModuleInit {
 		return tokens as any;
 	}
 
-	@Transform(StatusBooleanToDto)
+	@Map(StatusBooleanToDto)
 	public async signOut(accessToken: string): Promise<StatusDto> {
 		const input: AWS.GlobalSignOutCommandInput = {
 			AccessToken: accessToken,
@@ -173,7 +173,7 @@ export class CognitoService implements OnModuleInit {
 		return true as any;
 	}
 
-	@Transform(CredentialsObjectToDto)
+	@Map(CredentialsObjectToDto)
 	public async refreshToken(refreshToken: string): Promise<CredentialsDto> {
 		const clientId: string = await this.configService.getVariable('AWS_USER_POOL_CLIENT_ID');
 
@@ -194,7 +194,7 @@ export class CognitoService implements OnModuleInit {
 		return { idToken, accessToken, refreshToken };
 	}
 
-	@Transform(StatusBooleanToDto)
+	@Map(StatusBooleanToDto)
 	public async verifyEmail(accessToken: string, code: string): Promise<StatusDto> {
 		const input: AWS.VerifyUserAttributeCommandInput = {
 			AccessToken: accessToken,
@@ -209,7 +209,7 @@ export class CognitoService implements OnModuleInit {
 		return true as any;
 	}
 
-	@Transform(StatusBooleanToDto)
+	@Map(StatusBooleanToDto)
 	public async forgotPassword(email: string): Promise<StatusDto> {
 		// Check whether the user exists.
 		const user: UserDto = await this.getByEmail(email);
@@ -228,7 +228,7 @@ export class CognitoService implements OnModuleInit {
 		return true as any;
 	}
 
-	@Transform(StatusBooleanToDto)
+	@Map(StatusBooleanToDto)
 	public async confirmPassword(email: string, code: string, password: string): Promise<StatusDto> {
 		// Check whether the user exists.
 		const user: UserDto = await this.getByEmail(email);
@@ -249,7 +249,7 @@ export class CognitoService implements OnModuleInit {
 		return true as any;
 	}
 
-	@Transform(StatusBooleanToDto)
+	@Map(StatusBooleanToDto)
 	public async changePassword(accessToken: string, currentPassword: string, newPassword: string): Promise<StatusDto> {
 		const input: AWS.ChangePasswordCommandInput = {
 			AccessToken: accessToken,
@@ -264,7 +264,7 @@ export class CognitoService implements OnModuleInit {
 		return true as any;
 	}
 
-	@Transform(UserCognitoToDto)
+	@Map(UserCognitoToDto)
 	public async get(id: string): Promise<UserDto> {
 		const userPoolId: string = await this.configService.getVariable('AWS_USER_POOL_ID');
 
@@ -280,7 +280,7 @@ export class CognitoService implements OnModuleInit {
 		return output as any;
 	}
 
-	@Transform(UserCognitoToDto)
+	@Map(UserCognitoToDto)
 	public async getBy(filter?: string): Promise<UserDto[]> {
 		const userPoolId: string = await this.configService.getVariable('AWS_USER_POOL_ID');
 
@@ -322,7 +322,7 @@ export class CognitoService implements OnModuleInit {
 		return user;
 	}
 
-	@Transform(UserCognitoToDto)
+	@Map(UserCognitoToDto)
 	public async getMyUser(accessToken: string): Promise<UserDto> {
 		const input: AWS.GetUserCommandInput = {
 			AccessToken: accessToken,
@@ -412,7 +412,7 @@ export class CognitoService implements OnModuleInit {
 		return await this.updateAttribute(id, 'picture', avatar);
 	}
 
-	@Transform(StatusBooleanToDto)
+	@Map(StatusBooleanToDto)
 	public async deleteMyUser(accessToken: string): Promise<StatusDto> {
 		const input: AWS.DeleteUserCommandInput = {
 			AccessToken: accessToken,

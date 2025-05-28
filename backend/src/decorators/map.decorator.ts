@@ -1,13 +1,13 @@
-export function Transform(transform: any) {
+export function Map(map: any) {
 	return function (target: Object, propertyKey: string, descriptor: PropertyDescriptor) {
 		const originalMethod = descriptor.value;
 
 		descriptor.value = async function (...args: any[]) {
 			const result: any = await originalMethod.apply(this, args);
 			if (Array.isArray(result)) {
-				return result.map((value: any) => transform(value));
+				return result.map((value: any) => map(value));
 			} else {
-				return transform(result);
+				return map(result);
 			}
 		};
 
