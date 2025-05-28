@@ -47,7 +47,7 @@ export class ConfigService {
 		}
 	}
 
-	public static async getEnvironmentVariable(key: string, defaultValue: any = undefined): Promise<any> {
+	public static async getEnvironmentVariable(key: string, defaultValue?: any): Promise<any> {
 		if (!(key in process.env)) {
 			console.log(`Environment variable not found: ${key}`);
 			return defaultValue;
@@ -58,7 +58,7 @@ export class ConfigService {
 		return ConfigService.parse(value);
 	}
 
-	public async getVariable(key: string, defaultValue: any = undefined): Promise<any> {
+	public async getVariable(key: string, defaultValue?: any): Promise<any> {
 		try {
 			const value: any = await ConfigService.getEnvironmentVariable(key, defaultValue);
 			return value;
