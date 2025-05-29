@@ -1,12 +1,18 @@
 import React from 'react';
-import { Chip, MenuItem, Stack, TextField, TextFieldProps } from '@mui/material';
+import { Chip, InputAdornment, MenuItem, Stack, TextField, TextFieldProps } from '@mui/material';
 
 export type MultipleSelectProps<T> = TextFieldProps & {
+	icon?: React.ReactNode;
 	options?: T[];
 	renderValue?: (value: T) => React.JSX.Element;
 };
 
-export const MultipleSelect = <T,>({ options, renderValue, ...props }: MultipleSelectProps<T>): React.JSX.Element => {
+export const MultipleSelect = <T,>({
+	icon,
+	options,
+	renderValue,
+	...props
+}: MultipleSelectProps<T>): React.JSX.Element => {
 	const [editable, setEditable] = React.useState<boolean>(true);
 
 	React.useEffect(() => {
@@ -30,6 +36,9 @@ export const MultipleSelect = <T,>({ options, renderValue, ...props }: MultipleS
 				select={true}
 				hiddenLabel={!props.label}
 				slotProps={{
+					input: {
+						startAdornment: <>{icon && <InputAdornment position='start'>{icon}</InputAdornment>}</>,
+					},
 					inputLabel: {
 						shrink: true,
 					},
