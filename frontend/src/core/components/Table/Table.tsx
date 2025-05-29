@@ -21,14 +21,14 @@ type RowsPerPageType = (typeof RowsPerPageRange)[number];
 
 interface TableProps<T> {
 	title?: React.ReactNode;
+	head?: React.ReactNode[];
 	itemName?: string;
 	items: T[];
-	head?: React.ReactNode[];
-	row?: (item: T) => React.ReactNode[];
-	dialog?: React.ReactNode;
-	deleteDialog?: React.ReactNode;
-	validate?: () => boolean;
 	rowsPerPage?: RowsPerPageType;
+	renderRow?: (item: T) => React.ReactNode[];
+	renderDialog?: () => React.ReactNode;
+	renderDeleteDialog?: () => React.ReactNode;
+	onValidate?: () => boolean;
 	onSelect?: (item: T) => void;
 	onDeselect?: () => void;
 	onCreate?: () => Promise<boolean>;
@@ -140,8 +140,8 @@ export const Table = <T,>(props: TableProps<T>): React.JSX.Element => {
 											sx={{
 												cursor: 'pointer',
 											}}>
-											{props.row
-												? props.row(item).map((node: React.ReactNode, index: number) => {
+											{props.renderRow
+												? props.renderRow(item).map((node: React.ReactNode, index: number) => {
 														return <TableCell key={index}>{node}</TableCell>;
 												  })
 												: undefined}
@@ -207,14 +207,14 @@ export const Table = <T,>(props: TableProps<T>): React.JSX.Element => {
 						</>
 					}
 					open={openItemDialog}
-					acceptable={props.validate ? props.validate() : true}
+					acceptable={props.onValidate ? props.onValidate() : true}
 					onAccept={handleAcceptDialog}
 					onCancel={props.onUpdate ? handleCloseDialog : undefined}
 					onClose={handleCloseDialog}>
 					<Stack
 						direction='column'
 						spacing={2}>
-						{props.dialog}
+						{props.renderDialog?.()}
 					</Stack>
 				</ConfirmationDialog>
 				<ConfirmationDialog
@@ -224,7 +224,11 @@ export const Table = <T,>(props: TableProps<T>): React.JSX.Element => {
 					onAccept={handleAcceptDelete}
 					onCancel={handleCancelDelete}
 					onClose={handleCancelDelete}>
-					{props.deleteDialog ? props.deleteDialog : <Typography>Do you want to delete it?</Typography>}
+					{props.renderDeleteDialog ? (
+						props.renderDeleteDialog()
+					) : (
+						<Typography>Do you want to delete it?</Typography>
+					)}
 				</ConfirmationDialog>
 			</>
 		);

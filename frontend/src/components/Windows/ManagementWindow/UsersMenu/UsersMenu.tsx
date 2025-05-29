@@ -224,11 +224,11 @@ export const UsersMenu = (): React.JSX.Element => {
 		return (
 			<Container maxWidth='xl'>
 				<Table<User>
+					head={['Name', 'Email', 'Phone']}
 					itemName='User'
 					items={adminState.users}
-					head={['Name', 'Email', 'Phone']}
-					row={renderRow}
-					dialog={renderDialog()}
+					renderRow={renderRow}
+					renderDialog={renderDialog}
 					onSelect={handleSelect}
 					onDeselect={handleDeselect}
 				/>
