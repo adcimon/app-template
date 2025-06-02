@@ -21,18 +21,45 @@ export namespace ObjectUtils {
 		return path.split('.').reduce((acc, part) => acc?.[part], obj);
 	};
 
-	export const set = <T, K extends Keys<T>>(obj: T, path: K, value: ValueAtKey<T, K>) => {
-		const keys: string[] = (path as string).split('.');
+	export const set = <T, K extends Keys<T>>(obj: T, key: K, value: ValueAtKey<T, K>) => {
+		const keys: string[] = (key as string).split('.');
 		const newObj: T = { ...obj };
 		let current: any = newObj;
 
 		for (let i = 0; i < keys.length - 1; i++) {
-			const key: string = keys[i];
-			current[key] = { ...current[key] };
-			current = current[key];
+			const k: string = keys[i];
+			current[k] = { ...current[k] };
+			current = current[k];
 		}
 
 		current[keys[keys.length - 1]] = value;
+
+		return newObj;
+	};
+
+	export const setMultiple = <T, P extends Keys<T>[]>(
+		obj: T,
+		updates: {
+			[I in keyof P]: {
+				key: P[I];
+				value: ValueAtKey<T, P[I]>;
+			};
+		},
+	): T => {
+		let newObj: T = { ...obj };
+
+		for (const { key: path, value } of updates) {
+			const keys: string[] = (path as string).split('.');
+			let current: any = newObj;
+
+			for (let i = 0; i < keys.length - 1; i++) {
+				const k = keys[i];
+				current[k] = { ...current[k] };
+				current = current[k];
+			}
+
+			current[keys[keys.length - 1]] = value;
+		}
 
 		return newObj;
 	};
