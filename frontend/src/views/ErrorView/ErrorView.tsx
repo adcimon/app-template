@@ -8,7 +8,7 @@ import { useResponsive } from '../../core/hooks/useResponsive';
 
 interface ErrorViewProps {
 	message?: string;
-	onClick?: () => void;
+	onClick?: (event: any) => void;
 }
 
 export const ErrorView = (props: ErrorViewProps): React.JSX.Element => {

@@ -6,7 +6,7 @@ interface NavigationItemProps {
 	label?: string;
 	icon?: React.ReactElement<any, string | React.JSXElementConstructor<any>>;
 	disabled?: boolean;
-	onClick?: React.MouseEventHandler<HTMLDivElement>;
+	onClick?: (event: any) => void;
 }
 
 export const NavigationItem = (props: NavigationItemProps): React.JSX.Element => {
