@@ -63,6 +63,11 @@ export const MultipleSelect = <T,>({
 								</Stack>
 							);
 						},
+						sx: {
+							'.MuiStack-root': {
+								overflow: 'auto',
+							},
+						},
 					},
 				}}>
 				{options?.map((value: T, index: number) => (
