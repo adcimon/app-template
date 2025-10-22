@@ -14,14 +14,6 @@ variable "SUBDOMAIN" {
   type = string
 }
 
-variable "DEPLOY_APP" {
-  type = bool
-}
-
-variable "DEPLOY_API" {
-  type = bool
-}
-
 variable "API_IMAGE_URL" {
   type = string
 }
@@ -32,4 +24,12 @@ variable "API_IMAGE_TAG" {
 
 variable "EXTERNAL_DNS" {
   type = bool
+}
+
+variable "DNS_ZONE_ID" {
+  type = string
+}
+
+variable "CERTIFICATE_ARN" {
+  type = string
 }
