@@ -1,6 +1,6 @@
 # Backend
 
-Based on [TypeScript](https://www.typescriptlang.org/), [Node.js](https://nodejs.org/en/), [Nest.js](https://nestjs.com/) and [AWS](https://aws.amazon.com/).
+Based on [TypeScript](https://www.typescriptlang.org/), [Node.js](https://nodejs.org/en/) and [NestJS](https://nestjs.com/).
 
 Requirements.
 * `Node v22.12.0`

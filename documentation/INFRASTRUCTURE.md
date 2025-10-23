@@ -1,6 +1,6 @@
 # Infrastructure
 
-The project stores the infrastructure files in the `infrastructure` directory. These files are used to deploy the required infrastructure services in AWS using [Terrafom](https://www.terraform.io/), an infrastructure-as-code software tool.
+The project stores the infrastructure files in the `infrastructure` directory. These files are used to deploy the required infrastructure services in [AWS](https://aws.amazon.com/) using [Terrafom](https://www.terraform.io/), an infrastructure-as-code software tool.
 
 ## Environments
 

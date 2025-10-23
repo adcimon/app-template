@@ -1,6 +1,6 @@
 # Frontend
 
-Based on [TypeScript](https://www.typescriptlang.org/), [React](https://react.dev/) and [MUI](https://mui.com/).
+Based on [TypeScript](https://www.typescriptlang.org/), [React](https://react.dev/) and [Material UI](https://mui.com/).
 
 Requirements.
 * `Node v22.12.0`
