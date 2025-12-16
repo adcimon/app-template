@@ -1,18 +1,22 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { ConfigurationErrorException } from '../../exceptions/configuration-error.exception';
 import { config } from 'dotenv';
 
 @Injectable()
 export class ConfigService {
+	private readonly logger = new Logger(ConfigService.name);
+
 	public static config(): any {
 		config();
-		console.log('Environment variables:');
-		Object.keys(process.env).forEach(function (key) {
-			console.log(key + '=' + process.env[key]);
-		});
+		if (process.env.NODE_ENV !== 'production') {
+			console.log('Environment variables:');
+			Object.keys(process.env).forEach((key: string) => {
+				console.log(key + '=' + process.env[key]);
+			});
+		}
 	}
 
-	private static parse(value: string): any {
+	private static parse(value: string): unknown {
 		if (value === '') {
 			return value;
 		}
@@ -45,25 +49,27 @@ export class ConfigService {
 		if (array.length > 1) {
 			return array;
 		}
+
+		return value;
 	}
 
-	public static async getEnvironmentVariable(key: string, defaultValue?: any): Promise<any> {
+	public static async getEnvironmentVariable<T = string>(key: string, defaultValue?: T): Promise<T> {
 		if (!(key in process.env)) {
-			console.log(`Environment variable not found: ${key}`);
 			return defaultValue;
 		}
 
 		const value: string = process.env[key];
+		const parsedValue: T = ConfigService.parse(value) as T;
 
-		return ConfigService.parse(value);
+		return parsedValue;
 	}
 
-	public async getVariable(key: string, defaultValue?: any): Promise<any> {
+	public async getVariable<T = string>(key: string, defaultValue?: T): Promise<any> {
 		try {
-			const value: any = await ConfigService.getEnvironmentVariable(key, defaultValue);
+			const value: T = await ConfigService.getEnvironmentVariable<T>(key, defaultValue);
 			return value;
 		} catch (error: any) {
-			console.log(error);
+			this.logger.log(error);
 			throw new ConfigurationErrorException(error.message);
 		}
 	}
