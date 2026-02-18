@@ -4,7 +4,7 @@ import { config } from 'dotenv';
 
 @Injectable()
 export class ConfigService {
-	private readonly logger = new Logger(ConfigService.name);
+	private readonly logger: Logger = new Logger(ConfigService.name);
 
 	public static config(): any {
 		config();
