@@ -64,7 +64,7 @@ export class LoggerMiddleware implements NestMiddleware {
 			message += ` <${ip}> <${userAgent}>`;
 			this.logger.log(message);
 
-			if (Object.keys(request.body).length !== 0) {
+			if (request.body && Object.keys(request.body).length !== 0) {
 				const body: any = { ...request.body };
 				delete body.password;
 				delete body.currentPassword;
