@@ -19,6 +19,11 @@ export class UsersService {
 		return users;
 	}
 
+	public async getBySub(sub: string): Promise<UserDto> {
+		const user: UserDto = await this.cognitoService.getBySub(sub);
+		return user;
+	}
+
 	public async getByEmail(email: string): Promise<UserDto> {
 		const user: UserDto = await this.cognitoService.getByEmail(email);
 		return user;

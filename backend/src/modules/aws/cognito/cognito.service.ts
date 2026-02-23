@@ -311,6 +311,17 @@ export class CognitoService implements OnModuleInit {
 		return users as any;
 	}
 
+	public async getBySub(sub: string): Promise<UserDto> {
+		const users: UserDto[] = await this.getBy(`sub = "${sub}"`);
+		if (users.length !== 1) {
+			throw new ResourceNotFoundException(RESOURCE_TYPE, { sub });
+		}
+
+		const user: UserDto = users[0];
+
+		return user;
+	}
+
 	public async getByEmail(email: string): Promise<UserDto> {
 		const users: UserDto[] = await this.getBy(`email = "${email}"`);
 		if (users.length !== 1) {

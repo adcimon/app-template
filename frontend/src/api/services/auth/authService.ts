@@ -15,7 +15,7 @@ export class AuthService {
 		this.httpDelete = httpDelete;
 	}
 
-	signUp = async (email: string, password: string): Promise<any> => {
+	public signUp = async (email: string, password: string): Promise<any> => {
 		return this.httpPost({
 			endpoint: '/auth/sign-up',
 			data: {
@@ -25,7 +25,7 @@ export class AuthService {
 		});
 	};
 
-	signDown = async (password: string): Promise<any> => {
+	public signDown = async (password: string): Promise<any> => {
 		return this.httpPost({
 			endpoint: '/auth/sign-down',
 			data: {
@@ -35,7 +35,7 @@ export class AuthService {
 		});
 	};
 
-	signIn = async (email: string, password: string): Promise<any> => {
+	public signIn = async (email: string, password: string): Promise<any> => {
 		return this.httpPost({
 			endpoint: '/auth/sign-in',
 			data: {
@@ -45,14 +45,14 @@ export class AuthService {
 		});
 	};
 
-	signOut = async (): Promise<any> => {
+	public signOut = async (): Promise<any> => {
 		return this.httpPost({
 			endpoint: '/auth/sign-out',
 			useAuthorization: true,
 		});
 	};
 
-	refreshToken = async (refreshToken: string): Promise<any> => {
+	public refreshToken = async (refreshToken: string): Promise<any> => {
 		return this.httpPost({
 			endpoint: '/auth/refresh-token',
 			data: {
@@ -61,7 +61,7 @@ export class AuthService {
 		});
 	};
 
-	verifyEmail = async (code: string): Promise<any> => {
+	public verifyEmail = async (code: string): Promise<any> => {
 		return this.httpPost({
 			endpoint: '/auth/verify-email',
 			data: {
@@ -71,7 +71,7 @@ export class AuthService {
 		});
 	};
 
-	forgotPassword = async (email: string): Promise<any> => {
+	public forgotPassword = async (email: string): Promise<any> => {
 		return this.httpPost({
 			endpoint: '/auth/forgot-password',
 			data: {
@@ -80,7 +80,7 @@ export class AuthService {
 		});
 	};
 
-	confirmPassword = async (email: string, code: string, password: string): Promise<any> => {
+	public confirmPassword = async (email: string, code: string, password: string): Promise<any> => {
 		return this.httpPost({
 			endpoint: '/auth/confirm-password',
 			data: {
@@ -91,7 +91,7 @@ export class AuthService {
 		});
 	};
 
-	changePassword = async (currentPassword: string, newPassword: string): Promise<any> => {
+	public changePassword = async (currentPassword: string, newPassword: string): Promise<any> => {
 		return this.httpPost({
 			endpoint: '/auth/change-password',
 			data: {

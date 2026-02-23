@@ -15,14 +15,14 @@ export class UsersService {
 		this.httpDelete = httpDelete;
 	}
 
-	getMyUser = async (): Promise<any> => {
+	public getMyUser = async (): Promise<any> => {
 		return this.httpGet({
 			endpoint: '/users/me',
 			useAuthorization: true,
 		});
 	};
 
-	updateMyUser = async (
+	public updateMyUser = async (
 		params: Partial<{
 			name: string;
 			surname: string;
@@ -44,7 +44,7 @@ export class UsersService {
 		});
 	};
 
-	updateMyEmail = async (email: string): Promise<any> => {
+	public updateMyEmail = async (email: string): Promise<any> => {
 		return this.httpPatch({
 			endpoint: '/users/me/email',
 			data: {
@@ -54,7 +54,7 @@ export class UsersService {
 		});
 	};
 
-	updateMyPhone = async (phone: string): Promise<any> => {
+	public updateMyPhone = async (phone: string): Promise<any> => {
 		return this.httpPatch({
 			endpoint: '/users/me/phone',
 			data: {
@@ -64,7 +64,7 @@ export class UsersService {
 		});
 	};
 
-	updateMyAvatar = async (avatar: string): Promise<any> => {
+	public updateMyAvatar = async (avatar: string): Promise<any> => {
 		return this.httpPatch({
 			endpoint: '/users/me/avatar',
 			data: {

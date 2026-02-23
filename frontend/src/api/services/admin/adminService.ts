@@ -15,7 +15,7 @@ export class AdminService {
 		this.httpDelete = httpDelete;
 	}
 
-	getUsers = async (): Promise<any> => {
+	public getUsers = async (): Promise<any> => {
 		return this.httpGet({
 			endpoint: '/users',
 			useAuthorization: true,
