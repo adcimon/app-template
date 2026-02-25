@@ -16,6 +16,27 @@ export class ConfigService {
 		}
 	}
 
+	public static getEnvironmentVariable<T = string>(key: string, defaultValue?: T): T {
+		if (!(key in process.env)) {
+			return defaultValue;
+		}
+
+		const value: string = process.env[key];
+		const parsedValue: T = ConfigService.parse(value) as T;
+
+		return parsedValue;
+	}
+
+	public async getVariable<T = string>(key: string, defaultValue?: T): Promise<any> {
+		try {
+			const value: T = ConfigService.getEnvironmentVariable<T>(key, defaultValue);
+			return value;
+		} catch (error: any) {
+			this.logger.log(error);
+			throw new ConfigurationErrorException(error.message);
+		}
+	}
+
 	private static parse(value: string): unknown {
 		if (value === '') {
 			return value;
@@ -51,26 +72,5 @@ export class ConfigService {
 		}
 
 		return value;
-	}
-
-	public static async getEnvironmentVariable<T = string>(key: string, defaultValue?: T): Promise<T> {
-		if (!(key in process.env)) {
-			return defaultValue;
-		}
-
-		const value: string = process.env[key];
-		const parsedValue: T = ConfigService.parse(value) as T;
-
-		return parsedValue;
-	}
-
-	public async getVariable<T = string>(key: string, defaultValue?: T): Promise<any> {
-		try {
-			const value: T = await ConfigService.getEnvironmentVariable<T>(key, defaultValue);
-			return value;
-		} catch (error: any) {
-			this.logger.log(error);
-			throw new ConfigurationErrorException(error.message);
-		}
 	}
 }

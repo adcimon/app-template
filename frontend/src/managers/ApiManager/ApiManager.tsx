@@ -1,5 +1,5 @@
 import React from 'react';
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { Credentials } from '../../model/api/credentials';
 import { useApiState } from '../../states/api/useApiState';
 import { useUserState } from '../../states/user/useUserState';
@@ -15,7 +15,7 @@ export const ApiManager = (props: ApiManagerProps): React.JSX.Element => {
 	const apiState = useApiState();
 	const userState = useUserState();
 
-	let endpoint: string = 'http://127.0.0.1:9000';
+	let endpoint: string = 'http://localhost:9000';
 	let instance: AxiosInstance;
 	let controller: AbortController;
 
@@ -31,7 +31,7 @@ export const ApiManager = (props: ApiManagerProps): React.JSX.Element => {
 		apiState.setClient(client);
 	};
 
-	const readConfig = async (): Promise<any> => {
+	const readConfig = async () => {
 		try {
 			const response: any = await axios.get('/config.json', { responseType: 'json' });
 			console.log(response.data);
@@ -41,17 +41,25 @@ export const ApiManager = (props: ApiManagerProps): React.JSX.Element => {
 		}
 	};
 
-	const getHttpConfig = (options: { useAuthorization?: boolean; useForm?: boolean }): any => {
+	const getHttpConfig = (options: {
+		useAuthorization?: boolean;
+		useForm?: boolean;
+		useCredentials?: boolean;
+	}): AxiosRequestConfig => {
 		const accessToken: string | undefined = localStorage.getItem('accessToken') ?? undefined;
 		const authorization: string | undefined =
 			options.useAuthorization && accessToken ? 'Bearer ' + accessToken : undefined;
 		const contentType: string | undefined = options.useForm ? 'multipart/form-data' : undefined;
-		return {
+
+		const config: AxiosRequestConfig = {
 			headers: {
 				Authorization: authorization,
 				ContentType: contentType,
 			},
+			withCredentials: options.useCredentials,
 		};
+
+		return config;
 	};
 
 	const createInstance = () => {
@@ -114,10 +122,12 @@ export const ApiManager = (props: ApiManagerProps): React.JSX.Element => {
 	const httpGet = async (params: HttpParams) => {
 		const endpoint: string = params.endpoint ?? '';
 		const useAuthorization: boolean = params.useAuthorization ?? false;
+		const useCredentials: boolean = params.useCredentials ?? true;
 
 		const call = async () => {
-			const config = getHttpConfig({
+			const config: AxiosRequestConfig = getHttpConfig({
 				useAuthorization,
+				useCredentials,
 			});
 			return await instance?.get(endpoint, config);
 		};
@@ -134,11 +144,13 @@ export const ApiManager = (props: ApiManagerProps): React.JSX.Element => {
 		const data: any = params.data ?? undefined;
 		const useAuthorization: boolean = params.useAuthorization ?? false;
 		const useForm: boolean = data instanceof FormData;
+		const useCredentials: boolean = params.useCredentials ?? true;
 
 		const call = async () => {
-			const config = getHttpConfig({
+			const config: AxiosRequestConfig = getHttpConfig({
 				useAuthorization,
 				useForm,
+				useCredentials,
 			});
 			return await instance?.post(endpoint, data, config);
 		};
@@ -154,10 +166,12 @@ export const ApiManager = (props: ApiManagerProps): React.JSX.Element => {
 		const endpoint: string = params.endpoint ?? '';
 		const data: any = params.data ?? undefined;
 		const useAuthorization: boolean = params.useAuthorization ?? false;
+		const useCredentials: boolean = params.useCredentials ?? true;
 
 		const call = async () => {
-			const config = getHttpConfig({
+			const config: AxiosRequestConfig = getHttpConfig({
 				useAuthorization,
+				useCredentials,
 			});
 			return await instance?.patch(endpoint, data, config);
 		};
@@ -173,10 +187,12 @@ export const ApiManager = (props: ApiManagerProps): React.JSX.Element => {
 		const endpoint: string = params.endpoint ?? '';
 		const data: any = params.data ?? undefined;
 		const useAuthorization: boolean = params.useAuthorization ?? false;
+		const useCredentials: boolean = params.useCredentials ?? true;
 
 		const call = async () => {
-			const config = getHttpConfig({
+			const config: AxiosRequestConfig = getHttpConfig({
 				useAuthorization,
+				useCredentials,
 			});
 			return await instance?.put(endpoint, data, config);
 		};
@@ -192,10 +208,12 @@ export const ApiManager = (props: ApiManagerProps): React.JSX.Element => {
 		const endpoint: string = params.endpoint ?? '';
 		const data: any = params.data ?? undefined;
 		const useAuthorization: boolean = params.useAuthorization ?? false;
+		const useCredentials: boolean = params.useCredentials ?? true;
 
 		const call = async () => {
-			const config = getHttpConfig({
+			const config: AxiosRequestConfig = getHttpConfig({
 				useAuthorization,
+				useCredentials,
 			});
 			config.data = data;
 			return await instance?.delete(endpoint, config);

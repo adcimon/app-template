@@ -2,6 +2,7 @@ export type HttpParams = {
 	endpoint?: string;
 	data?: any;
 	useAuthorization?: boolean;
+	useCredentials?: boolean;
 };
 
 export type HttpGet = (params: HttpParams) => any;
