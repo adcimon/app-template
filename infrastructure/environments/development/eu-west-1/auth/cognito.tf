@@ -37,8 +37,8 @@ resource "aws_cognito_user_pool_domain" "user_pool_domain" {
   user_pool_id = aws_cognito_user_pool.user_pool.id
 }
 
-resource "aws_cognito_user_pool_client" "user_pool_client" {
-  name         = "${var.PROJECT}_${var.ENVIRONMENT}_user_pool_client"
+resource "aws_cognito_user_pool_client" "user_pool_api_client" {
+  name         = "${var.PROJECT}_${var.ENVIRONMENT}_user_pool_api_client"
   user_pool_id = aws_cognito_user_pool.user_pool.id
   explicit_auth_flows = [
     "USER_PASSWORD_AUTH",

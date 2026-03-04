@@ -8,4 +8,4 @@ It is configured with the following features:
 
 Once the infrastructure is deployed, update the backend environment variables:
 * `AWS_USER_POOL_ID=<cognito_user_pool_id>`
-* `AWS_USER_POOL_CLIENT_ID=<cognito_user_pool_client_id>`
+* `AWS_USER_POOL_API_CLIENT_ID=<cognito_user_pool_api_client_id>`

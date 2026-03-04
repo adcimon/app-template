@@ -37,7 +37,7 @@ export class CognitoService implements OnModuleInit {
 	}
 
 	private async authUser(id: string, password: string): Promise<object> {
-		const clientId: string = await this.configService.getVariable('AWS_USER_POOL_CLIENT_ID');
+		const clientId: string = await this.configService.getVariable('AWS_USER_POOL_API_CLIENT_ID');
 
 		const input: AWS.InitiateAuthCommandInput = {
 			AuthFlow: 'USER_PASSWORD_AUTH',
@@ -100,7 +100,7 @@ export class CognitoService implements OnModuleInit {
 			throw new EmailTakenException(email);
 		}
 
-		const clientId: string = await this.configService.getVariable('AWS_USER_POOL_CLIENT_ID');
+		const clientId: string = await this.configService.getVariable('AWS_USER_POOL_API_CLIENT_ID');
 		const username: string = CryptoUtils.generateId();
 		const name: string = email.substring(0, email.indexOf('@'));
 
@@ -175,7 +175,7 @@ export class CognitoService implements OnModuleInit {
 
 	@Map(CredentialsObjectToDto)
 	public async refreshToken(refreshToken: string): Promise<CredentialsDto> {
-		const clientId: string = await this.configService.getVariable('AWS_USER_POOL_CLIENT_ID');
+		const clientId: string = await this.configService.getVariable('AWS_USER_POOL_API_CLIENT_ID');
 
 		const input: AWS.InitiateAuthCommandInput = {
 			AuthFlow: 'REFRESH_TOKEN_AUTH',
@@ -214,7 +214,7 @@ export class CognitoService implements OnModuleInit {
 		// Check whether the user exists.
 		const user: UserDto = await this.getByEmail(email);
 
-		const clientId: string = await this.configService.getVariable('AWS_USER_POOL_CLIENT_ID');
+		const clientId: string = await this.configService.getVariable('AWS_USER_POOL_API_CLIENT_ID');
 
 		const input: AWS.ForgotPasswordCommandInput = {
 			ClientId: clientId,
@@ -233,7 +233,7 @@ export class CognitoService implements OnModuleInit {
 		// Check whether the user exists.
 		const user: UserDto = await this.getByEmail(email);
 
-		const clientId: string = await this.configService.getVariable('AWS_USER_POOL_CLIENT_ID');
+		const clientId: string = await this.configService.getVariable('AWS_USER_POOL_API_CLIENT_ID');
 
 		const input: AWS.ConfirmForgotPasswordCommandInput = {
 			ClientId: clientId,
