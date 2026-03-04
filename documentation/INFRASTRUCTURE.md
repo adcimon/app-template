@@ -7,7 +7,7 @@ The project stores the infrastructure files in the `infrastructure` directory. T
 Currently there is 1 environment:
 * `development`
 
-The `variables.tf` file defines the `PROJECT` and `ENVIRONMENT` local variables (e.g. `studiocall` and `development`). These must be copied in the backend `.env` file variables `AWS_PROJECT` and `AWS_ENVIRONMENT`.
+The `variables.tf` file defines the `PROJECT` and `ENVIRONMENT` local variables (e.g. `studiocall` and `development`). These must be copied in the backend `.env` file variables `PROJECT` and `ENVIRONMENT`.
 
 ## State
 
