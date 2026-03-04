@@ -1,22 +1,10 @@
-import { HttpDelete, HttpGet, HttpPatch, HttpPost, HttpPut } from '../httpMethods';
+import { ApiClient } from '../apiClient';
 
 export class UsersService {
-	httpGet: HttpGet;
-	httpPost: HttpPost;
-	httpPatch: HttpPatch;
-	httpPut: HttpPut;
-	httpDelete: HttpDelete;
-
-	constructor(httpGet: HttpGet, httpPost: HttpPost, httpPatch: HttpPatch, httpPut: HttpPut, httpDelete: HttpDelete) {
-		this.httpGet = httpGet;
-		this.httpPost = httpPost;
-		this.httpPatch = httpPatch;
-		this.httpPut = httpPut;
-		this.httpDelete = httpDelete;
-	}
+	constructor(private api: ApiClient) {}
 
 	public getMyUser = async (): Promise<any> => {
-		return this.httpGet({
+		return this.api.get({
 			endpoint: '/users/me',
 			useAuthorization: true,
 		});
@@ -31,7 +19,7 @@ export class UsersService {
 			timezone: string;
 		}> = {},
 	): Promise<any> => {
-		return this.httpPatch({
+		return this.api.patch({
 			endpoint: '/users/me',
 			data: {
 				name: params.name,
@@ -45,7 +33,7 @@ export class UsersService {
 	};
 
 	public updateMyEmail = async (email: string): Promise<any> => {
-		return this.httpPatch({
+		return this.api.patch({
 			endpoint: '/users/me/email',
 			data: {
 				email,
@@ -55,7 +43,7 @@ export class UsersService {
 	};
 
 	public updateMyPhone = async (phone: string): Promise<any> => {
-		return this.httpPatch({
+		return this.api.patch({
 			endpoint: '/users/me/phone',
 			data: {
 				phone,
@@ -65,7 +53,7 @@ export class UsersService {
 	};
 
 	public updateMyAvatar = async (avatar: string): Promise<any> => {
-		return this.httpPatch({
+		return this.api.patch({
 			endpoint: '/users/me/avatar',
 			data: {
 				avatar,

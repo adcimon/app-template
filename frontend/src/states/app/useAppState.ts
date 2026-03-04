@@ -2,22 +2,22 @@ import * as Recoil from 'recoil';
 import { Status } from '../../model/api/status';
 import { Credentials } from '../../model/api/credentials';
 import { User } from '../../model/api/user';
-import { useApiState } from '../api/useApiState';
+import { useApi } from '../../clients/api/apiContext';
 import { MetadataState, ThemeState } from './appState';
 
 export function useAppState() {
-	const apiState = useApiState();
+	const api = useApi();
 
 	const [metadata, setMetadata] = Recoil.useRecoilState(MetadataState);
 	const [theme, setTheme] = Recoil.useRecoilState(ThemeState);
 
 	const signUp = async (email: string, password: string): Promise<User> => {
-		const user: User = await apiState.client?.authService.signUp(email, password);
+		const user: User = await api.client?.authService.signUp(email, password);
 		return user;
 	};
 
 	const signDown = async (password: string): Promise<boolean> => {
-		const status: Status = await apiState.client?.authService.signDown(password);
+		const status: Status = await api.client?.authService.signDown(password);
 
 		localStorage.removeItem('accessToken');
 		localStorage.removeItem('refreshToken');
@@ -26,7 +26,7 @@ export function useAppState() {
 	};
 
 	const signIn = async (email: string, password: string): Promise<Credentials> => {
-		const credentials: Credentials = await apiState.client?.authService.signIn(email, password);
+		const credentials: Credentials = await api.client?.authService.signIn(email, password);
 
 		const accessToken: string = credentials.accessToken;
 		localStorage.setItem('accessToken', accessToken);
@@ -37,7 +37,7 @@ export function useAppState() {
 	};
 
 	const signOut = async (): Promise<boolean> => {
-		const status: Status = await apiState.client?.authService.signOut();
+		const status: Status = await api.client?.authService.signOut();
 
 		localStorage.removeItem('accessToken');
 		localStorage.removeItem('refreshToken');
@@ -46,27 +46,27 @@ export function useAppState() {
 	};
 
 	const verifyEmail = async (code: string): Promise<boolean> => {
-		const status: Status = await apiState.client?.authService.verifyEmail(code);
+		const status: Status = await api.client?.authService.verifyEmail(code);
 		return status.status;
 	};
 
 	const forgotPassword = async (email: string): Promise<boolean> => {
-		const status: Status = await apiState.client?.authService.forgotPassword(email);
+		const status: Status = await api.client?.authService.forgotPassword(email);
 		return status.status;
 	};
 
 	const confirmPassword = async (email: string, code: string, password: string): Promise<boolean> => {
-		const status: Status = await apiState.client?.authService.confirmPassword(email, code, password);
+		const status: Status = await api.client?.authService.confirmPassword(email, code, password);
 		return status.status;
 	};
 
 	const changePassword = async (currentPassword: string, newPassword: string): Promise<boolean> => {
-		const status: Status = await apiState.client?.authService.changePassword(currentPassword, newPassword);
+		const status: Status = await api.client?.authService.changePassword(currentPassword, newPassword);
 		return status.status;
 	};
 
 	const reset = () => {
-		apiState.client?.cancelRequests();
+		api.client?.cancelRequests();
 	};
 
 	return {

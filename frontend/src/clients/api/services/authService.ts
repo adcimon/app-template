@@ -1,59 +1,49 @@
-import { HttpDelete, HttpGet, HttpPatch, HttpPost, HttpPut } from '../httpMethods';
+import { ApiClient } from '../apiClient';
+import { CryptoUtils } from '../../../utils/cryptoUtils';
 
 export class AuthService {
-	httpGet: HttpGet;
-	httpPost: HttpPost;
-	httpPatch: HttpPatch;
-	httpPut: HttpPut;
-	httpDelete: HttpDelete;
-
-	constructor(httpGet: HttpGet, httpPost: HttpPost, httpPatch: HttpPatch, httpPut: HttpPut, httpDelete: HttpDelete) {
-		this.httpGet = httpGet;
-		this.httpPost = httpPost;
-		this.httpPatch = httpPatch;
-		this.httpPut = httpPut;
-		this.httpDelete = httpDelete;
-	}
+	constructor(private api: ApiClient) {}
 
 	public signUp = async (email: string, password: string): Promise<any> => {
-		return this.httpPost({
+		return this.api.post({
 			endpoint: '/auth/sign-up',
 			data: {
 				email,
-				password: btoa(password),
+				password: CryptoUtils.encodeBase64(password),
 			},
 		});
 	};
 
 	public signDown = async (password: string): Promise<any> => {
-		return this.httpPost({
+		return this.api.post({
 			endpoint: '/auth/sign-down',
 			data: {
-				password: btoa(password),
+				password: CryptoUtils.encodeBase64(password),
 			},
 			useAuthorization: true,
 		});
 	};
 
 	public signIn = async (email: string, password: string): Promise<any> => {
-		return this.httpPost({
+		return this.api.post({
 			endpoint: '/auth/sign-in',
 			data: {
 				email,
-				password: btoa(password),
+				password: CryptoUtils.encodeBase64(password),
 			},
 		});
 	};
 
 	public signOut = async (): Promise<any> => {
-		return this.httpPost({
+		return this.api.post({
 			endpoint: '/auth/sign-out',
+			data: {},
 			useAuthorization: true,
 		});
 	};
 
 	public refreshToken = async (refreshToken: string): Promise<any> => {
-		return this.httpPost({
+		return this.api.post({
 			endpoint: '/auth/refresh-token',
 			data: {
 				refreshToken,
@@ -62,7 +52,7 @@ export class AuthService {
 	};
 
 	public verifyEmail = async (code: string): Promise<any> => {
-		return this.httpPost({
+		return this.api.post({
 			endpoint: '/auth/verify-email',
 			data: {
 				code,
@@ -72,7 +62,7 @@ export class AuthService {
 	};
 
 	public forgotPassword = async (email: string): Promise<any> => {
-		return this.httpPost({
+		return this.api.post({
 			endpoint: '/auth/forgot-password',
 			data: {
 				email,
@@ -81,22 +71,22 @@ export class AuthService {
 	};
 
 	public confirmPassword = async (email: string, code: string, password: string): Promise<any> => {
-		return this.httpPost({
+		return this.api.post({
 			endpoint: '/auth/confirm-password',
 			data: {
 				email,
 				code,
-				password: btoa(password),
+				password: CryptoUtils.encodeBase64(password),
 			},
 		});
 	};
 
 	public changePassword = async (currentPassword: string, newPassword: string): Promise<any> => {
-		return this.httpPost({
+		return this.api.post({
 			endpoint: '/auth/change-password',
 			data: {
-				currentPassword: btoa(currentPassword),
-				newPassword: btoa(newPassword),
+				currentPassword: CryptoUtils.encodeBase64(currentPassword),
+				newPassword: CryptoUtils.encodeBase64(newPassword),
 			},
 			useAuthorization: true,
 		});

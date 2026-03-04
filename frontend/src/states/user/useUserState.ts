@@ -1,15 +1,15 @@
 import * as Recoil from 'recoil';
 import { User } from '../../model/api/user';
-import { useApiState } from '../api/useApiState';
+import { useApi } from '../../clients/api/apiContext';
 import { UserState } from './userState';
 
 export function useUserState<T extends User>() {
-	const apiState = useApiState();
+	const api = useApi();
 
 	const [user, setUser] = Recoil.useRecoilState(UserState);
 
 	const get = async (): Promise<T> => {
-		const user: T = await apiState.client?.usersService.getMyUser();
+		const user: T = await api.client?.usersService.getMyUser();
 		setUser(user);
 		return user;
 	};
@@ -23,24 +23,24 @@ export function useUserState<T extends User>() {
 			timezone: string;
 		}> = {},
 	): Promise<T> => {
-		const user: T = await apiState.client?.usersService.updateMyUser(params);
+		const user: T = await api.client?.usersService.updateMyUser(params);
 		setUser(user);
 		return user;
 	};
 
 	const updateEmail = async (email: string): Promise<T> => {
-		const user: T = await apiState.client?.usersService.updateMyEmail(email);
+		const user: T = await api.client?.usersService.updateMyEmail(email);
 		return user;
 	};
 
 	const updatePhone = async (phone: string): Promise<T> => {
-		const user: T = await apiState.client?.usersService.updateMyPhone(phone);
+		const user: T = await api.client?.usersService.updateMyPhone(phone);
 		setUser(user);
 		return user;
 	};
 
 	const updateAvatar = async (avatar: string): Promise<T> => {
-		const user: T = await apiState.client?.usersService.updateMyAvatar(avatar);
+		const user: T = await api.client?.usersService.updateMyAvatar(avatar);
 		return user;
 	};
 

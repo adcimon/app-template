@@ -48,7 +48,7 @@ export const LaunchView = (props: LaunchViewProps): React.JSX.Element => {
 										width: '100%',
 									}}>
 									<img
-										src='/images/brainstorm_background.jpg'
+										src='/images/app_banner.jpg'
 										style={{
 											height: '100%',
 											objectFit: 'cover',

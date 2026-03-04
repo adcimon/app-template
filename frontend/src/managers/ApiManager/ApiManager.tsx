@@ -1,268 +1,59 @@
 import React from 'react';
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
-import { Credentials } from '../../model/api/credentials';
-import { useApiState } from '../../states/api/useApiState';
+import { ApiContext, useApi } from '../../clients/api/apiContext';
+import { ApiClient } from '../../clients/api/apiClient';
 import { useUserState } from '../../states/user/useUserState';
-import { HttpParams } from '../../api/httpMethods';
-import { ApiClient } from '../../api/apiClient';
-import { ConsoleUtils } from '../../utils/consoleUtils';
+import { AppUtils } from '../../utils/appUtils';
 
 interface ApiManagerProps {
 	children?: React.ReactNode;
 }
 
 export const ApiManager = (props: ApiManagerProps): React.JSX.Element => {
-	const apiState = useApiState();
-	const userState = useUserState();
+	const apiClientRef = React.useRef<ApiClient | null>(null);
+	const [initialized, setInitialized] = React.useState(false);
 
-	let endpoint: string = 'http://localhost:9000';
-	let instance: AxiosInstance;
-	let controller: AbortController;
+	const api = useApi();
+	const userState = useUserState();
 
 	React.useEffect(() => {
 		init();
 	}, []);
 
 	const init = async () => {
-		await readConfig();
-
-		createInstance();
-
-		apiState.setClient(client);
-	};
-
-	const readConfig = async () => {
 		try {
-			const response: any = await axios.get('/config.json', { responseType: 'json' });
-			console.log(response.data);
-			endpoint = response?.data?.endpoint;
+			const config: any = await AppUtils.getConfig();
+			console.log(config);
+
+			apiClientRef.current = new ApiClient({
+				endpoint: config['endpoint'] ?? '',
+				getAccessToken: api.getAccessToken,
+				getRefreshToken: api.getRefreshToken,
+				onAuthRefresh: handleAuthRefresh,
+				onAuthError: handleAuthError,
+			});
+
+			setInitialized(true);
 		} catch (error: any) {
 			console.log(error);
 		}
 	};
 
-	const getHttpConfig = (options: {
-		useAuthorization?: boolean;
-		useForm?: boolean;
-		useCredentials?: boolean;
-	}): AxiosRequestConfig => {
-		const accessToken: string | undefined = localStorage.getItem('accessToken') ?? undefined;
-		const authorization: string | undefined =
-			options.useAuthorization && accessToken ? 'Bearer ' + accessToken : undefined;
-		const contentType: string | undefined = options.useForm ? 'multipart/form-data' : undefined;
-
-		const config: AxiosRequestConfig = {
-			headers: {
-				Authorization: authorization,
-				ContentType: contentType,
-			},
-			withCredentials: options.useCredentials,
-		};
-
-		return config;
+	const handleAuthRefresh = (accessToken: string, refreshToken: string) => {
+		api.setAccessToken(accessToken);
+		api.setRefreshToken(refreshToken);
 	};
 
-	const createInstance = () => {
-		controller = new AbortController();
-
-		instance = axios.create({
-			baseURL: endpoint,
-			signal: controller.signal,
-		});
-
-		// Intercept requests.
-		instance.interceptors.request.use(
-			(config: any) => {
-				const endpoint: string = `${config?.baseURL}${config?.url}`;
-				const method: string = config?.method?.toUpperCase();
-				const data: any = config?.data || {};
-				ConsoleUtils.logRequest(method, endpoint, data);
-				return config;
-			},
-			(error: any) => {
-				return Promise.reject({
-					code: 'network_error',
-					message: error.message,
-					data: error,
-				});
-			},
-		);
-
-		// Intercept responses.
-		instance.interceptors.response.use(
-			(response: any) => {
-				const status: number = response?.status;
-				const body: any = response?.data;
-				const endpoint: string = body?.endpoint;
-				const data: any = body?.data;
-				ConsoleUtils.logResponse(status, endpoint, body);
-				return Promise.resolve(data);
-			},
-			(error: any) => {
-				const status: number = error?.response?.status ?? 666;
-				const body: any = error?.response?.data;
-				const endpoint: string = body?.endpoint;
-				const err: any = error?.response?.data?.error;
-				if (body && err) {
-					ConsoleUtils.logResponse(status, endpoint, body);
-					return Promise.reject(err);
-				} else {
-					const endpoint: string = error.config.baseURL + error.config.url;
-					ConsoleUtils.logResponse(status, endpoint, error);
-					return Promise.reject({
-						code: 'network_error',
-						message: error.message,
-						data: error,
-					});
-				}
-			},
-		);
+	const handleAuthError = () => {
+		api.clearTokens();
+		userState.reset();
 	};
-
-	const httpGet = async (params: HttpParams) => {
-		const endpoint: string = params.endpoint ?? '';
-		const useAuthorization: boolean = params.useAuthorization ?? false;
-		const useCredentials: boolean = params.useCredentials ?? true;
-
-		const call = async () => {
-			const config: AxiosRequestConfig = getHttpConfig({
-				useAuthorization,
-				useCredentials,
-			});
-			return await instance?.get(endpoint, config);
-		};
-
-		try {
-			return await call();
-		} catch (error: any) {
-			return await handleError(call, error);
-		}
-	};
-
-	const httpPost = async (params: HttpParams) => {
-		const endpoint: string = params.endpoint ?? '';
-		const data: any = params.data ?? undefined;
-		const useAuthorization: boolean = params.useAuthorization ?? false;
-		const useForm: boolean = data instanceof FormData;
-		const useCredentials: boolean = params.useCredentials ?? true;
-
-		const call = async () => {
-			const config: AxiosRequestConfig = getHttpConfig({
-				useAuthorization,
-				useForm,
-				useCredentials,
-			});
-			return await instance?.post(endpoint, data, config);
-		};
-
-		try {
-			return await call();
-		} catch (error: any) {
-			return await handleError(call, error);
-		}
-	};
-
-	const httpPatch = async (params: HttpParams) => {
-		const endpoint: string = params.endpoint ?? '';
-		const data: any = params.data ?? undefined;
-		const useAuthorization: boolean = params.useAuthorization ?? false;
-		const useCredentials: boolean = params.useCredentials ?? true;
-
-		const call = async () => {
-			const config: AxiosRequestConfig = getHttpConfig({
-				useAuthorization,
-				useCredentials,
-			});
-			return await instance?.patch(endpoint, data, config);
-		};
-
-		try {
-			return await call();
-		} catch (error: any) {
-			return await handleError(call, error);
-		}
-	};
-
-	const httpPut = async (params: HttpParams) => {
-		const endpoint: string = params.endpoint ?? '';
-		const data: any = params.data ?? undefined;
-		const useAuthorization: boolean = params.useAuthorization ?? false;
-		const useCredentials: boolean = params.useCredentials ?? true;
-
-		const call = async () => {
-			const config: AxiosRequestConfig = getHttpConfig({
-				useAuthorization,
-				useCredentials,
-			});
-			return await instance?.put(endpoint, data, config);
-		};
-
-		try {
-			return await call();
-		} catch (error: any) {
-			return await handleError(call, error);
-		}
-	};
-
-	const httpDelete = async (params: HttpParams) => {
-		const endpoint: string = params.endpoint ?? '';
-		const data: any = params.data ?? undefined;
-		const useAuthorization: boolean = params.useAuthorization ?? false;
-		const useCredentials: boolean = params.useCredentials ?? true;
-
-		const call = async () => {
-			const config: AxiosRequestConfig = getHttpConfig({
-				useAuthorization,
-				useCredentials,
-			});
-			config.data = data;
-			return await instance?.delete(endpoint, config);
-		};
-
-		try {
-			return await call();
-		} catch (error: any) {
-			return await handleError(call, error);
-		}
-	};
-
-	const cancelRequests = () => {
-		controller?.abort();
-		createInstance();
-	};
-
-	const handleError = async (call: any, error: any) => {
-		if (error?.code === 'unauthorized') {
-			// Try to refresh the access token.
-			try {
-				const refreshToken: string = localStorage.getItem('refreshToken') || '';
-				const credentials: Credentials = await client.authService.refreshToken(refreshToken);
-
-				const accessToken: string = credentials.accessToken;
-				localStorage.setItem('accessToken', accessToken);
-			} catch (err: any) {}
-
-			// Call the API endpoint again.
-			try {
-				return await call();
-			} catch (err: any) {
-				localStorage.removeItem('accessToken');
-				localStorage.removeItem('refreshToken');
-
-				apiState.setClient(client);
-				userState.reset();
-
-				throw error;
-			}
-		} else {
-			throw error;
-		}
-	};
-
-	const client: ApiClient = new ApiClient(httpGet, httpPost, httpPatch, httpPut, httpDelete, cancelRequests);
 
 	const render = () => {
-		return <>{apiState.client && props.children}</>;
+		if (!initialized || !apiClientRef.current) {
+			return <></>;
+		}
+
+		return <ApiContext.Provider value={{ client: apiClientRef.current }}>{props.children}</ApiContext.Provider>;
 	};
 
 	return render();

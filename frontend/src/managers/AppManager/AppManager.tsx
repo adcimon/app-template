@@ -1,6 +1,6 @@
 import React from 'react';
-import axios from 'axios';
 import { useAppState } from '../../states/app/useAppState';
+import { AppUtils } from '../../utils/appUtils';
 
 interface AppManagerProps {
 	children?: React.ReactNode;
@@ -14,13 +14,8 @@ export const AppManager = (props: AppManagerProps): React.JSX.Element => {
 	}, []);
 
 	const init = async () => {
-		await readMetadata();
-	};
-
-	const readMetadata = async (): Promise<any> => {
 		try {
-			const response: any = await axios.get('/metadata.json', { responseType: 'json' });
-			const metadata: object = response.data;
+			const metadata: any = await AppUtils.getMetadata();
 			console.log(metadata);
 			appState.setMetadata(metadata);
 		} catch (error: any) {
