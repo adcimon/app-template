@@ -1,4 +1,4 @@
-import { Injectable, NestMiddleware, Logger } from '@nestjs/common';
+import { Injectable, Logger, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 
 const WHITE_COLOR: string = '\x1b[0m';

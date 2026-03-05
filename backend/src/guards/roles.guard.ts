@@ -1,4 +1,4 @@
-import { Injectable, CanActivate, ExecutionContext, mixin } from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable, mixin } from '@nestjs/common';
 import { UserDto } from '../modules/users/user.dto';
 import { Role } from '../types/role';
 

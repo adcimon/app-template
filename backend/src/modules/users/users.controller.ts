@@ -1,4 +1,4 @@
-import { Controller, Get, Patch, Request, Body, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Patch, Request, UseGuards, UseInterceptors } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { AuthGuard } from '../../guards/auth.guard';
 import { ResponseInterceptor } from '../../interceptors/response.interceptor';

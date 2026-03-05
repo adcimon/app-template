@@ -1,4 +1,4 @@
-import { Module, NestModule, MiddlewareConsumer, Logger } from '@nestjs/common';
+import { Logger, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { APP_INTERCEPTOR, APP_FILTER } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { ConfigModule } from './config/config.module';
