@@ -1,7 +1,5 @@
 import React from 'react';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import { Button, Stack, Typography } from '@mui/material';
 import { ErrorIcon } from './ErrorIcon';
 import { useResponsive } from '../../core/hooks/useResponsive';
 

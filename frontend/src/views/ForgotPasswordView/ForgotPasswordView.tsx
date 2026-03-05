@@ -1,10 +1,5 @@
 import React from 'react';
-import Badge from '@mui/material/Badge';
-import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
-import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
+import { Badge, Button, Link, Stack, TextField, Typography } from '@mui/material';
 import { ToastManager } from '../../managers/ToastManager/ToastManager';
 import { Copyright } from '../../components/Copyright/Copyright';
 import { EmailField } from '../../core/components/Field/EmailField';

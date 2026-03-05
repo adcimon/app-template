@@ -1,11 +1,5 @@
 import React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import InputAdornment from '@mui/material/InputAdornment';
-import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
+import { Avatar, Box, Container, InputAdornment, Stack, TextField, Typography } from '@mui/material';
 import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
 import { CountrySelect } from '../../../../core/components/Select/CountrySelect';
 import { Table } from '../../../../core/components/Table/Table';

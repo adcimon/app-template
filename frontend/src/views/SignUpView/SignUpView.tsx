@@ -1,10 +1,5 @@
 import React from 'react';
-import Button from '@mui/material/Button';
-import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Link from '@mui/material/Link';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import { Button, Checkbox, FormControlLabel, Link, Stack, Typography } from '@mui/material';
 import { ToastManager } from '../../managers/ToastManager/ToastManager';
 import { Copyright } from '../../components/Copyright/Copyright';
 import { EmailField } from '../../core/components/Field/EmailField';

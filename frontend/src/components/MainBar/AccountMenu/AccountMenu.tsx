@@ -1,17 +1,9 @@
 import React from 'react';
-import { SxProps } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
-import Box from '@mui/material/Box';
-import Chip from '@mui/material/Chip';
-import Divider from '@mui/material/Divider';
+import { Avatar, Box, Chip, Divider, MenuItem, MenuList, Skeleton, SxProps, Typography } from '@mui/material';
 import ExitToApp from '@mui/icons-material/ExitToApp';
 import HelpIcon from '@mui/icons-material/Help';
-import MenuItem from '@mui/material/MenuItem';
-import MenuList from '@mui/material/MenuList';
 import SecurityIcon from '@mui/icons-material/Security';
 import SettingsIcon from '@mui/icons-material/Settings';
-import Skeleton from '@mui/material/Skeleton';
-import Typography from '@mui/material/Typography';
 import { ToastManager } from '../../../managers/ToastManager/ToastManager';
 import { ConfirmationDialog } from '../../../core/components/Dialog/ConfirmationDialog';
 import { HelpWindow } from '../../Windows/HelpWindow/HelpWindow';

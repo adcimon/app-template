@@ -1,11 +1,6 @@
 import React from 'react';
+import { Avatar, Box, IconButton, Stack, TextField, Typography } from '@mui/material';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-import Avatar from '@mui/material/Avatar';
-import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
-import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
 import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
 import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
 import { useUserState } from '../../../../states/user/useUserState';

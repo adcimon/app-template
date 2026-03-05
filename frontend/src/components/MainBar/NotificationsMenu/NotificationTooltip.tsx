@@ -1,9 +1,7 @@
 import React from 'react';
-import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
+import { Box, Divider, Stack } from '@mui/material';
 import EventIcon from '@mui/icons-material/Event';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import Stack from '@mui/material/Stack';
 
 interface NotificationTooltipProps {
 	notification: any;

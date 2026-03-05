@@ -1,12 +1,6 @@
 import React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Box from '@mui/material/Box';
+import { Avatar, Box, IconButton, MenuItem, Stack, Tooltip, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
-import MenuItem from '@mui/material/MenuItem';
-import Stack from '@mui/material/Stack';
-import Tooltip from '@mui/material/Tooltip';
-import Typography from '@mui/material/Typography';
 import { NotificationTooltip } from './NotificationTooltip';
 
 interface NotificationItemProps {

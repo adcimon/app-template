@@ -1,14 +1,16 @@
 import React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardHeader from '@mui/material/CardHeader';
-import Divider from '@mui/material/Divider';
-import Grid2 from '@mui/material/Grid2';
-import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
+import {
+	Box,
+	Button,
+	Card,
+	CardActions,
+	CardContent,
+	CardHeader,
+	Divider,
+	Grid2,
+	TextField,
+	Typography,
+} from '@mui/material';
 import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
 import { LocaleSelect } from '../../../../core/components/Select/LocaleSelect';
 import { TimezoneSelect } from '../../../../core/components/Select/TimezoneSelect';

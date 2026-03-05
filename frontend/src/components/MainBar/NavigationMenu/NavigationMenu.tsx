@@ -1,6 +1,5 @@
 import React from 'react';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
-import Typography from '@mui/material/Typography';
+import { Breadcrumbs, Typography } from '@mui/material';
 
 interface NavigationMenuProps {
 	children?: React.ReactNode;

@@ -1,12 +1,7 @@
 import React from 'react';
+import { Box, Card, Stack, Tab, Tabs, Typography } from '@mui/material';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
-import Stack from '@mui/material/Stack';
-import Tab from '@mui/material/Tab';
-import Tabs from '@mui/material/Tabs';
-import Typography from '@mui/material/Typography';
 import { IdentityBadge } from '../../../core/components/Badge/IdentityBadge';
 import { PreferencesMenu } from './PreferencesMenu/PreferencesMenu';
 import { ProfileMenu } from './ProfileMenu/ProfileMenu';

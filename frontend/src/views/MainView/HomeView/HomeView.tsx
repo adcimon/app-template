@@ -1,10 +1,5 @@
 import React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
-import Grid2 from '@mui/material/Grid2';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import { Box, Button, Container, Grid2, Stack, Typography } from '@mui/material';
 import { UserCard } from '../../../core/components/Card/UserCard';
 
 export const HomeView = (): React.JSX.Element => {

@@ -1,7 +1,5 @@
 import React from 'react';
-import Button from '@mui/material/Button';
-import Grid2 from '@mui/material/Grid2';
-import Typography from '@mui/material/Typography';
+import { Button, Grid2, Typography } from '@mui/material';
 import { Card } from '../../../core/components/Card/Card';
 import { PrivacyPolicyDialog } from '../../Dialog/PrivacyPolicyDialog';
 import { TermsOfServiceDialog } from '../../Dialog/TermsOfServiceDialog';

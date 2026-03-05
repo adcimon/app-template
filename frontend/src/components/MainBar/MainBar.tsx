@@ -1,7 +1,5 @@
 import React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
+import { AppBar, Box, Toolbar } from '@mui/material';
 import { AccountMenu } from './AccountMenu/AccountMenu';
 import { NotificationsMenu } from './NotificationsMenu/NotificationsMenu';
 

@@ -1,13 +1,6 @@
 import React from 'react';
-import Badge from '@mui/material/Badge';
-import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import MenuItem from '@mui/material/MenuItem';
-import MenuList from '@mui/material/MenuList';
+import { Badge, Box, Divider, IconButton, MenuItem, MenuList, Tooltip, Typography } from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import Tooltip from '@mui/material/Tooltip';
-import Typography from '@mui/material/Typography';
 import { NotificationItem } from './NotificationItem';
 import { Popover } from '../../../core/components/Popover/Popover';
 

@@ -1,11 +1,6 @@
 import React from 'react';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
+import { Box, Card, Stack, Tab, Tabs, Typography } from '@mui/material';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-import Stack from '@mui/material/Stack';
-import Tab from '@mui/material/Tab';
-import Tabs from '@mui/material/Tabs';
-import Typography from '@mui/material/Typography';
 import { UsersMenu } from './UsersMenu/UsersMenu';
 import { Window } from '../../../core/components/Window/Window';
 import { useResponsive } from '../../../core/hooks/useResponsive';

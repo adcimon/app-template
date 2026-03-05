@@ -1,9 +1,5 @@
 import React from 'react';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Container from '@mui/material/Container';
-import Grid2 from '@mui/material/Grid2';
+import { Box, Card, CardContent, Container, Grid2 } from '@mui/material';
 
 interface LaunchViewProps {
 	children?: React.ReactNode;

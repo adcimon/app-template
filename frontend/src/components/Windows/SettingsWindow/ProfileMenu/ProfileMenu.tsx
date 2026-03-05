@@ -1,5 +1,5 @@
 import React from 'react';
-import Grid2 from '@mui/material/Grid2';
+import { Grid2 } from '@mui/material';
 import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
 import { ProfileDangerZoneCard } from './ProfileDangerZoneCard';
 import { ProfileDetailsCard } from './ProfileDetailsCard';

@@ -1,7 +1,5 @@
 import React from 'react';
-import LinearProgress from '@mui/material/LinearProgress';
-import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
+import { LinearProgress, Stack, Typography } from '@mui/material';
 
 export const LoadingView = (): React.JSX.Element => {
 	const render = () => {
