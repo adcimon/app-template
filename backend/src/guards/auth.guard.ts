@@ -16,23 +16,21 @@ export const AuthGuard = (...methods: AuthMethod[]) => {
 				throw new UnauthorizedException();
 			}
 
-			if (methods.includes(AuthMethod.Bearer)) {
-				if (authHeader.startsWith('Bearer ')) {
-					// Extract the access token from the HTTP authorization header.
-					const accessToken: string = authHeader.split(' ')[1];
-					if (!accessToken) {
-						throw new UnauthorizedException();
-					}
+			if (methods.includes(AuthMethod.Bearer) && authHeader.startsWith('Bearer ')) {
+				// Extract the access token from the authorization header.
+				const accessToken: string | undefined = authHeader.split(' ').at(1);
+				if (!accessToken) {
+					throw new UnauthorizedException();
+				}
 
-					// Verify the access token and get the user.
-					try {
-						const user: UserDto = await this.usersService.getMyUser(accessToken);
-						request.accessToken = accessToken;
-						request.user = user;
-						return true;
-					} catch (error: any) {
-						throw new UnauthorizedException(error.message);
-					}
+				// Verify the access token and get the user.
+				try {
+					const user: UserDto = await this.usersService.getMyUser(accessToken);
+					request.accessToken = accessToken;
+					request.user = user;
+					return true;
+				} catch (error: any) {
+					throw new UnauthorizedException(error.message);
 				}
 			}
 

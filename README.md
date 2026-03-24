@@ -6,4 +6,4 @@ Template to bootstrap a cloud application using:
 * Backend: [Node.js](https://nodejs.org/), [TypeScript](https://www.typescriptlang.org/) and [NestJS](https://nestjs.com/).
 * Infrastructure: [AWS](https://aws.amazon.com/) and [Terraform](https://developer.hashicorp.com/terraform).
 
-![Architecture](/documentation/architecture.png "Architecture")
+![Architecture](/docs/architecture.png "Architecture")
