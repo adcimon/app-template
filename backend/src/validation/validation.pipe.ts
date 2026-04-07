@@ -7,8 +7,13 @@ export class ValidationPipe implements PipeTransform {
 
 	async transform(value: any, metadata: ArgumentMetadata): Promise<any> {
 		try {
-			await this.schema.validate(value, { abortEarly: false });
-			return value;
+			await this.schema.validate(value, {
+				abortEarly: false,
+			});
+
+			const castedValue: any = this.schema.cast(value);
+
+			return castedValue;
 		} catch (exception) {
 			const message: any = exception.errors.length === 0 ? 'Validation error' : exception.errors[0];
 			throw new ValidationErrorException(message);
