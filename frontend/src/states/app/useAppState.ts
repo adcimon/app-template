@@ -1,4 +1,4 @@
-import * as Recoil from 'recoil';
+import { useAtom } from 'jotai';
 import { Status } from '../../model/api/status';
 import { Credentials } from '../../model/api/credentials';
 import { User } from '../../model/api/user';
@@ -8,8 +8,8 @@ import { MetadataState, ThemeState } from './appState';
 export function useAppState() {
 	const api = useApi();
 
-	const [metadata, setMetadata] = Recoil.useRecoilState(MetadataState);
-	const [theme, setTheme] = Recoil.useRecoilState(ThemeState);
+	const [metadata, setMetadata] = useAtom(MetadataState);
+	const [theme, setTheme] = useAtom(ThemeState);
 
 	const signUp = async (email: string, password: string): Promise<User> => {
 		const user: User = await api.client?.authService.signUp(email, password);

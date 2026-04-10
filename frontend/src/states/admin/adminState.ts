@@ -1,7 +1,4 @@
-import * as Recoil from 'recoil';
+import { atom } from 'jotai';
 import { User } from '../../model/api/user';
 
-export const UsersState = Recoil.atom<User[]>({
-	key: 'Users',
-	default: [],
-});
+export const UsersState = atom<User[]>([]);

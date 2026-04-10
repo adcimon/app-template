@@ -1,11 +1,5 @@
-import * as Recoil from 'recoil';
+import { atom } from 'jotai';
 
-export const MetadataState = Recoil.atom<any>({
-	key: 'MetadataState',
-	default: {},
-});
+export const MetadataState = atom<any>({});
 
-export const ThemeState = Recoil.atom<number>({
-	key: 'Theme',
-	default: 0,
-});
+export const ThemeState = atom<number>(0);

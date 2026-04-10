@@ -1,4 +1,4 @@
-import * as Recoil from 'recoil';
+import { useAtom } from 'jotai';
 import { User } from '../../model/api/user';
 import { useApi } from '../../clients/api/apiContext';
 import { UserState } from './userState';
@@ -6,7 +6,7 @@ import { UserState } from './userState';
 export function useUserState<T extends User>() {
 	const api = useApi();
 
-	const [user, setUser] = Recoil.useRecoilState(UserState);
+	const [user, setUser] = useAtom(UserState);
 
 	const get = async (): Promise<T> => {
 		const user: T = await api.client?.usersService.getMyUser();
