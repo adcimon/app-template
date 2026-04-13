@@ -45,26 +45,28 @@ export const ManagementWindow = (props: ManagementWindowProps): React.JSX.Elemen
 						position: 'relative',
 					}}
 				/>
-				<Tabs
-					value={tab}
-					onChange={handleTabChange}
+				<Stack
+					direction='row'
 					sx={{
-						'& .MuiTabs-flexContainer': {
-							justifyContent: responsive ? 'flex-start' : 'flex-end',
-							paddingX: '2rem',
-						},
+						justifyContent: responsive ? 'flex-start' : 'flex-end',
+						paddingX: '2rem',
+						width: '100%',
 					}}>
-					<Tab
-						label={
-							<Stack
-								direction='row'
-								spacing={0.5}>
-								<PeopleAltIcon />
-								<Typography>Users</Typography>
-							</Stack>
-						}
-					/>
-				</Tabs>
+					<Tabs
+						value={tab}
+						onChange={handleTabChange}>
+						<Tab
+							label={
+								<Stack
+									direction='row'
+									spacing={0.5}>
+									<PeopleAltIcon />
+									<Typography>Users</Typography>
+								</Stack>
+							}
+						/>
+					</Tabs>
+				</Stack>
 			</Card>
 		);
 	};
