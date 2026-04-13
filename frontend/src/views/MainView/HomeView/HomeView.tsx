@@ -23,7 +23,6 @@ export const HomeView = (): React.JSX.Element => {
 						</Typography>
 						<Typography
 							variant='h6'
-							paragraph
 							sx={{
 								color: 'text.secondary',
 								textAlign: 'center',
