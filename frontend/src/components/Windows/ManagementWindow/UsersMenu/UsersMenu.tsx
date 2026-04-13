@@ -191,7 +191,7 @@ export const UsersMenu = (): React.JSX.Element => {
 					}}
 				/>
 				<LocaleSelect
-					label='Country'
+					label='Locale'
 					value={user?.locale ?? ''}
 					disabled={true}
 					slotProps={{
