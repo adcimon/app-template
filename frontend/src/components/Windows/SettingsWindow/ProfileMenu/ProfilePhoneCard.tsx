@@ -102,7 +102,7 @@ export const ProfilePhoneCard = (): React.JSX.Element => {
 										lg: 12,
 									}}>
 									<CountrySelect
-										value={country?.code}
+										value={country?.code ?? ''}
 										onChange={(event: any) => setCountryCode(event.target.value?.phone)}
 										slotProps={{
 											inputLabel: {
@@ -119,7 +119,7 @@ export const ProfilePhoneCard = (): React.JSX.Element => {
 									}}>
 									<PhoneField
 										label='Phone'
-										value={nationalNumber}
+										value={nationalNumber ?? ''}
 										onChange={(event: any) => setNationalNumber(event.target.value)}
 										fullWidth={true}
 										slotProps={{

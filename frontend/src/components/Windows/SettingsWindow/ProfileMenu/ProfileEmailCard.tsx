@@ -24,7 +24,7 @@ export const ProfileEmailCard = (): React.JSX.Element => {
 	const appState = useAppState();
 	const userState = useUserState();
 
-	const [email, setEmail] = React.useState<string>('');
+	const [email, setEmail] = React.useState<string>(userState.user?.email ?? '');
 	const [newEmail, setNewEmail] = React.useState<string>('');
 	const [code, setCode] = React.useState<string>('');
 	const [openVerifyDialog, setOpenVerifyDialog] = React.useState<boolean>(false);
