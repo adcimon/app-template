@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Card, CardActions, CardContent, CardHeader, Divider, Grid2, Typography } from '@mui/material';
+import { Box, Button, Card, CardActions, CardContent, CardHeader, Divider, Grid, Typography } from '@mui/material';
 import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
 import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
 import { PasswordField } from '../../../../core/components/Field/PasswordField';
@@ -68,10 +68,10 @@ export const ProfilePasswordCard = (): React.JSX.Element => {
 								margin: -1.5,
 								padding: 2,
 							}}>
-							<Grid2
+							<Grid
 								container
 								spacing={3}>
-								<Grid2
+								<Grid
 									size={{
 										xs: 12,
 										sm: 12,
@@ -85,8 +85,8 @@ export const ProfilePasswordCard = (): React.JSX.Element => {
 										Password change requires to insert your current password, the new one and
 										confirm it.
 									</Typography>
-								</Grid2>
-							</Grid2>
+								</Grid>
+							</Grid>
 						</Box>
 					</CardContent>
 					<Divider />

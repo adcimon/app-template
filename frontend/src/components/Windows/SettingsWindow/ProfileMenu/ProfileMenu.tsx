@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid2 } from '@mui/material';
+import { Grid } from '@mui/material';
 import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
 import { ProfileDangerZoneCard } from './ProfileDangerZoneCard';
 import { ProfileDetailsCard } from './ProfileDetailsCard';
@@ -25,7 +25,7 @@ export const ProfileMenu = (): React.JSX.Element => {
 
 	const render = () => {
 		return (
-			<Grid2
+			<Grid
 				container
 				sx={{
 					width: '100%',
@@ -33,47 +33,47 @@ export const ProfileMenu = (): React.JSX.Element => {
 						padding: '10px !important',
 					},
 				}}>
-				<Grid2
+				<Grid
 					size={{
 						xs: 12,
 						sm: 6,
 						md: 12,
 					}}>
 					<ProfileDetailsCard />
-				</Grid2>
-				<Grid2
+				</Grid>
+				<Grid
 					size={{
 						xs: 12,
 						sm: 6,
 						md: 6,
 					}}>
 					<ProfileEmailCard />
-				</Grid2>
-				<Grid2
+				</Grid>
+				<Grid
 					size={{
 						xs: 12,
 						sm: 6,
 						md: 6,
 					}}>
 					<ProfilePhoneCard />
-				</Grid2>
-				<Grid2
+				</Grid>
+				<Grid
 					size={{
 						xs: 12,
 						sm: 6,
 						md: 6,
 					}}>
 					<ProfilePasswordCard />
-				</Grid2>
-				<Grid2
+				</Grid>
+				<Grid
 					size={{
 						xs: 12,
 						sm: 6,
 						md: 6,
 					}}>
 					<ProfileDangerZoneCard />
-				</Grid2>
-			</Grid2>
+				</Grid>
+			</Grid>
 		);
 	};
 

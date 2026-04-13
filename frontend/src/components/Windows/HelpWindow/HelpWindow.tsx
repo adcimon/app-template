@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Grid2, Typography } from '@mui/material';
+import { Button, Grid, Typography } from '@mui/material';
 import { Card } from '../../../core/components/Card/Card';
 import { PrivacyPolicyDialog } from '../../Dialog/PrivacyPolicyDialog';
 import { TermsOfServiceDialog } from '../../Dialog/TermsOfServiceDialog';
@@ -48,7 +48,7 @@ export const HelpWindow = (props: HelpWindowProps): React.JSX.Element => {
 				label='Help'
 				open={props.open}
 				onClose={handleClose}>
-				<Grid2
+				<Grid
 					container
 					sx={{
 						justifyContent: 'center',
@@ -57,7 +57,7 @@ export const HelpWindow = (props: HelpWindowProps): React.JSX.Element => {
 							padding: '10px !important',
 						},
 					}}>
-					<Grid2 size={size}>
+					<Grid size={size}>
 						<Card
 							image='/images/learn.jpg'
 							title='Help'
@@ -74,8 +74,8 @@ export const HelpWindow = (props: HelpWindowProps): React.JSX.Element => {
 								most of our features.
 							</Typography>
 						</Card>
-					</Grid2>
-					<Grid2 size={size}>
+					</Grid>
+					<Grid size={size}>
 						<Card
 							image='/images/contact.jpg'
 							title='Contact Us'
@@ -92,8 +92,8 @@ export const HelpWindow = (props: HelpWindowProps): React.JSX.Element => {
 								support team via email or chat.
 							</Typography>
 						</Card>
-					</Grid2>
-					<Grid2 size={size}>
+					</Grid>
+					<Grid size={size}>
 						<Card
 							image='/images/legal.jpg'
 							title='Legal'
@@ -116,8 +116,8 @@ export const HelpWindow = (props: HelpWindowProps): React.JSX.Element => {
 								using our application and how we collect, use, and protect your data.
 							</Typography>
 						</Card>
-					</Grid2>
-				</Grid2>
+					</Grid>
+				</Grid>
 				<TermsOfServiceDialog
 					open={openTermsOfServiceDialog}
 					onClose={handleCloseTermsOfService}

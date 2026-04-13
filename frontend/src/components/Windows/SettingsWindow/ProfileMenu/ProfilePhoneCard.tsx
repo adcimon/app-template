@@ -7,7 +7,7 @@ import {
 	CardContent,
 	CardHeader,
 	Divider,
-	Grid2,
+	Grid,
 	Stack,
 	Typography,
 } from '@mui/material';
@@ -92,10 +92,10 @@ export const ProfilePhoneCard = (): React.JSX.Element => {
 								margin: -1.5,
 								padding: 2,
 							}}>
-							<Grid2
+							<Grid
 								container
 								spacing={3}>
-								<Grid2
+								<Grid
 									size={{
 										xs: 12,
 										md: 12,
@@ -110,8 +110,8 @@ export const ProfilePhoneCard = (): React.JSX.Element => {
 											},
 										}}
 									/>
-								</Grid2>
-								<Grid2
+								</Grid>
+								<Grid
 									size={{
 										xs: 12,
 										md: 12,
@@ -128,8 +128,8 @@ export const ProfilePhoneCard = (): React.JSX.Element => {
 											},
 										}}
 									/>
-								</Grid2>
-							</Grid2>
+								</Grid>
+							</Grid>
 						</Box>
 					</CardContent>
 					<Divider />

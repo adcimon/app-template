@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Card, CardContent, Container, Grid2 } from '@mui/material';
+import { Box, Card, CardContent, Container, Grid } from '@mui/material';
 
 interface LaunchViewProps {
 	children?: React.ReactNode;
@@ -28,8 +28,8 @@ export const LaunchView = (props: LaunchViewProps): React.JSX.Element => {
 				/>
 				<Container maxWidth='md'>
 					<Card>
-						<Grid2 container>
-							<Grid2
+						<Grid container>
+							<Grid
 								size={{
 									xs: 12,
 									md: 6,
@@ -52,8 +52,8 @@ export const LaunchView = (props: LaunchViewProps): React.JSX.Element => {
 										}}
 									/>
 								</Box>
-							</Grid2>
-							<Grid2
+							</Grid>
+							<Grid
 								size={{
 									xs: 12,
 									md: 6,
@@ -69,8 +69,8 @@ export const LaunchView = (props: LaunchViewProps): React.JSX.Element => {
 									}}>
 									{props.children}
 								</CardContent>
-							</Grid2>
-						</Grid2>
+							</Grid>
+						</Grid>
 					</Card>
 				</Container>
 			</Container>

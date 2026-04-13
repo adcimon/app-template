@@ -8,13 +8,13 @@ type TimezoneSelectProps = TextFieldProps & {
 
 export const TimezoneSelect = ({ disableClearable, ...props }: TimezoneSelectProps): React.JSX.Element => {
 	const render = () => {
-		const defaultValue =
-			timezones[timezones.findIndex((timezone: string) => timezone === props.defaultValue)] || null;
-		const value = timezones[timezones.findIndex((timezone: string) => timezone === props.value)] || null;
+		const isControlled = props.value !== undefined;
+		const selectedValue: string | null =
+			timezones.find((timezone: string) => timezone === (isControlled ? props.value : props.defaultValue)) ??
+			null;
 		return (
 			<Autocomplete
-				defaultValue={defaultValue}
-				value={value ?? defaultValue}
+				{...(isControlled ? { value: selectedValue } : { defaultValue: selectedValue })}
 				onChange={(event: any, value: any) => props.onChange?.({ ...event, target: { value: value } })}
 				options={timezones}
 				disabled={props.disabled}
@@ -32,35 +32,36 @@ export const TimezoneSelect = ({ disableClearable, ...props }: TimezoneSelectPro
 					);
 				}}
 				renderInput={(params) => {
-					const { defaultValue, value, onChange, ...subprops } = props;
+					const { value, defaultValue, onChange, ...subprops } = props;
 					return (
 						<TextField
 							{...params}
 							{...subprops}
 							label={props.label ?? 'Timezone'}
 							slotProps={{
+								...params.slotProps,
+								...props.slotProps,
 								input: {
-									...params.InputProps,
+									...params.slotProps?.input,
 									...props.slotProps?.input,
 									startAdornment: (
-										<InputAdornment
-											position='start'
-											sx={{
-												marginRight: '2px !important',
-												marginTop: '0 !important',
-											}}>
-											<AccessTimeFilledIcon fontSize='small' />
-										</InputAdornment>
+										<>
+											<InputAdornment
+												position='start'
+												sx={{
+													marginRight: '2px !important',
+													marginTop: '0 !important',
+												}}>
+												<AccessTimeFilledIcon fontSize='small' />
+											</InputAdornment>
+											{params.slotProps?.input?.startAdornment}
+										</>
 									),
-									sx: {
-										...props.sx,
-										height: '100%',
-									},
 								},
 								htmlInput: {
-									...params.inputProps,
+									...params.slotProps?.htmlInput,
 									...props.slotProps?.htmlInput,
-									autoComplete: 'new-password', // Disable autocomplete and autofill.
+									autoComplete: 'new-password',
 								},
 							}}
 						/>

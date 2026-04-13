@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Card, CardContent, CardHeader, Grid2, MenuItem, Typography } from '@mui/material';
+import { Box, Card, CardContent, CardHeader, Grid, MenuItem, Typography } from '@mui/material';
 import { Select } from '../../../../core/components/Select/Select';
 import { useAppState } from '../../../../states/app/useAppState';
 
@@ -38,7 +38,7 @@ export const PreferencesMenu = (): React.JSX.Element => {
 
 	const renderItem = (children: React.ReactNode) => {
 		return (
-			<Grid2
+			<Grid
 				size={{
 					xs: 12,
 					sm: 12,
@@ -52,7 +52,7 @@ export const PreferencesMenu = (): React.JSX.Element => {
 					}}>
 					{children}
 				</Box>
-			</Grid2>
+			</Grid>
 		);
 	};
 
@@ -69,11 +69,11 @@ export const PreferencesMenu = (): React.JSX.Element => {
 							margin: -1.5,
 							padding: 2,
 						}}>
-						<Grid2
+						<Grid
 							container
 							spacing={3}>
 							{renderItem(renderTheme())}
-						</Grid2>
+						</Grid>
 					</Box>
 				</CardContent>
 			</Card>

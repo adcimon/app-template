@@ -1,7 +1,7 @@
 import React from 'react';
 import { Avatar, Box, Container, InputAdornment, Stack, TextField, Typography } from '@mui/material';
 import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
-import { CountrySelect } from '../../../../core/components/Select/CountrySelect';
+import { LocaleSelect } from '../../../../core/components/Select/LocaleSelect';
 import { Table } from '../../../../core/components/Table/Table';
 import { TimezoneSelect } from '../../../../core/components/Select/TimezoneSelect';
 import { VerificationBadge } from '../../../../core/components/Badge/VerificationBadge';
@@ -139,7 +139,7 @@ export const UsersMenu = (): React.JSX.Element => {
 				</Stack>
 				<TextField
 					label='Email'
-					defaultValue={user?.email}
+					value={user?.email ?? ''}
 					disabled={true}
 					fullWidth={true}
 					slotProps={{
@@ -158,7 +158,7 @@ export const UsersMenu = (): React.JSX.Element => {
 				/>
 				<TextField
 					label='Phone'
-					defaultValue={user?.phone}
+					value={user?.phone ?? ''}
 					disabled={true}
 					fullWidth={true}
 					slotProps={{
@@ -178,7 +178,7 @@ export const UsersMenu = (): React.JSX.Element => {
 				<TextField
 					label='Birthdate'
 					type='date'
-					defaultValue={user?.birthdate}
+					value={user?.birthdate ?? ''}
 					disabled={true}
 					fullWidth={true}
 					slotProps={{
@@ -190,9 +190,9 @@ export const UsersMenu = (): React.JSX.Element => {
 						},
 					}}
 				/>
-				<CountrySelect
+				<LocaleSelect
 					label='Country'
-					defaultValue={user?.locale}
+					value={user?.locale ?? ''}
 					disabled={true}
 					slotProps={{
 						inputLabel: {
@@ -202,7 +202,7 @@ export const UsersMenu = (): React.JSX.Element => {
 				/>
 				<TimezoneSelect
 					label='Timezone'
-					defaultValue={user?.timezone}
+					value={user?.timezone ?? ''}
 					disabled={true}
 					slotProps={{
 						inputLabel: {

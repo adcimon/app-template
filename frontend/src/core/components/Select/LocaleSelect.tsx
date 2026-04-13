@@ -13,18 +13,18 @@ export interface LocaleType {
 
 export const LocaleSelect = ({ disableClearable, ...props }: LocaleSelectProps): React.JSX.Element => {
 	const render = () => {
-		const defaultValue =
-			locales[locales.findIndex((locale: LocaleType) => locale.code === props.defaultValue)] || null;
-		const value = locales[locales.findIndex((locale: LocaleType) => locale.code === props.value)] || null;
+		const isControlled = props.value !== undefined;
+		const selectedValue: LocaleType | null =
+			locales.find((locale: LocaleType) => locale.code === (isControlled ? props.value : props.defaultValue)) ??
+			null;
 		return (
 			<Autocomplete
-				defaultValue={defaultValue}
-				value={value ?? defaultValue}
-				onChange={(event: any, value: any) => props.onChange?.({ ...event, target: { value: value } })}
 				options={locales}
-				disabled={props.disabled}
+				{...(isControlled ? { value: selectedValue } : { defaultValue: selectedValue })}
 				disableClearable={disableClearable}
-				getOptionLabel={(option) => option.label}
+				disabled={props.disabled}
+				onChange={(event: any, value: any) => props.onChange?.({ ...event, target: { value: value } })}
+				getOptionLabel={(option: LocaleType) => option.label}
 				renderOption={(props, option) => {
 					const { key, ...subprops } = props;
 					return (
@@ -39,41 +39,42 @@ export const LocaleSelect = ({ disableClearable, ...props }: LocaleSelectProps):
 									fontSize: '0.8rem',
 									marginLeft: '0.25rem',
 								}}>
-								{`(${option.code})`}
+								({option.code})
 							</Typography>
 						</Box>
 					);
 				}}
 				renderInput={(params) => {
-					const { defaultValue, value, onChange, ...subprops } = props;
+					const { value, defaultValue, onChange, ...subprops } = props;
 					return (
 						<TextField
 							{...params}
 							{...subprops}
 							label={props.label ?? 'Locale'}
 							slotProps={{
+								...params.slotProps,
+								...props.slotProps,
 								input: {
-									...params.InputProps,
+									...params.slotProps?.input,
 									...props.slotProps?.input,
 									startAdornment: (
-										<InputAdornment
-											position='start'
-											sx={{
-												marginRight: '2px !important',
-												marginTop: '0 !important',
-											}}>
-											<PublicIcon fontSize='small' />
-										</InputAdornment>
+										<>
+											<InputAdornment
+												position='start'
+												sx={{
+													marginRight: '2px !important',
+													marginTop: '0 !important',
+												}}>
+												<PublicIcon fontSize='small' />
+											</InputAdornment>
+											{params.slotProps?.input?.startAdornment}
+										</>
 									),
-									sx: {
-										...props.sx,
-										height: '100%',
-									},
 								},
 								htmlInput: {
-									...params.inputProps,
+									...params.slotProps?.htmlInput,
 									...props.slotProps?.htmlInput,
-									autoComplete: 'new-password', // Disable autocomplete and autofill.
+									autoComplete: 'new-password',
 								},
 							}}
 						/>

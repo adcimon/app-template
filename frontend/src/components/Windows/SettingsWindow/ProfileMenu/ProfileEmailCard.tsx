@@ -7,7 +7,7 @@ import {
 	CardContent,
 	CardHeader,
 	Divider,
-	Grid2,
+	Grid,
 	Stack,
 	TextField,
 	Typography,
@@ -104,10 +104,10 @@ export const ProfileEmailCard = (): React.JSX.Element => {
 								margin: -1.5,
 								padding: 2,
 							}}>
-							<Grid2
+							<Grid
 								container
 								spacing={3}>
-								<Grid2
+								<Grid
 									size={{
 										xs: 12,
 										sm: 12,
@@ -132,8 +132,8 @@ export const ProfileEmailCard = (): React.JSX.Element => {
 										}}>
 										Email change requires the email verification via a code sent to the new address.
 									</Typography>
-								</Grid2>
-							</Grid2>
+								</Grid>
+							</Grid>
 						</Box>
 					</CardContent>
 					<Divider />

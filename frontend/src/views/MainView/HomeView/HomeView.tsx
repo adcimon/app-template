@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Container, Grid2, Stack, Typography } from '@mui/material';
+import { Box, Button, Container, Grid, Stack, Typography } from '@mui/material';
 import { UserCard } from '../../../core/components/Card/UserCard';
 
 export const HomeView = (): React.JSX.Element => {
@@ -47,13 +47,13 @@ export const HomeView = (): React.JSX.Element => {
 					sx={{
 						marginBottom: '20px',
 					}}>
-					<Grid2
+					<Grid
 						container
 						spacing={4}
 						sx={{
 							justifyContent: 'center',
 						}}>
-						<Grid2
+						<Grid
 							size={{
 								xs: 12,
 								sm: 6,
@@ -71,8 +71,8 @@ export const HomeView = (): React.JSX.Element => {
 									Explore
 								</Button>
 							</UserCard>
-						</Grid2>
-						<Grid2
+						</Grid>
+						<Grid
 							size={{
 								xs: 12,
 								sm: 6,
@@ -90,8 +90,8 @@ export const HomeView = (): React.JSX.Element => {
 									Explore
 								</Button>
 							</UserCard>
-						</Grid2>
-						<Grid2
+						</Grid>
+						<Grid
 							size={{
 								xs: 12,
 								sm: 6,
@@ -109,8 +109,8 @@ export const HomeView = (): React.JSX.Element => {
 									Explore
 								</Button>
 							</UserCard>
-						</Grid2>
-					</Grid2>
+						</Grid>
+					</Grid>
 				</Container>
 			</>
 		);

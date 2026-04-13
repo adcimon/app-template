@@ -91,11 +91,11 @@ export function createComponents(config: any) {
 			},
 		},
 		MuiCardHeader: {
-			defaultProps: {
-				titleTypographyProps: {
+			slotProps: {
+				title: {
 					variant: 'h6',
 				},
-				subheaderTypographyProps: {
+				subheader: {
 					variant: 'body2',
 				},
 			},
