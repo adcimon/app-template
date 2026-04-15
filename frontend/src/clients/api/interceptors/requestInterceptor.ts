@@ -13,10 +13,11 @@ export class RequestInterceptor {
 	};
 
 	static onRejected = (error: any) => {
-		const apiError: ApiError = new ApiError();
-		apiError.code = 'network_error';
-		apiError.message = error.message;
-		apiError.data = error;
+		const apiError: ApiError = {
+			code: 'api_error',
+			message: error.message,
+			data: error,
+		};
 
 		return Promise.reject(apiError);
 	};

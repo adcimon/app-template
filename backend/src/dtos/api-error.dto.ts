@@ -1,4 +1,4 @@
-export class ErrorDto {
+export class ApiErrorDto {
 	code: string;
 	message: string;
 	data?: object;

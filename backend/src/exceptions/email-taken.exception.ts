@@ -1,9 +1,9 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { ErrorDto } from '../dtos/error.dto.js';
+import { ApiErrorDto } from '../dtos/api-error.dto.js';
 
 export class EmailTakenException extends HttpException {
 	constructor(email?: string) {
-		const error: ErrorDto = new ErrorDto();
+		const error: ApiErrorDto = new ApiErrorDto();
 		error.code = 'email_taken';
 		error.message = 'Email is already being used';
 		error.data = { email: email };

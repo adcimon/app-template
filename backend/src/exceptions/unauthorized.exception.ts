@@ -1,9 +1,9 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { ErrorDto } from '../dtos/error.dto.js';
+import { ApiErrorDto } from '../dtos/api-error.dto.js';
 
 export class UnauthorizedException extends HttpException {
 	constructor(message?: string) {
-		const error: ErrorDto = new ErrorDto();
+		const error: ApiErrorDto = new ApiErrorDto();
 		error.code = 'unauthorized';
 		error.message = message || 'Unauthorized';
 		super(error, HttpStatus.UNAUTHORIZED);
