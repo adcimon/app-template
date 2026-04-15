@@ -53,9 +53,9 @@ export const LoadingDialog = (props: LoadingDialogProps): React.JSX.Element => {
 				sx={props.sx}>
 				<Stack
 					direction='row'
-					gap={2}
 					sx={{
 						alignItems: 'center',
+						gap: '2rem',
 						justifyContent: 'center',
 					}}>
 					<CircularProgress size='5rem' />
