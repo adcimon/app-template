@@ -1,12 +1,16 @@
 import { Injectable } from '@nestjs/common';
+import { EventBrokerService } from '../event-broker/event-broker.service.js';
 import { CognitoService } from '../aws/cognito/cognito.service.js';
 import { StatusDto } from '../../dtos/status.dto.js';
 import { CredentialsDto } from './credentials.dto.js';
 import { UserDto } from '../users/user.dto.js';
+import { UserDeletedEvent } from '../../events/user-deleted.event.js';
 
 @Injectable()
 export class AuthService {
 	constructor(
+		// Base
+		private readonly eventBrokerService: EventBrokerService,
 		// AWS
 		private readonly cognitoService: CognitoService,
 	) {}
@@ -17,7 +21,13 @@ export class AuthService {
 	}
 
 	public async signDown(accessToken: string, password: string): Promise<StatusDto> {
+		const user: UserDto = await this.cognitoService.getMyUser(accessToken);
+
 		const status: StatusDto = await this.cognitoService.signDown(accessToken, password);
+		if (status.status) {
+			this.eventBrokerService.emit(UserDeletedEvent.name, new UserDeletedEvent(user));
+		}
+
 		return status;
 	}
 
