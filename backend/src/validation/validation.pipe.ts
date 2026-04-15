@@ -1,5 +1,5 @@
 import { ArgumentMetadata, Injectable, PipeTransform } from '@nestjs/common';
-import { ValidationErrorException } from '../exceptions/validation-error.exception';
+import { ValidationErrorException } from '../exceptions/validation-error.exception.js';
 
 @Injectable()
 export class ValidationPipe implements PipeTransform {
@@ -14,8 +14,8 @@ export class ValidationPipe implements PipeTransform {
 			const castedValue: any = this.schema.cast(value);
 
 			return castedValue;
-		} catch (exception) {
-			const message: any = exception.errors.length === 0 ? 'Validation error' : exception.errors[0];
+		} catch (error: any) {
+			const message: any = error.errors.length === 0 ? 'Validation error' : error.errors[0];
 			throw new ValidationErrorException(message);
 		}
 	}

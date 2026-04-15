@@ -1,17 +1,17 @@
 import { Logger, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { EnvModule } from './env/env.module';
-import { ConfigModule } from './config/config.module';
-import { EventBrokerModule } from './event-broker/event-broker.module';
-import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
-import { AdminModule } from './admin/admin.module';
-import { CognitoModule } from './aws/cognito/cognito.module';
-import { BodyParserMiddleware } from '../middlewares/body-parser.middleware';
-import { LoggerMiddleware } from '../middlewares/logger.middleware';
-import { SerializerInterceptor } from '../interceptors/serializer.interceptor';
-import { ExceptionFilter } from '../exceptions/exception.filter';
+import { EnvModule } from './env/env.module.js';
+import { ConfigModule } from './config/config.module.js';
+import { EventBrokerModule } from './event-broker/event-broker.module.js';
+import { AuthModule } from './auth/auth.module.js';
+import { UsersModule } from './users/users.module.js';
+import { AdminModule } from './admin/admin.module.js';
+import { CognitoModule } from './aws/cognito/cognito.module.js';
+import { BodyParserMiddleware } from '../middlewares/body-parser.middleware.js';
+import { LoggerMiddleware } from '../middlewares/logger.middleware.js';
+import { SerializerInterceptor } from '../interceptors/serializer.interceptor.js';
+import { ExceptionFilter } from '../exceptions/exception.filter.js';
 
 @Module({
 	imports: [

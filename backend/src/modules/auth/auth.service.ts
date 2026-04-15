@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { CognitoService } from '../aws/cognito/cognito.service';
-import { StatusDto } from '../../dtos/status.dto';
-import { CredentialsDto } from './credentials.dto';
-import { UserDto } from '../users/user.dto';
+import { CognitoService } from '../aws/cognito/cognito.service.js';
+import { StatusDto } from '../../dtos/status.dto.js';
+import { CredentialsDto } from './credentials.dto.js';
+import { UserDto } from '../users/user.dto.js';
 
 @Injectable()
 export class AuthService {

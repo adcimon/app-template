@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { UsersService } from '../users/users.service';
-import { UserDto } from '../users/user.dto';
+import { UsersService } from '../users/users.service.js';
+import { UserDto } from '../users/user.dto.js';
 
 @Injectable()
 export class AdminService {

@@ -1,15 +1,15 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
-import { ConfigService } from '../../config/config.service';
-import { Map } from '../../../decorators/map.decorator';
-import { StatusBooleanToDto } from '../../../maps/status-boolean-dto.map';
-import { CredentialsObjectToDto } from './maps/credentials-object-dto.map';
-import { UserCognitoToDto } from './maps/user-cognito-dto.map';
-import { StatusDto } from '../../../dtos/status.dto';
-import { CredentialsDto } from '../../auth/credentials.dto';
-import { UserDto } from '../../users/user.dto';
-import { ResourceNotFoundException } from '../../../exceptions/resource-not-found.exception';
-import { EmailTakenException } from '../../../exceptions/email-taken.exception';
-import { CryptoUtils } from '../../../utils/crypto.utils';
+import { ConfigService } from '../../config/config.service.js';
+import { Map } from '../../../decorators/map.decorator.js';
+import { StatusBooleanToDto } from '../../../maps/status-boolean-dto.map.js';
+import { CredentialsObjectToDto } from './maps/credentials-object-dto.map.js';
+import { UserCognitoToDto } from './maps/user-cognito-dto.map.js';
+import { StatusDto } from '../../../dtos/status.dto.js';
+import { CredentialsDto } from '../../auth/credentials.dto.js';
+import { UserDto } from '../../users/user.dto.js';
+import { ResourceNotFoundException } from '../../../exceptions/resource-not-found.exception.js';
+import { EmailTakenException } from '../../../exceptions/email-taken.exception.js';
+import { CryptoUtils } from '../../../utils/crypto.utils.js';
 import * as AWS from '@aws-sdk/client-cognito-identity-provider';
 
 @Injectable()

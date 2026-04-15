@@ -1,5 +1,5 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { ErrorDto } from '../dtos/error.dto';
+import { ErrorDto } from '../dtos/error.dto.js';
 
 export class EmailTakenException extends HttpException {
 	constructor(email?: string) {

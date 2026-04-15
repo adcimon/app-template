@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable, mixin } from '@nestjs/common';
-import { UserDto } from '../modules/users/user.dto';
-import { Role } from '../types/role';
+import { UserDto } from '../modules/users/user.dto.js';
+import { Role } from '../types/role.js';
 
 export const RolesGuard = (...roles: Role[]) => {
 	@Injectable()

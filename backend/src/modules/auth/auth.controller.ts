@@ -1,14 +1,14 @@
 import { Body, Controller, Post, Request, UseGuards, UseInterceptors } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { AuthGuard } from '../../guards/auth.guard';
-import { PasswordInterceptor } from '../../interceptors/password.interceptor';
-import { ResponseInterceptor } from '../../interceptors/response.interceptor';
-import { ValidationPipe } from '../../validation/validation.pipe';
-import { AuthSchema } from './auth.schema';
-import { StatusDto } from '../../dtos/status.dto';
-import { CredentialsDto } from './credentials.dto';
-import { UserDto } from '../users/user.dto';
-import { AuthMethod } from '../../types/auth-method';
+import { AuthService } from './auth.service.js';
+import { AuthGuard } from '../../guards/auth.guard.js';
+import { PasswordInterceptor } from '../../interceptors/password.interceptor.js';
+import { ResponseInterceptor } from '../../interceptors/response.interceptor.js';
+import { ValidationPipe } from '../../validation/validation.pipe.js';
+import { AuthSchema } from './auth.schema.js';
+import { StatusDto } from '../../dtos/status.dto.js';
+import { CredentialsDto } from './credentials.dto.js';
+import { UserDto } from '../users/user.dto.js';
+import { AuthMethod } from '../../types/auth-method.js';
 
 @Controller('auth')
 export class AuthController {

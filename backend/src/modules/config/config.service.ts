@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { EnvService } from '../env/env.service';
-import { ConfigurationErrorException } from '../../exceptions/configuration-error.exception';
+import { EnvService } from '../env/env.service.js';
+import { ConfigurationErrorException } from '../../exceptions/configuration-error.exception.js';
 
 @Injectable()
 export class ConfigService {

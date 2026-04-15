@@ -1,11 +1,11 @@
 import { Controller, Get, UseGuards, UseInterceptors } from '@nestjs/common';
-import { AdminService } from './admin.service';
-import { AuthGuard } from '../../guards/auth.guard';
-import { RolesGuard } from '../../guards/roles.guard';
-import { ResponseInterceptor } from '../../interceptors/response.interceptor';
-import { UserDto } from '../users/user.dto';
-import { AuthMethod } from '../../types/auth-method';
-import { Role } from '../../types/role';
+import { AdminService } from './admin.service.js';
+import { AuthGuard } from '../../guards/auth.guard.js';
+import { RolesGuard } from '../../guards/roles.guard.js';
+import { ResponseInterceptor } from '../../interceptors/response.interceptor.js';
+import { UserDto } from '../users/user.dto.js';
+import { AuthMethod } from '../../types/auth-method.js';
+import { Role } from '../../types/role.js';
 
 @Controller('')
 export class AdminController {

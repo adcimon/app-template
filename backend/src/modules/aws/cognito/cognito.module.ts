@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '../../config/config.module';
-import { CognitoService } from './cognito.service';
+import { ConfigModule } from '../../config/config.module.js';
+import { CognitoService } from './cognito.service.js';
 
 @Module({
 	imports: [

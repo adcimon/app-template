@@ -1,4 +1,4 @@
-import { UserDto } from '../../../users/user.dto';
+import { UserDto } from '../../../users/user.dto.js';
 import * as AWS from '@aws-sdk/client-cognito-identity-provider';
 
 export function UserCognitoToDto(user: AWS.UserType | AWS.GetUserResponse | AWS.AdminGetUserResponse): UserDto {

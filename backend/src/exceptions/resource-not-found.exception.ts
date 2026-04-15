@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { ErrorDto } from '../dtos/error.dto';
-import { ExceptionUtils } from '../utils/exception.utils';
+import { ErrorDto } from '../dtos/error.dto.js';
+import { ExceptionUtils } from '../utils/exception.utils.js';
 
 export class ResourceNotFoundException extends HttpException {
 	constructor(type: ExceptionUtils.ClassType, args?: any) {

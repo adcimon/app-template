@@ -1,12 +1,12 @@
 import { ArgumentsHost, Catch, HttpException, HttpStatus } from '@nestjs/common';
 import { BaseExceptionFilter } from '@nestjs/core';
 import { Request, Response } from 'express';
-import { ErrorDto } from '../dtos/error.dto';
-import { GenericErrorException } from './generic-error.exception';
-import { UnauthorizedException } from './unauthorized.exception';
-import { ForbiddenException } from './forbidden.exception';
-import { InvalidRequestException } from './invalid-request.exception';
-const packageJson = require('../../package.json');
+import { ErrorDto } from '../dtos/error.dto.js';
+import { GenericErrorException } from './generic-error.exception.js';
+import { UnauthorizedException } from './unauthorized.exception.js';
+import { ForbiddenException } from './forbidden.exception.js';
+import { InvalidRequestException } from './invalid-request.exception.js';
+import packageJson from '../../package.json' with { type: 'json' };
 
 @Catch()
 export class ExceptionFilter extends BaseExceptionFilter {

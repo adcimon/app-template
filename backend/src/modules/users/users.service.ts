@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CognitoService } from '../aws/cognito/cognito.service';
-import { UserDto } from './user.dto';
+import { CognitoService } from '../aws/cognito/cognito.service.js';
+import { UserDto } from './user.dto.js';
 
 @Injectable()
 export class UsersService {

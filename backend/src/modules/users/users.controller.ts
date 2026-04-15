@@ -1,11 +1,11 @@
 import { Body, Controller, Get, Patch, Request, UseGuards, UseInterceptors } from '@nestjs/common';
-import { UsersService } from './users.service';
-import { AuthGuard } from '../../guards/auth.guard';
-import { ResponseInterceptor } from '../../interceptors/response.interceptor';
-import { ValidationPipe } from '../../validation/validation.pipe';
-import { UsersSchema } from './users.schema';
-import { UserDto } from './user.dto';
-import { AuthMethod } from '../../types/auth-method';
+import { UsersService } from './users.service.js';
+import { AuthGuard } from '../../guards/auth.guard.js';
+import { ResponseInterceptor } from '../../interceptors/response.interceptor.js';
+import { ValidationPipe } from '../../validation/validation.pipe.js';
+import { UsersSchema } from './users.schema.js';
+import { UserDto } from './user.dto.js';
+import { AuthMethod } from '../../types/auth-method.js';
 
 @Controller('users')
 export class UsersController {

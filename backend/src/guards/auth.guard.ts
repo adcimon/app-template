@@ -1,8 +1,8 @@
 import { CanActivate, ExecutionContext, Injectable, mixin } from '@nestjs/common';
-import { UsersService } from '../modules/users/users.service';
-import { UserDto } from '../modules/users/user.dto';
-import { UnauthorizedException } from '../exceptions/unauthorized.exception';
-import { AuthMethod } from '../types/auth-method';
+import { UsersService } from '../modules/users/users.service.js';
+import { UserDto } from '../modules/users/user.dto.js';
+import { UnauthorizedException } from '../exceptions/unauthorized.exception.js';
+import { AuthMethod } from '../types/auth-method.js';
 
 export const AuthGuard = (...methods: AuthMethod[]) => {
 	@Injectable()

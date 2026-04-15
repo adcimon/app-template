@@ -1,9 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import { HttpsOptions } from '@nestjs/common/interfaces/external/https-options.interface';
-import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
-import { AppModule } from './modules/app.module';
-import { EnvService } from './modules/env/env.service';
+import { HttpsOptions } from '@nestjs/common/interfaces/external/https-options.interface.js';
+import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface.js';
+import { AppModule } from './modules/app.module.js';
+import { EnvService } from './modules/env/env.service.js';
 import * as fs from 'fs';
 
 async function main() {
