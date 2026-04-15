@@ -1,11 +1,13 @@
 import { ArgumentsHost, Catch, HttpException, HttpStatus } from '@nestjs/common';
 import { BaseExceptionFilter } from '@nestjs/core';
 import { Request, Response } from 'express';
+import { ResponseDto } from '../dtos/response.dto.js';
 import { ErrorDto } from '../dtos/error.dto.js';
 import { GenericErrorException } from './generic-error.exception.js';
 import { UnauthorizedException } from './unauthorized.exception.js';
 import { ForbiddenException } from './forbidden.exception.js';
 import { InvalidRequestException } from './invalid-request.exception.js';
+import { TimeUtils } from '../utils/time.utils.js';
 import packageJson from '../../package.json' with { type: 'json' };
 
 @Catch()
@@ -61,13 +63,13 @@ export class ExceptionFilter extends BaseExceptionFilter {
 			}
 		}
 
-		const body = {
+		const dto: ResponseDto = {
 			version: packageJson.version,
 			endpoint: `${request.protocol}://${request.get('host')}${request.originalUrl}`,
-			timestamp: new Date().toISOString(),
+			timestamp: TimeUtils.getNowISO(),
 			error: exception.getResponse(),
 		};
 
-		return response.status(exception.getStatus()).json(body);
+		return response.status(exception.getStatus()).json(dto);
 	}
 }
