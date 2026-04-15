@@ -98,6 +98,7 @@ export const AccountMenu = (): React.JSX.Element => {
 							color='primary.contrastText'
 							noWrap={true}
 							sx={{
+								color: 'primary.contrastText',
 								fontSize: '0.75rem',
 								maxWidth: '80px',
 							}}>
