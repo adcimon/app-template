@@ -1,9 +1,10 @@
 import { Global, Module } from '@nestjs/common';
+import { EnvModule } from '../env/env.module';
 import { ConfigService } from './config.service';
 
 @Global()
 @Module({
-	imports: [],
+	imports: [EnvModule],
 	controllers: [],
 	providers: [ConfigService],
 	exports: [ConfigService],

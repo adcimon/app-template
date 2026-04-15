@@ -1,76 +1,27 @@
 import { Injectable, Logger } from '@nestjs/common';
+import { EnvService } from '../env/env.service';
 import { ConfigurationErrorException } from '../../exceptions/configuration-error.exception';
-import { config } from 'dotenv';
 
 @Injectable()
 export class ConfigService {
 	private readonly logger: Logger = new Logger(ConfigService.name);
 
-	public static config(): any {
-		config();
-		if (process.env.NODE_ENV !== 'production') {
-			console.log('Environment variables:');
-			Object.keys(process.env).forEach((key: string) => {
-				console.log(key + '=' + process.env[key]);
-			});
-		}
-	}
+	constructor(
+		// Base
+		private readonly envService: EnvService,
+	) {}
 
-	public static getEnvironmentVariable<T = string>(key: string, defaultValue?: T): T {
-		if (!(key in process.env)) {
-			return defaultValue;
-		}
-
-		const value: string = process.env[key];
-		const parsedValue: T = ConfigService.parse(value) as T;
-
-		return parsedValue;
+	public getEnvironmentVariable<T = string>(key: string, defaultValue?: T): T {
+		return this.envService.getVariable<T>(key, defaultValue);
 	}
 
 	public async getVariable<T = string>(key: string, defaultValue?: T): Promise<any> {
 		try {
-			const value: T = ConfigService.getEnvironmentVariable<T>(key, defaultValue);
+			const value: T = this.getEnvironmentVariable<T>(key, defaultValue);
 			return value;
 		} catch (error: any) {
 			this.logger.log(error);
 			throw new ConfigurationErrorException(error.message);
 		}
-	}
-
-	private static parse(value: string): unknown {
-		if (value === '') {
-			return value;
-		}
-
-		if (value === 'true') {
-			return true;
-		}
-
-		if (value === 'false') {
-			return false;
-		}
-
-		const numeric: number = Number(value);
-		if (!isNaN(numeric)) {
-			return numeric;
-		}
-
-		try {
-			const obj: object = JSON.parse(value);
-			return obj;
-		} catch {}
-
-		const array: string[] = value.split(',');
-		if (array.length === 0) {
-			return value;
-		}
-		if (array.length === 1) {
-			return array[0];
-		}
-		if (array.length > 1) {
-			return array;
-		}
-
-		return value;
 	}
 }

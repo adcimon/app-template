@@ -1,7 +1,9 @@
 import { Logger, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { EnvModule } from './env/env.module';
 import { ConfigModule } from './config/config.module';
+import { EventBrokerModule } from './event-broker/event-broker.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { AdminModule } from './admin/admin.module';
@@ -14,7 +16,9 @@ import { ExceptionFilter } from '../exceptions/exception.filter';
 @Module({
 	imports: [
 		// Base
+		EnvModule,
 		ConfigModule,
+		EventBrokerModule,
 		// API
 		AuthModule,
 		UsersModule,

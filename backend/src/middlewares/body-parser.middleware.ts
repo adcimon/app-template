@@ -1,5 +1,5 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
-import { ConfigService } from '../modules/config/config.service';
+import { EnvService } from '../modules/env/env.service';
 import * as express from 'express';
 
 @Injectable()
@@ -8,7 +8,7 @@ export class BodyParserMiddleware implements NestMiddleware {
 	private urlencodedParser;
 
 	constructor() {
-		const maxRequestSize: string = ConfigService.getEnvironmentVariable<string>('MAX_REQUEST_SIZE', '50mb');
+		const maxRequestSize: string = EnvService.getVariable<string>('MAX_REQUEST_SIZE', '50mb');
 
 		this.jsonParser = express.json({
 			limit: maxRequestSize,

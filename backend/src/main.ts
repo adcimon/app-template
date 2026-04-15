@@ -3,22 +3,19 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { HttpsOptions } from '@nestjs/common/interfaces/external/https-options.interface';
 import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface';
 import { AppModule } from './modules/app.module';
-import { ConfigService } from './modules/config/config.service';
+import { EnvService } from './modules/env/env.service';
 import * as fs from 'fs';
 
 async function main() {
-	ConfigService.config();
+	EnvService.initialize();
 
-	const port: number = ConfigService.getEnvironmentVariable<number>('PORT', 9000);
-	const enableHttps: boolean = ConfigService.getEnvironmentVariable<boolean>('ENABLE_HTTPS', false);
-	const keyPath: string = ConfigService.getEnvironmentVariable('KEY_PATH', '');
-	const certPath: string = ConfigService.getEnvironmentVariable('CERT_PATH', '');
-	const enableCors: boolean = ConfigService.getEnvironmentVariable<boolean>('ENABLE_CORS', true);
-	const allowOrigins: string | string[] = ConfigService.getEnvironmentVariable<string | string[]>(
-		'ALLOW_ORIGINS',
-		'*',
-	);
-	const allowCredentials: boolean = ConfigService.getEnvironmentVariable<boolean>('ALLOW_CREDENTIALS', true);
+	const port: number = EnvService.getVariable<number>('PORT', 9000);
+	const enableHttps: boolean = EnvService.getVariable<boolean>('ENABLE_HTTPS', false);
+	const keyPath: string = EnvService.getVariable('KEY_PATH', '');
+	const certPath: string = EnvService.getVariable('CERT_PATH', '');
+	const enableCors: boolean = EnvService.getVariable<boolean>('ENABLE_CORS', true);
+	const allowOrigins: string | string[] = EnvService.getVariable<string | string[]>('ALLOW_ORIGINS', '*');
+	const allowCredentials: boolean = EnvService.getVariable<boolean>('ALLOW_CREDENTIALS', true);
 
 	let httpsOptions: HttpsOptions = null;
 	if (enableHttps) {
