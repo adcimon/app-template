@@ -1,4 +1,5 @@
-import { Theme, useTheme, Breakpoint, useMediaQuery } from '@mui/material';
+import { Theme, useTheme, useMediaQuery } from '@mui/material';
+import { Breakpoint } from './breakpoint';
 
 export function useResponsive(breakpoint: Breakpoint = 'md') {
 	const theme: Theme = useTheme();

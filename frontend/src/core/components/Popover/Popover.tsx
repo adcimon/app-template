@@ -2,7 +2,7 @@ import React from 'react';
 import * as MUI from '@mui/material';
 import { PopoverOrigin, SxProps } from '@mui/material';
 import { Dialog } from '../Dialog/Dialog';
-import { useResponsive } from '../../hooks/useResponsive';
+import { useResponsive } from '../../hooks/responsive/useResponsive';
 
 interface PopoverProps {
 	anchorEl?: React.MutableRefObject<any>;

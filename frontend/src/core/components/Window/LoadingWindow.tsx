@@ -1,7 +1,7 @@
 import React from 'react';
 import { LinearProgress, Stack, Typography } from '@mui/material';
 import { Window } from './Window';
-import { useResponsive } from '../../hooks/useResponsive';
+import { useResponsive } from '../../hooks/responsive/useResponsive';
 
 interface LoadingWindowProps {
 	text?: string;

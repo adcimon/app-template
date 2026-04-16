@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Divider, Drawer, Stack } from '@mui/material';
-import { useResponsive } from '../../hooks/useResponsive';
+import { useResponsive } from '../../hooks/responsive/useResponsive';
 
 interface SideBarProps {
 	title?: React.ReactNode;

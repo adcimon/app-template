@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Stack, Typography } from '@mui/material';
 import { ErrorIcon } from './ErrorIcon';
-import { useResponsive } from '../../core/hooks/useResponsive';
+import { useResponsive } from '../../core/hooks/responsive/useResponsive';
 
 interface ErrorViewProps {
 	message?: string;

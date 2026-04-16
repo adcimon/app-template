@@ -3,7 +3,7 @@ import { Box, Card, Stack, Tab, Tabs, Typography } from '@mui/material';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import { UsersMenu } from './UsersMenu/UsersMenu';
 import { Window } from '../../../core/components/Window/Window';
-import { useResponsive } from '../../../core/hooks/useResponsive';
+import { useResponsive } from '../../../core/hooks/responsive/useResponsive';
 
 interface ManagementWindowProps {
 	open: boolean;

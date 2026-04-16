@@ -7,7 +7,7 @@ import { PreferencesMenu } from './PreferencesMenu/PreferencesMenu';
 import { ProfileMenu } from './ProfileMenu/ProfileMenu';
 import { UserAvatar } from './UserAvatar/UserAvatar';
 import { Window } from '../../../core/components/Window/Window';
-import { useResponsive } from '../../../core/hooks/useResponsive';
+import { useResponsive } from '../../../core/hooks/responsive/useResponsive';
 import { useUserState } from '../../../states/user/useUserState';
 
 interface SettingsWindowProps {
