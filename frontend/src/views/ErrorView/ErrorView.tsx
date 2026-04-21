@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Stack, Typography } from '@mui/material';
 import { ErrorIcon } from './ErrorIcon';
-import { useResponsive } from '../../core/hooks/responsive/useResponsive';
+import { useBreakpointDown } from '../../core/hooks/useBreakpoint';
 
 interface ErrorViewProps {
 	message?: string;
@@ -9,12 +9,12 @@ interface ErrorViewProps {
 }
 
 export const ErrorView = (props: ErrorViewProps): React.JSX.Element => {
-	const responsive: boolean = useResponsive();
+	const isBreakpoint: boolean = useBreakpointDown();
 
 	const render = () => {
 		return (
 			<Stack
-				direction={responsive ? 'column' : 'row'}
+				direction={isBreakpoint ? 'column' : 'row'}
 				sx={{
 					alignItems: 'center',
 					height: '100vh',
@@ -24,8 +24,8 @@ export const ErrorView = (props: ErrorViewProps): React.JSX.Element => {
 				<Stack
 					sx={{
 						backgroundColor: '#f1f4f9',
-						height: responsive ? '40%' : '100%',
-						width: responsive ? '100%' : '50%',
+						height: isBreakpoint ? '40%' : '100%',
+						width: isBreakpoint ? '100%' : '50%',
 					}}>
 					<Stack
 						direction='column'
@@ -40,8 +40,8 @@ export const ErrorView = (props: ErrorViewProps): React.JSX.Element => {
 				</Stack>
 				<Stack
 					sx={{
-						height: responsive ? '60%' : '100%',
-						width: responsive ? '100%' : '50%',
+						height: isBreakpoint ? '60%' : '100%',
+						width: isBreakpoint ? '100%' : '50%',
 					}}>
 					<Stack
 						direction='column'

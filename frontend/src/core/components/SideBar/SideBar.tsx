@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Divider, Drawer, Stack } from '@mui/material';
-import { useResponsive } from '../../hooks/responsive/useResponsive';
+import { useBreakpointDown } from '../../hooks/useBreakpoint';
 
 interface SideBarProps {
 	title?: React.ReactNode;
@@ -14,10 +14,10 @@ interface SideBarProps {
 }
 
 export const SideBar = (props: SideBarProps): React.JSX.Element => {
-	const responsive: boolean = useResponsive();
+	const isBreakpoint: boolean = useBreakpointDown();
 
 	const render = () => {
-		const isResponsive: boolean = (props.responsive ?? false) && responsive;
+		const isResponsive: boolean = (props.responsive ?? false) && isBreakpoint;
 		return (
 			<Drawer
 				anchor={isResponsive ? 'bottom' : 'right'}

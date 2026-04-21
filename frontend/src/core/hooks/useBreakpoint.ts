@@ -1,5 +1,6 @@
 import { useTheme, useMediaQuery, Theme } from '@mui/material';
-import { Breakpoint } from './breakpoint';
+
+export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 
 export function useBreakpoint(): Breakpoint {
 	const theme: Theme = useTheme();
@@ -31,4 +32,10 @@ export function useBreakpoint(): Breakpoint {
 	}
 
 	return 'xs';
+}
+
+export function useBreakpointDown(breakpoint: Breakpoint = 'md') {
+	const theme: Theme = useTheme();
+	const matches: boolean = useMediaQuery(theme.breakpoints.down(breakpoint));
+	return matches;
 }

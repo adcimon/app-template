@@ -2,7 +2,7 @@ import React from 'react';
 import * as MUI from '@mui/material';
 import { PopoverOrigin, SxProps } from '@mui/material';
 import { Dialog } from '../Dialog/Dialog';
-import { useResponsive } from '../../hooks/responsive/useResponsive';
+import { useBreakpointDown } from '../../hooks/useBreakpoint';
 
 interface PopoverProps {
 	anchorEl?: React.MutableRefObject<any>;
@@ -15,12 +15,12 @@ interface PopoverProps {
 }
 
 export const Popover = (props: PopoverProps): React.JSX.Element => {
-	const responsive: boolean = useResponsive();
+	const isBreakpoint: boolean = useBreakpointDown();
 
 	const render = () => {
 		return (
 			<>
-				{!responsive && (
+				{!isBreakpoint && (
 					<MUI.Popover
 						anchorEl={props.anchorEl?.current}
 						anchorOrigin={props.anchorOrigin || { horizontal: 'right', vertical: 'bottom' }}
@@ -35,7 +35,7 @@ export const Popover = (props: PopoverProps): React.JSX.Element => {
 						{props.children}
 					</MUI.Popover>
 				)}
-				{responsive && (
+				{isBreakpoint && (
 					<Dialog
 						open={props.open}
 						onClose={props.onClose}

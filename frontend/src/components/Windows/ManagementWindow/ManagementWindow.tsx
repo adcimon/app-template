@@ -3,7 +3,7 @@ import { Box, Card, Stack, Tab, Tabs, Typography } from '@mui/material';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import { UsersMenu } from './UsersMenu/UsersMenu';
 import { Window } from '../../../core/components/Window/Window';
-import { useResponsive } from '../../../core/hooks/responsive/useResponsive';
+import { useBreakpointDown } from '../../../core/hooks/useBreakpoint';
 
 interface ManagementWindowProps {
 	open: boolean;
@@ -11,10 +11,12 @@ interface ManagementWindowProps {
 }
 
 export const ManagementWindow = (props: ManagementWindowProps): React.JSX.Element => {
-	const headerHeight: string = '290px';
-	const responsiveHeaderHeight: string = '190px';
+	const headerHeight = {
+		md: '190px',
+		lg: '290px',
+	};
 
-	const responsive: boolean = useResponsive();
+	const isBreakpoint: boolean = useBreakpointDown();
 
 	const [tab, setTab] = React.useState<number>(0);
 
@@ -41,14 +43,14 @@ export const ManagementWindow = (props: ManagementWindowProps): React.JSX.Elemen
 						backgroundOrigin: 'padding-box, padding-box',
 						backgroundPosition: 'center center',
 						backgroundSize: 'cover',
-						height: responsive ? responsiveHeaderHeight : headerHeight,
+						height: isBreakpoint ? headerHeight.md : headerHeight.lg,
 						position: 'relative',
 					}}
 				/>
 				<Stack
 					direction='row'
 					sx={{
-						justifyContent: responsive ? 'flex-start' : 'flex-end',
+						justifyContent: isBreakpoint ? 'flex-start' : 'flex-end',
 						paddingX: '2rem',
 						width: '100%',
 					}}>

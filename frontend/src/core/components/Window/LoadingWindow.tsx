@@ -1,14 +1,14 @@
 import React from 'react';
 import { LinearProgress, Stack, Typography } from '@mui/material';
 import { Window } from './Window';
-import { useResponsive } from '../../hooks/responsive/useResponsive';
+import { useBreakpointDown } from '../../hooks/useBreakpoint';
 
 interface LoadingWindowProps {
 	text?: string;
 }
 
 export const LoadingWindow = (props: LoadingWindowProps): React.JSX.Element => {
-	const responsive: boolean = useResponsive();
+	const isBreakpoint: boolean = useBreakpointDown();
 
 	const render = () => {
 		return (
@@ -33,14 +33,14 @@ export const LoadingWindow = (props: LoadingWindowProps): React.JSX.Element => {
 							height: '50%',
 							gap: '2.5rem',
 							justifyContent: 'center',
-							width: responsive ? '80%' : '50%',
+							width: isBreakpoint ? '80%' : '50%',
 						}}>
 						<Typography
 							sx={{
 								color: 'text.secondary',
-								fontSize: responsive ? '2rem' : '2.5rem',
-								paddingLeft: responsive ? '1rem' : '',
-								paddingRight: responsive ? '1rem' : '',
+								fontSize: isBreakpoint ? '2rem' : '2.5rem',
+								paddingLeft: isBreakpoint ? '1rem' : '',
+								paddingRight: isBreakpoint ? '1rem' : '',
 							}}>
 							{props.text || 'Loading...'}
 						</Typography>

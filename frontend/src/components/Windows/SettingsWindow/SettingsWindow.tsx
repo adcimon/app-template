@@ -7,7 +7,7 @@ import { PreferencesMenu } from './PreferencesMenu/PreferencesMenu';
 import { ProfileMenu } from './ProfileMenu/ProfileMenu';
 import { UserAvatar } from './UserAvatar/UserAvatar';
 import { Window } from '../../../core/components/Window/Window';
-import { useResponsive } from '../../../core/hooks/responsive/useResponsive';
+import { useBreakpointDown } from '../../../core/hooks/useBreakpoint';
 import { useUserState } from '../../../states/user/useUserState';
 
 interface SettingsWindowProps {
@@ -16,12 +16,17 @@ interface SettingsWindowProps {
 }
 
 export const SettingsWindow = (props: SettingsWindowProps): React.JSX.Element => {
-	const headerHeight: string = '290px';
-	const responsiveHeaderHeight: string = '190px';
-	const avatarPosition: string = '-180px';
-	const responsiveAvatarPosition: string = '-30px';
+	const headerHeight = {
+		md: '190px',
+		lg: '290px',
+	};
 
-	const responsive: boolean = useResponsive();
+	const avatarPosition = {
+		md: '-30px',
+		lg: '-180px',
+	};
+
+	const isBreakpoint: boolean = useBreakpointDown();
 
 	const userState = useUserState();
 
@@ -61,14 +66,14 @@ export const SettingsWindow = (props: SettingsWindowProps): React.JSX.Element =>
 						backgroundOrigin: 'padding-box, padding-box',
 						backgroundPosition: 'center center',
 						backgroundSize: 'cover',
-						height: responsive ? responsiveHeaderHeight : headerHeight,
+						height: isBreakpoint ? headerHeight.md : headerHeight.lg,
 						position: 'relative',
 					}}>
 					<Stack
 						direction='row'
 						spacing={3}
 						sx={{
-							bottom: responsive ? responsiveAvatarPosition : avatarPosition,
+							bottom: isBreakpoint ? avatarPosition.md : avatarPosition.lg,
 							left: '32px',
 							position: 'relative',
 							zIndex: '10',
@@ -99,7 +104,7 @@ export const SettingsWindow = (props: SettingsWindowProps): React.JSX.Element =>
 				<Stack
 					direction='row'
 					sx={{
-						justifyContent: responsive ? 'flex-start' : 'flex-end',
+						justifyContent: isBreakpoint ? 'flex-start' : 'flex-end',
 						width: '100%',
 					}}>
 					<Tabs

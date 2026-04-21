@@ -5,7 +5,7 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorRoundedIcon from '@mui/icons-material/ErrorRounded';
 import InfoIcon from '@mui/icons-material/Info';
-import { useResponsive } from '../../hooks/responsive/useResponsive';
+import { useBreakpointDown } from '../../hooks/useBreakpoint';
 
 interface DialogProps {
 	title?: React.ReactNode;
@@ -19,9 +19,9 @@ interface DialogProps {
 }
 
 export const Dialog = (props: DialogProps): React.JSX.Element => {
-	const responsive: boolean = useResponsive();
+	const isBreakpoint: boolean = useBreakpointDown();
 
-	const paperSx: SxProps = responsive
+	const paperSx: SxProps = isBreakpoint
 		? {
 				borderBottomLeftRadius: '0px',
 				borderBottomRightRadius: '0px',
