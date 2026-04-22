@@ -1,5 +1,5 @@
 import React from 'react';
-import { Badge, Box, Divider, IconButton, MenuItem, MenuList, Tooltip, Typography } from '@mui/material';
+import { Badge, Divider, IconButton, MenuItem, MenuList, Tooltip, Typography } from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { NotificationItem } from './NotificationItem';
 import { Popover } from '../../../core/components/Popover/Popover';
@@ -56,17 +56,7 @@ export const NotificationsMenu = (): React.JSX.Element => {
 					</IconButton>
 				</Tooltip>
 				<Popover
-					anchorEl={ref}
-					open={open}
-					onClose={handleClose}
-					sx={{
-						width: '300px',
-					}}>
-					<Box
-						sx={{
-							marginX: 2,
-							marginY: 1.5,
-						}}>
+					title={
 						<Typography
 							noWrap={true}
 							sx={{
@@ -74,7 +64,13 @@ export const NotificationsMenu = (): React.JSX.Element => {
 							}}>
 							Notifications
 						</Typography>
-					</Box>
+					}
+					anchorEl={ref}
+					open={open}
+					onClose={handleClose}
+					sx={{
+						width: '300px',
+					}}>
 					<Divider />
 					<MenuList
 						disablePadding={true}

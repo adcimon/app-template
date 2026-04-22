@@ -136,6 +136,23 @@ export const AccountMenu = (): React.JSX.Element => {
 					}}
 				/>
 				<Popover
+					title={
+						<Box>
+							<Typography
+								variant='body1'
+								sx={{
+									fontWeight: 'bold',
+								}}>
+								{userState.user?.name || <Skeleton width={150} />}
+							</Typography>
+							<Typography
+								variant='body2'
+								color='text.secondary'
+								noWrap={true}>
+								{userState.user?.email || <Skeleton width={150} />}
+							</Typography>
+						</Box>
+					}
 					anchorEl={ref}
 					open={open}
 					onClose={handleClose}
@@ -146,25 +163,6 @@ export const AccountMenu = (): React.JSX.Element => {
 						backgroundSize: '50% 50%',
 						width: '200px',
 					}}>
-					<Box
-						sx={{
-							paddingX: 2,
-							paddingY: 1.5,
-						}}>
-						<Typography
-							variant='body1'
-							sx={{
-								fontWeight: 'bold',
-							}}>
-							{userState.user?.name || <Skeleton width={150} />}
-						</Typography>
-						<Typography
-							variant='body2'
-							color='text.secondary'
-							noWrap={true}>
-							{userState.user?.email || <Skeleton width={150} />}
-						</Typography>
-					</Box>
 					<Divider />
 					<MenuList
 						disablePadding={true}

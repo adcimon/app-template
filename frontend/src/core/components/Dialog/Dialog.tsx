@@ -1,8 +1,9 @@
 import React from 'react';
 import * as MUI from '@mui/material';
-import { DialogActions, DialogContent, DialogTitle, Divider, Stack, SxProps } from '@mui/material';
+import { DialogActions, DialogContent, DialogTitle, Divider, IconButton, Stack, SxProps } from '@mui/material';
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CloseIcon from '@mui/icons-material/Close';
 import ErrorRoundedIcon from '@mui/icons-material/ErrorRounded';
 import InfoIcon from '@mui/icons-material/Info';
 import { useBreakpointDown } from '../../hooks/useBreakpoint';
@@ -88,20 +89,31 @@ export const Dialog = (props: DialogProps): React.JSX.Element => {
 						sx: paperSx,
 					},
 				}}>
-				{props.title && (
-					<DialogTitle>
+				<DialogTitle>
+					<Stack
+						direction='row'
+						sx={{
+							alignItems: 'center',
+							justifyContent: 'space-between',
+							width: '100%',
+						}}>
 						<Stack
 							direction='row'
 							sx={{
 								alignItems: 'center',
-								height: '100%',
-								width: '100%',
 							}}>
 							{renderIcon()}
 							{props.title}
 						</Stack>
-					</DialogTitle>
-				)}
+						{props.onClose && (
+							<IconButton
+								size='small'
+								onClick={props.onClose}>
+								<CloseIcon />
+							</IconButton>
+						)}
+					</Stack>
+				</DialogTitle>
 				{props.divider && (
 					<Divider
 						sx={{
