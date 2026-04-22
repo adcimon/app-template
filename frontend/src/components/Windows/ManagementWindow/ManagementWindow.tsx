@@ -51,7 +51,6 @@ export const ManagementWindow = (props: ManagementWindowProps): React.JSX.Elemen
 					direction='row'
 					sx={{
 						justifyContent: isBreakpoint ? 'flex-start' : 'flex-end',
-						paddingX: '2rem',
 						width: '100%',
 					}}>
 					<Tabs
