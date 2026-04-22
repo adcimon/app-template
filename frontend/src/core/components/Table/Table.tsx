@@ -14,6 +14,16 @@ import {
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
+import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
+import {
+	DragDropContext,
+	Draggable,
+	DraggableProvided,
+	DraggableStateSnapshot,
+	Droppable,
+	DroppableProvided,
+	DropResult,
+} from '@hello-pangea/dnd';
 import { ConfirmationDialog } from '../Dialog/ConfirmationDialog';
 
 const RowsPerPageRange = [5, 10, 25] as const;
@@ -25,27 +35,52 @@ interface TableProps<T> {
 	itemName?: string;
 	items: T[];
 	rowsPerPage?: RowsPerPageType;
+	getId?: (item: T) => string;
+
 	renderRow?: (item: T) => React.ReactNode[];
+
 	renderDialog?: () => React.ReactNode;
 	renderDeleteDialog?: () => React.ReactNode;
+
 	onValidate?: () => boolean;
 	onSelect?: (item: T) => void;
 	onDeselect?: () => void;
-	onCreate?: () => Promise<boolean>;
-	onUpdate?: (item: T) => Promise<boolean>;
-	onDelete?: (item: T) => Promise<boolean>;
+	onCreate?: () => Promise<boolean> | boolean;
+	onUpdate?: (item: T) => Promise<boolean> | boolean;
+	onReorder?: (sourceIndex: number, destinationIndex: number) => Promise<boolean> | boolean;
+	onDelete?: (item: T) => Promise<boolean> | boolean;
 }
 
 export const Table = <T,>(props: TableProps<T>): React.JSX.Element => {
 	const itemName: string = props.itemName || '';
+
 	const [page, setPage] = React.useState<number>(0);
 	const [rowsPerPage, setRowsPerPage] = React.useState<number>(props.rowsPerPage || RowsPerPageRange[0]);
+
 	const [item, setItem] = React.useState<T>();
 	const [openItemDialog, setOpenItemDialog] = React.useState<boolean>(false);
 	const [openDeleteDialog, setOpenDeleteDialog] = React.useState<boolean>(false);
 
-	const applyPagination = (records: any[], page: number, rowsPerPage: number): any[] => {
+	const applyPagination = (records: T[], page: number, rowsPerPage: number): T[] => {
 		return records.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
+	};
+
+	const handleDragEnd = async (result: DropResult) => {
+		if (!props.onReorder) {
+			return;
+		}
+
+		const { source, destination } = result;
+
+		if (!destination) {
+			return;
+		}
+
+		if (source.index === destination.index) {
+			return;
+		}
+
+		await props.onReorder(source.index, destination.index);
 	};
 
 	const handleClickRow = (item: T) => {
@@ -99,14 +134,121 @@ export const Table = <T,>(props: TableProps<T>): React.JSX.Element => {
 		setOpenDeleteDialog(false);
 	};
 
-	const handlePageChange = async (event: any, page: number) => {
+	const handlePageChange = (event: any, page: number) => {
 		setPage(page);
 	};
 
-	const handleRowsPerPageChange = async (event: any) => {
+	const handleRowsPerPageChange = (event: any) => {
 		const rowsPerPage: number = parseInt(event.target.value);
 		setPage(0);
 		setRowsPerPage(rowsPerPage);
+	};
+
+	const renderTable = () => {
+		const paginatedItems: T[] = applyPagination(props.items, page, rowsPerPage);
+		return (
+			<>
+				{props.onReorder ? (
+					<DragDropContext onDragEnd={handleDragEnd}>
+						<MUI.Table>
+							<TableHead>
+								<TableRow>
+									{/* Drag handle header cell */}
+									<TableCell
+										sx={{
+											width: '50px',
+										}}
+									/>
+									{/* Header cells */}
+									{props.head?.map((node: React.ReactNode, index: number) => (
+										<TableCell key={index}>{node}</TableCell>
+									))}
+								</TableRow>
+							</TableHead>
+							<Droppable
+								droppableId='table'
+								direction='vertical'>
+								{(provided: DroppableProvided) => (
+									<TableBody
+										ref={provided.innerRef}
+										{...provided.droppableProps}>
+										{paginatedItems.map((item: T, index: number) => {
+											const globalIndex: number = page * rowsPerPage + index;
+											const id: string = props.getId?.(item) ?? globalIndex.toString();
+											return (
+												<Draggable
+													key={id}
+													draggableId={id}
+													index={globalIndex}>
+													{(
+														provided: DraggableProvided,
+														snapshot: DraggableStateSnapshot,
+													) => (
+														<TableRow
+															ref={provided.innerRef}
+															{...provided.draggableProps}
+															hover={true}
+															onClick={() => handleClickRow(item)}
+															sx={{
+																backgroundColor: snapshot.isDragging
+																	? 'action.hover'
+																	: undefined,
+																cursor: 'pointer',
+															}}>
+															{/* Drag handle cell */}
+															<TableCell
+																{...provided.dragHandleProps}
+																onClick={(event: any) => event.stopPropagation()}
+																sx={{
+																	cursor: 'grab',
+																}}>
+																<DragIndicatorIcon />
+															</TableCell>
+															{/* Data cells */}
+															{props
+																.renderRow?.(item)
+																.map((node: React.ReactNode, index: number) => (
+																	<TableCell key={index}>{node}</TableCell>
+																))}
+														</TableRow>
+													)}
+												</Draggable>
+											);
+										})}
+										{provided.placeholder}
+									</TableBody>
+								)}
+							</Droppable>
+						</MUI.Table>
+					</DragDropContext>
+				) : (
+					<MUI.Table>
+						<TableHead>
+							<TableRow>
+								{props.head?.map((node: React.ReactNode, index: number) => (
+									<TableCell key={index}>{node}</TableCell>
+								))}
+							</TableRow>
+						</TableHead>
+						<TableBody>
+							{paginatedItems.map((item: T, index: number) => (
+								<TableRow
+									key={index}
+									hover={true}
+									onClick={() => handleClickRow(item)}
+									sx={{
+										cursor: 'pointer',
+									}}>
+									{props.renderRow?.(item).map((node: React.ReactNode, index: number) => (
+										<TableCell key={index}>{node}</TableCell>
+									))}
+								</TableRow>
+							))}
+						</TableBody>
+					</MUI.Table>
+				)}
+			</>
+		);
 	};
 
 	const render = () => {
@@ -114,7 +256,6 @@ export const Table = <T,>(props: TableProps<T>): React.JSX.Element => {
 			<>
 				<Stack
 					direction='column'
-					spacing={2}
 					sx={{
 						alignContent: 'center',
 						justifyContent: 'center',
@@ -122,34 +263,7 @@ export const Table = <T,>(props: TableProps<T>): React.JSX.Element => {
 					}}>
 					{props.title && <Box>{props.title}</Box>}
 					<Card>
-						<MUI.Table>
-							<TableHead>
-								<TableRow>
-									{props.head?.map((node: React.ReactNode, index: number) => {
-										return <TableCell key={index}>{node}</TableCell>;
-									})}
-								</TableRow>
-							</TableHead>
-							<TableBody>
-								{applyPagination(props.items, page, rowsPerPage).map((item: T, index: number) => {
-									return (
-										<TableRow
-											key={index}
-											onClick={() => handleClickRow(item)}
-											hover
-											sx={{
-												cursor: 'pointer',
-											}}>
-											{props.renderRow
-												? props.renderRow(item).map((node: React.ReactNode, index: number) => {
-														return <TableCell key={index}>{node}</TableCell>;
-												  })
-												: undefined}
-										</TableRow>
-									);
-								})}
-							</TableBody>
-						</MUI.Table>
+						{renderTable()}
 						<Stack
 							direction='row'
 							sx={{
@@ -157,6 +271,7 @@ export const Table = <T,>(props: TableProps<T>): React.JSX.Element => {
 								justifyContent: props.onCreate ? 'space-between' : 'flex-end',
 								width: '100%',
 							}}>
+							{/* Add button */}
 							{props.onCreate && (
 								<IconButton
 									onClick={handleAdd}
@@ -166,45 +281,35 @@ export const Table = <T,>(props: TableProps<T>): React.JSX.Element => {
 									<AddIcon fontSize='inherit' />
 								</IconButton>
 							)}
+							{/* Pagination */}
 							<TablePagination
 								component='div'
 								count={props.items.length}
-								onPageChange={handlePageChange}
-								onRowsPerPageChange={handleRowsPerPageChange}
 								page={page}
 								rowsPerPage={rowsPerPage}
+								onPageChange={handlePageChange}
+								onRowsPerPageChange={handleRowsPerPageChange}
 								rowsPerPageOptions={Array.from(RowsPerPageRange)}
 							/>
 						</Stack>
 					</Card>
 				</Stack>
+				{/* Create/update dialog */}
 				<ConfirmationDialog
 					title={
-						<>
-							<Stack
-								direction='row'
-								sx={{
-									alignItems: 'center',
-									justifyContent: 'space-between',
-									width: '100%',
-								}}>
-								<Typography
-									sx={{
-										fontWeight: 'bold',
-									}}>
-									{!item ? `New ${itemName}` : `${itemName}`}
-								</Typography>
-								{item && props.onDelete && (
-									<IconButton
-										onClick={handleDelete}
-										sx={{
-											color: 'neutral.light',
-										}}>
-										<DeleteIcon />
-									</IconButton>
-								)}
-							</Stack>
-						</>
+						<Stack
+							direction='row'
+							sx={{
+								justifyContent: 'space-between',
+								width: '100%',
+							}}>
+							<Typography>{!item ? `New ${itemName}` : `${itemName}`}</Typography>
+							{item && props.onDelete && (
+								<IconButton onClick={handleDelete}>
+									<DeleteIcon />
+								</IconButton>
+							)}
+						</Stack>
 					}
 					open={openItemDialog}
 					acceptable={props.onValidate ? props.onValidate() : true}
@@ -217,6 +322,7 @@ export const Table = <T,>(props: TableProps<T>): React.JSX.Element => {
 						{props.renderDialog?.()}
 					</Stack>
 				</ConfirmationDialog>
+				{/* Delete dialog */}
 				<ConfirmationDialog
 					title='Delete'
 					variant='warning'
