@@ -65,7 +65,7 @@ export const MultipleSelect = <T,>({
 						},
 						sx: {
 							'.MuiStack-root': {
-								overflow: 'auto',
+								overflow: 'hidden',
 							},
 						},
 					},
