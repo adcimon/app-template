@@ -296,20 +296,14 @@ export const Table = <T,>(props: TableProps<T>): React.JSX.Element => {
 				</Stack>
 				{/* Create/update dialog */}
 				<ConfirmationDialog
-					title={
-						<Stack
-							direction='row'
-							sx={{
-								justifyContent: 'space-between',
-								width: '100%',
-							}}>
-							<Typography>{!item ? `New ${itemName}` : `${itemName}`}</Typography>
-							{item && props.onDelete && (
-								<IconButton onClick={handleDelete}>
-									<DeleteIcon />
-								</IconButton>
-							)}
-						</Stack>
+					title={<Typography>{!item ? `New ${itemName}` : `${itemName}`}</Typography>}
+					headerActions={
+						item &&
+						props.onDelete && (
+							<IconButton onClick={handleDelete}>
+								<DeleteIcon />
+							</IconButton>
+						)
 					}
 					open={openItemDialog}
 					acceptable={props.onValidate ? props.onValidate() : true}
@@ -318,7 +312,9 @@ export const Table = <T,>(props: TableProps<T>): React.JSX.Element => {
 					onClose={handleCloseDialog}>
 					<Stack
 						direction='column'
-						spacing={2}>
+						sx={{
+							gap: '0.75rem',
+						}}>
 						{props.renderDialog?.()}
 					</Stack>
 				</ConfirmationDialog>

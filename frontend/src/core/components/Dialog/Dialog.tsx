@@ -12,6 +12,7 @@ interface DialogProps {
 	title?: React.ReactNode;
 	variant?: 'info' | 'success' | 'warning' | 'error';
 	actions?: React.ReactNode;
+	headerActions?: React.ReactNode;
 	open: boolean;
 	divider?: boolean;
 	onClose?: (event: any) => void;
@@ -105,13 +106,19 @@ export const Dialog = (props: DialogProps): React.JSX.Element => {
 							{renderIcon()}
 							{props.title}
 						</Stack>
-						{props.onClose && (
-							<IconButton
-								size='small'
-								onClick={props.onClose}>
-								<CloseIcon />
-							</IconButton>
-						)}
+						<Stack
+							direction='row'
+							sx={{
+								alignItems: 'center',
+								gap: '0.5rem',
+							}}>
+							{props.headerActions}
+							{props.onClose && (
+								<IconButton onClick={props.onClose}>
+									<CloseIcon />
+								</IconButton>
+							)}
+						</Stack>
 					</Stack>
 				</DialogTitle>
 				{props.divider && (

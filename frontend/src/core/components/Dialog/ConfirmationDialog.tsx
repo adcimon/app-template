@@ -5,6 +5,7 @@ import { Dialog } from './Dialog';
 interface ConfirmationDialogProps {
 	title?: React.ReactNode;
 	variant?: 'info' | 'success' | 'warning' | 'error';
+	headerActions?: React.ReactNode;
 	open: boolean;
 	divider?: boolean;
 	acceptable?: boolean;
@@ -80,6 +81,7 @@ export const ConfirmationDialog = (props: ConfirmationDialogProps): React.JSX.El
 						)}
 					</>
 				}
+				headerActions={props.headerActions}
 				onClose={props.onClose}
 				sx={props.sx}>
 				{props.children}
