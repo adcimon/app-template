@@ -31,6 +31,7 @@ export const PreferencesMenu = (): React.JSX.Element => {
 					<MenuItem value={0}>Base</MenuItem>
 					<MenuItem value={1}>Custom Light</MenuItem>
 					<MenuItem value={2}>Custom Dark</MenuItem>
+					<MenuItem value={3}>Discord</MenuItem>
 				</Select>
 			</>
 		);

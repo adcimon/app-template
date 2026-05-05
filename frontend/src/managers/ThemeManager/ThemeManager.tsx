@@ -5,6 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Base from '../../themes/base/theme';
 import CustomLight from '../../themes/customLight/theme';
 import CustomDark from '../../themes/customDark/theme';
+import Discord from '../../themes/discord/theme';
 import { useAppState } from '../../states/app/useAppState';
 
 interface ThemeManagerProps {
@@ -22,6 +23,8 @@ export const ThemeManager = (props: ThemeManagerProps): React.JSX.Element => {
 				return CustomLight;
 			case 2:
 				return CustomDark;
+			case 3:
+				return Discord;
 			default:
 				return Base;
 		}
