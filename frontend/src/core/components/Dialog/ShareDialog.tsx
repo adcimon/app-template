@@ -84,7 +84,7 @@ export const ShareDialog = (props: ShareDialogProps): React.JSX.Element => {
 						<Typography variant='h5'>Share</Typography>
 					</Stack>
 				}
-				actions={
+				footerActions={
 					<>
 						{props.onAccept && (
 							<Button

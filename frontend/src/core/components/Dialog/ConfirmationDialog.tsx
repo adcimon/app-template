@@ -61,7 +61,8 @@ export const ConfirmationDialog = (props: ConfirmationDialogProps): React.JSX.El
 				variant={props.variant}
 				open={props.open}
 				divider={props.divider}
-				actions={
+				headerActions={props.headerActions}
+				footerActions={
 					<>
 						{props.onCancel && (
 							<Button
@@ -81,7 +82,6 @@ export const ConfirmationDialog = (props: ConfirmationDialogProps): React.JSX.El
 						)}
 					</>
 				}
-				headerActions={props.headerActions}
 				onClose={props.onClose}
 				sx={props.sx}>
 				{props.children}

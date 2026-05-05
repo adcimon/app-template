@@ -11,8 +11,8 @@ import { useBreakpointDown } from '../../hooks/useBreakpoint';
 interface DialogProps {
 	title?: React.ReactNode;
 	variant?: 'info' | 'success' | 'warning' | 'error';
-	actions?: React.ReactNode;
 	headerActions?: React.ReactNode;
+	footerActions?: React.ReactNode;
 	open: boolean;
 	divider?: boolean;
 	onClose?: (event: any) => void;
@@ -130,7 +130,7 @@ export const Dialog = (props: DialogProps): React.JSX.Element => {
 					/>
 				)}
 				<DialogContent sx={props.sx}>{props.children}</DialogContent>
-				{props.actions && <DialogActions>{props.actions}</DialogActions>}
+				{props.footerActions && <DialogActions>{props.footerActions}</DialogActions>}
 			</MUI.Dialog>
 		);
 	};

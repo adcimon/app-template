@@ -37,7 +37,7 @@ export const LoadingDialog = (props: LoadingDialogProps): React.JSX.Element => {
 		return (
 			<Dialog
 				title={props.title}
-				actions={
+				footerActions={
 					<>
 						{props.onCancel && (
 							<Button
