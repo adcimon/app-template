@@ -12,6 +12,12 @@ export const AuthGuard = (...methods: AuthMethod[]) => {
 		async canActivate(context: ExecutionContext): Promise<boolean> {
 			const request: any = context.switchToHttp().getRequest();
 			const authHeader: string = request.headers.authorization;
+
+			const noAuth: boolean = methods.includes(AuthMethod.None);
+			if (!authHeader && noAuth) {
+				return true;
+			}
+
 			if (!authHeader) {
 				throw new UnauthorizedException();
 			}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Checkbox, FormControlLabel, Link, Stack, Typography } from '@mui/material';
+import { Button, Checkbox, Link, Stack, Typography } from '@mui/material';
 import { ToastManager } from '../../managers/ToastManager/ToastManager';
 import { Copyright } from '../../components/Copyright/Copyright';
 import { EmailField } from '../../core/components/Field/EmailField';
@@ -85,22 +85,22 @@ export const SignUpView = (): React.JSX.Element => {
 					onChange={(event: any) => setConfirmPassword(event.target.value)}
 					fullWidth={true}
 				/>
-				<FormControlLabel
-					control={
-						<Checkbox
-							color='primary'
-							value={legalAccepted}
-							onChange={(event: any, checked: boolean) => setLegalAccepted(checked)}
-						/>
-					}
-					label={
-						<Typography variant='subtitle2'>
-							I have read and agree to the{' '}
-							<Link onClick={handleOpenTermsOfService}>Terms of Service</Link> and{' '}
-							<Link onClick={handleOpenPrivacyPolicy}>Privacy Policy</Link>.
-						</Typography>
-					}
-				/>
+				<Stack
+					direction='row'
+					sx={{
+						alignItems: 'center',
+						gap: '0.5rem',
+					}}>
+					<Checkbox
+						color='primary'
+						value={legalAccepted}
+						onChange={(event: any, checked: boolean) => setLegalAccepted(checked)}
+					/>
+					<Typography variant='subtitle2'>
+						I have read and agree to the <Link onClick={handleOpenTermsOfService}>Terms of Service</Link>{' '}
+						and <Link onClick={handleOpenPrivacyPolicy}>Privacy Policy</Link>.
+					</Typography>
+				</Stack>
 				<Button
 					disabled={!validate()}
 					variant='contained'

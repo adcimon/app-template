@@ -1,3 +1,4 @@
 export enum AuthMethod {
-	Bearer = 0,
+	None = 0,
+	Bearer = 1,
 }
