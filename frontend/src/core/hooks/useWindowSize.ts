@@ -2,7 +2,7 @@ import React from 'react';
 import { useEventListener } from './useEventListener';
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 
-type WindowSize = {
+export type WindowSize = {
 	width: number;
 	height: number;
 };

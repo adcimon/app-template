@@ -1,10 +1,13 @@
 import React from 'react';
 import { Box, keyframes } from '@mui/material';
-import { useWindowSize } from '../../hooks/useWindowSize';
+import { useDebounce } from '../../hooks/useDebounce';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
+import { WindowSize, useWindowSize } from '../../hooks/useWindowSize';
+import { useResizeObserver } from '../../hooks/useResizeObserver';
 
 interface VideoGridProps {
 	aspectRatio?: number;
+	tileCount?: number;
 	tileMargin?: number;
 	children?: React.ReactElement | Array<React.ReactElement>;
 }
@@ -14,23 +17,32 @@ export const VideoGrid = (props: VideoGridProps): React.JSX.Element => {
 	const tileMargin: number = props.tileMargin ?? 5;
 	const gridRef = React.useRef<HTMLDivElement>(null);
 
-	const windowSize = useWindowSize();
-
-	const visibilityObserver = useIntersectionObserver({
-		threshold: 0,
-	});
-
 	const [tileSize, setTileSize] = React.useState({
 		width: 0,
 		height: 0,
 	});
 
+	const windowSize: WindowSize = useWindowSize();
+
+	const visibilityObserver = useIntersectionObserver({
+		threshold: 0,
+	});
+
+	const debouncedResize = useDebounce(() => {
+		requestAnimationFrame(() => resize());
+	}, 150);
+
+	useResizeObserver({
+		ref: gridRef,
+		onResize: () => debouncedResize(),
+	});
+
 	React.useEffect(() => {
-		resize();
+		debouncedResize();
 	}, [windowSize, visibilityObserver.isIntersecting, props.children]);
 
 	const getTileCount = (): number => {
-		return React.Children.count(props.children);
+		return props.tileCount ?? React.Children.count(props.children);
 	};
 
 	const getGridSize = () => {
