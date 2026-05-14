@@ -22,7 +22,7 @@ export function UserCognitoToDto(user: AWS.UserType | AWS.GetUserResponse | AWS.
 	dto.phoneVerified = values.phone_number_verified === 'true' ? true : false;
 	dto.locale = values.locale ?? '';
 	dto.timezone = values.zoneinfo ?? '';
-	dto.avatar = values.picture ?? '';
+	dto.icon = values.picture ?? '';
 	dto.roles = values.roles ? values.roles?.split(',') : [];
 
 	return dto;

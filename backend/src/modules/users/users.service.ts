@@ -58,8 +58,8 @@ export class UsersService {
 		return user;
 	}
 
-	public async updateAvatar(id: string, avatar: string): Promise<UserDto> {
-		const user: UserDto = await this.cognitoService.updateAvatar(id, avatar);
+	public async updateIcon(id: string, avatar: string): Promise<UserDto> {
+		const user: UserDto = await this.cognitoService.updateIcon(id, avatar);
 		return user;
 	}
 }

@@ -63,17 +63,16 @@ export namespace ValidationSchema {
 
 	/**
 	 * Explanation:
-	 *		[\p{L}\p{N}_\-\s]+ → Matches names that contain unicode letters, numbers, underscores, hyphens, and spaces.
 	 *		\. → Matches the dot before the extension.
 	 *		(jpg|jpeg|png) → Ensures it ends with jpg, jpeg, or png.
+	 *		Note: URL format is validated by yup url.
 	 * Examples:
-	 *		"image.png" → Yes.
-	 *		"фото.jpeg" → Yes.
-	 *		"日本の写真.jpg" → Yes.
-	 *		"my-image_123.PNG" → Yes.
+	 *		"https://cdn.example.com/image.png" → Yes.
+	 *		"https://cdn.example.com/path/photo.jpeg" → Yes.
+	 *		"https://example.com/image.gif" → No (unsupported extension).
 	 */
-	const AvatarRegExp: RegExp = /^[\p{L}\p{N}_\-\s]+\.(jpg|jpeg|png)$/iu;
-	const AvatarMessage: string = 'Avatars only support jpg, jpeg and png files.';
+	const IconRegExp: RegExp = /^$|\.(jpg|jpeg|png)$/iu;
+	const IconMessage: string = 'Icons only support jpg, jpeg and png files.';
 
 	export const PasswordSchema = yup.string();
 
@@ -98,7 +97,7 @@ export namespace ValidationSchema {
 
 	export const BirthdateSchema = yup.string();
 
-	export const AvatarSchema = yup.string().url().matches(AvatarRegExp, AvatarMessage);
+	export const IconSchema = yup.string().url().matches(IconRegExp, IconMessage);
 
 	export const RefreshTokenSchema = yup.string();
 	export const CodeSchema = yup.string();

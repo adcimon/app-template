@@ -9,6 +9,6 @@ export class User {
 	phoneVerified: boolean = false;
 	locale: string = '';
 	timezone: string = '';
-	avatar: string = '';
+	icon: string = '';
 	roles: string[] = [];
 }

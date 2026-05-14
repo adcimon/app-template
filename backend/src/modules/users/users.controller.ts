@@ -14,16 +14,16 @@ export class UsersController {
 	@Get('/me')
 	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(ResponseInterceptor)
-	async getMyUser(@Request() request): Promise<UserDto> {
+	async getUser(@Request() request): Promise<UserDto> {
 		return await this.service.get(request.user.id);
 	}
 
 	@Patch('/me')
 	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(ResponseInterceptor)
-	async updateMyUser(
+	async updateUser(
 		@Request() request,
-		@Body(new ValidationPipe(UsersSchema.UpdateMyUserBody)) body: any,
+		@Body(new ValidationPipe(UsersSchema.UpdateUserBody)) body: any,
 	): Promise<UserDto> {
 		return await this.service.update(request.user.id, {
 			name: body.name,
@@ -37,9 +37,9 @@ export class UsersController {
 	@Patch('/me/email')
 	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(ResponseInterceptor)
-	async updateMyEmail(
+	async updateEmail(
 		@Request() request,
-		@Body(new ValidationPipe(UsersSchema.UpdateMyEmailBody)) body: any,
+		@Body(new ValidationPipe(UsersSchema.UpdateEmailBody)) body: any,
 	): Promise<UserDto> {
 		return await this.service.updateEmail(request.user.id, body.email);
 	}
@@ -47,20 +47,20 @@ export class UsersController {
 	@Patch('/me/phone')
 	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(ResponseInterceptor)
-	async updateMyPhone(
+	async updatePhone(
 		@Request() request,
-		@Body(new ValidationPipe(UsersSchema.UpdateMyPhoneBody)) body: any,
+		@Body(new ValidationPipe(UsersSchema.UpdatePhoneBody)) body: any,
 	): Promise<UserDto> {
 		return await this.service.updatePhone(request.user.id, body.phone);
 	}
 
-	@Patch('/me/avatar')
+	@Patch('/me/icon')
 	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(ResponseInterceptor)
-	async updateMyAvatar(
+	async updateIcon(
 		@Request() request,
-		@Body(new ValidationPipe(UsersSchema.UpdateMyAvatarBody)) body: any,
+		@Body(new ValidationPipe(UsersSchema.UpdateIconBody)) body: any,
 	): Promise<UserDto> {
-		return await this.service.updateAvatar(request.user.id, body.avatar);
+		return await this.service.updateIcon(request.user.id, body.icon);
 	}
 }

@@ -9,7 +9,7 @@ export function useUserState<T extends User>() {
 	const [user, setUser] = useAtom(UserState);
 
 	const get = async (): Promise<T> => {
-		const user: T = await api.client?.usersService.getMyUser();
+		const user: T = await api.client?.usersService.getUser();
 		setUser(user);
 		return user;
 	};
@@ -23,24 +23,24 @@ export function useUserState<T extends User>() {
 			timezone: string;
 		}> = {},
 	): Promise<T> => {
-		const user: T = await api.client?.usersService.updateMyUser(params);
+		const user: T = await api.client?.usersService.updateUser(params);
 		setUser(user);
 		return user;
 	};
 
 	const updateEmail = async (email: string): Promise<T> => {
-		const user: T = await api.client?.usersService.updateMyEmail(email);
+		const user: T = await api.client?.usersService.updateEmail(email);
 		return user;
 	};
 
 	const updatePhone = async (phone: string): Promise<T> => {
-		const user: T = await api.client?.usersService.updateMyPhone(phone);
+		const user: T = await api.client?.usersService.updatePhone(phone);
 		setUser(user);
 		return user;
 	};
 
-	const updateAvatar = async (avatar: string): Promise<T> => {
-		const user: T = await api.client?.usersService.updateMyAvatar(avatar);
+	const updateIcon = async (icon: string): Promise<T> => {
+		const user: T = await api.client?.usersService.updateIcon(icon);
 		return user;
 	};
 
@@ -54,7 +54,7 @@ export function useUserState<T extends User>() {
 		update,
 		updateEmail,
 		updatePhone,
-		updateAvatar,
+		updateIcon,
 		reset,
 	};
 }

@@ -9,6 +9,6 @@ export class UserDto {
 	phoneVerified: boolean;
 	locale: string;
 	timezone: string;
-	avatar: string;
+	icon: string;
 	roles: string[];
 }

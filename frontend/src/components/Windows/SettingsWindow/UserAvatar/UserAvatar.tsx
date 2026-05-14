@@ -24,18 +24,18 @@ export const UserAvatar = (): React.JSX.Element => {
 	};
 
 	const handleClick = () => {
-		setAvatar(userState.user?.avatar || '');
+		setAvatar(userState.user?.icon || '');
 		setOpenDialog(true);
 	};
 
 	const validate = (): boolean => {
-		return AppUtils.AVATAR_REGEXP.test(avatar) && avatar !== userState.user?.avatar;
+		return AppUtils.AVATAR_REGEXP.test(avatar) && avatar !== userState.user?.icon;
 	};
 
 	const handleAccept = async () => {
 		const update = async () => {
 			try {
-				await userState.updateAvatar(avatar);
+				await userState.updateIcon(avatar);
 				setOpenDialog(false);
 				ToastManager.success('Avatar changed');
 			} catch (error: any) {
@@ -63,7 +63,7 @@ export const UserAvatar = (): React.JSX.Element => {
 	};
 
 	const render = () => {
-		const avatar: string | undefined = AppUtils.getAvatar(userState.user);
+		const src: string | undefined = AppUtils.getAvatar(userState.user);
 		return (
 			<>
 				<Box
@@ -74,7 +74,7 @@ export const UserAvatar = (): React.JSX.Element => {
 					}}>
 					<Avatar
 						ref={ref}
-						src={avatar}
+						src={src}
 						sx={{
 							backgroundColor: 'neutral.light',
 							border: '2px solid white',

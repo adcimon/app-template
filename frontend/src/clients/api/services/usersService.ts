@@ -3,14 +3,14 @@ import { ApiClient } from '../apiClient';
 export class UsersService {
 	constructor(private api: ApiClient) {}
 
-	public getMyUser = async (): Promise<any> => {
+	public getUser = async (): Promise<any> => {
 		return this.api.get({
 			endpoint: '/users/me',
 			useAuthorization: true,
 		});
 	};
 
-	public updateMyUser = async (
+	public updateUser = async (
 		params: Partial<{
 			name: string;
 			surname: string;
@@ -32,7 +32,7 @@ export class UsersService {
 		});
 	};
 
-	public updateMyEmail = async (email: string): Promise<any> => {
+	public updateEmail = async (email: string): Promise<any> => {
 		return this.api.patch({
 			endpoint: '/users/me/email',
 			data: {
@@ -42,7 +42,7 @@ export class UsersService {
 		});
 	};
 
-	public updateMyPhone = async (phone: string): Promise<any> => {
+	public updatePhone = async (phone: string): Promise<any> => {
 		return this.api.patch({
 			endpoint: '/users/me/phone',
 			data: {
@@ -52,11 +52,11 @@ export class UsersService {
 		});
 	};
 
-	public updateMyAvatar = async (avatar: string): Promise<any> => {
+	public updateIcon = async (icon: string): Promise<any> => {
 		return this.api.patch({
-			endpoint: '/users/me/avatar',
+			endpoint: '/users/me/icon',
 			data: {
-				avatar,
+				icon,
 			},
 			useAuthorization: true,
 		});

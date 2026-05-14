@@ -417,7 +417,7 @@ export class CognitoService implements OnModuleInit {
 		return await this.updateAttribute(id, 'phone_number', phone);
 	}
 
-	public async updateAvatar(id: string, avatar: string): Promise<UserDto> {
+	public async updateIcon(id: string, avatar: string): Promise<UserDto> {
 		return await this.updateAttribute(id, 'picture', avatar);
 	}
 
