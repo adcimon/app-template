@@ -32,9 +32,9 @@ export const NotificationItem = (props: NotificationItemProps): React.JSX.Elemen
 						}}>
 						<Stack
 							direction='row'
-							spacing={1}
 							sx={{
 								alignItems: 'flex-start',
+								gap: '0.5rem',
 							}}>
 							<Box>
 								<Avatar

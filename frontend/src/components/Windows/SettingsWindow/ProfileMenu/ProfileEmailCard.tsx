@@ -82,7 +82,9 @@ export const ProfileEmailCard = (): React.JSX.Element => {
 						subheader={
 							<Stack
 								direction='row'
-								spacing={0.5}>
+								sx={{
+									gap: '0.25rem',
+								}}>
 								<Typography
 									sx={{
 										color: 'text.primary',

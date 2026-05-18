@@ -71,9 +71,9 @@ export const SettingsWindow = (props: SettingsWindowProps): React.JSX.Element =>
 					}}>
 					<Stack
 						direction='row'
-						spacing={3}
 						sx={{
 							bottom: isBreakpoint ? avatarPosition.md : avatarPosition.lg,
+							gap: '1.5rem',
 							left: '32px',
 							position: 'relative',
 							zIndex: '10',
@@ -117,7 +117,9 @@ export const SettingsWindow = (props: SettingsWindowProps): React.JSX.Element =>
 							label={
 								<Stack
 									direction='row'
-									spacing={0.5}>
+									sx={{
+										gap: '0.25rem',
+									}}>
 									<AccountBoxIcon />
 									<Typography>Profile</Typography>
 								</Stack>
@@ -127,7 +129,9 @@ export const SettingsWindow = (props: SettingsWindowProps): React.JSX.Element =>
 							label={
 								<Stack
 									direction='row'
-									spacing={0.5}>
+									sx={{
+										gap: '0.25rem',
+									}}>
 									<SettingsSuggestIcon />
 									<Typography>Preferences</Typography>
 								</Stack>

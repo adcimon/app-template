@@ -45,9 +45,9 @@ export const UsersMenu = (): React.JSX.Element => {
 				{/* Name */}
 				<Stack
 					direction='row'
-					spacing={2}
 					sx={{
 						alignItems: 'center',
+						gap: '1rem',
 					}}>
 					<Avatar
 						src={avatar}
@@ -76,7 +76,9 @@ export const UsersMenu = (): React.JSX.Element => {
 				{/* Email */}
 				<Stack
 					direction='row'
-					spacing={0.5}>
+					sx={{
+						gap: '0.5rem',
+					}}>
 					<Typography variant='body2'>{item.email}</Typography>
 					<VerificationBadge verified={item.emailVerified} />
 				</Stack>
@@ -86,7 +88,9 @@ export const UsersMenu = (): React.JSX.Element => {
 				{item.phone && (
 					<Stack
 						direction='row'
-						spacing={0.5}>
+						sx={{
+							gap: '0.5rem',
+						}}>
 						<Typography variant='body2'>{item.phone}</Typography>
 						<VerificationBadge verified={item.phoneVerified} />
 					</Stack>
@@ -110,9 +114,9 @@ export const UsersMenu = (): React.JSX.Element => {
 			<>
 				<Stack
 					direction='row'
-					spacing={2}
 					sx={{
 						alignItems: 'center',
+						gap: '1rem',
 					}}>
 					<Avatar
 						src={avatar}

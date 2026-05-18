@@ -18,9 +18,9 @@ export const NotificationTooltip = (props: NotificationTooltipProps): React.JSX.
 				<Box>
 					<Stack
 						direction='row'
-						spacing={0.5}
 						sx={{
 							alignItems: 'center',
+							gap: '0.25rem',
 						}}>
 						<NotificationsIcon
 							sx={{
@@ -33,16 +33,16 @@ export const NotificationTooltip = (props: NotificationTooltipProps): React.JSX.
 				<Box>
 					<Stack
 						direction='row'
-						spacing={0.5}
 						sx={{
 							alignItems: 'center',
+							gap: '0.25rem',
 							justifyContent: 'space-between',
 						}}>
 						<Stack
 							direction='row'
-							spacing={0.5}
 							sx={{
 								alignItems: 'center',
+								gap: '0.25rem',
 							}}>
 							<EventIcon
 								sx={{

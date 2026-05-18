@@ -31,8 +31,8 @@ export const HomeView = (): React.JSX.Element => {
 						</Typography>
 						<Stack
 							direction='row'
-							spacing={2}
 							sx={{
+								gap: '1.25rem',
 								justifyContent: 'center',
 								paddingTop: '2rem',
 							}}>

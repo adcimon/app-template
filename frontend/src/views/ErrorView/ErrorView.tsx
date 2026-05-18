@@ -45,9 +45,9 @@ export const ErrorView = (props: ErrorViewProps): React.JSX.Element => {
 					}}>
 					<Stack
 						direction='column'
-						spacing={4}
 						sx={{
 							alignItems: 'center',
+							gap: '2rem',
 							height: '100%',
 							justifyContent: 'center',
 							paddingX: '1rem',
@@ -55,9 +55,9 @@ export const ErrorView = (props: ErrorViewProps): React.JSX.Element => {
 						}}>
 						<Stack
 							direction='column'
-							spacing={1}
 							sx={{
 								alignItems: 'start',
+								gap: '0.5rem',
 								justifyContent: 'center',
 							}}>
 							<Typography

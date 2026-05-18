@@ -53,10 +53,10 @@ export const Window = (props: WindowProps): React.JSX.Element => {
 					}}>
 					<Stack
 						direction='column'
-						spacing={3}
 						sx={{
-							paddingBottom: '2rem',
 							...props.sx,
+							gap: '1.5rem',
+							paddingBottom: '2rem',
 						}}>
 						{(props.label || props.onClose) && renderHeader()}
 						{props.children}

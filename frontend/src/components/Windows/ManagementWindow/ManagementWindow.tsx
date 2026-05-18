@@ -60,7 +60,9 @@ export const ManagementWindow = (props: ManagementWindowProps): React.JSX.Elemen
 							label={
 								<Stack
 									direction='row'
-									spacing={0.5}>
+									sx={{
+										gap: '0.25rem',
+									}}>
 									<PeopleAltIcon />
 									<Typography>Users</Typography>
 								</Stack>
