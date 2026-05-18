@@ -7,8 +7,8 @@ import { GenericErrorException } from './generic-error.exception.js';
 import { UnauthorizedException } from './unauthorized.exception.js';
 import { ForbiddenException } from './forbidden.exception.js';
 import { InvalidRequestException } from './invalid-request.exception.js';
+import { AppUtils } from '../utils/app.utils.js';
 import { TimeUtils } from '../utils/time.utils.js';
-import packageJson from '../../package.json' with { type: 'json' };
 
 @Catch()
 export class ExceptionFilter extends BaseExceptionFilter {
@@ -64,7 +64,7 @@ export class ExceptionFilter extends BaseExceptionFilter {
 		}
 
 		const apiResponse: ApiResponseDto = {
-			version: packageJson.version,
+			version: AppUtils.getVersion(),
 			endpoint: `${request.protocol}://${request.get('host')}${request.originalUrl}`,
 			timestamp: TimeUtils.getNowISO(),
 			error: exception.getResponse(),
