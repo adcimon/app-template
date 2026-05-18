@@ -5,6 +5,11 @@ export namespace AppUtils {
 	export const PHONE_REGEXP: RegExp = /^\+\d{1,4}\d{6,14}$/;
 	export const AVATAR_REGEXP: RegExp = /^$|^https?:\/\/.+\.(jpg|jpeg|png)$/iu;
 
+	export const getVersion = (): string => {
+		const version: string = __APP_VERSION__ || '0.0.0';
+		return version;
+	};
+
 	export const getMetadata = async (): Promise<any> => {
 		const response = await fetch('/metadata.json', {
 			method: 'GET',

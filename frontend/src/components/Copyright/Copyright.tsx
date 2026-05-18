@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, Typography } from '@mui/material';
+import { AppUtils } from '../../utils/appUtils';
 
 export const Copyright = (): React.JSX.Element => {
 	const render = () => {
@@ -20,6 +21,7 @@ export const Copyright = (): React.JSX.Element => {
 					adcimon
 				</Link>{' '}
 				{year}
+				{` v${AppUtils.getVersion()}`}
 			</Typography>
 		);
 	};
