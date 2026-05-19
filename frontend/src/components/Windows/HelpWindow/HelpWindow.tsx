@@ -3,7 +3,9 @@ import { Button, Grid, Typography } from '@mui/material';
 import { Card } from '../../../core/components/Card/Card';
 import { PrivacyPolicyDialog } from '../../Dialog/PrivacyPolicyDialog';
 import { TermsOfServiceDialog } from '../../Dialog/TermsOfServiceDialog';
+import { VersionBadge } from '../../../core/components/Badge/VersionBadge';
 import { Window } from '../../../core/components/Window/Window';
+import { AppUtils } from '../../../utils/appUtils';
 
 interface HelpWindowProps {
 	open: boolean;
@@ -48,6 +50,14 @@ export const HelpWindow = (props: HelpWindowProps): React.JSX.Element => {
 				label='Help'
 				open={props.open}
 				onClose={handleClose}>
+				<VersionBadge
+					version={AppUtils.getVersion()}
+					color='neutral.light'
+					sx={{
+						marginLeft: '1rem',
+						width: '100px',
+					}}
+				/>
 				<Grid
 					container
 					sx={{

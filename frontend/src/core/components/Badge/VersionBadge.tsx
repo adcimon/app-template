@@ -1,31 +1,32 @@
 import React from 'react';
 import { Chip, SxProps } from '@mui/material';
-import Grid3x3Icon from '@mui/icons-material/Grid3x3';
+import SellIcon from '@mui/icons-material/Sell';
 import { CopyButton } from '../Button/CopyButton';
 
-interface IdentityBadgeProps {
-	id?: string;
+interface VersionBadgeProps {
+	version?: string;
 	color?: string;
 	sx?: SxProps;
 }
 
-export const IdentityBadge = (props: IdentityBadgeProps): React.JSX.Element => {
+export const VersionBadge = (props: VersionBadgeProps): React.JSX.Element => {
 	const color: string = props.color ?? 'text.primary';
 	const render = () => {
 		return (
 			<Chip
-				label={props.id}
+				label={props.version}
 				icon={
-					<Grid3x3Icon
+					<SellIcon
 						color='inherit'
 						sx={{
 							fontSize: '1rem',
+							transform: 'scaleX(-1)',
 						}}
 					/>
 				}
 				deleteIcon={
 					<CopyButton
-						text={props.id}
+						text={props.version}
 						iconColor={color}
 						size='small'
 						fontSize='1rem'
@@ -38,7 +39,7 @@ export const IdentityBadge = (props: IdentityBadgeProps): React.JSX.Element => {
 					paddingX: '5px',
 					'.MuiChip-label': {
 						fontSize: '0.7rem',
-						paddingX: '3px',
+						paddingX: '5px',
 						userSelect: 'text',
 					},
 					'.MuiChip-icon': {
