@@ -95,7 +95,6 @@ export const AccountMenu = (): React.JSX.Element => {
 					label={
 						<Typography
 							variant='body2'
-							color='primary.contrastText'
 							noWrap={true}
 							sx={{
 								color: 'primary.contrastText',

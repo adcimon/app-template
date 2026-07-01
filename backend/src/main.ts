@@ -7,7 +7,7 @@ import { EnvService } from './modules/env/env.service.js';
 import * as fs from 'fs';
 
 async function main() {
-	EnvService.initialize();
+	EnvService.init();
 
 	const port: number = EnvService.getVariable<number>('PORT', 9000);
 	const enableHttps: boolean = EnvService.getVariable<boolean>('ENABLE_HTTPS', false);

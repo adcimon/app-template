@@ -3,7 +3,7 @@ import { config } from 'dotenv';
 
 @Injectable()
 export class EnvService {
-	public static initialize(): any {
+	public static init(): any {
 		config();
 		if (process.env.NODE_ENV !== 'production') {
 			console.log('Environment variables:');
