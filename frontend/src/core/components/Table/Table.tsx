@@ -49,6 +49,9 @@ interface TableProps<T> {
 	onUpdate?: (item: T) => Promise<boolean> | boolean;
 	onReorder?: (sourceIndex: number, destinationIndex: number) => Promise<boolean> | boolean;
 	onDelete?: (item: T) => Promise<boolean> | boolean;
+
+	canEdit?: (item: T) => boolean;
+	canDelete?: (item: T) => boolean;
 }
 
 export const Table = <T,>(props: TableProps<T>): React.JSX.Element => {
@@ -60,6 +63,14 @@ export const Table = <T,>(props: TableProps<T>): React.JSX.Element => {
 	const [item, setItem] = React.useState<T>();
 	const [openItemDialog, setOpenItemDialog] = React.useState<boolean>(false);
 	const [openDeleteDialog, setOpenDeleteDialog] = React.useState<boolean>(false);
+
+	const isEditable = (item: T): boolean => {
+		return props.canEdit ? props.canEdit(item) : true;
+	};
+
+	const isDeletable = (item: T): boolean => {
+		return props.canDelete ? props.canDelete(item) : true;
+	};
 
 	const applyPagination = (records: T[], page: number, rowsPerPage: number): T[] => {
 		return records.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
@@ -299,14 +310,15 @@ export const Table = <T,>(props: TableProps<T>): React.JSX.Element => {
 					title={<Typography>{!item ? `New ${itemName}` : `${itemName}`}</Typography>}
 					headerActions={
 						item &&
-						props.onDelete && (
+						props.onDelete &&
+						isDeletable(item) && (
 							<IconButton onClick={handleDelete}>
 								<DeleteIcon />
 							</IconButton>
 						)
 					}
 					open={openItemDialog}
-					acceptable={props.onValidate ? props.onValidate() : true}
+					acceptable={(props.onValidate ? props.onValidate() : true) && (item ? isEditable(item) : true)}
 					onAccept={handleAcceptDialog}
 					onCancel={props.onUpdate ? handleCloseDialog : undefined}
 					onClose={handleCloseDialog}>
