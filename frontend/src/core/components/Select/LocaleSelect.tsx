@@ -15,8 +15,7 @@ export const LocaleSelect = ({ disableClearable, ...props }: LocaleSelectProps):
 	const render = () => {
 		const isControlled = props.value !== undefined;
 		const selectedValue: LocaleType | null =
-			locales.find((locale: LocaleType) => locale.code === (isControlled ? props.value : props.defaultValue)) ??
-			null;
+			locales.find((l: LocaleType) => l.code === (isControlled ? props.value : props.defaultValue)) ?? null;
 		return (
 			<Autocomplete
 				options={locales}

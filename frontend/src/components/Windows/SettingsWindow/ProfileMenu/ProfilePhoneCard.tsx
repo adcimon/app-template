@@ -60,9 +60,7 @@ export const ProfilePhoneCard = (): React.JSX.Element => {
 	};
 
 	const render = () => {
-		const country: CountryType | undefined = countries.find(
-			(country: CountryType) => country.phone === countryCode,
-		);
+		const country: CountryType | undefined = countries.find((c: CountryType) => c.phone === countryCode);
 		return (
 			<>
 				<Card>

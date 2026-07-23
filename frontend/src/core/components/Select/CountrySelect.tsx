@@ -16,9 +16,7 @@ export const CountrySelect = ({ disableClearable, ...props }: CountrySelectProps
 	const render = () => {
 		const isControlled = props.value !== undefined;
 		const selectedValue: CountryType | null =
-			countries.find(
-				(country: CountryType) => country.code === (isControlled ? props.value : props.defaultValue),
-			) ?? null;
+			countries.find((c: CountryType) => c.code === (isControlled ? props.value : props.defaultValue)) ?? null;
 		return (
 			<Autocomplete
 				{...(isControlled ? { value: selectedValue } : { defaultValue: selectedValue })}
