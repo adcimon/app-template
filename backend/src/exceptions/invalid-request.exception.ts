@@ -1,11 +1,15 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { ApiErrorDto } from '../dtos/api-error.dto.js';
+import { ApiError } from '../types/api-error.js';
+import { ErrorCode } from '../types/error-code.js';
 
 export class InvalidRequestException extends HttpException {
 	constructor(message?: string) {
-		const error: ApiErrorDto = new ApiErrorDto();
-		error.code = 'invalid_request';
-		error.message = message || 'Invalid request';
-		super(error, HttpStatus.BAD_REQUEST);
+		const error: ApiError = new ApiError(
+			ErrorCode.InvalidRequest,
+			HttpStatus.BAD_REQUEST,
+			message || 'Invalid request',
+		);
+
+		super(error, error.status);
 	}
 }

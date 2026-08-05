@@ -9,15 +9,18 @@ import {
 	Divider,
 	Grid,
 	Stack,
-	TextField,
 	Typography,
 } from '@mui/material';
 import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
 import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
 import { EmailField } from '../../../../core/components/Field/EmailField';
+import { ChangeEmailForm } from '../../../../forms/ChangeEmailForm/ChangeEmailForm';
 import { VerificationBadge } from '../../../../core/components/Badge/VerificationBadge';
+import { VerifyEmailForm } from '../../../../forms/VerifyEmailForm/VerifyEmailForm';
 import { useAppState } from '../../../../states/app/useAppState';
 import { useUserState } from '../../../../states/user/useUserState';
+import { useChangeEmailForm } from '../../../../forms/ChangeEmailForm/useChangeEmailForm';
+import { useVerifyEmailForm } from '../../../../forms/VerifyEmailForm/useVerifyEmailForm';
 import { AppUtils } from '../../../../utils/appUtils';
 
 export const ProfileEmailCard = (): React.JSX.Element => {
@@ -25,8 +28,10 @@ export const ProfileEmailCard = (): React.JSX.Element => {
 	const userState = useUserState();
 
 	const [email, setEmail] = React.useState<string>(userState.user?.email ?? '');
-	const [newEmail, setNewEmail] = React.useState<string>('');
-	const [code, setCode] = React.useState<string>('');
+
+	const changeEmailForm = useChangeEmailForm();
+	const verifyEmailForm = useVerifyEmailForm();
+
 	const [openVerifyDialog, setOpenVerifyDialog] = React.useState<boolean>(false);
 	const [openChangeDialog, setOpenChangeDialog] = React.useState<boolean>(false);
 
@@ -35,13 +40,13 @@ export const ProfileEmailCard = (): React.JSX.Element => {
 	};
 
 	const handleVerify = async () => {
-		setCode('');
+		verifyEmailForm.reset();
 		setOpenVerifyDialog(true);
 	};
 
 	const handleAcceptVerify = async () => {
 		try {
-			await appState.verifyEmail(code);
+			await appState.verifyEmail(verifyEmailForm.form);
 			await userState.get();
 			ToastManager.success('Email changed');
 		} catch (error: any) {
@@ -145,12 +150,13 @@ export const ProfileEmailCard = (): React.JSX.Element => {
 						}}>
 						<Button
 							variant='contained'
+							disabled={userState.user?.emailVerified ?? false}
 							onClick={handleVerify}>
 							Verify
 						</Button>
 						<Button
-							disabled={!validate()}
 							variant='contained'
+							disabled={!validate()}
 							onClick={handleChange}>
 							Change
 						</Button>
@@ -159,36 +165,27 @@ export const ProfileEmailCard = (): React.JSX.Element => {
 				<ConfirmationDialog
 					title='Change Email'
 					open={openChangeDialog}
-					acceptable={email === newEmail}
+					acceptable={email === changeEmailForm.form.email}
 					onAccept={handleAcceptChange}
 					onCancel={handleCancelChange}
 					onClose={handleCancelChange}>
 					<Typography>Confirm your new email to change it.</Typography>
-					<EmailField
-						variant='standard'
-						value={newEmail}
-						autoFocus={true}
-						onChange={(event: any) => setNewEmail(event.target.value)}
-						fullWidth={true}
-						margin='dense'
+					<ChangeEmailForm
+						form={changeEmailForm.form}
+						onChange={changeEmailForm.handleChange}
 					/>
 				</ConfirmationDialog>
 				<ConfirmationDialog
 					title='Verify Email'
 					open={openVerifyDialog}
-					acceptable={code !== ''}
+					acceptable={verifyEmailForm.validate()}
 					onAccept={handleAcceptVerify}
 					onCancel={handleCancelVerify}
 					onClose={handleCancelVerify}>
 					<Typography>Insert the verification code to change your email.</Typography>
-					<TextField
-						type='number'
-						variant='standard'
-						value={code}
-						autoFocus={true}
-						onChange={(event: any) => setCode(event.target.value)}
-						fullWidth={true}
-						margin='dense'
+					<VerifyEmailForm
+						form={verifyEmailForm.form}
+						onChange={verifyEmailForm.handleChange}
 					/>
 				</ConfirmationDialog>
 			</>

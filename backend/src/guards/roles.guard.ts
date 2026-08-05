@@ -1,5 +1,5 @@
 import { CanActivate, ExecutionContext, Injectable, mixin } from '@nestjs/common';
-import { UserDto } from '../modules/users/user.dto.js';
+import { User } from '../modules/users/types/user.js';
 import { Role } from '../types/role.js';
 
 export const RolesGuard = (...roles: Role[]) => {
@@ -15,8 +15,8 @@ export const RolesGuard = (...roles: Role[]) => {
 				return false;
 			}
 
-			const user: UserDto = request.user;
-			const activate: boolean = roles.some((role: Role) => user.roles.includes(role));
+			const user: User = request.user;
+			const activate: boolean = roles.some((r: Role) => user.roles.includes(r));
 
 			return activate;
 		}

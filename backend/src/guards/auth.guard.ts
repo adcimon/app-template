@@ -1,6 +1,6 @@
 import { CanActivate, ExecutionContext, Injectable, mixin } from '@nestjs/common';
 import { UsersService } from '../modules/users/users.service.js';
-import { UserDto } from '../modules/users/user.dto.js';
+import { User } from '../modules/users/types/user.js';
 import { UnauthorizedException } from '../exceptions/unauthorized.exception.js';
 import { AuthMethod } from '../types/auth-method.js';
 
@@ -31,7 +31,7 @@ export const AuthGuard = (...methods: AuthMethod[]) => {
 
 				// Verify the access token and get the user.
 				try {
-					const user: UserDto = await this.usersService.getMyUser(accessToken);
+					const user: User = await this.usersService.getMyUser(accessToken);
 					request.accessToken = accessToken;
 					request.user = user;
 					return true;

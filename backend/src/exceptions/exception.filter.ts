@@ -1,8 +1,9 @@
 import { ArgumentsHost, Catch, HttpException, HttpStatus } from '@nestjs/common';
 import { BaseExceptionFilter } from '@nestjs/core';
 import { Request, Response } from 'express';
-import { ApiResponseDto } from '../dtos/api-response.dto.js';
-import { ApiErrorDto } from '../dtos/api-error.dto.js';
+import { DocsService } from '../modules/docs/docs.service.js';
+import { ApiResponse } from '../types/api-response.js';
+import { ApiError } from '../types/api-error.js';
 import { GenericErrorException } from './generic-error.exception.js';
 import { UnauthorizedException } from './unauthorized.exception.js';
 import { ForbiddenException } from './forbidden.exception.js';
@@ -12,7 +13,7 @@ import { TimeUtils } from '../utils/time.utils.js';
 
 @Catch()
 export class ExceptionFilter extends BaseExceptionFilter {
-	public override catch(exception: any, host: ArgumentsHost) {
+	public override catch(exception: any, host: ArgumentsHost): Response<any, Record<string, any>> {
 		const context = host.switchToHttp();
 		const request = context.getRequest<Request>();
 		const response = context.getResponse<Response>();
@@ -37,14 +38,14 @@ export class ExceptionFilter extends BaseExceptionFilter {
 			return true;
 		}
 
-		if (!(exception.getResponse() instanceof ApiErrorDto)) {
+		if (!(exception.getResponse() instanceof ApiError)) {
 			return true;
 		}
 
 		return false;
 	}
 
-	private handleException(request: Request, response: Response, exception: any) {
+	private handleException(request: Request, response: Response, exception: any): Response<any, Record<string, any>> {
 		if (this.isUnmanaged(exception)) {
 			const status: number = this.getStatus(exception);
 			switch (status) {
@@ -63,9 +64,10 @@ export class ExceptionFilter extends BaseExceptionFilter {
 			}
 		}
 
-		const apiResponse: ApiResponseDto = {
+		const apiResponse: ApiResponse = {
 			version: AppUtils.getVersion(),
 			endpoint: `${request.protocol}://${request.get('host')}${request.originalUrl}`,
+			docs: `${request.protocol}://${request.get('host')}/${DocsService.DOCS_JSON_PATH}`,
 			timestamp: TimeUtils.getNowISO(),
 			error: exception.getResponse(),
 		};

@@ -18,6 +18,7 @@
 		"sourceMap": true,
 		"strictBindCallApply": false,
 		"strictNullChecks": false,
-		"target": "es2022"
+		"target": "es2022",
+		"types": ["jest"]
 	}
 }

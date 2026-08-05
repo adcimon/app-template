@@ -1,6 +1,8 @@
 import React from 'react';
-import { ApiContext, useApi } from '../../clients/api/apiContext';
 import { ApiClient } from '../../clients/api/apiClient';
+import { ApiContext } from '../../clients/api/apiContext';
+import { useApi } from '../../clients/api/useApi';
+import { useNavigator } from '../../core/hooks/useNavigator';
 import { useUserState } from '../../states/user/useUserState';
 import { AppUtils } from '../../utils/appUtils';
 
@@ -13,6 +15,7 @@ export const ApiManager = (props: ApiManagerProps): React.JSX.Element => {
 	const [initialized, setInitialized] = React.useState(false);
 
 	const api = useApi();
+	const navigator = useNavigator();
 	const userState = useUserState();
 
 	React.useEffect(() => {
@@ -30,6 +33,7 @@ export const ApiManager = (props: ApiManagerProps): React.JSX.Element => {
 				getRefreshToken: api.getRefreshToken,
 				onAuthRefresh: handleAuthRefresh,
 				onAuthError: handleAuthError,
+				onVersionMismatch: handleVersionMismatch,
 			});
 
 			setInitialized(true);
@@ -46,6 +50,12 @@ export const ApiManager = (props: ApiManagerProps): React.JSX.Element => {
 	const handleAuthError = () => {
 		api.clearTokens();
 		userState.reset();
+	};
+
+	const handleVersionMismatch = (clientVersion: string, serverVersion: string) => {
+		navigator.navigate('/error', {
+			params: AppUtils.getErrorParams('The app is out of date, please refresh the page.'),
+		});
 	};
 
 	const render = () => {

@@ -1,4 +1,4 @@
 import { atom } from 'jotai';
-import { User } from '../../model/api/user';
+import { User } from '../../api/api';
 
 export const UsersState = atom<User[]>([]);

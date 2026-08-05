@@ -1,8 +1,11 @@
-import { ApiError } from '../../../model/api/apiError';
+import { ApiConfig } from '../apiClient';
+import { ApiError, ErrorCode } from '../../../api/api';
 import { ConsoleUtils } from '../../../utils/consoleUtils';
 
 export class RequestInterceptor {
-	static onFulfilled = (config: any) => {
+	constructor(private config: ApiConfig) {}
+
+	onFulfilled = (config: any) => {
 		const endpoint: string = `${config?.baseURL}${config?.url}`;
 		const method: string = config?.method?.toUpperCase();
 		const data: any = config?.data || {};
@@ -12,11 +15,12 @@ export class RequestInterceptor {
 		return config;
 	};
 
-	static onRejected = (error: any) => {
+	onRejected = (error: any) => {
 		const apiError: ApiError = {
-			code: 'api_error',
+			code: ErrorCode.GenericError,
+			status: 418,
 			message: error.message,
-			data: error,
+			detail: error,
 		};
 
 		return Promise.reject(apiError);

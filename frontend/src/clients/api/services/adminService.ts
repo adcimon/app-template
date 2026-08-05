@@ -1,11 +1,10 @@
-import { ApiClient } from '../apiClient';
+import { ApiService } from '../apiService';
+import { User } from '../../../api/api';
 
-export class AdminService {
-	constructor(private api: ApiClient) {}
-
-	public getUsers = async (): Promise<any> => {
-		return this.api.get({
-			endpoint: '/users',
+export class AdminService extends ApiService {
+	public getUsers = async (): Promise<User[]> => {
+		return this.api.get<User[]>({
+			endpointId: 'Admin/getUsers',
 			useAuthorization: true,
 		});
 	};

@@ -1,4 +1,5 @@
-import { User } from '../model/api/user';
+import { User } from '../api/api';
+import { CryptoUtils } from './cryptoUtils';
 
 export namespace AppUtils {
 	export const EMAIL_REGEXP: RegExp = /^[^\s@]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/u;
@@ -54,5 +55,11 @@ export namespace AppUtils {
 		}
 
 		return user.icon;
+	};
+
+	export const getErrorParams = (message: string): URLSearchParams => {
+		return new URLSearchParams({
+			message: CryptoUtils.encodeBase64(message),
+		});
 	};
 }

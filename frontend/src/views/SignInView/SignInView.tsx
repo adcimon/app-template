@@ -2,10 +2,10 @@ import React from 'react';
 import { Button, Link, Stack, Typography } from '@mui/material';
 import { ToastManager } from '../../managers/ToastManager/ToastManager';
 import { Copyright } from '../../components/Copyright/Copyright';
-import { EmailField } from '../../core/components/Field/EmailField';
 import { LaunchView } from '../LaunchView/LaunchView';
 import { Logo } from '../LaunchView/Logo';
-import { PasswordField } from '../../core/components/Field/PasswordField';
+import { SignInForm } from '../../forms/SignInForm/SignInForm';
+import { useSignInForm } from '../../forms/SignInForm/useSignInForm';
 import { useNavigator } from '../../core/hooks/useNavigator';
 import { useAppState } from '../../states/app/useAppState';
 import { useUserState } from '../../states/user/useUserState';
@@ -15,12 +15,11 @@ export const SignInView = (): React.JSX.Element => {
 	const appState = useAppState();
 	const userState = useUserState();
 
-	const [email, setEmail] = React.useState<string>('');
-	const [password, setPassword] = React.useState<string>('');
+	const { form, handleChange } = useSignInForm();
 
 	const handleSignIn = async () => {
 		try {
-			await appState.signIn(email, password);
+			await appState.signIn(form);
 			await userState.get();
 			navigator.navigate('/');
 		} catch (error: any) {
@@ -41,20 +40,9 @@ export const SignInView = (): React.JSX.Element => {
 			<LaunchView>
 				<Logo />
 				<Typography variant='h5'>Sign In</Typography>
-				<EmailField
-					label='Email'
-					value={email}
-					autoComplete='email'
-					required={true}
-					onChange={(event: any) => setEmail(event.target.value)}
-					fullWidth={true}
-				/>
-				<PasswordField
-					label='Password'
-					value={password}
-					required={true}
-					onChange={(event: any) => setPassword(event.target.value)}
-					fullWidth={true}
+				<SignInForm
+					form={form}
+					onChange={handleChange}
 				/>
 				<Button
 					variant='contained'

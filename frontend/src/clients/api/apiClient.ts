@@ -1,45 +1,76 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import { AppCredentials, endpoints } from '../../api/api';
+import { ServiceRegistry, ServiceMap } from './serviceRegistry';
 import { RequestInterceptor } from './interceptors/requestInterceptor';
 import { ResponseInterceptor } from './interceptors/responseInterceptor';
-import { AuthService } from './services/authService';
-import { UsersService } from './services/usersService';
-import { AdminService } from './services/adminService';
-import { Credentials } from '../../model/api/credentials';
 
-export type ApiParams = {
-	endpoint?: string;
-	data?: any;
+export type ApiRequest = {
+	endpointId: keyof typeof endpoints;
+	pathParams?: Record<string, string>;
+	body?: any;
 	useAuthorization?: boolean;
 	useCredentials?: boolean;
 };
 
-export interface ApiClientConfig {
+export interface ApiConfig {
 	endpoint: string;
 	getAccessToken: () => string;
 	getRefreshToken: () => string;
 	onAuthRefresh: (accessToken: string, refreshToken: string) => void;
 	onAuthError: () => void;
+	onVersionMismatch: (clientVersion: string, serverVersion: string) => void;
 }
 
 export class ApiClient {
 	private instance: AxiosInstance | undefined;
 	private controller: AbortController | undefined;
 
-	authService: AuthService;
-	usersService: UsersService;
-	adminService: AdminService;
+	public services!: ServiceMap;
 
-	constructor(private config: ApiClientConfig) {
+	constructor(private config: ApiConfig) {
 		config.endpoint = config.endpoint || 'http://localhost:9000';
-
 		this.createInstance();
-
-		this.authService = new AuthService(this);
-		this.usersService = new UsersService(this);
-		this.adminService = new AdminService(this);
+		this.registerServices();
 	}
 
-	private createRequestConfig(options: {
+	private createInstance() {
+		this.controller = new AbortController();
+
+		this.instance = axios.create({
+			baseURL: this.config.endpoint,
+			signal: this.controller.signal,
+		});
+
+		const requestInterceptor: RequestInterceptor = new RequestInterceptor(this.config);
+		this.instance.interceptors.request.use(requestInterceptor.onFulfilled, requestInterceptor.onRejected);
+
+		const responseInterceptor: ResponseInterceptor = new ResponseInterceptor(this.config);
+		this.instance.interceptors.response.use(responseInterceptor.onFulfilled, responseInterceptor.onRejected);
+	}
+
+	private registerServices() {
+		const services: ServiceMap = {} as ServiceMap;
+
+		for (const [key, ServiceClass] of Object.entries(ServiceRegistry)) {
+			(services as any)[key] = new ServiceClass(this);
+		}
+
+		this.services = services;
+	}
+
+	private buildPath(endpointId: keyof typeof endpoints, pathParams?: Record<string, string>): string {
+		let path: string = endpoints[endpointId]?.path ?? '';
+
+		if (!pathParams) {
+			return path;
+		}
+
+		path = path.replace(/\{(\w+)\}/g, (match: string, key: string) => encodeURIComponent(pathParams[key] ?? ''));
+
+		return path;
+	}
+
+	private buildRequest(options: {
 		useAuthorization?: boolean;
 		useCredentials?: boolean;
 		useForm?: boolean;
@@ -60,25 +91,13 @@ export class ApiClient {
 		return config;
 	}
 
-	private createInstance() {
-		this.controller = new AbortController();
-
-		this.instance = axios.create({
-			baseURL: this.config.endpoint,
-			signal: this.controller.signal,
-		});
-
-		this.instance.interceptors.request.use(RequestInterceptor.onFulfilled, RequestInterceptor.onRejected);
-		this.instance.interceptors.response.use(ResponseInterceptor.onFulfilled, ResponseInterceptor.onRejected);
-	}
-
-	public async get(params: ApiParams) {
-		const endpoint: string = params.endpoint ?? '';
+	public async get<T = unknown>(params: ApiRequest): Promise<T> {
+		const endpoint: string = this.buildPath(params.endpointId, params.pathParams);
 		const useAuthorization: boolean = params.useAuthorization ?? false;
 		const useCredentials: boolean = params.useCredentials ?? true;
 
 		const call = async () => {
-			const config: AxiosRequestConfig = this.createRequestConfig({
+			const config: AxiosRequestConfig = this.buildRequest({
 				useAuthorization,
 				useCredentials,
 			});
@@ -86,21 +105,21 @@ export class ApiClient {
 		};
 
 		try {
-			return await call();
+			return (await call()) as T;
 		} catch (error: any) {
 			return await this.handleError(call, error);
 		}
 	}
 
-	public async post(params: ApiParams) {
-		const endpoint: string = params.endpoint ?? '';
-		const data: any = params.data ?? undefined;
+	public async post<T = unknown>(params: ApiRequest): Promise<T> {
+		const endpoint: string = this.buildPath(params.endpointId, params.pathParams);
+		const data: any = params.body ?? undefined;
 		const useAuthorization: boolean = params.useAuthorization ?? false;
 		const useCredentials: boolean = params.useCredentials ?? true;
 		const useForm: boolean = data instanceof FormData;
 
 		const call = async () => {
-			const config: AxiosRequestConfig = this.createRequestConfig({
+			const config: AxiosRequestConfig = this.buildRequest({
 				useAuthorization,
 				useCredentials,
 				useForm,
@@ -109,41 +128,20 @@ export class ApiClient {
 		};
 
 		try {
-			return await call();
+			return (await call()) as T;
 		} catch (error: any) {
 			return await this.handleError(call, error);
 		}
 	}
 
-	public async patch(params: ApiParams) {
-		const endpoint: string = params.endpoint ?? '';
-		const data: any = params.data ?? undefined;
+	public async put<T = unknown>(params: ApiRequest): Promise<T> {
+		const endpoint: string = this.buildPath(params.endpointId, params.pathParams);
+		const data: any = params.body ?? undefined;
 		const useAuthorization: boolean = params.useAuthorization ?? false;
 		const useCredentials: boolean = params.useCredentials ?? true;
 
 		const call = async () => {
-			const config: AxiosRequestConfig = this.createRequestConfig({
-				useAuthorization,
-				useCredentials,
-			});
-			return await this.instance?.patch(endpoint, data, config);
-		};
-
-		try {
-			return await call();
-		} catch (error: any) {
-			return await this.handleError(call, error);
-		}
-	}
-
-	public async put(params: ApiParams) {
-		const endpoint: string = params.endpoint ?? '';
-		const data: any = params.data ?? undefined;
-		const useAuthorization: boolean = params.useAuthorization ?? false;
-		const useCredentials: boolean = params.useCredentials ?? true;
-
-		const call = async () => {
-			const config: AxiosRequestConfig = this.createRequestConfig({
+			const config: AxiosRequestConfig = this.buildRequest({
 				useAuthorization,
 				useCredentials,
 			});
@@ -151,20 +149,41 @@ export class ApiClient {
 		};
 
 		try {
-			return await call();
+			return (await call()) as T;
 		} catch (error: any) {
 			return await this.handleError(call, error);
 		}
 	}
 
-	public async delete(params: ApiParams) {
-		const endpoint: string = params.endpoint ?? '';
-		const data: any = params.data ?? undefined;
+	public async patch<T = unknown>(params: ApiRequest): Promise<T> {
+		const endpoint: string = this.buildPath(params.endpointId, params.pathParams);
+		const data: any = params.body ?? undefined;
 		const useAuthorization: boolean = params.useAuthorization ?? false;
 		const useCredentials: boolean = params.useCredentials ?? true;
 
 		const call = async () => {
-			const config: AxiosRequestConfig = this.createRequestConfig({
+			const config: AxiosRequestConfig = this.buildRequest({
+				useAuthorization,
+				useCredentials,
+			});
+			return await this.instance?.patch(endpoint, data, config);
+		};
+
+		try {
+			return (await call()) as T;
+		} catch (error: any) {
+			return await this.handleError(call, error);
+		}
+	}
+
+	public async delete<T = unknown>(params: ApiRequest): Promise<T> {
+		const endpoint: string = this.buildPath(params.endpointId, params.pathParams);
+		const data: any = params.body ?? undefined;
+		const useAuthorization: boolean = params.useAuthorization ?? false;
+		const useCredentials: boolean = params.useCredentials ?? true;
+
+		const call = async () => {
+			const config: AxiosRequestConfig = this.buildRequest({
 				useAuthorization,
 				useCredentials,
 			});
@@ -173,7 +192,7 @@ export class ApiClient {
 		};
 
 		try {
-			return await call();
+			return (await call()) as T;
 		} catch (error: any) {
 			return await this.handleError(call, error);
 		}
@@ -189,7 +208,7 @@ export class ApiClient {
 			// Try to refresh the access token.
 			try {
 				const refreshToken: string = this.config.getRefreshToken();
-				const credentials: Credentials = await this.authService.refreshToken(refreshToken);
+				const credentials: AppCredentials = await this.services.auth.refreshToken({ refreshToken });
 				this.config.onAuthRefresh(credentials.accessToken, credentials.refreshToken);
 			} catch (err: any) {}
 

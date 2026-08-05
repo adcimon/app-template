@@ -5,7 +5,7 @@ import { LocaleSelect } from '../../../../core/components/Select/LocaleSelect';
 import { Table } from '../../../../core/components/Table/Table';
 import { TimezoneSelect } from '../../../../core/components/Select/TimezoneSelect';
 import { VerificationBadge } from '../../../../core/components/Badge/VerificationBadge';
-import { User } from '../../../../model/api/user';
+import { User } from '../../../../api/api';
 import { useAdminState } from '../../../../states/admin/useAdminState';
 import { AppUtils } from '../../../../utils/appUtils';
 

@@ -1,11 +1,11 @@
 import { HttpException, HttpStatus } from '@nestjs/common';
-import { ApiErrorDto } from '../dtos/api-error.dto.js';
+import { ApiError } from '../types/api-error.js';
+import { ErrorCode } from '../types/error-code.js';
 
 export class ForbiddenException extends HttpException {
 	constructor(message?: string) {
-		const error: ApiErrorDto = new ApiErrorDto();
-		error.code = 'forbidden';
-		error.message = message || 'Forbidden';
-		super(error, HttpStatus.FORBIDDEN);
+		const error: ApiError = new ApiError(ErrorCode.Forbidden, HttpStatus.FORBIDDEN, message || 'Forbidden');
+
+		super(error, error.status);
 	}
 }

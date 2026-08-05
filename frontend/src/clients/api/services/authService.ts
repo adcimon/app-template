@@ -1,93 +1,82 @@
-import { ApiClient } from '../apiClient';
-import { CryptoUtils } from '../../../utils/cryptoUtils';
+import { ApiService } from '../apiService';
+import {
+	AppCredentials,
+	ChangePasswordDto,
+	ConfirmPasswordDto,
+	ForgotPasswordDto,
+	RefreshTokenDto,
+	SignDownDto,
+	SignInDto,
+	SignUpDto,
+	Status,
+	User,
+	VerifyEmailDto,
+} from '../../../api/api';
 
-export class AuthService {
-	constructor(private api: ApiClient) {}
-
-	public signUp = async (email: string, password: string): Promise<any> => {
-		return this.api.post({
-			endpoint: '/auth/sign-up',
-			data: {
-				email,
-				password: CryptoUtils.encodeBase64(password),
-			},
+export class AuthService extends ApiService {
+	public signUp = async (body: SignUpDto): Promise<User> => {
+		return this.api.post<User>({
+			endpointId: 'Auth/signUp',
+			body: body,
 		});
 	};
 
-	public signDown = async (password: string): Promise<any> => {
-		return this.api.post({
-			endpoint: '/auth/sign-down',
-			data: {
-				password: CryptoUtils.encodeBase64(password),
-			},
+	public signDown = async (body: SignDownDto): Promise<Status> => {
+		return this.api.post<Status>({
+			endpointId: 'Auth/signDown',
+			body: body,
 			useAuthorization: true,
 		});
 	};
 
-	public signIn = async (email: string, password: string): Promise<any> => {
-		return this.api.post({
-			endpoint: '/auth/sign-in',
-			data: {
-				email,
-				password: CryptoUtils.encodeBase64(password),
-			},
+	public signIn = async (body: SignInDto): Promise<AppCredentials> => {
+		return this.api.post<AppCredentials>({
+			endpointId: 'Auth/signIn',
+			body: body,
 		});
 	};
 
-	public signOut = async (): Promise<any> => {
-		return this.api.post({
-			endpoint: '/auth/sign-out',
-			data: {},
+	public signOut = async (): Promise<Status> => {
+		return this.api.post<Status>({
+			endpointId: 'Auth/signOut',
+			body: {},
 			useAuthorization: true,
 		});
 	};
 
-	public refreshToken = async (refreshToken: string): Promise<any> => {
-		return this.api.post({
-			endpoint: '/auth/refresh-token',
-			data: {
-				refreshToken,
-			},
+	public refreshToken = async (body: RefreshTokenDto): Promise<AppCredentials> => {
+		return this.api.post<AppCredentials>({
+			endpointId: 'Auth/refreshToken',
+			body: body,
 		});
 	};
 
-	public verifyEmail = async (code: string): Promise<any> => {
-		return this.api.post({
-			endpoint: '/auth/verify-email',
-			data: {
-				code,
-			},
+	public verifyEmail = async (body: VerifyEmailDto): Promise<Status> => {
+		return this.api.post<Status>({
+			endpointId: 'Auth/verifyEmail',
+			body: body,
 			useAuthorization: true,
 		});
 	};
 
-	public forgotPassword = async (email: string): Promise<any> => {
-		return this.api.post({
-			endpoint: '/auth/forgot-password',
-			data: {
-				email,
-			},
+	public forgotPassword = async (body: ForgotPasswordDto): Promise<Status> => {
+		return this.api.post<Status>({
+			endpointId: 'Auth/forgotPassword',
+			body: body,
 		});
 	};
 
-	public confirmPassword = async (email: string, code: string, password: string): Promise<any> => {
-		return this.api.post({
-			endpoint: '/auth/confirm-password',
-			data: {
-				email,
-				code,
-				password: CryptoUtils.encodeBase64(password),
-			},
+	public confirmPassword = async (body: ConfirmPasswordDto): Promise<Status> => {
+		return this.api.post<Status>({
+			endpointId: 'Auth/confirmPassword',
+			body: body,
 		});
 	};
 
-	public changePassword = async (currentPassword: string, newPassword: string): Promise<any> => {
-		return this.api.post({
-			endpoint: '/auth/change-password',
-			data: {
-				currentPassword: CryptoUtils.encodeBase64(currentPassword),
-				newPassword: CryptoUtils.encodeBase64(newPassword),
-			},
+	public changePassword = async (body: ChangePasswordDto): Promise<Status> => {
+		return this.api.post<Status>({
+			endpointId: 'Auth/changePassword',
+			body: body,
 			useAuthorization: true,
 		});
 	};

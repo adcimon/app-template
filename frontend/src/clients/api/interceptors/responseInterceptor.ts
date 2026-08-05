@@ -1,28 +1,39 @@
-import { ApiResponse } from '../../../model/api/apiResponse';
-import { ApiError } from '../../../model/api/apiError';
+import { ApiConfig } from '../apiClient';
+import { ApiError, ApiResponse, ErrorCode, version } from '../../../api/api';
 import { ConsoleUtils } from '../../../utils/consoleUtils';
 
 export class ResponseInterceptor {
-	static onFulfilled = (response: any) => {
+	constructor(private config: ApiConfig) {}
+
+	private checkVersion = (response: ApiResponse): void => {
+		if (response.version && response.version !== version) {
+			this.config.onVersionMismatch(version, response.version);
+		}
+	};
+
+	onFulfilled = (response: any): any => {
 		const status: number = response?.status;
 
 		const apiResponse: ApiResponse = response?.data;
 		if (!apiResponse || !apiResponse.data) {
 			const apiError: ApiError = {
-				code: 'api_error',
+				code: ErrorCode.GenericError,
+				status: 418,
 				message: 'Invalid response',
-				data: apiResponse,
+				detail: apiResponse,
 			};
 
 			return Promise.reject(apiError);
 		}
+
+		this.checkVersion(apiResponse);
 
 		ConsoleUtils.logResponse(status, apiResponse.endpoint, apiResponse);
 
 		return Promise.resolve(apiResponse.data);
 	};
 
-	static onRejected = (error: any) => {
+	onRejected = (error: any) => {
 		const status: number = error?.response?.status ?? 666;
 
 		const apiResponse: ApiResponse = error?.response?.data;
@@ -32,13 +43,16 @@ export class ResponseInterceptor {
 			ConsoleUtils.logResponse(status, endpoint, error);
 
 			const apiError: ApiError = {
-				code: 'api_error',
+				code: ErrorCode.GenericError,
+				status: 418,
 				message: error.message,
-				data: error,
+				detail: error,
 			};
 
 			return Promise.reject(apiError);
 		}
+
+		this.checkVersion(apiResponse);
 
 		ConsoleUtils.logResponse(status, apiResponse.endpoint, apiResponse);
 

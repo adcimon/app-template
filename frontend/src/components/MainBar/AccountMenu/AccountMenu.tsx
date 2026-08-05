@@ -10,7 +10,7 @@ import { HelpWindow } from '../../Windows/HelpWindow/HelpWindow';
 import { ManagementWindow } from '../../Windows/ManagementWindow/ManagementWindow';
 import { Popover } from '../../../core/components/Popover/Popover';
 import { SettingsWindow } from '../../Windows/SettingsWindow/SettingsWindow';
-import { Role } from '../../../model/api/role';
+import { Role } from '../../../api/api';
 import { useAppState } from '../../../states/app/useAppState';
 import { useUserState } from '../../../states/user/useUserState';
 import { AppUtils } from '../../../utils/appUtils';

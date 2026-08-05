@@ -1,44 +1,32 @@
 import React from 'react';
-import { Badge, Button, Link, Stack, TextField, Typography } from '@mui/material';
+import { Link, Stack, Typography } from '@mui/material';
 import { ToastManager } from '../../managers/ToastManager/ToastManager';
 import { Copyright } from '../../components/Copyright/Copyright';
-import { EmailField } from '../../core/components/Field/EmailField';
+import { ForgotPasswordForm } from '../../forms/ForgotPasswordForm/ForgotPasswordForm';
 import { LaunchView } from '../LaunchView/LaunchView';
 import { Logo } from '../LaunchView/Logo';
-import { PasswordField } from '../../core/components/Field/PasswordField';
+import { useForgotPasswordForm } from '../../forms/ForgotPasswordForm/useForgotPasswordForm';
 import { useNavigator } from '../../core/hooks/useNavigator';
 import { useAppState } from '../../states/app/useAppState';
-import { AppUtils } from '../../utils/appUtils';
 
 export const ForgotPasswordView = (): React.JSX.Element => {
 	const navigator = useNavigator();
 	const appState = useAppState();
 
-	const [email, setEmail] = React.useState<string>('');
-	const [code, setCode] = React.useState<string>('');
-	const [password, setPassword] = React.useState<string>('');
-	const [confirmPassword, setConfirmPassword] = React.useState<string>('');
-
-	const validateSendCode = (): boolean => {
-		return AppUtils.EMAIL_REGEXP.test(email);
-	};
-
-	const validateChange = (): boolean => {
-		return AppUtils.EMAIL_REGEXP.test(email) && code !== '' && password !== '' && password === confirmPassword;
-	};
+	const { form, validateSendCode, validateChange, handleChange } = useForgotPasswordForm();
 
 	const handleSendCode = async () => {
 		try {
-			await appState.forgotPassword(email);
+			await appState.forgotPassword(form);
 			ToastManager.success('Code sent');
 		} catch (error: any) {
 			ToastManager.error(error.message);
 		}
 	};
 
-	const handleChange = async () => {
+	const handleConfirm = async () => {
 		try {
-			await appState.confirmPassword(email, code, password);
+			await appState.confirmPassword(form);
 			navigator.navigate('/sign-in');
 			ToastManager.success('Password changed');
 		} catch (error: any) {
@@ -55,65 +43,14 @@ export const ForgotPasswordView = (): React.JSX.Element => {
 			<LaunchView>
 				<Logo />
 				<Typography variant='h5'>Forgot Password</Typography>
-				<EmailField
-					label='Email'
-					value={email}
-					required={true}
-					onChange={(event: any) => setEmail(event.target.value)}
-					fullWidth={true}
+				<ForgotPasswordForm
+					form={form}
+					sendDisabled={!validateSendCode()}
+					confirmDisabled={!validateChange()}
+					onChange={handleChange}
+					onSendCode={handleSendCode}
+					onConfirm={handleConfirm}
 				/>
-				<Badge
-					color='primary'
-					badgeContent={1}
-					sx={{
-						width: '100%',
-					}}>
-					<Button
-						variant='contained'
-						disabled={!validateSendCode()}
-						onClick={handleSendCode}
-						size='small'
-						fullWidth={true}>
-						Send Code
-					</Button>
-				</Badge>
-				<TextField
-					label='Code'
-					placeholder='Code sent to your email'
-					value={code}
-					required={true}
-					onChange={(event: any) => setCode(event.target.value)}
-					fullWidth={true}
-				/>
-				<PasswordField
-					label='Password'
-					value={password}
-					autoComplete='new-password'
-					required={true}
-					onChange={(event: any) => setPassword(event.target.value)}
-					fullWidth={true}
-				/>
-				<PasswordField
-					label='Confirm Password'
-					value={confirmPassword}
-					required={true}
-					onChange={(event: any) => setConfirmPassword(event.target.value)}
-					fullWidth={true}
-				/>
-				<Badge
-					color='primary'
-					badgeContent={2}
-					sx={{
-						width: '100%',
-					}}>
-					<Button
-						variant='contained'
-						disabled={!validateChange()}
-						onClick={handleChange}
-						fullWidth={true}>
-						Change
-					</Button>
-				</Badge>
 				<Stack
 					direction='row'
 					sx={{

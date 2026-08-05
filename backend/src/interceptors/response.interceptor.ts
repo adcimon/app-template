@@ -1,6 +1,7 @@
 import { CallHandler, ExecutionContext, NestInterceptor } from '@nestjs/common';
 import { Observable, map } from 'rxjs';
-import { ApiResponseDto } from '../dtos/api-response.dto.js';
+import { DocsService } from '../modules/docs/docs.service.js';
+import { ApiResponse } from '../types/api-response.js';
 import { AppUtils } from '../utils/app.utils.js';
 import { TimeUtils } from '../utils/time.utils.js';
 
@@ -10,9 +11,10 @@ export class ResponseInterceptor implements NestInterceptor {
 			map((data: any) => {
 				const request: any = context.switchToHttp().getRequest();
 
-				const apiResponse: ApiResponseDto = {
+				const apiResponse: ApiResponse = {
 					version: AppUtils.getVersion(),
 					endpoint: `${request.protocol}://${request.get('host')}${request.originalUrl}`,
+					docs: `${request.protocol}://${request.get('host')}/${DocsService.DOCS_JSON_PATH}`,
 					timestamp: TimeUtils.getNowISO(),
 					data: data,
 				};

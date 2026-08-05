@@ -1,6 +1,6 @@
 {
 	"name": "backend",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"author": "adcimon",
 	"type": "module",
 	"scripts": {
@@ -9,7 +9,11 @@
 		"start": "nest start",
 		"start:dev": "nest start --watch",
 		"start:debug": "nest start --debug --watch",
-		"start:prod": "node dist/main"
+		"start:prod": "node dist/main",
+		"test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+		"test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
+		"test:cov": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
+		"spec": "node --loader ts-node/esm scripts/spec.ts"
 	},
 	"dependencies": {
 		"@aws-sdk/client-cognito-identity-provider": "^3.1102.0",

@@ -1,9 +1,9 @@
-import { Logger, MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
-import { NestExpressApplication } from '@nestjs/platform-express';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { EnvModule } from './env/env.module.js';
 import { ConfigModule } from './config/config.module.js';
 import { EventBrokerModule } from './event-broker/event-broker.module.js';
+import { DocsModule } from './docs/docs.module.js';
 import { AuthModule } from './auth/auth.module.js';
 import { UsersModule } from './users/users.module.js';
 import { AdminModule } from './admin/admin.module.js';
@@ -11,6 +11,7 @@ import { CognitoModule } from './aws/cognito/cognito.module.js';
 import { BodyParserMiddleware } from '../middlewares/body-parser.middleware.js';
 import { LoggerMiddleware } from '../middlewares/logger.middleware.js';
 import { SerializerInterceptor } from '../interceptors/serializer.interceptor.js';
+import { ValidationPipe } from '../validation/validation.pipe.js';
 import { ExceptionFilter } from '../exceptions/exception.filter.js';
 
 @Module({
@@ -20,6 +21,7 @@ import { ExceptionFilter } from '../exceptions/exception.filter.js';
 		ConfigModule,
 		EventBrokerModule,
 		// API
+		DocsModule,
 		AuthModule,
 		UsersModule,
 		AdminModule,
@@ -33,20 +35,18 @@ import { ExceptionFilter } from '../exceptions/exception.filter.js';
 			useClass: SerializerInterceptor,
 		},
 		{
+			provide: APP_PIPE,
+			useClass: ValidationPipe,
+		},
+		{
 			provide: APP_FILTER,
 			useClass: ExceptionFilter,
 		},
 	],
 })
 export class AppModule implements NestModule {
-	private readonly logger: Logger = new Logger(AppModule.name);
-
-	configure(consumer: MiddlewareConsumer) {
+	configure(consumer: MiddlewareConsumer): void {
 		consumer.apply(BodyParserMiddleware).forRoutes('*');
 		consumer.apply(LoggerMiddleware).forRoutes('*');
-	}
-
-	public async startup(app: NestExpressApplication) {
-		this.logger.log('⚙️ Startup');
 	}
 }

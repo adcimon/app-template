@@ -1,86 +1,97 @@
-import { Body, Controller, Post, Request, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, HttpStatus, Post, Request, UseGuards, UseInterceptors } from '@nestjs/common';
+import { ApiBearerAuth } from '@nestjs/swagger';
 import { AuthService } from './auth.service.js';
 import { AuthGuard } from '../../guards/auth.guard.js';
 import { PasswordInterceptor } from '../../interceptors/password.interceptor.js';
 import { ResponseInterceptor } from '../../interceptors/response.interceptor.js';
-import { ValidationPipe } from '../../validation/validation.pipe.js';
-import { AuthSchema } from './auth.schema.js';
-import { StatusDto } from '../../dtos/status.dto.js';
-import { CredentialsDto } from './credentials.dto.js';
-import { UserDto } from '../users/user.dto.js';
+import { ApiResponse } from '../../api/api-response.decorator.js';
+import {
+	SignUpDto,
+	SignDownDto,
+	SignInDto,
+	RefreshTokenDto,
+	VerifyEmailDto,
+	ForgotPasswordDto,
+	ConfirmPasswordDto,
+	ChangePasswordDto,
+} from './auth.dtos.js';
+import { Status } from '../../types/status.js';
 import { AuthMethod } from '../../types/auth-method.js';
+import { AppCredentials } from './types/app-credentials.js';
+import { User } from '../users/types/user.js';
 
 @Controller('auth')
 export class AuthController {
 	constructor(private readonly service: AuthService) {}
 
 	@Post('/sign-up')
+	@ApiResponse({ status: HttpStatus.CREATED, type: User })
 	@UseInterceptors(PasswordInterceptor, ResponseInterceptor)
-	async signUp(@Body(new ValidationPipe(AuthSchema.SignUpSchema)) body: any): Promise<UserDto> {
+	public async signUp(@Body() body: SignUpDto): Promise<User> {
 		return await this.service.signUp(body.email, body.password);
 	}
 
 	@Post('/sign-down')
+	@ApiBearerAuth(AuthMethod.Bearer)
+	@ApiResponse({ status: HttpStatus.CREATED, type: Status })
 	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(PasswordInterceptor, ResponseInterceptor)
-	async signDown(
-		@Request() request,
-		@Body(new ValidationPipe(AuthSchema.SignDownSchema)) body: any,
-	): Promise<StatusDto> {
+	public async signDown(@Request() request, @Body() body: SignDownDto): Promise<Status> {
 		return await this.service.signDown(request.accessToken, body.password);
 	}
 
 	@Post('/sign-in')
+	@ApiResponse({ status: HttpStatus.CREATED, type: AppCredentials })
 	@UseInterceptors(PasswordInterceptor, ResponseInterceptor)
-	async signIn(@Body(new ValidationPipe(AuthSchema.SignInSchema)) body: any): Promise<CredentialsDto> {
+	public async signIn(@Body() body: SignInDto): Promise<AppCredentials> {
 		return await this.service.signIn(body.email, body.password);
 	}
 
 	@Post('/sign-out')
+	@ApiBearerAuth(AuthMethod.Bearer)
+	@ApiResponse({ status: HttpStatus.CREATED, type: Status })
 	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(ResponseInterceptor)
-	async signOut(
-		@Request() request,
-		@Body(new ValidationPipe(AuthSchema.SignOutSchema)) body: any,
-	): Promise<StatusDto> {
+	public async signOut(@Request() request): Promise<Status> {
 		return await this.service.signOut(request.accessToken);
 	}
 
 	@Post('/refresh-token')
+	@ApiResponse({ status: HttpStatus.CREATED, type: AppCredentials })
 	@UseInterceptors(ResponseInterceptor)
-	async refreshToken(@Body(new ValidationPipe(AuthSchema.RefreshTokenSchema)) body: any): Promise<CredentialsDto> {
+	public async refreshToken(@Body() body: RefreshTokenDto): Promise<AppCredentials> {
 		return await this.service.refreshToken(body.refreshToken);
 	}
 
 	@Post('/verify-email')
+	@ApiBearerAuth(AuthMethod.Bearer)
+	@ApiResponse({ status: HttpStatus.CREATED, type: Status })
 	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(ResponseInterceptor)
-	async verifyEmail(
-		@Request() request,
-		@Body(new ValidationPipe(AuthSchema.VerifyEmailSchema)) body: any,
-	): Promise<StatusDto> {
+	public async verifyEmail(@Request() request, @Body() body: VerifyEmailDto): Promise<Status> {
 		return await this.service.verifyEmail(request.accessToken, body.code);
 	}
 
 	@Post('/forgot-password')
+	@ApiResponse({ status: HttpStatus.CREATED, type: Status })
 	@UseInterceptors(ResponseInterceptor)
-	async forgotPassword(@Body(new ValidationPipe(AuthSchema.ForgotPasswordSchema)) body: any): Promise<StatusDto> {
+	public async forgotPassword(@Body() body: ForgotPasswordDto): Promise<Status> {
 		return await this.service.forgotPassword(body.email);
 	}
 
 	@Post('/confirm-password')
+	@ApiResponse({ status: HttpStatus.CREATED, type: Status })
 	@UseInterceptors(PasswordInterceptor, ResponseInterceptor)
-	async confirmPassword(@Body(new ValidationPipe(AuthSchema.ConfirmPasswordSchema)) body: any): Promise<StatusDto> {
+	public async confirmPassword(@Body() body: ConfirmPasswordDto): Promise<Status> {
 		return await this.service.confirmPassword(body.email, body.code, body.password);
 	}
 
 	@Post('/change-password')
+	@ApiBearerAuth(AuthMethod.Bearer)
+	@ApiResponse({ status: HttpStatus.CREATED, type: Status })
 	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(PasswordInterceptor, ResponseInterceptor)
-	async changePassword(
-		@Request() request,
-		@Body(new ValidationPipe(AuthSchema.ChangePasswordBody)) body: any,
-	): Promise<StatusDto> {
+	public async changePassword(@Request() request, @Body() body: ChangePasswordDto): Promise<Status> {
 		return await this.service.changePassword(request.accessToken, body.currentPassword, body.newPassword);
 	}
 }

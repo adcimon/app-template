@@ -1,63 +1,42 @@
-import { ApiClient } from '../apiClient';
+import { ApiService } from '../apiService';
+import { UpdateEmailDto, UpdateIconDto, UpdatePhoneDto, UpdateUserDto, User } from '../../../api/api';
 
-export class UsersService {
-	constructor(private api: ApiClient) {}
-
-	public getUser = async (): Promise<any> => {
-		return this.api.get({
-			endpoint: '/users/me',
+export class UsersService extends ApiService {
+	public getUser = async (): Promise<User> => {
+		return this.api.get<User>({
+			endpointId: 'Users/getUser',
 			useAuthorization: true,
 		});
 	};
 
-	public updateUser = async (
-		params: Partial<{
-			name: string;
-			surname: string;
-			birthdate: string;
-			locale: string;
-			timezone: string;
-		}> = {},
-	): Promise<any> => {
-		return this.api.patch({
-			endpoint: '/users/me',
-			data: {
-				name: params.name,
-				surname: params.surname,
-				birthdate: params.birthdate,
-				locale: params.locale,
-				timezone: params.timezone,
-			},
+	public updateUser = async (body: UpdateUserDto): Promise<User> => {
+		return this.api.patch<User>({
+			endpointId: 'Users/updateUser',
+			body: body,
 			useAuthorization: true,
 		});
 	};
 
-	public updateEmail = async (email: string): Promise<any> => {
-		return this.api.patch({
-			endpoint: '/users/me/email',
-			data: {
-				email,
-			},
+	public updateEmail = async (body: UpdateEmailDto): Promise<User> => {
+		return this.api.patch<User>({
+			endpointId: 'Users/updateEmail',
+			body: body,
 			useAuthorization: true,
 		});
 	};
 
-	public updatePhone = async (phone: string): Promise<any> => {
-		return this.api.patch({
-			endpoint: '/users/me/phone',
-			data: {
-				phone,
-			},
+	public updatePhone = async (body: UpdatePhoneDto): Promise<User> => {
+		return this.api.patch<User>({
+			endpointId: 'Users/updatePhone',
+			body: body,
 			useAuthorization: true,
 		});
 	};
 
-	public updateIcon = async (icon: string): Promise<any> => {
-		return this.api.patch({
-			endpoint: '/users/me/icon',
-			data: {
-				icon,
-			},
+	public updateIcon = async (body: UpdateIconDto): Promise<User> => {
+		return this.api.patch<User>({
+			endpointId: 'Users/updateIcon',
+			body: body,
 			useAuthorization: true,
 		});
 	};

@@ -2,11 +2,12 @@ import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { HttpsOptions } from '@nestjs/common/interfaces/external/https-options.interface.js';
 import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.interface.js';
+import * as fs from 'fs';
 import { AppModule } from './modules/app.module.js';
 import { EnvService } from './modules/env/env.service.js';
-import * as fs from 'fs';
+import { DocsService } from './modules/docs/docs.service.js';
 
-async function main() {
+async function main(): Promise<void> {
 	EnvService.init();
 
 	const port: number = EnvService.getVariable<number>('PORT', 9000);
@@ -45,14 +46,14 @@ async function main() {
 	const app: NestExpressApplication = await NestFactory.create<NestExpressApplication>(AppModule, {
 		httpsOptions: httpsOptions,
 		cors: corsOptions,
+		bodyParser: false,
 	});
+
+	DocsService.init(app);
 
 	await app.init();
 
 	await app.listen(port);
-
-	const appModule: AppModule = app.get(AppModule);
-	await appModule.startup(app);
 
 	const url: string = await app.getUrl();
 	console.log(`🚀 Service running on ${url}`);

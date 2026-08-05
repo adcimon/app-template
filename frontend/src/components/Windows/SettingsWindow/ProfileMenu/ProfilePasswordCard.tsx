@@ -2,46 +2,36 @@ import React from 'react';
 import { Box, Button, Card, CardActions, CardContent, CardHeader, Divider, Grid, Typography } from '@mui/material';
 import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
 import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
-import { PasswordField } from '../../../../core/components/Field/PasswordField';
+import { ChangePasswordForm } from '../../../../forms/ChangePasswordForm/ChangePasswordForm';
 import { useAppState } from '../../../../states/app/useAppState';
+import { useChangePasswordForm } from '../../../../forms/ChangePasswordForm/useChangePasswordForm';
 
 export const ProfilePasswordCard = (): React.JSX.Element => {
 	const appState = useAppState();
 
-	const [currentPassword, setCurrentPassword] = React.useState<string>('');
-	const [newPassword, setNewPassword] = React.useState<string>('');
-	const [confirmPassword, setConfirmPassword] = React.useState<string>('');
 	const [openDialog, setOpenDialog] = React.useState<boolean>(false);
 
-	const validate = (): boolean => {
-		return newPassword !== '' && currentPassword !== newPassword && newPassword === confirmPassword;
-	};
+	const { form, validate, reset, handleChange } = useChangePasswordForm();
 
-	const handleChange = async () => {
-		setCurrentPassword('');
-		setNewPassword('');
-		setConfirmPassword('');
+	const handleChangePassword = async () => {
+		reset();
 		setOpenDialog(true);
 	};
 
 	const handleAcceptChange = async () => {
 		try {
-			await appState.changePassword(currentPassword, newPassword);
+			await appState.changePassword(form);
 			ToastManager.success('Password changed');
 		} catch (error: any) {
 			ToastManager.error(error.message);
 		}
 
-		setCurrentPassword('');
-		setNewPassword('');
-		setConfirmPassword('');
+		reset();
 		setOpenDialog(false);
 	};
 
 	const handleCancelChange = async () => {
-		setCurrentPassword('');
-		setNewPassword('');
-		setConfirmPassword('');
+		reset();
 		setOpenDialog(false);
 	};
 
@@ -96,7 +86,7 @@ export const ProfilePasswordCard = (): React.JSX.Element => {
 						}}>
 						<Button
 							variant='contained'
-							onClick={handleChange}>
+							onClick={handleChangePassword}>
 							Change
 						</Button>
 					</CardActions>
@@ -108,33 +98,9 @@ export const ProfilePasswordCard = (): React.JSX.Element => {
 					onAccept={handleAcceptChange}
 					onCancel={handleCancelChange}
 					onClose={handleCancelChange}>
-					<PasswordField
-						variant='standard'
-						label='Current Password'
-						placeholder='*****'
-						value={currentPassword}
-						autoFocus={true}
-						onChange={(event: any) => setCurrentPassword(event.target.value)}
-						fullWidth={true}
-						margin='dense'
-					/>
-					<PasswordField
-						variant='standard'
-						label='New Password'
-						placeholder='*****'
-						value={newPassword}
-						onChange={(event: any) => setNewPassword(event.target.value)}
-						fullWidth={true}
-						margin='dense'
-					/>
-					<PasswordField
-						variant='standard'
-						label='Confirm Password'
-						placeholder='*****'
-						value={confirmPassword}
-						onChange={(event: any) => setConfirmPassword(event.target.value)}
-						fullWidth={true}
-						margin='dense'
+					<ChangePasswordForm
+						form={form}
+						onChange={handleChange}
 					/>
 				</ConfirmationDialog>
 			</>

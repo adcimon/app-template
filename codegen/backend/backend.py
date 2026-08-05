@@ -3,10 +3,9 @@ from __future__ import annotations
 import ir
 from backend import emitter
 from backend import typescript
-from backend import cpp
 
 emitters: dict[str, type[emitter.Emitter]] = {
-	cls.key(): cls for cls in (typescript.TypeScriptEmitter, cpp.CppEmitter)
+	cls.key(): cls for cls in ([typescript.TypeScriptEmitter])
 }
 
 def get_emitter_class(target: str) -> type[emitter.Emitter]:

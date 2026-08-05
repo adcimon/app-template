@@ -1,13 +1,12 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { ConfigService } from '../../config/config.service.js';
-import { Map } from '../../../decorators/map.decorator.js';
-import { StatusBooleanToDto } from '../../../maps/status-boolean-dto.map.js';
-import { CredentialsObjectToDto } from './maps/credentials-object-dto.map.js';
-import { UserCognitoToDto } from './maps/user-cognito-dto.map.js';
-import { StatusDto } from '../../../dtos/status.dto.js';
-import { CredentialsDto } from '../../auth/credentials.dto.js';
-import { UserDto } from '../../users/user.dto.js';
-import { ResourceNotFoundException } from '../../../exceptions/resource-not-found.exception.js';
+import { BooleanToStatus } from '../../../mappers/boolean-to-status.mapper.js';
+import { CognitoToAppCredentials } from './mappers/cognito-to-app-credentials.mapper.js';
+import { CognitoToUser } from './mappers/cognito-to-user.mapper.js';
+import { Status } from '../../../types/status.js';
+import { AppCredentials } from '../../auth/types/app-credentials.js';
+import { User } from '../../users/types/user.js';
+import { NotFoundException } from '../../../exceptions/not-found.exception.js';
 import { EmailTakenException } from '../../../exceptions/email-taken.exception.js';
 import { CryptoUtils } from '../../../utils/crypto.utils.js';
 import * as AWS from '@aws-sdk/client-cognito-identity-provider';
@@ -49,14 +48,14 @@ export class CognitoService implements OnModuleInit {
 		const command: AWS.InitiateAuthCommand = new AWS.InitiateAuthCommand(input);
 
 		const output: AWS.InitiateAuthCommandOutput = await this.client.send(command);
-		const idToken: string = output.AuthenticationResult?.IdToken ?? '';
+		const identityToken: string = output.AuthenticationResult?.IdToken ?? '';
 		const accessToken: string = output.AuthenticationResult?.AccessToken ?? '';
 		const refreshToken: string = output.AuthenticationResult?.RefreshToken ?? '';
 
-		return { idToken, accessToken, refreshToken };
+		return { identityToken, accessToken, refreshToken };
 	}
 
-	private async enableUser(id: string): Promise<StatusDto> {
+	private async enableUser(id: string): Promise<Status> {
 		const userPoolId: string = await this.configService.getVariable('AWS_USER_POOL_ID');
 
 		const input: AWS.AdminEnableUserCommandInput = {
@@ -68,10 +67,10 @@ export class CognitoService implements OnModuleInit {
 
 		await this.client.send(command);
 
-		return true as any;
+		return BooleanToStatus.map(true);
 	}
 
-	private async disableUser(id: string): Promise<StatusDto> {
+	private async disableUser(id: string): Promise<Status> {
 		const userPoolId: string = await this.configService.getVariable('AWS_USER_POOL_ID');
 
 		const input: AWS.AdminDisableUserCommandInput = {
@@ -83,12 +82,12 @@ export class CognitoService implements OnModuleInit {
 
 		await this.client.send(command);
 
-		return true as any;
+		return BooleanToStatus.map(true);
 	}
 
-	public async signUp(email: string, password: string): Promise<UserDto> {
+	public async signUp(email: string, password: string): Promise<User> {
 		// Check whether the email is taken.
-		let emailTaken: UserDto = null;
+		let emailTaken: User = null;
 		try {
 			emailTaken = await this.getByEmail(email);
 		} catch (error: any) {
@@ -130,36 +129,33 @@ export class CognitoService implements OnModuleInit {
 
 		await this.client.send(command);
 
-		const user: UserDto = await this.getByEmail(email);
+		const user: User = await this.getByEmail(email);
 
 		return user;
 	}
 
-	@Map(StatusBooleanToDto)
-	public async signDown(accessToken: string, password: string): Promise<StatusDto> {
+	public async signDown(accessToken: string, password: string): Promise<Status> {
 		// Check whether the user exists.
-		const user: UserDto = await this.getMyUser(accessToken);
+		const user: User = await this.getMyUser(accessToken);
 
 		await this.authUser(user.id, password);
 
 		await this.deleteMyUser(accessToken);
 
-		return true as any;
+		return BooleanToStatus.map(true);
 	}
 
-	@Map(CredentialsObjectToDto)
-	public async signIn(email: string, password: string): Promise<CredentialsDto> {
+	public async signIn(email: string, password: string): Promise<AppCredentials> {
 		// Check whether the user exists.
-		const user: UserDto = await this.getByEmail(email);
+		const user: User = await this.getByEmail(email);
 
 		// Authenticate with username and password.
 		const tokens: object = await this.authUser(user.id, password);
 
-		return tokens as any;
+		return CognitoToAppCredentials.map(tokens);
 	}
 
-	@Map(StatusBooleanToDto)
-	public async signOut(accessToken: string): Promise<StatusDto> {
+	public async signOut(accessToken: string): Promise<Status> {
 		const input: AWS.GlobalSignOutCommandInput = {
 			AccessToken: accessToken,
 		};
@@ -168,11 +164,10 @@ export class CognitoService implements OnModuleInit {
 
 		await this.client.send(command);
 
-		return true as any;
+		return BooleanToStatus.map(true);
 	}
 
-	@Map(CredentialsObjectToDto)
-	public async refreshToken(refreshToken: string): Promise<CredentialsDto> {
+	public async refreshToken(refreshToken: string): Promise<AppCredentials> {
 		const clientId: string = await this.configService.getVariable('AWS_USER_POOL_API_CLIENT_ID');
 
 		const input: AWS.InitiateAuthCommandInput = {
@@ -186,14 +181,13 @@ export class CognitoService implements OnModuleInit {
 		const command: AWS.InitiateAuthCommand = new AWS.InitiateAuthCommand(input);
 
 		const output: AWS.InitiateAuthCommandOutput = await this.client.send(command);
-		const idToken: string = output.AuthenticationResult?.IdToken ?? '';
+		const identityToken: string = output.AuthenticationResult?.IdToken ?? '';
 		const accessToken: string = output.AuthenticationResult?.AccessToken ?? '';
 
-		return { idToken, accessToken, refreshToken };
+		return CognitoToAppCredentials.map({ identityToken, accessToken, refreshToken });
 	}
 
-	@Map(StatusBooleanToDto)
-	public async verifyEmail(accessToken: string, code: string): Promise<StatusDto> {
+	public async verifyEmail(accessToken: string, code: string): Promise<Status> {
 		const input: AWS.VerifyUserAttributeCommandInput = {
 			AccessToken: accessToken,
 			AttributeName: 'email',
@@ -204,13 +198,12 @@ export class CognitoService implements OnModuleInit {
 
 		await this.client.send(command);
 
-		return true as any;
+		return BooleanToStatus.map(true);
 	}
 
-	@Map(StatusBooleanToDto)
-	public async forgotPassword(email: string): Promise<StatusDto> {
+	public async forgotPassword(email: string): Promise<Status> {
 		// Check whether the user exists.
-		const user: UserDto = await this.getByEmail(email);
+		const user: User = await this.getByEmail(email);
 
 		const clientId: string = await this.configService.getVariable('AWS_USER_POOL_API_CLIENT_ID');
 
@@ -223,13 +216,12 @@ export class CognitoService implements OnModuleInit {
 
 		await this.client.send(command);
 
-		return true as any;
+		return BooleanToStatus.map(true);
 	}
 
-	@Map(StatusBooleanToDto)
-	public async confirmPassword(email: string, code: string, password: string): Promise<StatusDto> {
+	public async confirmPassword(email: string, code: string, password: string): Promise<Status> {
 		// Check whether the user exists.
-		const user: UserDto = await this.getByEmail(email);
+		const user: User = await this.getByEmail(email);
 
 		const clientId: string = await this.configService.getVariable('AWS_USER_POOL_API_CLIENT_ID');
 
@@ -244,11 +236,10 @@ export class CognitoService implements OnModuleInit {
 
 		await this.client.send(command);
 
-		return true as any;
+		return BooleanToStatus.map(true);
 	}
 
-	@Map(StatusBooleanToDto)
-	public async changePassword(accessToken: string, currentPassword: string, newPassword: string): Promise<StatusDto> {
+	public async changePassword(accessToken: string, currentPassword: string, newPassword: string): Promise<Status> {
 		const input: AWS.ChangePasswordCommandInput = {
 			AccessToken: accessToken,
 			PreviousPassword: currentPassword,
@@ -259,11 +250,10 @@ export class CognitoService implements OnModuleInit {
 
 		await this.client.send(command);
 
-		return true as any;
+		return BooleanToStatus.map(true);
 	}
 
-	@Map(UserCognitoToDto)
-	public async get(id: string): Promise<UserDto> {
+	public async get(id: string): Promise<User> {
 		const userPoolId: string = await this.configService.getVariable('AWS_USER_POOL_ID');
 
 		const input: AWS.AdminGetUserCommandInput = {
@@ -275,11 +265,10 @@ export class CognitoService implements OnModuleInit {
 
 		const output: AWS.AdminGetUserCommandOutput = await this.client.send(command);
 
-		return output as any;
+		return CognitoToUser.map(output);
 	}
 
-	@Map(UserCognitoToDto)
-	public async getBy(filter?: string): Promise<UserDto[]> {
+	public async getBy(filter?: string): Promise<User[]> {
 		const userPoolId: string = await this.configService.getVariable('AWS_USER_POOL_ID');
 
 		const input: AWS.ListUsersCommandInput = {
@@ -306,33 +295,32 @@ export class CognitoService implements OnModuleInit {
 			}
 		}
 
-		return users as any;
+		return CognitoToUser.map(users);
 	}
 
-	public async getBySub(sub: string): Promise<UserDto> {
-		const users: UserDto[] = await this.getBy(`sub = "${sub}"`);
+	public async getBySub(sub: string): Promise<User> {
+		const users: User[] = await this.getBy(`sub = "${sub}"`);
 		if (users.length !== 1) {
-			throw new ResourceNotFoundException(UserDto, { sub });
+			throw new NotFoundException(User, { sub });
 		}
 
-		const user: UserDto = users[0];
+		const user: User = users[0];
 
 		return user;
 	}
 
-	public async getByEmail(email: string): Promise<UserDto> {
-		const users: UserDto[] = await this.getBy(`email = "${email}"`);
+	public async getByEmail(email: string): Promise<User> {
+		const users: User[] = await this.getBy(`email = "${email}"`);
 		if (users.length !== 1) {
-			throw new ResourceNotFoundException(UserDto, { email });
+			throw new NotFoundException(User, { email });
 		}
 
-		const user: UserDto = users[0];
+		const user: User = users[0];
 
 		return user;
 	}
 
-	@Map(UserCognitoToDto)
-	public async getMyUser(accessToken: string): Promise<UserDto> {
+	public async getMyUser(accessToken: string): Promise<User> {
 		const input: AWS.GetUserCommandInput = {
 			AccessToken: accessToken,
 		};
@@ -341,7 +329,7 @@ export class CognitoService implements OnModuleInit {
 
 		const user: AWS.GetUserCommandOutput = await this.client.send(command);
 
-		return user as any;
+		return CognitoToUser.map(user);
 	}
 
 	public async update(
@@ -353,7 +341,7 @@ export class CognitoService implements OnModuleInit {
 			locale: string;
 			timezone: string;
 		}> = {},
-	): Promise<UserDto> {
+	): Promise<User> {
 		const userPoolId: string = await this.configService.getVariable('AWS_USER_POOL_ID');
 
 		const attributes = [];
@@ -386,7 +374,7 @@ export class CognitoService implements OnModuleInit {
 		return await this.get(id);
 	}
 
-	private async updateAttribute(id: string, name: string, value: any): Promise<UserDto> {
+	private async updateAttribute(id: string, name: string, value: any): Promise<User> {
 		const userPoolId: string = await this.configService.getVariable('AWS_USER_POOL_ID');
 		const attributes = [{ Name: name, Value: value }];
 
@@ -403,7 +391,7 @@ export class CognitoService implements OnModuleInit {
 		return await this.get(id);
 	}
 
-	public async updateEmail(id: string, email: string): Promise<UserDto> {
+	public async updateEmail(id: string, email: string): Promise<User> {
 		// Check whether the email is taken.
 		const users: any[] = await this.getBy(`email = "${email}"`);
 		if (users.length !== 0) {
@@ -413,16 +401,15 @@ export class CognitoService implements OnModuleInit {
 		return await this.updateAttribute(id, 'email', email);
 	}
 
-	public async updatePhone(id: string, phone: string): Promise<UserDto> {
+	public async updatePhone(id: string, phone: string): Promise<User> {
 		return await this.updateAttribute(id, 'phone_number', phone);
 	}
 
-	public async updateIcon(id: string, avatar: string): Promise<UserDto> {
+	public async updateIcon(id: string, avatar: string): Promise<User> {
 		return await this.updateAttribute(id, 'picture', avatar);
 	}
 
-	@Map(StatusBooleanToDto)
-	public async deleteMyUser(accessToken: string): Promise<StatusDto> {
+	public async deleteMyUser(accessToken: string): Promise<Status> {
 		const input: AWS.DeleteUserCommandInput = {
 			AccessToken: accessToken,
 		};
@@ -431,6 +418,6 @@ export class CognitoService implements OnModuleInit {
 
 		await this.client.send(command);
 
-		return true as any;
+		return BooleanToStatus.map(true);
 	}
 }

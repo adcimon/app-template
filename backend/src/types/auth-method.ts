@@ -1,4 +1,8 @@
+import { ApiEnums } from '../api/api-enums.js';
+
 export enum AuthMethod {
-	None = 0,
-	Bearer = 1,
+	None = 'none',
+	Bearer = 'bearer',
 }
+
+ApiEnums.register('AuthMethod', AuthMethod);

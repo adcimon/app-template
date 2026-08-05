@@ -2,20 +2,18 @@ import React from 'react';
 import { Box, Button, Card, CardContent, CardHeader, Divider, Grid, Typography } from '@mui/material';
 import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
 import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
-import { PasswordField } from '../../../../core/components/Field/PasswordField';
+import { SignDownForm } from '../../../../forms/SignDownForm/SignDownForm';
 import { useNavigator } from '../../../../core/hooks/useNavigator';
 import { useAppState } from '../../../../states/app/useAppState';
+import { useSignDownForm } from '../../../../forms/SignDownForm/useSignDownForm';
 
 export const ProfileDangerZoneCard = (): React.JSX.Element => {
 	const navigator = useNavigator();
 	const appState = useAppState();
 
-	const [password, setPassword] = React.useState<string>('');
 	const [openDialog, setOpenDialog] = React.useState<boolean>(false);
 
-	const validate = (): boolean => {
-		return password !== '';
-	};
+	const { form, validate, handleChange } = useSignDownForm();
 
 	const handleDeleteAccount = async () => {
 		setOpenDialog(true);
@@ -23,7 +21,7 @@ export const ProfileDangerZoneCard = (): React.JSX.Element => {
 
 	const handleAcceptDeleteAccount = async () => {
 		try {
-			await appState.signDown(password);
+			await appState.signDown(form);
 			ToastManager.success('Account deleted');
 			appState.reset();
 			setOpenDialog(false);
@@ -111,13 +109,9 @@ export const ProfileDangerZoneCard = (): React.JSX.Element => {
 					onCancel={handleCancelDeleteAccount}
 					onClose={handleCancelDeleteAccount}>
 					<Typography>Confirm your password to delete your account.</Typography>
-					<PasswordField
-						variant='standard'
-						value={password}
-						autoFocus={true}
-						onChange={(event: any) => setPassword(event.target.value)}
-						fullWidth={true}
-						margin='dense'
+					<SignDownForm
+						form={form}
+						onChange={handleChange}
 					/>
 				</ConfirmationDialog>
 			</>
