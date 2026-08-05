@@ -17,6 +17,7 @@ import { EmailField } from '../../../../core/components/Field/EmailField';
 import { ChangeEmailForm } from '../../../../forms/ChangeEmailForm/ChangeEmailForm';
 import { VerificationBadge } from '../../../../core/components/Badge/VerificationBadge';
 import { VerifyEmailForm } from '../../../../forms/VerifyEmailForm/VerifyEmailForm';
+import { ChangeEmailDfo } from '../../../../forms/ChangeEmailForm/changeEmailDfo';
 import { useAppState } from '../../../../states/app/useAppState';
 import { useUserState } from '../../../../states/user/useUserState';
 import { useChangeEmailForm } from '../../../../forms/ChangeEmailForm/useChangeEmailForm';
@@ -65,7 +66,8 @@ export const ProfileEmailCard = (): React.JSX.Element => {
 
 	const handleAcceptChange = async () => {
 		try {
-			await userState.updateEmail({ email });
+			const values: ChangeEmailDfo = { email };
+			await userState.updateEmail(values);
 			ToastManager.success('Verification code sent');
 		} catch (error: any) {
 			ToastManager.error(error.message);

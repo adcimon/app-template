@@ -3,6 +3,7 @@ import { Avatar, Box, IconButton, Stack, TextField, Typography } from '@mui/mate
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
 import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
+import { ChangeIconDfo } from '../../../../forms/dfos/changeIconDfo';
 import { useUserState } from '../../../../states/user/useUserState';
 import { AppUtils } from '../../../../utils/appUtils';
 
@@ -35,7 +36,8 @@ export const UserAvatar = (): React.JSX.Element => {
 	const handleAccept = async () => {
 		const update = async () => {
 			try {
-				await userState.updateIcon({ icon: avatar });
+				const values: ChangeIconDfo = { icon: avatar };
+				await userState.updateIcon(values);
 				setOpenDialog(false);
 				ToastManager.success('Avatar changed');
 			} catch (error: any) {
