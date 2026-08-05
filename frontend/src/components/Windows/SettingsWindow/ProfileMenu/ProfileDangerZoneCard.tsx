@@ -13,7 +13,7 @@ export const ProfileDangerZoneCard = (): React.JSX.Element => {
 
 	const [openDialog, setOpenDialog] = React.useState<boolean>(false);
 
-	const { form, validate, handleChange } = useSignDownForm();
+	const form = useSignDownForm();
 
 	const handleDeleteAccount = async () => {
 		setOpenDialog(true);
@@ -21,7 +21,7 @@ export const ProfileDangerZoneCard = (): React.JSX.Element => {
 
 	const handleAcceptDeleteAccount = async () => {
 		try {
-			await appState.signDown(form);
+			await appState.signDown(form.values);
 			ToastManager.success('Account deleted');
 			appState.reset();
 			setOpenDialog(false);
@@ -104,14 +104,14 @@ export const ProfileDangerZoneCard = (): React.JSX.Element => {
 				<ConfirmationDialog
 					title='Delete Account'
 					open={openDialog}
-					acceptable={validate()}
+					acceptable={form.validate()}
 					onAccept={handleAcceptDeleteAccount}
 					onCancel={handleCancelDeleteAccount}
 					onClose={handleCancelDeleteAccount}>
 					<Typography>Confirm your password to delete your account.</Typography>
 					<SignDownForm
-						form={form}
-						onChange={handleChange}
+						values={form.values}
+						onChange={form.handleChange}
 					/>
 				</ConfirmationDialog>
 			</>

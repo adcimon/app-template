@@ -3,7 +3,7 @@ import { EmailField } from '../../core/components/Field/EmailField';
 import { ChangeEmailDfo } from './changeEmailDfo';
 
 export interface ChangeEmailFormProps {
-	form: ChangeEmailDfo;
+	values: ChangeEmailDfo;
 	onChange: (key: any, value: any) => void;
 }
 
@@ -12,7 +12,7 @@ export const ChangeEmailForm = (props: ChangeEmailFormProps): React.JSX.Element 
 		return (
 			<EmailField
 				variant='standard'
-				value={props.form.email ?? ''}
+				value={props.values.email ?? ''}
 				autoFocus={true}
 				onChange={(event: any) => props.onChange('email', event.target.value)}
 				fullWidth={true}

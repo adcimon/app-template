@@ -4,7 +4,7 @@ import { PasswordField } from '../../core/components/Field/PasswordField';
 import { SignInDfo } from './signInDfo';
 
 export interface SignInFormProps {
-	form: SignInDfo;
+	values: SignInDfo;
 	onChange: (key: any, value: any) => void;
 }
 
@@ -13,7 +13,7 @@ export const SignInForm = (props: SignInFormProps): React.JSX.Element => {
 		<>
 			<EmailField
 				label='Email'
-				value={props.form.email ?? ''}
+				value={props.values.email ?? ''}
 				autoComplete='email'
 				required={true}
 				onChange={(event: any) => props.onChange('email', event.target.value)}
@@ -21,7 +21,7 @@ export const SignInForm = (props: SignInFormProps): React.JSX.Element => {
 			/>
 			<PasswordField
 				label='Password'
-				value={props.form.password ?? ''}
+				value={props.values.password ?? ''}
 				required={true}
 				onChange={(event: any) => props.onChange('password', event.target.value)}
 				fullWidth={true}

@@ -15,11 +15,11 @@ export const SignInView = (): React.JSX.Element => {
 	const appState = useAppState();
 	const userState = useUserState();
 
-	const { form, handleChange } = useSignInForm();
+	const form = useSignInForm();
 
 	const handleSignIn = async () => {
 		try {
-			await appState.signIn(form);
+			await appState.signIn(form.values);
 			await userState.get();
 			navigator.navigate('/');
 		} catch (error: any) {
@@ -41,8 +41,8 @@ export const SignInView = (): React.JSX.Element => {
 				<Logo />
 				<Typography variant='h5'>Sign In</Typography>
 				<SignInForm
-					form={form}
-					onChange={handleChange}
+					values={form.values}
+					onChange={form.handleChange}
 				/>
 				<Button
 					variant='contained'

@@ -27,28 +27,28 @@ export function useAppState() {
 	const [metadata, setMetadata] = useAtom(MetadataState);
 	const [theme, setTheme] = useAtom(ThemeState);
 
-	const signUp = async (form: SignUpDfo): Promise<User> => {
+	const signUp = async (values: SignUpDfo): Promise<User> => {
 		const body: SignUpDto = {
-			email: form.email ?? '',
-			password: CryptoUtils.encodeBase64(form.password ?? ''),
+			email: values.email ?? '',
+			password: CryptoUtils.encodeBase64(values.password ?? ''),
 		};
 		const user: User = await api.client.services.auth.signUp(body);
 		return user;
 	};
 
-	const signDown = async (form: SignDownDfo): Promise<boolean> => {
+	const signDown = async (values: SignDownDfo): Promise<boolean> => {
 		const body: SignDownDto = {
-			password: CryptoUtils.encodeBase64(form.password ?? ''),
+			password: CryptoUtils.encodeBase64(values.password ?? ''),
 		};
 		const status: Status = await api.client.services.auth.signDown(body);
 		api.clearTokens();
 		return status.status;
 	};
 
-	const signIn = async (form: SignInDfo): Promise<AppCredentials> => {
+	const signIn = async (values: SignInDfo): Promise<AppCredentials> => {
 		const body: SignInDto = {
-			email: form.email ?? '',
-			password: CryptoUtils.encodeBase64(form.password ?? ''),
+			email: values.email ?? '',
+			password: CryptoUtils.encodeBase64(values.password ?? ''),
 		};
 		const credentials: AppCredentials = await api.client.services.auth.signIn(body);
 
@@ -67,32 +67,32 @@ export function useAppState() {
 		return status.status;
 	};
 
-	const verifyEmail = async (form: VerifyEmailDfo): Promise<boolean> => {
-		const body: VerifyEmailDto = { code: form.code ?? '' };
+	const verifyEmail = async (values: VerifyEmailDfo): Promise<boolean> => {
+		const body: VerifyEmailDto = { code: values.code ?? '' };
 		const status: Status = await api.client.services.auth.verifyEmail(body);
 		return status.status;
 	};
 
-	const forgotPassword = async (form: ForgotPasswordDfo): Promise<boolean> => {
-		const body: ForgotPasswordDto = { email: form.email ?? '' };
+	const forgotPassword = async (values: ForgotPasswordDfo): Promise<boolean> => {
+		const body: ForgotPasswordDto = { email: values.email ?? '' };
 		const status: Status = await api.client.services.auth.forgotPassword(body);
 		return status.status;
 	};
 
-	const confirmPassword = async (form: ForgotPasswordDfo): Promise<boolean> => {
+	const confirmPassword = async (values: ForgotPasswordDfo): Promise<boolean> => {
 		const body: ConfirmPasswordDto = {
-			email: form.email ?? '',
-			code: form.code ?? '',
-			password: CryptoUtils.encodeBase64(form.password ?? ''),
+			email: values.email ?? '',
+			code: values.code ?? '',
+			password: CryptoUtils.encodeBase64(values.password ?? ''),
 		};
 		const status: Status = await api.client.services.auth.confirmPassword(body);
 		return status.status;
 	};
 
-	const changePassword = async (form: ChangePasswordDfo): Promise<boolean> => {
+	const changePassword = async (values: ChangePasswordDfo): Promise<boolean> => {
 		const body: ChangePasswordDto = {
-			currentPassword: CryptoUtils.encodeBase64(form.currentPassword ?? ''),
-			newPassword: CryptoUtils.encodeBase64(form.newPassword ?? ''),
+			currentPassword: CryptoUtils.encodeBase64(values.currentPassword ?? ''),
+			newPassword: CryptoUtils.encodeBase64(values.newPassword ?? ''),
 		};
 		const status: Status = await api.client.services.auth.changePassword(body);
 		return status.status;

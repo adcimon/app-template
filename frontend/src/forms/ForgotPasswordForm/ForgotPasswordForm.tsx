@@ -5,7 +5,7 @@ import { PasswordField } from '../../core/components/Field/PasswordField';
 import { ForgotPasswordDfo } from './forgotPasswordDfo';
 
 export interface ForgotPasswordFormProps {
-	form: ForgotPasswordDfo;
+	values: ForgotPasswordDfo;
 	sendDisabled: boolean;
 	confirmDisabled: boolean;
 	onChange: (key: any, value: any) => void;
@@ -19,7 +19,7 @@ export const ForgotPasswordForm = (props: ForgotPasswordFormProps): React.JSX.El
 			<>
 				<EmailField
 					label='Email'
-					value={props.form.email ?? ''}
+					value={props.values.email ?? ''}
 					required={true}
 					onChange={(event: any) => props.onChange('email', event.target.value)}
 					fullWidth={true}
@@ -42,14 +42,14 @@ export const ForgotPasswordForm = (props: ForgotPasswordFormProps): React.JSX.El
 				<TextField
 					label='Code'
 					placeholder='Code sent to your email'
-					value={props.form.code ?? ''}
+					value={props.values.code ?? ''}
 					required={true}
 					onChange={(event: any) => props.onChange('code', event.target.value)}
 					fullWidth={true}
 				/>
 				<PasswordField
 					label='Password'
-					value={props.form.password ?? ''}
+					value={props.values.password ?? ''}
 					autoComplete='new-password'
 					required={true}
 					onChange={(event: any) => props.onChange('password', event.target.value)}
@@ -57,7 +57,7 @@ export const ForgotPasswordForm = (props: ForgotPasswordFormProps): React.JSX.El
 				/>
 				<PasswordField
 					label='Confirm Password'
-					value={props.form.confirmPassword ?? ''}
+					value={props.values.confirmPassword ?? ''}
 					required={true}
 					onChange={(event: any) => props.onChange('confirmPassword', event.target.value)}
 					fullWidth={true}

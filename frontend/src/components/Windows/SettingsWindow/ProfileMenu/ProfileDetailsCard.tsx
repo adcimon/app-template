@@ -8,11 +8,11 @@ import { useUserForm } from '../../../../forms/UserForm/useUserForm';
 export const ProfileDetailsCard = (): React.JSX.Element => {
 	const userState = useUserState();
 
-	const { form, validate, handleChange } = useUserForm(userState.user);
+	const form = useUserForm(userState.user);
 
 	const handleSave = async () => {
 		try {
-			await userState.update(form);
+			await userState.update(form.values);
 			ToastManager.success('Profile updated');
 		} catch (error: any) {
 			ToastManager.error(error.message);
@@ -38,8 +38,8 @@ export const ProfileDetailsCard = (): React.JSX.Element => {
 					}}>
 					<UserForm
 						user={userState.user}
-						form={form}
-						onChange={handleChange}
+						values={form.values}
+						onChange={form.handleChange}
 					/>
 				</CardContent>
 				<Divider />
@@ -48,7 +48,7 @@ export const ProfileDetailsCard = (): React.JSX.Element => {
 						justifyContent: 'flex-end',
 					}}>
 					<Button
-						disabled={!validate()}
+						disabled={!form.validate()}
 						variant='contained'
 						onClick={handleSave}>
 						Save

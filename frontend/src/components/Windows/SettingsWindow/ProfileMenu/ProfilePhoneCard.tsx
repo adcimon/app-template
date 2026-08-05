@@ -1,41 +1,18 @@
 import React from 'react';
-import {
-	Box,
-	Button,
-	Card,
-	CardActions,
-	CardContent,
-	CardHeader,
-	Divider,
-	Grid,
-	Stack,
-	Typography,
-} from '@mui/material';
+import { Button, Card, CardActions, CardContent, CardHeader, Divider, Stack, Typography } from '@mui/material';
 import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
-import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
-import { countries, CountrySelect, CountryType } from '../../../../core/components/Select/CountrySelect';
-import { PhoneField } from '../../../../core/components/Field/PhoneField';
 import { VerificationBadge } from '../../../../core/components/Badge/VerificationBadge';
+import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
+import { ChangePhoneForm } from '../../../../forms/ChangePhoneForm/ChangePhoneForm';
+import { useChangePhoneForm } from '../../../../forms/ChangePhoneForm/useChangePhoneForm';
 import { useUserState } from '../../../../states/user/useUserState';
-import { AppUtils } from '../../../../utils/appUtils';
-import { PhoneUtils } from '../../../../core/utils/phoneUtils';
 
 export const ProfilePhoneCard = (): React.JSX.Element => {
 	const userState = useUserState();
 
-	const [countryCode, setCountryCode] = React.useState<string>(
-		PhoneUtils.getCountryCode(userState.user?.phone ?? ''),
-	);
-	const [nationalNumber, setNationalNumber] = React.useState<string>(
-		PhoneUtils.getNationalNumber(userState.user?.phone ?? ''),
-	);
-
 	const [openDialog, setOpenDialog] = React.useState<boolean>(false);
 
-	const validate = (): boolean => {
-		const phone: string = `+${countryCode}${nationalNumber}`;
-		return AppUtils.PHONE_REGEXP.test(phone) && phone !== userState.user?.phone;
-	};
+	const form = useChangePhoneForm(userState.user?.phone);
 
 	const handleChange = async () => {
 		setOpenDialog(true);
@@ -43,8 +20,7 @@ export const ProfilePhoneCard = (): React.JSX.Element => {
 
 	const handleAcceptChange = async () => {
 		try {
-			const phone: string = `+${countryCode}${nationalNumber}`;
-			await userState.updatePhone(phone);
+			await userState.updatePhone(form.values);
 			ToastManager.success('Phone changed');
 		} catch (error: any) {
 			ToastManager.error(error.message);
@@ -54,13 +30,11 @@ export const ProfilePhoneCard = (): React.JSX.Element => {
 	};
 
 	const handleCancelChange = async () => {
-		setCountryCode(PhoneUtils.getCountryCode(userState.user?.phone ?? ''));
-		setNationalNumber(PhoneUtils.getNationalNumber(userState.user?.phone ?? ''));
+		form.reset();
 		setOpenDialog(false);
 	};
 
 	const render = () => {
-		const country: CountryType | undefined = countries.find((c: CountryType) => c.phone === countryCode);
 		return (
 			<>
 				<Card>
@@ -87,50 +61,10 @@ export const ProfilePhoneCard = (): React.JSX.Element => {
 						sx={{
 							paddingTop: 0,
 						}}>
-						<Box
-							sx={{
-								margin: -1.5,
-								padding: 2,
-							}}>
-							<Grid
-								container
-								spacing={3}>
-								<Grid
-									size={{
-										xs: 12,
-										md: 12,
-										lg: 12,
-									}}>
-									<CountrySelect
-										value={country?.code ?? ''}
-										onChange={(event: any) => setCountryCode(event.target.value?.phone)}
-										slotProps={{
-											inputLabel: {
-												shrink: true,
-											},
-										}}
-									/>
-								</Grid>
-								<Grid
-									size={{
-										xs: 12,
-										md: 12,
-										lg: 12,
-									}}>
-									<PhoneField
-										label='Phone'
-										value={nationalNumber ?? ''}
-										onChange={(event: any) => setNationalNumber(event.target.value)}
-										fullWidth={true}
-										slotProps={{
-											inputLabel: {
-												shrink: true,
-											},
-										}}
-									/>
-								</Grid>
-							</Grid>
-						</Box>
+						<ChangePhoneForm
+							values={form.values}
+							onChange={form.handleChange}
+						/>
 					</CardContent>
 					<Divider />
 					<CardActions
@@ -138,7 +72,7 @@ export const ProfilePhoneCard = (): React.JSX.Element => {
 							justifyContent: 'flex-end',
 						}}>
 						<Button
-							disabled={!validate()}
+							disabled={!form.validate()}
 							variant='contained'
 							onClick={handleChange}>
 							Change

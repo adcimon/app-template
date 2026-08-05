@@ -35,7 +35,7 @@ export const UserAvatar = (): React.JSX.Element => {
 	const handleAccept = async () => {
 		const update = async () => {
 			try {
-				await userState.updateIcon(avatar);
+				await userState.updateIcon({ icon: avatar });
 				setOpenDialog(false);
 				ToastManager.success('Avatar changed');
 			} catch (error: any) {

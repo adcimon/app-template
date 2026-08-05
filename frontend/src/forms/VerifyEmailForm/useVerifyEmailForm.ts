@@ -3,19 +3,19 @@ import { ObjectUtils } from '../../core/utils/objectUtils';
 import { newVerifyEmailDfo, VerifyEmailDfo } from './verifyEmailDfo';
 
 export function useVerifyEmailForm() {
-	const [form, setForm] = React.useState<VerifyEmailDfo>(newVerifyEmailDfo());
+	const [values, setValues] = React.useState<VerifyEmailDfo>(newVerifyEmailDfo());
 
 	const validate = (): boolean => {
-		return !!form.code;
+		return !!values.code;
 	};
 
 	const reset = () => {
-		setForm(newVerifyEmailDfo());
+		setValues(newVerifyEmailDfo());
 	};
 
 	const handleChange = (key: any, value: any) => {
-		setForm((prev: VerifyEmailDfo) => ObjectUtils.set(prev, key, value));
+		setValues((prev: VerifyEmailDfo) => ObjectUtils.set(prev, key, value));
 	};
 
-	return { form, validate, reset, handleChange };
+	return { values, validate, reset, handleChange };
 }

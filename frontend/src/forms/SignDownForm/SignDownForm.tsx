@@ -3,7 +3,7 @@ import { PasswordField } from '../../core/components/Field/PasswordField';
 import { SignDownDfo } from './signDownDfo';
 
 export interface SignDownFormProps {
-	form: SignDownDfo;
+	values: SignDownDfo;
 	onChange: (key: any, value: any) => void;
 }
 
@@ -12,7 +12,7 @@ export const SignDownForm = (props: SignDownFormProps): React.JSX.Element => {
 		return (
 			<PasswordField
 				variant='standard'
-				value={props.form.password ?? ''}
+				value={props.values.password ?? ''}
 				autoFocus={true}
 				onChange={(event: any) => props.onChange('password', event.target.value)}
 				fullWidth={true}

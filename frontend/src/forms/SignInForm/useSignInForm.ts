@@ -4,18 +4,18 @@ import { AppUtils } from '../../utils/appUtils';
 import { newSignInDfo, SignInDfo } from './signInDfo';
 
 export function useSignInForm() {
-	const [form, setForm] = React.useState<SignInDfo>(newSignInDfo());
+	const [values, setValues] = React.useState<SignInDfo>(newSignInDfo());
 
 	const validate = (): boolean => {
-		return AppUtils.EMAIL_REGEXP.test(form.email ?? '') && !!form.password;
+		return AppUtils.EMAIL_REGEXP.test(values.email ?? '') && !!values.password;
 	};
 
 	const handleChange = (key: any, value: any) => {
-		setForm((prev: SignInDfo) => ObjectUtils.set(prev, key, value));
+		setValues((prev: SignInDfo) => ObjectUtils.set(prev, key, value));
 	};
 
 	return {
-		form,
+		values,
 		validate,
 		handleChange,
 	};

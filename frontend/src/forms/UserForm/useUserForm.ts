@@ -6,17 +6,17 @@ import { newUserDfo, UserDfo } from './userDfo';
 const KEYS: ObjectUtils.Keys<UserDfo>[] = ObjectUtils.getKeys(newUserDfo()) as ObjectUtils.Keys<UserDfo>[];
 
 export function useUserForm(user?: User) {
-	const [form, setForm] = React.useState<UserDfo>(newUserDfo());
-	const [baseForm, setBaseForm] = React.useState<UserDfo>();
+	const [values, setValues] = React.useState<UserDfo>(newUserDfo());
+	const [baseValues, setBaseValues] = React.useState<UserDfo>();
 
 	React.useEffect(() => {
 		if (!user) {
-			setForm(newUserDfo());
-			setBaseForm(undefined);
+			setValues(newUserDfo());
+			setBaseValues(undefined);
 			return;
 		}
 
-		const form: UserDfo = {
+		const values: UserDfo = {
 			name: user.name,
 			surname: user.surname,
 			birthdate: user.birthdate,
@@ -24,21 +24,21 @@ export function useUserForm(user?: User) {
 			timezone: user.timezone,
 		};
 
-		setForm(form);
-		setBaseForm(form);
+		setValues(values);
+		setBaseValues(values);
 	}, [user]);
 
 	const validate = (): boolean => {
-		if (!baseForm) {
+		if (!baseValues) {
 			return false;
 		}
 
-		return !ObjectUtils.equals(baseForm, form, KEYS);
+		return !ObjectUtils.equals(baseValues, values, KEYS);
 	};
 
 	const handleChange = (key: any, value: any) => {
-		setForm((prev: UserDfo) => ObjectUtils.set(prev, key, value));
+		setValues((prev: UserDfo) => ObjectUtils.set(prev, key, value));
 	};
 
-	return { form, validate, handleChange };
+	return { values, validate, handleChange };
 }

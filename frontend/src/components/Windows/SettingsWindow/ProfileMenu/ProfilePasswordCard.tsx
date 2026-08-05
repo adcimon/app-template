@@ -11,27 +11,27 @@ export const ProfilePasswordCard = (): React.JSX.Element => {
 
 	const [openDialog, setOpenDialog] = React.useState<boolean>(false);
 
-	const { form, validate, reset, handleChange } = useChangePasswordForm();
+	const form = useChangePasswordForm();
 
 	const handleChangePassword = async () => {
-		reset();
+		form.reset();
 		setOpenDialog(true);
 	};
 
 	const handleAcceptChange = async () => {
 		try {
-			await appState.changePassword(form);
+			await appState.changePassword(form.values);
 			ToastManager.success('Password changed');
 		} catch (error: any) {
 			ToastManager.error(error.message);
 		}
 
-		reset();
+		form.reset();
 		setOpenDialog(false);
 	};
 
 	const handleCancelChange = async () => {
-		reset();
+		form.reset();
 		setOpenDialog(false);
 	};
 
@@ -94,13 +94,13 @@ export const ProfilePasswordCard = (): React.JSX.Element => {
 				<ConfirmationDialog
 					title='Change Password'
 					open={openDialog}
-					acceptable={validate()}
+					acceptable={form.validate()}
 					onAccept={handleAcceptChange}
 					onCancel={handleCancelChange}
 					onClose={handleCancelChange}>
 					<ChangePasswordForm
-						form={form}
-						onChange={handleChange}
+						values={form.values}
+						onChange={form.handleChange}
 					/>
 				</ConfirmationDialog>
 			</>

@@ -5,7 +5,7 @@ import { PasswordField } from '../../core/components/Field/PasswordField';
 import { SignUpDfo } from './signUpDfo';
 
 export interface SignUpFormProps {
-	form: SignUpDfo;
+	values: SignUpDfo;
 	onChange: (key: any, value: any) => void;
 	onOpenTermsOfService: (event: React.MouseEvent<HTMLElement>) => void;
 	onOpenPrivacyPolicy: (event: React.MouseEvent<HTMLElement>) => void;
@@ -17,21 +17,21 @@ export const SignUpForm = (props: SignUpFormProps): React.JSX.Element => {
 			<>
 				<EmailField
 					label='Email'
-					value={props.form.email ?? ''}
+					value={props.values.email ?? ''}
 					required={true}
 					onChange={(event: any) => props.onChange('email', event.target.value)}
 					fullWidth={true}
 				/>
 				<PasswordField
 					label='Password'
-					value={props.form.password ?? ''}
+					value={props.values.password ?? ''}
 					required={true}
 					onChange={(event: any) => props.onChange('password', event.target.value)}
 					fullWidth={true}
 				/>
 				<PasswordField
 					label='Confirm Password'
-					value={props.form.confirmPassword ?? ''}
+					value={props.values.confirmPassword ?? ''}
 					required={true}
 					onChange={(event: any) => props.onChange('confirmPassword', event.target.value)}
 					fullWidth={true}
@@ -44,7 +44,7 @@ export const SignUpForm = (props: SignUpFormProps): React.JSX.Element => {
 					}}>
 					<Checkbox
 						color='primary'
-						value={props.form.legalAccepted}
+						value={props.values.legalAccepted}
 						onChange={(event: any, checked: boolean) => props.onChange('legalAccepted', checked)}
 					/>
 					<Typography variant='subtitle2'>

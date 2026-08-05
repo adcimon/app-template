@@ -20,4 +20,8 @@ export namespace PhoneUtils {
 			return '';
 		}
 	};
+
+	export const compose = (countryCode?: string, nationalNumber?: string): string => {
+		return `+${countryCode ?? ''}${nationalNumber ?? ''}`;
+	};
 }

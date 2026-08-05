@@ -3,7 +3,7 @@ import { TextField } from '@mui/material';
 import { VerifyEmailDfo } from './verifyEmailDfo';
 
 export interface VerifyEmailFormProps {
-	form: VerifyEmailDfo;
+	values: VerifyEmailDfo;
 	onChange: (key: any, value: any) => void;
 }
 
@@ -13,7 +13,7 @@ export const VerifyEmailForm = (props: VerifyEmailFormProps): React.JSX.Element 
 			<TextField
 				type='number'
 				variant='standard'
-				value={props.form.code ?? ''}
+				value={props.values.code ?? ''}
 				autoFocus={true}
 				onChange={(event: any) => props.onChange('code', event.target.value)}
 				fullWidth={true}

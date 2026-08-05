@@ -4,24 +4,24 @@ import { AppUtils } from '../../utils/appUtils';
 import { ForgotPasswordDfo, newForgotPasswordDfo } from './forgotPasswordDfo';
 
 export function useForgotPasswordForm() {
-	const [form, setForm] = React.useState<ForgotPasswordDfo>(newForgotPasswordDfo());
+	const [values, setValues] = React.useState<ForgotPasswordDfo>(newForgotPasswordDfo());
 
 	const validateSendCode = (): boolean => {
-		return AppUtils.EMAIL_REGEXP.test(form.email ?? '');
+		return AppUtils.EMAIL_REGEXP.test(values.email ?? '');
 	};
 
 	const validateChange = (): boolean => {
 		return (
-			AppUtils.EMAIL_REGEXP.test(form.email ?? '') &&
-			!!form.code &&
-			!!form.password &&
-			form.password === form.confirmPassword
+			AppUtils.EMAIL_REGEXP.test(values.email ?? '') &&
+			!!values.code &&
+			!!values.password &&
+			values.password === values.confirmPassword
 		);
 	};
 
 	const handleChange = (key: any, value: any) => {
-		setForm((prev: ForgotPasswordDfo) => ObjectUtils.set(prev, key, value));
+		setValues((prev: ForgotPasswordDfo) => ObjectUtils.set(prev, key, value));
 	};
 
-	return { form, validateSendCode, validateChange, handleChange };
+	return { values, validateSendCode, validateChange, handleChange };
 }

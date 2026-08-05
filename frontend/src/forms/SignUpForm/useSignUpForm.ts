@@ -4,20 +4,20 @@ import { AppUtils } from '../../utils/appUtils';
 import { newSignUpDfo, SignUpDfo } from './signUpDfo';
 
 export function useSignUpForm() {
-	const [form, setForm] = React.useState<SignUpDfo>(newSignUpDfo());
+	const [values, setValues] = React.useState<SignUpDfo>(newSignUpDfo());
 
 	const validate = (): boolean => {
 		return (
-			AppUtils.EMAIL_REGEXP.test(form.email ?? '') &&
-			!!form.password &&
-			form.password === form.confirmPassword &&
-			!!form.legalAccepted
+			AppUtils.EMAIL_REGEXP.test(values.email ?? '') &&
+			!!values.password &&
+			values.password === values.confirmPassword &&
+			!!values.legalAccepted
 		);
 	};
 
 	const handleChange = (key: any, value: any) => {
-		setForm((prev: SignUpDfo) => ObjectUtils.set(prev, key, value));
+		setValues((prev: SignUpDfo) => ObjectUtils.set(prev, key, value));
 	};
 
-	return { form, validate, handleChange };
+	return { values, validate, handleChange };
 }

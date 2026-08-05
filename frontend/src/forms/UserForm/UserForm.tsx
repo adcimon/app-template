@@ -7,7 +7,7 @@ import { UserDfo } from './userDfo';
 
 export interface UserFormProps {
 	user?: User;
-	form: UserDfo;
+	values: UserDfo;
 	onChange: (key: any, value: any) => void;
 }
 
@@ -29,7 +29,7 @@ export const UserForm = (props: UserFormProps): React.JSX.Element => {
 						}}>
 						<TextField
 							label='Name'
-							value={props.form.name ?? ''}
+							value={props.values.name ?? ''}
 							onChange={(event: any) => props.onChange('name', event.target.value)}
 							fullWidth={true}
 							slotProps={{
@@ -46,7 +46,7 @@ export const UserForm = (props: UserFormProps): React.JSX.Element => {
 						}}>
 						<TextField
 							label='Surname'
-							value={props.form.surname ?? ''}
+							value={props.values.surname ?? ''}
 							onChange={(event: any) => props.onChange('surname', event.target.value)}
 							fullWidth={true}
 							slotProps={{
@@ -64,7 +64,7 @@ export const UserForm = (props: UserFormProps): React.JSX.Element => {
 						<TextField
 							label='Birthdate'
 							type='date'
-							value={props.form.birthdate ?? ''}
+							value={props.values.birthdate ?? ''}
 							onChange={(event: any) => props.onChange('birthdate', event.target.value)}
 							fullWidth={true}
 							slotProps={{
@@ -80,7 +80,7 @@ export const UserForm = (props: UserFormProps): React.JSX.Element => {
 							md: 6,
 						}}>
 						<LocaleSelect
-							value={props.form.locale ?? ''}
+							value={props.values.locale ?? ''}
 							onChange={(event: any) => props.onChange('locale', event.target.value?.code || '')}
 							slotProps={{
 								inputLabel: {
@@ -95,7 +95,7 @@ export const UserForm = (props: UserFormProps): React.JSX.Element => {
 							md: 6,
 						}}>
 						<TimezoneSelect
-							value={props.form.timezone ?? ''}
+							value={props.values.timezone ?? ''}
 							onChange={(event: any) => props.onChange('timezone', event.target.value)}
 							slotProps={{
 								inputLabel: {

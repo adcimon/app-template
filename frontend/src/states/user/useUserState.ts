@@ -1,8 +1,12 @@
 import { useAtom } from 'jotai';
-import { UpdateEmailDto, UpdateIconDto, UpdatePhoneDto, User } from '../../api/api';
+import { UpdateEmailDto, UpdatePhoneDto, User } from '../../api/api';
+import { ChangeEmailDfo } from '../../forms/ChangeEmailForm/changeEmailDfo';
+import { ChangeIconDfo } from '../../forms/dfos/changeIconDfo';
+import { ChangePhoneDfo } from '../../forms/ChangePhoneForm/changePhoneDfo';
 import { UserDfo } from '../../forms/UserForm/userDfo';
 import { useApi } from '../../clients/api/useApi';
 import { UserState } from './userState';
+import { PhoneUtils } from '../../core/utils/phoneUtils';
 
 export function useUserState() {
 	const api = useApi();
@@ -15,28 +19,27 @@ export function useUserState() {
 		return user;
 	};
 
-	const update = async (form: UserDfo): Promise<User> => {
-		const user: User = await api.client.services.users.updateUser(form);
+	const update = async (values: UserDfo): Promise<User> => {
+		const user: User = await api.client.services.users.updateUser(values);
 		setUser(user);
 		return user;
 	};
 
-	const updateEmail = async (email: string): Promise<User> => {
-		const body: UpdateEmailDto = { email };
+	const updateEmail = async (values: ChangeEmailDfo): Promise<User> => {
+		const body: UpdateEmailDto = { email: values.email ?? '' };
 		const user: User = await api.client.services.users.updateEmail(body);
 		return user;
 	};
 
-	const updatePhone = async (phone: string): Promise<User> => {
-		const body: UpdatePhoneDto = { phone };
+	const updatePhone = async (values: ChangePhoneDfo): Promise<User> => {
+		const body: UpdatePhoneDto = { phone: PhoneUtils.compose(values.countryCode, values.nationalNumber) };
 		const user: User = await api.client.services.users.updatePhone(body);
 		setUser(user);
 		return user;
 	};
 
-	const updateIcon = async (icon: string): Promise<User> => {
-		const body: UpdateIconDto = { icon };
-		const user: User = await api.client.services.users.updateIcon(body);
+	const updateIcon = async (values: ChangeIconDfo): Promise<User> => {
+		const user: User = await api.client.services.users.updateIcon(values);
 		return user;
 	};
 

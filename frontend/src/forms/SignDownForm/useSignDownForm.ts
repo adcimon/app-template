@@ -3,15 +3,15 @@ import { ObjectUtils } from '../../core/utils/objectUtils';
 import { newSignDownDfo, SignDownDfo } from './signDownDfo';
 
 export function useSignDownForm() {
-	const [form, setForm] = React.useState<SignDownDfo>(newSignDownDfo());
+	const [values, setValues] = React.useState<SignDownDfo>(newSignDownDfo());
 
 	const validate = (): boolean => {
-		return !!form.password;
+		return !!values.password;
 	};
 
 	const handleChange = (key: any, value: any) => {
-		setForm((prev: SignDownDfo) => ObjectUtils.set(prev, key, value));
+		setValues((prev: SignDownDfo) => ObjectUtils.set(prev, key, value));
 	};
 
-	return { form, validate, handleChange };
+	return { values, validate, handleChange };
 }

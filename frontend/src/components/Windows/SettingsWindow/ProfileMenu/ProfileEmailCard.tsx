@@ -28,12 +28,11 @@ export const ProfileEmailCard = (): React.JSX.Element => {
 	const userState = useUserState();
 
 	const [email, setEmail] = React.useState<string>(userState.user?.email ?? '');
+	const [openVerifyDialog, setOpenVerifyDialog] = React.useState<boolean>(false);
+	const [openChangeDialog, setOpenChangeDialog] = React.useState<boolean>(false);
 
 	const changeEmailForm = useChangeEmailForm();
 	const verifyEmailForm = useVerifyEmailForm();
-
-	const [openVerifyDialog, setOpenVerifyDialog] = React.useState<boolean>(false);
-	const [openChangeDialog, setOpenChangeDialog] = React.useState<boolean>(false);
 
 	const validate = (): boolean => {
 		return AppUtils.EMAIL_REGEXP.test(email) && email !== userState.user?.email;
@@ -46,7 +45,7 @@ export const ProfileEmailCard = (): React.JSX.Element => {
 
 	const handleAcceptVerify = async () => {
 		try {
-			await appState.verifyEmail(verifyEmailForm.form);
+			await appState.verifyEmail(verifyEmailForm.values);
 			await userState.get();
 			ToastManager.success('Email changed');
 		} catch (error: any) {
@@ -66,7 +65,7 @@ export const ProfileEmailCard = (): React.JSX.Element => {
 
 	const handleAcceptChange = async () => {
 		try {
-			await userState.updateEmail(email);
+			await userState.updateEmail({ email });
 			ToastManager.success('Verification code sent');
 		} catch (error: any) {
 			ToastManager.error(error.message);
@@ -150,13 +149,12 @@ export const ProfileEmailCard = (): React.JSX.Element => {
 						}}>
 						<Button
 							variant='contained'
-							disabled={userState.user?.emailVerified ?? false}
 							onClick={handleVerify}>
 							Verify
 						</Button>
 						<Button
-							variant='contained'
 							disabled={!validate()}
+							variant='contained'
 							onClick={handleChange}>
 							Change
 						</Button>
@@ -165,13 +163,13 @@ export const ProfileEmailCard = (): React.JSX.Element => {
 				<ConfirmationDialog
 					title='Change Email'
 					open={openChangeDialog}
-					acceptable={email === changeEmailForm.form.email}
+					acceptable={email === changeEmailForm.values.email}
 					onAccept={handleAcceptChange}
 					onCancel={handleCancelChange}
 					onClose={handleCancelChange}>
 					<Typography>Confirm your new email to change it.</Typography>
 					<ChangeEmailForm
-						form={changeEmailForm.form}
+						values={changeEmailForm.values}
 						onChange={changeEmailForm.handleChange}
 					/>
 				</ConfirmationDialog>
@@ -184,7 +182,7 @@ export const ProfileEmailCard = (): React.JSX.Element => {
 					onClose={handleCancelVerify}>
 					<Typography>Insert the verification code to change your email.</Typography>
 					<VerifyEmailForm
-						form={verifyEmailForm.form}
+						values={verifyEmailForm.values}
 						onChange={verifyEmailForm.handleChange}
 					/>
 				</ConfirmationDialog>

@@ -13,11 +13,11 @@ export const ForgotPasswordView = (): React.JSX.Element => {
 	const navigator = useNavigator();
 	const appState = useAppState();
 
-	const { form, validateSendCode, validateChange, handleChange } = useForgotPasswordForm();
+	const form = useForgotPasswordForm();
 
 	const handleSendCode = async () => {
 		try {
-			await appState.forgotPassword(form);
+			await appState.forgotPassword(form.values);
 			ToastManager.success('Code sent');
 		} catch (error: any) {
 			ToastManager.error(error.message);
@@ -26,7 +26,7 @@ export const ForgotPasswordView = (): React.JSX.Element => {
 
 	const handleConfirm = async () => {
 		try {
-			await appState.confirmPassword(form);
+			await appState.confirmPassword(form.values);
 			navigator.navigate('/sign-in');
 			ToastManager.success('Password changed');
 		} catch (error: any) {
@@ -44,10 +44,10 @@ export const ForgotPasswordView = (): React.JSX.Element => {
 				<Logo />
 				<Typography variant='h5'>Forgot Password</Typography>
 				<ForgotPasswordForm
-					form={form}
-					sendDisabled={!validateSendCode()}
-					confirmDisabled={!validateChange()}
-					onChange={handleChange}
+					values={form.values}
+					sendDisabled={!form.validateSendCode()}
+					confirmDisabled={!form.validateChange()}
+					onChange={form.handleChange}
 					onSendCode={handleSendCode}
 					onConfirm={handleConfirm}
 				/>

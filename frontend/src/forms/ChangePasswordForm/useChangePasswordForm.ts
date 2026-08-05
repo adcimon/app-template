@@ -3,21 +3,21 @@ import { ObjectUtils } from '../../core/utils/objectUtils';
 import { ChangePasswordDfo, newChangePasswordDfo } from './changePasswordDfo';
 
 export function useChangePasswordForm() {
-	const [form, setForm] = React.useState<ChangePasswordDfo>(newChangePasswordDfo());
+	const [values, setValues] = React.useState<ChangePasswordDfo>(newChangePasswordDfo());
 
 	const validate = (): boolean => {
 		return (
-			!!form.newPassword && form.currentPassword !== form.newPassword && form.newPassword === form.confirmPassword
+			!!values.newPassword && values.currentPassword !== values.newPassword && values.newPassword === values.confirmPassword
 		);
 	};
 
 	const reset = () => {
-		setForm(newChangePasswordDfo());
+		setValues(newChangePasswordDfo());
 	};
 
 	const handleChange = (key: any, value: any) => {
-		setForm((prev: ChangePasswordDfo) => ObjectUtils.set(prev, key, value));
+		setValues((prev: ChangePasswordDfo) => ObjectUtils.set(prev, key, value));
 	};
 
-	return { form, validate, reset, handleChange };
+	return { values, validate, reset, handleChange };
 }

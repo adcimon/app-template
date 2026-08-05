@@ -3,7 +3,7 @@ import { PasswordField } from '../../core/components/Field/PasswordField';
 import { ChangePasswordDfo } from './changePasswordDfo';
 
 export interface ChangePasswordFormProps {
-	form: ChangePasswordDfo;
+	values: ChangePasswordDfo;
 	onChange: (key: any, value: any) => void;
 }
 
@@ -15,7 +15,7 @@ export const ChangePasswordForm = (props: ChangePasswordFormProps): React.JSX.El
 					variant='standard'
 					label='Current Password'
 					placeholder='*****'
-					value={props.form.currentPassword ?? ''}
+					value={props.values.currentPassword ?? ''}
 					autoFocus={true}
 					onChange={(event: any) => props.onChange('currentPassword', event.target.value)}
 					fullWidth={true}
@@ -25,7 +25,7 @@ export const ChangePasswordForm = (props: ChangePasswordFormProps): React.JSX.El
 					variant='standard'
 					label='New Password'
 					placeholder='*****'
-					value={props.form.newPassword ?? ''}
+					value={props.values.newPassword ?? ''}
 					onChange={(event: any) => props.onChange('newPassword', event.target.value)}
 					fullWidth={true}
 					margin='dense'
@@ -34,7 +34,7 @@ export const ChangePasswordForm = (props: ChangePasswordFormProps): React.JSX.El
 					variant='standard'
 					label='Confirm Password'
 					placeholder='*****'
-					value={props.form.confirmPassword ?? ''}
+					value={props.values.confirmPassword ?? ''}
 					onChange={(event: any) => props.onChange('confirmPassword', event.target.value)}
 					fullWidth={true}
 					margin='dense'

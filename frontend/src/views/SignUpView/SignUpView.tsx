@@ -15,7 +15,7 @@ export const SignUpView = (): React.JSX.Element => {
 	const navigator = useNavigator();
 	const appState = useAppState();
 
-	const { form, validate, handleChange } = useSignUpForm();
+	const form = useSignUpForm();
 
 	const [openTermsOfServiceDialog, setOpenTermsOfServiceDialog] = React.useState<boolean>(false);
 	const [openPrivacyPolicyDialog, setOpenPrivacyPolicyDialog] = React.useState<boolean>(false);
@@ -40,7 +40,7 @@ export const SignUpView = (): React.JSX.Element => {
 
 	const handleSignUp = async () => {
 		try {
-			await appState.signUp(form);
+			await appState.signUp(form.values);
 			navigator.navigate('/sign-in');
 			ToastManager.success('Verify your email');
 		} catch (error: any) {
@@ -58,13 +58,13 @@ export const SignUpView = (): React.JSX.Element => {
 				<Logo />
 				<Typography variant='h5'>Sign Up</Typography>
 				<SignUpForm
-					form={form}
-					onChange={handleChange}
+					values={form.values}
+					onChange={form.handleChange}
 					onOpenTermsOfService={handleOpenTermsOfService}
 					onOpenPrivacyPolicy={handleOpenPrivacyPolicy}
 				/>
 				<Button
-					disabled={!validate()}
+					disabled={!form.validate()}
 					variant='contained'
 					onClick={handleSignUp}
 					fullWidth={true}>
