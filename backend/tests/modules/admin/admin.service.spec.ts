@@ -1,6 +1,6 @@
 import { jest } from '@jest/globals';
-import { AdminService } from '../../src/modules/admin/admin.service.js';
-import { User } from '../../src/modules/users/types/user.js';
+import { AdminService } from '../../../src/modules/admin/admin.service.js';
+import { User } from '../../../src/modules/users/types/user.js';
 
 describe('AdminService', () => {
 	let usersService: any;

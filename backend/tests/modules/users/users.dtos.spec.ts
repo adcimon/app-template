@@ -1,6 +1,6 @@
 import { validate, ValidationError } from 'class-validator';
 import { plainToInstance } from 'class-transformer';
-import { UpdateEmailDto, UpdatePhoneDto, UpdateUserDto, UpdateIconDto } from '../../src/modules/users/users.dtos.js';
+import { UpdateEmailDto, UpdatePhoneDto, UpdateUserDto, UpdateIconDto } from '../../../src/modules/users/users.dtos.js';
 
 describe('User Dtos Validation', () => {
 	describe('UpdateEmailDto', () => {

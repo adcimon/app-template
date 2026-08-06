@@ -4,6 +4,16 @@ import { CognitoService } from '../aws/cognito/cognito.service.js';
 import { Status } from '../../types/status.js';
 import { AppCredentials } from './types/app-credentials.js';
 import { User } from '../users/types/user.js';
+import {
+	SignUpDto,
+	SignDownDto,
+	SignInDto,
+	RefreshTokenDto,
+	VerifyEmailDto,
+	ForgotPasswordDto,
+	ConfirmPasswordDto,
+	ChangePasswordDto,
+} from './auth.dtos.js';
 import { UserDeletedEvent } from '../../events/user-deleted.event.js';
 
 @Injectable()
@@ -15,15 +25,15 @@ export class AuthService {
 		private readonly cognitoService: CognitoService,
 	) {}
 
-	public async signUp(email: string, password: string): Promise<User> {
-		const user: User = await this.cognitoService.signUp(email, password);
+	public async signUp(params: SignUpDto): Promise<User> {
+		const user: User = await this.cognitoService.signUp(params);
 		return user;
 	}
 
-	public async signDown(accessToken: string, password: string): Promise<Status> {
+	public async signDown(accessToken: string, params: SignDownDto): Promise<Status> {
 		const user: User = await this.cognitoService.getMyUser(accessToken);
 
-		const status: Status = await this.cognitoService.signDown(accessToken, password);
+		const status: Status = await this.cognitoService.signDown(accessToken, params);
 		if (status.status) {
 			this.eventBrokerService.emit(UserDeletedEvent.name, new UserDeletedEvent(user));
 		}
@@ -31,8 +41,8 @@ export class AuthService {
 		return status;
 	}
 
-	public async signIn(email: string, password: string): Promise<AppCredentials> {
-		const credentials: AppCredentials = await this.cognitoService.signIn(email, password);
+	public async signIn(params: SignInDto): Promise<AppCredentials> {
+		const credentials: AppCredentials = await this.cognitoService.signIn(params);
 		return credentials;
 	}
 
@@ -41,28 +51,28 @@ export class AuthService {
 		return status;
 	}
 
-	public async refreshToken(refreshToken: string): Promise<AppCredentials> {
-		const credentials: AppCredentials = await this.cognitoService.refreshToken(refreshToken);
+	public async refreshToken(params: RefreshTokenDto): Promise<AppCredentials> {
+		const credentials: AppCredentials = await this.cognitoService.refreshToken(params);
 		return credentials;
 	}
 
-	public async verifyEmail(accessToken: string, code: string): Promise<Status> {
-		const status: Status = await this.cognitoService.verifyEmail(accessToken, code);
+	public async verifyEmail(accessToken: string, params: VerifyEmailDto): Promise<Status> {
+		const status: Status = await this.cognitoService.verifyEmail(accessToken, params);
 		return status;
 	}
 
-	public async forgotPassword(email: string): Promise<Status> {
-		const status: Status = await this.cognitoService.forgotPassword(email);
+	public async forgotPassword(params: ForgotPasswordDto): Promise<Status> {
+		const status: Status = await this.cognitoService.forgotPassword(params);
 		return status;
 	}
 
-	public async confirmPassword(email: string, code: string, password: string): Promise<Status> {
-		const status: Status = await this.cognitoService.confirmPassword(email, code, password);
+	public async confirmPassword(params: ConfirmPasswordDto): Promise<Status> {
+		const status: Status = await this.cognitoService.confirmPassword(params);
 		return status;
 	}
 
-	public async changePassword(accessToken: string, currentPassword: string, newPassword: string): Promise<Status> {
-		const status: Status = await this.cognitoService.changePassword(accessToken, currentPassword, newPassword);
+	public async changePassword(accessToken: string, params: ChangePasswordDto): Promise<Status> {
+		const status: Status = await this.cognitoService.changePassword(accessToken, params);
 		return status;
 	}
 }

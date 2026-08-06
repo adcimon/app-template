@@ -9,7 +9,7 @@ import {
 	ForgotPasswordDto,
 	ConfirmPasswordDto,
 	ChangePasswordDto,
-} from '../../src/modules/auth/auth.dtos.js';
+} from '../../../src/modules/auth/auth.dtos.js';
 
 describe('Auth Dtos Validation', () => {
 	describe('SignUpDto', () => {

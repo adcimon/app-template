@@ -36,7 +36,7 @@ export class UsersController {
 	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(ResponseInterceptor)
 	public async updateEmail(@Request() request, @Body() body: UpdateEmailDto): Promise<User> {
-		return await this.service.updateEmail(request.user.id, body.email);
+		return await this.service.updateEmail(request.user.id, body);
 	}
 
 	@Patch('/me/phone')
@@ -45,7 +45,7 @@ export class UsersController {
 	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(ResponseInterceptor)
 	public async updatePhone(@Request() request, @Body() body: UpdatePhoneDto): Promise<User> {
-		return await this.service.updatePhone(request.user.id, body.phone);
+		return await this.service.updatePhone(request.user.id, body);
 	}
 
 	@Patch('/me/icon')
@@ -54,6 +54,6 @@ export class UsersController {
 	@UseGuards(AuthGuard(AuthMethod.Bearer))
 	@UseInterceptors(ResponseInterceptor)
 	public async updateIcon(@Request() request, @Body() body: UpdateIconDto): Promise<User> {
-		return await this.service.updateIcon(request.user.id, body.icon);
+		return await this.service.updateIcon(request.user.id, body);
 	}
 }

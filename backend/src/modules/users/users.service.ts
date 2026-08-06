@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CognitoService } from '../aws/cognito/cognito.service.js';
 import { User } from './types/user.js';
+import { UpdateUserDto, UpdateEmailDto, UpdatePhoneDto, UpdateIconDto } from './users.dtos.js';
 
 @Injectable()
 export class UsersService {
@@ -34,32 +35,23 @@ export class UsersService {
 		return user;
 	}
 
-	public async update(
-		id: string,
-		params: Partial<{
-			name: string;
-			surname: string;
-			birthdate: string;
-			locale: string;
-			timezone: string;
-		}> = {},
-	): Promise<User> {
+	public async update(id: string, params: UpdateUserDto): Promise<User> {
 		const user: User = await this.cognitoService.update(id, params);
 		return user;
 	}
 
-	public async updateEmail(id: string, email: string): Promise<User> {
-		const user: User = await this.cognitoService.updateEmail(id, email);
+	public async updateEmail(id: string, params: UpdateEmailDto): Promise<User> {
+		const user: User = await this.cognitoService.updateEmail(id, params);
 		return user;
 	}
 
-	public async updatePhone(id: string, phone: string): Promise<User> {
-		const user: User = await this.cognitoService.updatePhone(id, phone);
+	public async updatePhone(id: string, params: UpdatePhoneDto): Promise<User> {
+		const user: User = await this.cognitoService.updatePhone(id, params);
 		return user;
 	}
 
-	public async updateIcon(id: string, avatar: string): Promise<User> {
-		const user: User = await this.cognitoService.updateIcon(id, avatar);
+	public async updateIcon(id: string, params: UpdateIconDto): Promise<User> {
+		const user: User = await this.cognitoService.updateIcon(id, params);
 		return user;
 	}
 }
