@@ -40,7 +40,8 @@ describe('AuthGuard', () => {
 
 	it('should attach the user and access token on a valid bearer token', async () => {
 		const user = { id: 'usr_1' };
-		const usersService = { getMyUser: jest.fn().mockResolvedValue(user) };
+		const getMyUser = jest.fn<() => Promise<any>>().mockResolvedValue(user);
+		const usersService = { getMyUser };
 		const guard = build(usersService);
 		const request: any = { headers: { authorization: 'Bearer abc123' } };
 		const context: any = { switchToHttp: () => ({ getRequest: () => request }) };
@@ -53,7 +54,8 @@ describe('AuthGuard', () => {
 	});
 
 	it('should throw UnauthorizedException when getMyUser rejects', async () => {
-		const usersService = { getMyUser: jest.fn().mockRejectedValue(new Error('invalid token')) };
+		const getMyUser = jest.fn<() => Promise<any>>().mockRejectedValue(new Error('invalid token'));
+		const usersService = { getMyUser };
 		const guard = build(usersService);
 
 		await expect(

@@ -4,7 +4,7 @@ import { AppCredentials } from '../../../../src/modules/auth/types/app-credentia
 describe('CognitoToAppCredentials', () => {
 	it('should map raw tokens into AppCredentials', () => {
 		const credentials: AppCredentials = CognitoToAppCredentials.map({
-			idToken: 'id_1',
+			identityToken: 'id_1',
 			accessToken: 'access_1',
 			refreshToken: 'refresh_1',
 		});

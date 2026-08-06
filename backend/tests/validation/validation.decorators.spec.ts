@@ -67,10 +67,13 @@ describe('validation decorators', () => {
 			},
 		);
 
-		it.each(['https://example.com/image.gif', 'not-a-url'])('should reject invalid icon: "%s"', async (value: string) => {
-			const iconTest: IconTest = plainToInstance(IconTest, { icon: value });
-			const errors: ValidationError[] = await validate(iconTest);
-			expect(errors.length).toBeGreaterThan(0);
-		});
+		it.each(['https://example.com/image.gif', 'not-a-url'])(
+			'should reject invalid icon: "%s"',
+			async (value: string) => {
+				const iconTest: IconTest = plainToInstance(IconTest, { icon: value });
+				const errors: ValidationError[] = await validate(iconTest);
+				expect(errors.length).toBeGreaterThan(0);
+			},
+		);
 	});
 });

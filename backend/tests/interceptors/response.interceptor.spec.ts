@@ -15,7 +15,9 @@ describe('ResponseInterceptor', () => {
 
 	it('should wrap the handler data in an ApiResponse envelope', async () => {
 		const data = { id: 'usr_1' };
-		const response: ApiResponse = await lastValueFrom(interceptor.intercept(makeContext(request), makeHandler(data)));
+		const response: ApiResponse = await lastValueFrom(
+			interceptor.intercept(makeContext(request), makeHandler(data)),
+		);
 
 		expect(response.data).toEqual(data);
 		expect(response.endpoint).toBe('https://example.com/users/me');
@@ -25,7 +27,9 @@ describe('ResponseInterceptor', () => {
 	});
 
 	it('should preserve falsy/empty data', async () => {
-		const response: ApiResponse = await lastValueFrom(interceptor.intercept(makeContext(request), makeHandler(null)));
+		const response: ApiResponse = await lastValueFrom(
+			interceptor.intercept(makeContext(request), makeHandler(null)),
+		);
 		expect(response.data).toBeNull();
 	});
 });
