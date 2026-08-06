@@ -52,7 +52,11 @@ export class CognitoService implements OnModuleInit {
 		const accessToken: string = output.AuthenticationResult?.AccessToken ?? '';
 		const refreshToken: string = output.AuthenticationResult?.RefreshToken ?? '';
 
-		return { identityToken, accessToken, refreshToken };
+		return {
+			identityToken,
+			accessToken,
+			refreshToken,
+		};
 	}
 
 	private async enableUser(id: string): Promise<Status> {
@@ -86,7 +90,6 @@ export class CognitoService implements OnModuleInit {
 	}
 
 	public async signUp(email: string, password: string): Promise<User> {
-		// Check whether the email is taken.
 		let emailTaken: User = null;
 		try {
 			emailTaken = await this.getByEmail(email);
@@ -135,7 +138,6 @@ export class CognitoService implements OnModuleInit {
 	}
 
 	public async signDown(accessToken: string, password: string): Promise<Status> {
-		// Check whether the user exists.
 		const user: User = await this.getMyUser(accessToken);
 
 		await this.authUser(user.id, password);
@@ -146,10 +148,8 @@ export class CognitoService implements OnModuleInit {
 	}
 
 	public async signIn(email: string, password: string): Promise<AppCredentials> {
-		// Check whether the user exists.
 		const user: User = await this.getByEmail(email);
 
-		// Authenticate with username and password.
 		const tokens: object = await this.authUser(user.id, password);
 
 		return CognitoToAppCredentials.map(tokens);
@@ -184,7 +184,11 @@ export class CognitoService implements OnModuleInit {
 		const identityToken: string = output.AuthenticationResult?.IdToken ?? '';
 		const accessToken: string = output.AuthenticationResult?.AccessToken ?? '';
 
-		return CognitoToAppCredentials.map({ identityToken, accessToken, refreshToken });
+		return CognitoToAppCredentials.map({
+			identityToken,
+			accessToken,
+			refreshToken,
+		});
 	}
 
 	public async verifyEmail(accessToken: string, code: string): Promise<Status> {
@@ -202,7 +206,6 @@ export class CognitoService implements OnModuleInit {
 	}
 
 	public async forgotPassword(email: string): Promise<Status> {
-		// Check whether the user exists.
 		const user: User = await this.getByEmail(email);
 
 		const clientId: string = await this.configService.getVariable('AWS_USER_POOL_API_CLIENT_ID');
@@ -220,7 +223,6 @@ export class CognitoService implements OnModuleInit {
 	}
 
 	public async confirmPassword(email: string, code: string, password: string): Promise<Status> {
-		// Check whether the user exists.
 		const user: User = await this.getByEmail(email);
 
 		const clientId: string = await this.configService.getVariable('AWS_USER_POOL_API_CLIENT_ID');
@@ -287,7 +289,6 @@ export class CognitoService implements OnModuleInit {
 				users.push(...output.Users);
 			}
 
-			// Check if there are more users to retrieve.
 			if (output.PaginationToken) {
 				input.PaginationToken = output.PaginationToken;
 			} else {
@@ -392,7 +393,6 @@ export class CognitoService implements OnModuleInit {
 	}
 
 	public async updateEmail(id: string, email: string): Promise<User> {
-		// Check whether the email is taken.
 		const users: any[] = await this.getBy(`email = "${email}"`);
 		if (users.length !== 0) {
 			throw new EmailTakenException(email);
