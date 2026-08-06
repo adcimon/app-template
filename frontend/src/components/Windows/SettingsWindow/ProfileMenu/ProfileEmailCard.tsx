@@ -12,32 +12,27 @@ import {
 	Typography,
 } from '@mui/material';
 import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
-import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
-import { EmailField } from '../../../../core/components/Field/EmailField';
-import { ChangeEmailForm } from '../../../../forms/ChangeEmailForm/ChangeEmailForm';
 import { VerificationBadge } from '../../../../core/components/Badge/VerificationBadge';
+import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
+import { ChangeEmailForm } from '../../../../forms/ChangeEmailForm/ChangeEmailForm';
+import { ConfirmEmailForm } from '../../../../forms/ConfirmEmailForm/ConfirmEmailForm';
 import { VerifyEmailForm } from '../../../../forms/VerifyEmailForm/VerifyEmailForm';
-import { ChangeEmailDfo } from '../../../../forms/ChangeEmailForm/changeEmailDfo';
 import { useAppState } from '../../../../states/app/useAppState';
 import { useUserState } from '../../../../states/user/useUserState';
 import { useChangeEmailForm } from '../../../../forms/ChangeEmailForm/useChangeEmailForm';
+import { useConfirmEmailForm } from '../../../../forms/ConfirmEmailForm/useConfirmEmailForm';
 import { useVerifyEmailForm } from '../../../../forms/VerifyEmailForm/useVerifyEmailForm';
-import { AppUtils } from '../../../../utils/appUtils';
 
 export const ProfileEmailCard = (): React.JSX.Element => {
 	const appState = useAppState();
 	const userState = useUserState();
 
-	const [email, setEmail] = React.useState<string>(userState.user?.email ?? '');
-	const [openVerifyDialog, setOpenVerifyDialog] = React.useState<boolean>(false);
 	const [openChangeDialog, setOpenChangeDialog] = React.useState<boolean>(false);
+	const [openVerifyDialog, setOpenVerifyDialog] = React.useState<boolean>(false);
 
-	const changeEmailForm = useChangeEmailForm();
+	const changeEmailForm = useChangeEmailForm(userState.user?.email);
+	const confirmEmailForm = useConfirmEmailForm();
 	const verifyEmailForm = useVerifyEmailForm();
-
-	const validate = (): boolean => {
-		return AppUtils.EMAIL_REGEXP.test(email) && email !== userState.user?.email;
-	};
 
 	const handleVerify = async () => {
 		verifyEmailForm.reset();
@@ -60,14 +55,14 @@ export const ProfileEmailCard = (): React.JSX.Element => {
 		setOpenVerifyDialog(false);
 	};
 
-	const handleChange = async () => {
+	const handleOpenChange = async () => {
+		confirmEmailForm.reset();
 		setOpenChangeDialog(true);
 	};
 
 	const handleAcceptChange = async () => {
 		try {
-			const values: ChangeEmailDfo = { email };
-			await userState.updateEmail(values);
+			await userState.updateEmail(changeEmailForm.values);
 			ToastManager.success('Verification code sent');
 		} catch (error: any) {
 			ToastManager.error(error.message);
@@ -121,16 +116,9 @@ export const ProfileEmailCard = (): React.JSX.Element => {
 										sm: 12,
 										md: 12,
 									}}>
-									<EmailField
-										label='Email'
-										value={email}
-										onChange={(event: any) => setEmail(event.target.value)}
-										fullWidth={true}
-										slotProps={{
-											inputLabel: {
-												shrink: true,
-											},
-										}}
+									<ChangeEmailForm
+										values={changeEmailForm.values}
+										onChange={changeEmailForm.handleChange}
 									/>
 									<Typography
 										variant='body2'
@@ -151,13 +139,14 @@ export const ProfileEmailCard = (): React.JSX.Element => {
 						}}>
 						<Button
 							variant='contained'
+							disabled={userState.user?.emailVerified ?? false}
 							onClick={handleVerify}>
 							Verify
 						</Button>
 						<Button
-							disabled={!validate()}
 							variant='contained'
-							onClick={handleChange}>
+							disabled={!changeEmailForm.validate()}
+							onClick={handleOpenChange}>
 							Change
 						</Button>
 					</CardActions>
@@ -165,14 +154,14 @@ export const ProfileEmailCard = (): React.JSX.Element => {
 				<ConfirmationDialog
 					title='Change Email'
 					open={openChangeDialog}
-					acceptable={email === changeEmailForm.values.email}
+					acceptable={changeEmailForm.values.email === confirmEmailForm.values.confirmEmail}
 					onAccept={handleAcceptChange}
 					onCancel={handleCancelChange}
 					onClose={handleCancelChange}>
 					<Typography>Confirm your new email to change it.</Typography>
-					<ChangeEmailForm
-						values={changeEmailForm.values}
-						onChange={changeEmailForm.handleChange}
+					<ConfirmEmailForm
+						values={confirmEmailForm.values}
+						onChange={confirmEmailForm.handleChange}
 					/>
 				</ConfirmationDialog>
 				<ConfirmationDialog

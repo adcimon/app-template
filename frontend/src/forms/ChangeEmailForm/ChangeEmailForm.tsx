@@ -11,12 +11,15 @@ export const ChangeEmailForm = (props: ChangeEmailFormProps): React.JSX.Element 
 	const render = () => {
 		return (
 			<EmailField
-				variant='standard'
+				label='Email'
 				value={props.values.email ?? ''}
-				autoFocus={true}
 				onChange={(event: any) => props.onChange('email', event.target.value)}
 				fullWidth={true}
-				margin='dense'
+				slotProps={{
+					inputLabel: {
+						shrink: true,
+					},
+				}}
 			/>
 		);
 	};
