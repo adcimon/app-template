@@ -60,9 +60,9 @@ describe('CognitoToUser', () => {
 
 	it('should map an array of users', () => {
 		const users: User[] = CognitoToUser.map([
-			{ Username: 'usr_1', UserAttributes: [] },
-			{ Username: 'usr_2', UserAttributes: [] },
-		] as any);
+			{ Username: 'usr_1', UserAttributes: [] } as any,
+			{ Username: 'usr_2', UserAttributes: [] } as any,
+		]);
 
 		expect(users).toHaveLength(2);
 		expect(users.map((user: User) => user.id)).toEqual(['usr_1', 'usr_2']);
