@@ -651,6 +651,34 @@
                     "Admin"
                 ]
             }
+        },
+        "docs/openapi.json": {
+            "get": {
+                "operationId": "Docs/getOpenApiJson",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "Docs"
+                ]
+            }
+        },
+        "docs/openapi.yaml": {
+            "get": {
+                "operationId": "Docs/getOpenApiYaml",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                },
+                "tags": [
+                    "Docs"
+                ]
+            }
         }
     },
     "info": {

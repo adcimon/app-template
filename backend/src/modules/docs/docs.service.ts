@@ -11,17 +11,18 @@ import { DocsUtils } from '../../utils/docs.utils.js';
 @Injectable()
 export class DocsService implements OnModuleInit {
 	public static readonly DOCS_PATH = 'docs';
-	public static readonly DOCS_JSON_PATH = `${DocsService.DOCS_PATH}/json`;
-	public static readonly DOCS_YAML_PATH = `${DocsService.DOCS_PATH}/yaml`;
+	public static readonly OPENAPI_PATH = `${DocsService.DOCS_PATH}/openapi`;
+	public static readonly OPENAPI_JSON_PATH = `${DocsService.OPENAPI_PATH}.json`;
+	public static readonly OPENAPI_YAML_PATH = `${DocsService.OPENAPI_PATH}.yaml`;
 
 	private readonly logger: Logger = new Logger(DocsService.name);
 
 	public static init(app: INestApplication): void {
 		const document: OpenAPIObject = DocsService.createDocument(app);
 
-		SwaggerModule.setup(DocsService.DOCS_PATH, app, document, {
-			jsonDocumentUrl: DocsService.DOCS_JSON_PATH,
-			yamlDocumentUrl: DocsService.DOCS_YAML_PATH,
+		SwaggerModule.setup(DocsService.OPENAPI_PATH, app, document, {
+			jsonDocumentUrl: DocsService.OPENAPI_JSON_PATH,
+			yamlDocumentUrl: DocsService.OPENAPI_YAML_PATH,
 			customCss: '.swagger-ui .topbar-wrapper a { display: none; }',
 			customSiteTitle: 'API',
 			customfavIcon: 'data:,',
@@ -51,14 +52,36 @@ export class DocsService implements OnModuleInit {
 		ApiCatalogs.apply(document);
 		ApiDiscriminators.apply(document);
 		ApiExtensions.apply(document);
+
+		DocsService.addDocsEndpoints(document);
+
 		DocsUtils.sortSchemas(document, [(name: string) => !name.endsWith('Dto')]);
 
 		return document;
 	}
 
+	public static addDocsEndpoints = (document: OpenAPIObject): void => {
+		document.paths[DocsService.OPENAPI_JSON_PATH] = {
+			get: {
+				operationId: 'Docs/getOpenApiJson',
+				parameters: [],
+				responses: { 200: { description: '' } },
+				tags: ['Docs'],
+			},
+		};
+		document.paths[DocsService.OPENAPI_YAML_PATH] = {
+			get: {
+				operationId: 'Docs/getOpenApiYaml',
+				parameters: [],
+				responses: { 200: { description: '' } },
+				tags: ['Docs'],
+			},
+		};
+	};
+
 	public onModuleInit(): void {
-		this.logger.log(`Mapped {/${DocsService.DOCS_PATH}, GET} route`);
-		this.logger.log(`Mapped {/${DocsService.DOCS_JSON_PATH}, GET} route`);
-		this.logger.log(`Mapped {/${DocsService.DOCS_YAML_PATH}, GET} route`);
+		this.logger.log(`Mapped {/${DocsService.OPENAPI_PATH}, GET} route`);
+		this.logger.log(`Mapped {/${DocsService.OPENAPI_JSON_PATH}, GET} route`);
+		this.logger.log(`Mapped {/${DocsService.OPENAPI_YAML_PATH}, GET} route`);
 	}
 }

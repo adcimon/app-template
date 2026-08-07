@@ -67,7 +67,7 @@ export class ExceptionFilter extends BaseExceptionFilter {
 		const apiResponse: ApiResponse = {
 			version: AppUtils.getVersion(),
 			endpoint: `${request.protocol}://${request.get('host')}${request.originalUrl}`,
-			docs: `${request.protocol}://${request.get('host')}/${DocsService.DOCS_JSON_PATH}`,
+			docs: `${request.protocol}://${request.get('host')}/${DocsService.OPENAPI_JSON_PATH}`,
 			timestamp: TimeUtils.getNowISO(),
 			error: exception.getResponse(),
 		};
