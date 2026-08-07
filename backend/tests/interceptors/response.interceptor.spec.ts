@@ -21,7 +21,7 @@ describe('ResponseInterceptor', () => {
 
 		expect(response.data).toEqual(data);
 		expect(response.endpoint).toBe('https://example.com/users/me');
-		expect(response.docs).toContain(DocsService.DOCS_JSON_PATH);
+		expect(response.docs).toContain(DocsService.OPENAPI_JSON_PATH);
 		expect(typeof response.version).toBe('string');
 		expect(typeof response.timestamp).toBe('string');
 	});
