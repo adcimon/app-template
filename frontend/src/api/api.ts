@@ -248,7 +248,7 @@ export const endpoints: Record<string, Endpoint> = {
 	},
 	'Docs/getOpenApiJson': {
 		method: Method.Get,
-		path: 'docs/openapi.json',
+		path: '/docs/openapi.json',
 		pathParams: { type: '', params: [] },
 		queryParams: { type: '', params: [] },
 		requestBody: { contentType: '', wrapper: '', type: '', isArray: false },
@@ -257,7 +257,7 @@ export const endpoints: Record<string, Endpoint> = {
 	},
 	'Docs/getOpenApiYaml': {
 		method: Method.Get,
-		path: 'docs/openapi.yaml',
+		path: '/docs/openapi.yaml',
 		pathParams: { type: '', params: [] },
 		queryParams: { type: '', params: [] },
 		requestBody: { contentType: '', wrapper: '', type: '', isArray: false },

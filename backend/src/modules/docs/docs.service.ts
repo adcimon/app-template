@@ -10,7 +10,7 @@ import { DocsUtils } from '../../utils/docs.utils.js';
 
 @Injectable()
 export class DocsService implements OnModuleInit {
-	public static readonly DOCS_PATH = 'docs';
+	public static readonly DOCS_PATH = '/docs';
 	public static readonly OPENAPI_PATH = `${DocsService.DOCS_PATH}/openapi`;
 	public static readonly OPENAPI_JSON_PATH = `${DocsService.OPENAPI_PATH}.json`;
 	public static readonly OPENAPI_YAML_PATH = `${DocsService.OPENAPI_PATH}.yaml`;
@@ -80,8 +80,8 @@ export class DocsService implements OnModuleInit {
 	};
 
 	public onModuleInit(): void {
-		this.logger.log(`Mapped {/${DocsService.OPENAPI_PATH}, GET} route`);
-		this.logger.log(`Mapped {/${DocsService.OPENAPI_JSON_PATH}, GET} route`);
-		this.logger.log(`Mapped {/${DocsService.OPENAPI_YAML_PATH}, GET} route`);
+		this.logger.log(`Mapped {${DocsService.OPENAPI_PATH}, GET} route`);
+		this.logger.log(`Mapped {${DocsService.OPENAPI_JSON_PATH}, GET} route`);
+		this.logger.log(`Mapped {${DocsService.OPENAPI_YAML_PATH}, GET} route`);
 	}
 }

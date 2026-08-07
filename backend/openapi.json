@@ -652,7 +652,7 @@
                 ]
             }
         },
-        "docs/openapi.json": {
+        "/docs/openapi.json": {
             "get": {
                 "operationId": "Docs/getOpenApiJson",
                 "parameters": [],
@@ -666,7 +666,7 @@
                 ]
             }
         },
-        "docs/openapi.yaml": {
+        "/docs/openapi.yaml": {
             "get": {
                 "operationId": "Docs/getOpenApiYaml",
                 "parameters": [],
