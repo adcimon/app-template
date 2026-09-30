@@ -49,6 +49,7 @@ interface TableProps<T> {
 	onUpdate?: (item: T) => Promise<boolean> | boolean;
 	onReorder?: (sourceIndex: number, destinationIndex: number) => Promise<boolean> | boolean;
 	onDelete?: (item: T) => Promise<boolean> | boolean;
+	onClosed?: () => void;
 
 	canEdit?: (item: T) => boolean;
 	canDelete?: (item: T) => boolean;
@@ -321,7 +322,8 @@ export const Table = <T,>(props: TableProps<T>): React.JSX.Element => {
 					acceptable={(props.onValidate ? props.onValidate() : true) && (item ? isEditable(item) : true)}
 					onAccept={handleAcceptDialog}
 					onCancel={props.onUpdate ? handleCloseDialog : undefined}
-					onClose={handleCloseDialog}>
+					onClose={handleCloseDialog}
+					onClosed={props.onClosed}>
 					<Stack
 						direction='column'
 						sx={{

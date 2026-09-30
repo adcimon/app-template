@@ -13,5 +13,14 @@ export function useSignDownForm() {
 		setValues((prev: SignDownDfo) => ObjectUtils.set(prev, key, value));
 	};
 
-	return { values, validate, handleChange };
+	const reset = () => {
+		setValues(newSignDownDfo());
+	};
+
+	return {
+		values,
+		validate,
+		handleChange,
+		reset,
+	};
 }

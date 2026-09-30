@@ -16,6 +16,7 @@ interface DialogProps {
 	open: boolean;
 	divider?: boolean;
 	onClose?: (event: any) => void;
+	onClosed?: () => void;
 	sx?: SxProps;
 	children?: React.ReactNode;
 }
@@ -88,6 +89,9 @@ export const Dialog = (props: DialogProps): React.JSX.Element => {
 				slotProps={{
 					paper: {
 						sx: paperSx,
+					},
+					transition: {
+						onExited: props.onClosed,
 					},
 				}}>
 				<DialogTitle>

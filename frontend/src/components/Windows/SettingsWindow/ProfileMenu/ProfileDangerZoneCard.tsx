@@ -107,7 +107,8 @@ export const ProfileDangerZoneCard = (): React.JSX.Element => {
 					acceptable={form.validate()}
 					onAccept={handleAcceptDeleteAccount}
 					onCancel={handleCancelDeleteAccount}
-					onClose={handleCancelDeleteAccount}>
+					onClose={handleCancelDeleteAccount}
+					onClosed={form.reset}>
 					<Typography>Confirm your password to delete your account.</Typography>
 					<SignDownForm
 						values={form.values}

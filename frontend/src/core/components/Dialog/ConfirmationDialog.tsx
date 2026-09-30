@@ -12,6 +12,7 @@ interface ConfirmationDialogProps {
 	onAccept?: (event: any) => void;
 	onCancel?: (event: any) => void;
 	onClose?: (event: any) => void;
+	onClosed?: () => void;
 	sx?: SxProps;
 	children?: React.ReactNode;
 }
@@ -83,6 +84,7 @@ export const ConfirmationDialog = (props: ConfirmationDialogProps): React.JSX.El
 					</>
 				}
 				onClose={props.onClose}
+				onClosed={props.onClosed}
 				sx={props.sx}>
 				{props.children}
 			</Dialog>
