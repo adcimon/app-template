@@ -21,7 +21,8 @@ export namespace BrowserUtils {
 	};
 
 	export const isWebGPUSupported = (): boolean => {
-		if ((navigator as any).gpu) {
+		const gpu: any = (navigator as any).gpu;
+		if (gpu) {
 			return true;
 		} else {
 			return false;
@@ -42,7 +43,8 @@ export namespace BrowserUtils {
 	};
 
 	export const isWebXRSupported = (): boolean => {
-		if (navigator.xr && typeof navigator.xr.isSessionSupported === 'function') {
+		const xr: any = (navigator as any).xr;
+		if (xr && typeof xr.isSessionSupported === 'function') {
 			return true;
 		} else {
 			return false;
