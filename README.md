@@ -7,3 +7,5 @@ Template to bootstrap a cloud application using:
 * Infrastructure: [AWS](https://aws.amazon.com/) and [Terraform](https://developer.hashicorp.com/terraform).
 
 ![Architecture](/docs/architecture.png "Architecture")
+
+See the [technical specification](/docs/tech_spec.md) for the full documentation.
