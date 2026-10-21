@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class SerializerInterceptor extends ClassSerializerInterceptor implements NestInterceptor {
-	intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+	intercept(context: ExecutionContext, next: CallHandler): Promise<Observable<any>> {
 		return super.intercept(context, next);
 	}
 }
