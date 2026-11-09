@@ -15,7 +15,7 @@ export const Copyright = (): React.JSX.Element => {
 				}}>
 				{'Copyright © '}
 				<Link
-					href='https://https://github.com/adcimon'
+					href='https://github.com/adcimon'
 					target='_blank'
 					color='inherit'>
 					adcimon
