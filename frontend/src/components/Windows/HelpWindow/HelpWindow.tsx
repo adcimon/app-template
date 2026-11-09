@@ -52,7 +52,6 @@ export const HelpWindow = (props: HelpWindowProps): React.JSX.Element => {
 				onClose={handleClose}>
 				<VersionBadge
 					version={AppUtils.getVersion()}
-					color='neutral.light'
 					sx={{
 						marginLeft: '1rem',
 						width: '100px',
