@@ -27,11 +27,12 @@ export const MainBar = (props: MainBarProps): React.JSX.Element => {
 							display: 'flex',
 							flexGrow: '1',
 						}}>
-						<img
-							src='/images/logo_white.png'
-							style={{
-								height: 'auto',
-								minWidth: '32px',
+						<Box
+							sx={{
+								backgroundColor: 'currentColor',
+								flexShrink: 0,
+								height: '32px',
+								mask: 'url(/images/logo_white.png) center / contain no-repeat',
 								width: '32px',
 							}}
 						/>

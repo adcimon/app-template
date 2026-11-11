@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Typography } from '@mui/material';
+import { Chip, Link, Stack, Typography } from '@mui/material';
 import { AppUtils } from '../../utils/appUtils';
 
 export const Copyright = (): React.JSX.Element => {
@@ -7,22 +7,36 @@ export const Copyright = (): React.JSX.Element => {
 		const today: Date = new Date();
 		const year: number = today.getFullYear();
 		return (
-			<Typography
-				variant='body2'
+			<Stack
+				direction='row'
 				sx={{
+					alignItems: 'center',
+					alignSelf: 'center',
 					color: 'text.secondary',
-					textAlign: 'center',
+					gap: '8px',
 				}}>
-				{'Copyright © '}
-				<Link
-					href='https://github.com/adcimon'
-					target='_blank'
-					color='inherit'>
-					adcimon
-				</Link>{' '}
-				{year}
-				{` v${AppUtils.getVersion()}`}
-			</Typography>
+				<Typography variant='caption'>
+					{`© ${year} `}
+					<Link
+						href='https://github.com/adcimon'
+						target='_blank'
+						color='inherit'
+						underline='hover'>
+						adcimon
+					</Link>
+				</Typography>
+				<Chip
+					size='small'
+					variant='outlined'
+					label={`v${AppUtils.getVersion()}`}
+					sx={{
+						color: 'text.secondary',
+						fontFamily: 'monospace',
+						fontSize: '11px',
+						height: '20px',
+					}}
+				/>
+			</Stack>
 		);
 	};
 

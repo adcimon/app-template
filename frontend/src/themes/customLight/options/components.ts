@@ -44,6 +44,17 @@ export function createComponents(config: any) {
 				},
 			},
 		},
+		MuiAppBar: {
+			styleOverrides: {
+				root: {
+					backgroundColor: '#ffffff',
+					backgroundImage: 'none',
+					borderBottom: `1px solid ${palette.divider}`,
+					boxShadow: 'none',
+					color: palette.text.primary,
+				},
+			},
+		},
 		MuiButton: {
 			styleOverrides: {
 				root: {

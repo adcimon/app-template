@@ -46,7 +46,7 @@ export const NotificationsMenu = (): React.JSX.Element => {
 						ref={ref}
 						onClick={handleClick}
 						sx={{
-							color: 'white',
+							color: 'inherit',
 						}}>
 						<Badge
 							color='error'

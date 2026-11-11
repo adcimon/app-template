@@ -37,7 +37,7 @@ export const Router = (props: RouterProps) => {
 			}
 		}
 
-		return <RouterContext.Provider value={{ path, state }}>{match}</RouterContext.Provider>;
+		return <RouterContext.Provider value={{ path, state }}>{match?.props.children}</RouterContext.Provider>;
 	};
 
 	return render();

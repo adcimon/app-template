@@ -97,7 +97,7 @@ export const AccountMenu = (): React.JSX.Element => {
 							variant='body2'
 							noWrap={true}
 							sx={{
-								color: 'primary.contrastText',
+								color: 'inherit',
 								fontSize: '0.75rem',
 								maxWidth: '80px',
 							}}>
@@ -118,6 +118,7 @@ export const AccountMenu = (): React.JSX.Element => {
 					onClick={handleClick}
 					sx={{
 						alignItems: 'center',
+						color: 'inherit',
 						display: 'flex',
 						justifyContent: 'space-between',
 						marginLeft: '20px',
@@ -131,6 +132,7 @@ export const AccountMenu = (): React.JSX.Element => {
 						},
 						'&:hover': {
 							backgroundColor: 'primary.dark',
+							color: 'primary.contrastText',
 						},
 					}}
 				/>

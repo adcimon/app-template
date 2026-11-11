@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, Stack, Typography } from '@mui/material';
+import { Button, Divider, Typography } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { ToastManager } from '../../managers/ToastManager/ToastManager';
 import { Copyright } from '../../components/Copyright/Copyright';
 import { ForgotPasswordForm } from '../../forms/ForgotPasswordForm/ForgotPasswordForm';
@@ -51,18 +52,21 @@ export const ForgotPasswordView = (): React.JSX.Element => {
 					onSendCode={handleSendCode}
 					onConfirm={handleConfirm}
 				/>
-				<Stack
-					direction='row'
+				<Divider
 					sx={{
+						color: 'text.secondary',
+						typography: 'body2',
 						width: '100%',
 					}}>
-					<Link
-						component='button'
-						variant='body2'
-						onClick={handleSignIn}>
-						← Already have an account? Sign in
-					</Link>
-				</Stack>
+					or
+				</Divider>
+				<Button
+					variant='outlined'
+					startIcon={<ArrowBackIcon />}
+					onClick={handleSignIn}
+					fullWidth={true}>
+					Back to Sign In
+				</Button>
 				<Copyright />
 			</LaunchView>
 		);

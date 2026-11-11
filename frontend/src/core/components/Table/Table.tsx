@@ -19,6 +19,7 @@ import {
 	DragDropContext,
 	Draggable,
 	DraggableProvided,
+	DraggableRubric,
 	DraggableStateSnapshot,
 	Droppable,
 	DroppableProvided,
@@ -156,13 +157,54 @@ export const Table = <T,>(props: TableProps<T>): React.JSX.Element => {
 		setRowsPerPage(rowsPerPage);
 	};
 
+	const renderClone = (provided: DraggableProvided, snapshot: DraggableStateSnapshot, rubric: DraggableRubric) => {
+		const item: T = props.items[rubric.source.index];
+		return (
+			<MUI.Table
+				ref={provided.innerRef}
+				{...provided.draggableProps}
+				sx={{
+					backgroundColor: 'background.paper',
+					borderRadius: '8px',
+					boxShadow: 8,
+					tableLayout: 'fixed',
+				}}>
+				<TableBody>
+					<TableRow>
+						<TableCell
+							{...provided.dragHandleProps}
+							sx={{
+								borderBottom: 'none',
+								cursor: 'grabbing',
+								width: '50px',
+							}}>
+							<DragIndicatorIcon />
+						</TableCell>
+						{props.renderRow?.(item).map((node: React.ReactNode, index: number) => (
+							<TableCell
+								key={index}
+								sx={{
+									borderBottom: 'none',
+								}}>
+								{node}
+							</TableCell>
+						))}
+					</TableRow>
+				</TableBody>
+			</MUI.Table>
+		);
+	};
+
 	const renderTable = () => {
 		const paginatedItems: T[] = applyPagination(props.items, page, rowsPerPage);
 		return (
 			<>
 				{props.onReorder ? (
 					<DragDropContext onDragEnd={handleDragEnd}>
-						<MUI.Table>
+						<MUI.Table
+							sx={{
+								tableLayout: 'fixed',
+							}}>
 							<TableHead>
 								<TableRow>
 									{/* Drag handle header cell */}
@@ -179,7 +221,8 @@ export const Table = <T,>(props: TableProps<T>): React.JSX.Element => {
 							</TableHead>
 							<Droppable
 								droppableId='table'
-								direction='vertical'>
+								direction='vertical'
+								renderClone={renderClone}>
 								{(provided: DroppableProvided) => (
 									<TableBody
 										ref={provided.innerRef}

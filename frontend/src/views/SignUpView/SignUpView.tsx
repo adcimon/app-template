@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Link, Stack, Typography } from '@mui/material';
+import { Button, Divider, Typography } from '@mui/material';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { ToastManager } from '../../managers/ToastManager/ToastManager';
 import { Copyright } from '../../components/Copyright/Copyright';
 import { LaunchView } from '../LaunchView/LaunchView';
@@ -70,18 +71,21 @@ export const SignUpView = (): React.JSX.Element => {
 					fullWidth={true}>
 					Sign Up
 				</Button>
-				<Stack
-					direction='row'
+				<Divider
 					sx={{
+						color: 'text.secondary',
+						typography: 'body2',
 						width: '100%',
 					}}>
-					<Link
-						component='button'
-						variant='body2'
-						onClick={handleSignIn}>
-						← Already have an account? Sign in
-					</Link>
-				</Stack>
+					or
+				</Divider>
+				<Button
+					variant='outlined'
+					startIcon={<ArrowBackIcon />}
+					onClick={handleSignIn}
+					fullWidth={true}>
+					Back to Sign In
+				</Button>
 				<Copyright />
 				<TermsOfServiceDialog
 					open={openTermsOfServiceDialog}

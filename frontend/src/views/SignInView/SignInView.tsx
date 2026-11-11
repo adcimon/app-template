@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Link, Stack, Typography } from '@mui/material';
+import { Button, Divider, Link, Typography } from '@mui/material';
 import { ToastManager } from '../../managers/ToastManager/ToastManager';
 import { Copyright } from '../../components/Copyright/Copyright';
 import { LaunchView } from '../LaunchView/LaunchView';
@@ -44,31 +44,38 @@ export const SignInView = (): React.JSX.Element => {
 					values={form.values}
 					onChange={form.handleChange}
 				/>
+				<Link
+					component='button'
+					variant='body2'
+					underline='hover'
+					onClick={handleForgotPassword}
+					sx={{
+						alignSelf: 'flex-end',
+						fontWeight: 500,
+						marginTop: '-0.5rem',
+					}}>
+					Forgot password?
+				</Link>
 				<Button
 					variant='contained'
 					onClick={handleSignIn}
 					fullWidth={true}>
 					Sign In
 				</Button>
-				<Stack
-					direction='row'
+				<Divider
 					sx={{
-						justifyContent: 'space-between',
+						color: 'text.secondary',
+						typography: 'body2',
 						width: '100%',
 					}}>
-					<Link
-						component='button'
-						variant='body2'
-						onClick={handleForgotPassword}>
-						Forgot your password?
-					</Link>
-					<Link
-						component='button'
-						variant='body2'
-						onClick={handleSignUp}>
-						Don't have an account? Sign Up
-					</Link>
-				</Stack>
+					or
+				</Divider>
+				<Button
+					variant='outlined'
+					onClick={handleSignUp}
+					fullWidth={true}>
+					Sign Up
+				</Button>
 				<Copyright />
 			</LaunchView>
 		);
