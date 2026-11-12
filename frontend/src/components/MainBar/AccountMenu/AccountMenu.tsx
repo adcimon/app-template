@@ -158,7 +158,8 @@ export const AccountMenu = (): React.JSX.Element => {
 					open={open}
 					onClose={handleClose}
 					sx={{
-						backgroundImage: 'url("/images/blur_cyan.png"), url("/images/blur_red.png") !important',
+						backgroundImage:
+							'radial-gradient(circle at 80% 12%, rgba(0, 182, 219, 0.06), transparent 65%), radial-gradient(circle at 22% 72%, rgba(255, 73, 36, 0.06), transparent 65%) !important',
 						backgroundPosition: 'right top, left bottom',
 						backgroundRepeat: 'no-repeat, no-repeat',
 						backgroundSize: '50% 50%',
