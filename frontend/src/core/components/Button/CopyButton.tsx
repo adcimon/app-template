@@ -13,7 +13,9 @@ type CopyButtonProps = IconButtonProps & {
 export const CopyButton = ({ iconColor, fontSize, ...props }: CopyButtonProps): React.JSX.Element => {
 	const [success, setSuccess] = React.useState<boolean>(false);
 
-	const handleClick = () => {
+	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+		event.stopPropagation();
+
 		const value: string = props.text ?? '';
 		Utils.copyToClipboard(value);
 
@@ -49,6 +51,7 @@ export const CopyButton = ({ iconColor, fontSize, ...props }: CopyButtonProps): 
 					<IconButton
 						{...props}
 						disableRipple={true}
+						onClick={(event: React.MouseEvent<HTMLButtonElement>) => event.stopPropagation()}
 						sx={{
 							...props.sx,
 							marginX: '0 !important',
