@@ -9,10 +9,15 @@ export const CopyField = (props: TextFieldProps): React.JSX.Element => {
 			<TextField
 				{...props}
 				slotProps={{
+					...props.slotProps,
 					input: {
+						...(props.slotProps?.input as object),
 						endAdornment: (
 							<InputAdornment position='end'>
-								<CopyButton text={value} />
+								<CopyButton
+									text={value}
+									disabled={!value}
+								/>
 							</InputAdornment>
 						),
 					},
