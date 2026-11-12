@@ -1,40 +1,47 @@
-import { useTheme, useMediaQuery, Theme } from '@mui/material';
+import { useTheme, Theme } from '@mui/material';
+import { useMediaQuery } from './useMediaQuery';
 
-export type Breakpoint = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+export enum Breakpoint {
+	Xs = 'xs',
+	Sm = 'sm',
+	Md = 'md',
+	Lg = 'lg',
+	Xl = 'xl',
+}
 
 export function useBreakpoint(): Breakpoint {
 	const theme: Theme = useTheme();
 
-	const isXs: boolean = useMediaQuery(theme.breakpoints.only('xs'));
-	const isSm: boolean = useMediaQuery(theme.breakpoints.only('sm'));
-	const isMd: boolean = useMediaQuery(theme.breakpoints.only('md'));
-	const isLg: boolean = useMediaQuery(theme.breakpoints.only('lg'));
-	const isXl: boolean = useMediaQuery(theme.breakpoints.only('xl'));
+	const isXs: boolean = useMediaQuery(theme.breakpoints.only(Breakpoint.Xs));
+	const isSm: boolean = useMediaQuery(theme.breakpoints.only(Breakpoint.Sm));
+	const isMd: boolean = useMediaQuery(theme.breakpoints.only(Breakpoint.Md));
+	const isLg: boolean = useMediaQuery(theme.breakpoints.only(Breakpoint.Lg));
+	const isXl: boolean = useMediaQuery(theme.breakpoints.only(Breakpoint.Xl));
 
 	if (isXl) {
-		return 'xl';
+		return Breakpoint.Xl;
 	}
 
 	if (isLg) {
-		return 'lg';
+		return Breakpoint.Lg;
 	}
 
 	if (isMd) {
-		return 'md';
+		return Breakpoint.Md;
 	}
 
 	if (isSm) {
-		return 'sm';
+		return Breakpoint.Sm;
 	}
 
 	if (isXs) {
-		return 'xs';
+		return Breakpoint.Xs;
 	}
 
-	return 'xs';
+	return Breakpoint.Xs;
 }
 
-export function useBreakpointDown(breakpoint: Breakpoint = 'md') {
+export function useBreakpointDown(breakpoint: Breakpoint = Breakpoint.Md) {
 	const theme: Theme = useTheme();
 	const matches: boolean = useMediaQuery(theme.breakpoints.down(breakpoint));
 	return matches;
