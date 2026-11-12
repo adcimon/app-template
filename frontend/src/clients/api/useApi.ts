@@ -1,6 +1,8 @@
 import React from 'react';
 import { ApiClient } from './apiClient';
 import { ApiContext, ApiContextType } from './apiContext';
+import { StorageKey } from '../../types/storageKey';
+import { StorageUtils } from '../../utils/storageUtils';
 
 export const useApi = () => {
 	const context: ApiContextType = React.useContext(ApiContext);
@@ -14,24 +16,24 @@ export const useApi = () => {
 	};
 
 	const getAccessToken = (): string => {
-		return localStorage.getItem('accessToken') ?? '';
+		return StorageUtils.get(StorageKey.AccessToken, '');
 	};
 
 	const getRefreshToken = (): string => {
-		return localStorage.getItem('refreshToken') ?? '';
+		return StorageUtils.get(StorageKey.RefreshToken, '');
 	};
 
 	const setAccessToken = (token: string): void => {
-		localStorage.setItem('accessToken', token);
+		StorageUtils.set(StorageKey.AccessToken, token);
 	};
 
 	const setRefreshToken = (token: string): void => {
-		localStorage.setItem('refreshToken', token);
+		StorageUtils.set(StorageKey.RefreshToken, token);
 	};
 
 	const clearTokens = (): void => {
-		localStorage.removeItem('accessToken');
-		localStorage.removeItem('refreshToken');
+		StorageUtils.remove(StorageKey.AccessToken);
+		StorageUtils.remove(StorageKey.RefreshToken);
 	};
 
 	return {
