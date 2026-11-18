@@ -9,6 +9,7 @@ import { Logo } from '../LaunchView/Logo';
 import { useForgotPasswordForm } from '../../forms/ForgotPasswordForm/useForgotPasswordForm';
 import { useNavigator } from '../../core/hooks/useNavigator';
 import { useAppState } from '../../states/app/useAppState';
+import { AppPath } from '../../types/appPath';
 
 export const ForgotPasswordView = (): React.JSX.Element => {
 	const navigator = useNavigator();
@@ -28,7 +29,7 @@ export const ForgotPasswordView = (): React.JSX.Element => {
 	const handleConfirm = async () => {
 		try {
 			await appState.confirmPassword(form.values);
-			navigator.navigate('/sign-in');
+			navigator.navigate(AppPath.SignIn);
 			ToastManager.success('Password changed');
 		} catch (error: any) {
 			ToastManager.error(error.message);
@@ -36,7 +37,7 @@ export const ForgotPasswordView = (): React.JSX.Element => {
 	};
 
 	const handleSignIn = () => {
-		navigator.navigate('/sign-in');
+		navigator.navigate(AppPath.SignIn);
 	};
 
 	const render = () => {

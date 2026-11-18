@@ -9,6 +9,7 @@ import { useSignInForm } from '../../forms/SignInForm/useSignInForm';
 import { useNavigator } from '../../core/hooks/useNavigator';
 import { useAppState } from '../../states/app/useAppState';
 import { useUserState } from '../../states/user/useUserState';
+import { AppPath } from '../../types/appPath';
 
 export const SignInView = (): React.JSX.Element => {
 	const navigator = useNavigator();
@@ -21,18 +22,18 @@ export const SignInView = (): React.JSX.Element => {
 		try {
 			await appState.signIn(form.values);
 			await userState.get();
-			navigator.navigate('/');
+			navigator.navigate(AppPath.Home);
 		} catch (error: any) {
 			ToastManager.error(error.message);
 		}
 	};
 
 	const handleForgotPassword = () => {
-		navigator.navigate('/forgot-password');
+		navigator.navigate(AppPath.ForgotPassword);
 	};
 
 	const handleSignUp = () => {
-		navigator.navigate('/sign-up');
+		navigator.navigate(AppPath.SignUp);
 	};
 
 	const render = () => {

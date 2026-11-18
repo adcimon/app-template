@@ -9,6 +9,7 @@ import { Route } from '../../core/components/Router/Route';
 import { Router } from '../../core/components/Router/Router';
 import { useNavigator } from '../../core/hooks/useNavigator';
 import { useUserState } from '../../states/user/useUserState';
+import { AppPath } from '../../types/appPath';
 import { CryptoUtils } from '../../utils/cryptoUtils';
 
 export const AppView = (): React.JSX.Element => {
@@ -29,7 +30,7 @@ export const AppView = (): React.JSX.Element => {
 	const autoAuth = async () => {
 		try {
 			await userState.get();
-			navigator.navigate('/', {
+			navigator.navigate(AppPath.Home, {
 				params: navigator.params,
 			});
 		} catch {}
@@ -42,7 +43,7 @@ export const AppView = (): React.JSX.Element => {
 
 		return (
 			<Router>
-				<Route path='/'>
+				<Route path={AppPath.Home}>
 					{userState.user ? (
 						<MainView />
 					) : !userState.user && navigator.hasParam('token') ? (
@@ -51,25 +52,25 @@ export const AppView = (): React.JSX.Element => {
 						<SignInView />
 					)}
 				</Route>
-				<Route path='/sign-in'>
+				<Route path={AppPath.SignIn}>
 					<SignInView />
 				</Route>
-				<Route path='/sign-up'>
+				<Route path={AppPath.SignUp}>
 					<SignUpView />
 				</Route>
-				<Route path='/forgot-password'>
+				<Route path={AppPath.ForgotPassword}>
 					<ForgotPasswordView />
 				</Route>
-				<Route path='/error'>
+				<Route path={AppPath.Error}>
 					<ErrorView
 						message={CryptoUtils.decodeBase64(navigator.getParam('message'))}
-						onClick={() => navigator.redirect('/')}
+						onClick={() => navigator.redirect(AppPath.Home)}
 					/>
 				</Route>
 				<Route path='*'>
 					<ErrorView
 						message="The page you're looking for could not be found."
-						onClick={() => navigator.redirect('/')}
+						onClick={() => navigator.redirect(AppPath.Home)}
 					/>
 				</Route>
 			</Router>

@@ -11,6 +11,7 @@ import { TermsOfServiceDialog } from '../../components/Dialog/TermsOfServiceDial
 import { useSignUpForm } from '../../forms/SignUpForm/useSignUpForm';
 import { useNavigator } from '../../core/hooks/useNavigator';
 import { useAppState } from '../../states/app/useAppState';
+import { AppPath } from '../../types/appPath';
 
 export const SignUpView = (): React.JSX.Element => {
 	const navigator = useNavigator();
@@ -42,7 +43,7 @@ export const SignUpView = (): React.JSX.Element => {
 	const handleSignUp = async () => {
 		try {
 			await appState.signUp(form.values);
-			navigator.navigate('/sign-in');
+			navigator.navigate(AppPath.SignIn);
 			ToastManager.success('Verify your email');
 		} catch (error: any) {
 			ToastManager.error(error.message);
@@ -50,7 +51,7 @@ export const SignUpView = (): React.JSX.Element => {
 	};
 
 	const handleSignIn = () => {
-		navigator.navigate('/sign-in');
+		navigator.navigate(AppPath.SignIn);
 	};
 
 	const render = () => {

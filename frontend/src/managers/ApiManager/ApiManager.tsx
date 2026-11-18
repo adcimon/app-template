@@ -4,6 +4,7 @@ import { ApiContext } from '../../clients/api/apiContext';
 import { useApi } from '../../clients/api/useApi';
 import { useNavigator } from '../../core/hooks/useNavigator';
 import { useUserState } from '../../states/user/useUserState';
+import { AppPath } from '../../types/appPath';
 import { AppUtils } from '../../utils/appUtils';
 
 interface ApiManagerProps {
@@ -53,7 +54,7 @@ export const ApiManager = (props: ApiManagerProps): React.JSX.Element => {
 	};
 
 	const handleVersionMismatch = (clientVersion: string, serverVersion: string) => {
-		navigator.navigate('/error', {
+		navigator.navigate(AppPath.Error, {
 			params: AppUtils.getErrorParams('The app is out of date, please refresh the page.'),
 		});
 	};

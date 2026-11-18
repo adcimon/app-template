@@ -6,6 +6,7 @@ import { SignDownForm } from '../../../../forms/SignDownForm/SignDownForm';
 import { useNavigator } from '../../../../core/hooks/useNavigator';
 import { useAppState } from '../../../../states/app/useAppState';
 import { useSignDownForm } from '../../../../forms/SignDownForm/useSignDownForm';
+import { AppPath } from '../../../../types/appPath';
 
 export const ProfileDangerZoneCard = (): React.JSX.Element => {
 	const navigator = useNavigator();
@@ -25,7 +26,7 @@ export const ProfileDangerZoneCard = (): React.JSX.Element => {
 			ToastManager.success('Account deleted');
 			appState.reset();
 			setOpenDialog(false);
-			navigator.navigate('/sign-in');
+			navigator.navigate(AppPath.SignIn);
 		} catch (error: any) {
 			ToastManager.error(error.message);
 		}
