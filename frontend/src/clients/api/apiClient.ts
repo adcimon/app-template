@@ -22,6 +22,8 @@ export interface ApiConfig {
 }
 
 export class ApiClient {
+	private readonly timeout: number = 10000;
+
 	private instance: AxiosInstance | undefined;
 	private controller: AbortController | undefined;
 
@@ -39,6 +41,7 @@ export class ApiClient {
 		this.instance = axios.create({
 			baseURL: this.config.endpoint,
 			signal: this.controller.signal,
+			timeout: this.timeout,
 		});
 
 		const requestInterceptor: RequestInterceptor = new RequestInterceptor(this.config);
@@ -87,6 +90,10 @@ export class ApiClient {
 			},
 			withCredentials: options.useCredentials,
 		};
+
+		if (options.useForm) {
+			config.timeout = 0;
+		}
 
 		return config;
 	}

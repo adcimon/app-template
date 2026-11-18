@@ -1,3 +1,4 @@
+import { AxiosError } from 'axios';
 import { ApiConfig } from '../apiClient';
 import { ApiError, ApiResponse, ErrorCode, version } from '../../../api/api';
 import { ConsoleUtils } from '../../../utils/consoleUtils';
@@ -45,7 +46,8 @@ export class ResponseInterceptor {
 			const apiError: ApiError = {
 				code: ErrorCode.GenericError,
 				status: 418,
-				message: error.message,
+				message:
+					error?.code === AxiosError.ECONNABORTED ? 'The server took too long to respond.' : error.message,
 				detail: error,
 			};
 
