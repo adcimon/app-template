@@ -2,6 +2,7 @@ import React from 'react';
 import { ToastManager } from '../../managers/ToastManager/ToastManager';
 import { ErrorView } from '../../views/ErrorView/ErrorView';
 import { ForgotPasswordView } from '../../views/ForgotPasswordView/ForgotPasswordView';
+import { LaunchView } from '../LaunchView/LaunchView';
 import { LoadingView } from '../LoadingView/LoadingView';
 import { MainView } from '../../views/MainView/MainView';
 import { SignInView } from '../../views/SignInView/SignInView';
@@ -56,10 +57,14 @@ export const AppView = (): React.JSX.Element => {
 					) : !userState.user && navigator.hasParam('token') ? (
 						<MainView />
 					) : (
-						<SignInView />
+						<LaunchView>
+							<SignInView />
+						</LaunchView>
 					)}
 				</Route>
-				<RouteGroup redirect={userState.user ? AppPath.Home : undefined}>
+				<RouteGroup
+					layout={LaunchView}
+					redirect={userState.user ? AppPath.Home : undefined}>
 					<Route path={AppPath.SignIn}>
 						<SignInView />
 					</Route>

@@ -2,7 +2,6 @@ import React from 'react';
 import { Button, Divider, Link, Typography } from '@mui/material';
 import { ToastManager } from '../../managers/ToastManager/ToastManager';
 import { Copyright } from '../../components/Copyright/Copyright';
-import { LaunchView } from '../LaunchView/LaunchView';
 import { Logo } from '../LaunchView/Logo';
 import { SignInForm } from '../../forms/SignInForm/SignInForm';
 import { useSignInForm } from '../../forms/SignInForm/useSignInForm';
@@ -37,7 +36,7 @@ export const SignInView = (): React.JSX.Element => {
 
 	const render = () => {
 		return (
-			<LaunchView>
+			<>
 				<Logo />
 				<Typography variant='h5'>Sign In</Typography>
 				<SignInForm
@@ -77,7 +76,7 @@ export const SignInView = (): React.JSX.Element => {
 					Sign Up
 				</Button>
 				<Copyright />
-			</LaunchView>
+			</>
 		);
 	};
 

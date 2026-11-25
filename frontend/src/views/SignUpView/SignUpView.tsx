@@ -3,7 +3,6 @@ import { Button, Divider, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { ToastManager } from '../../managers/ToastManager/ToastManager';
 import { Copyright } from '../../components/Copyright/Copyright';
-import { LaunchView } from '../LaunchView/LaunchView';
 import { Logo } from '../LaunchView/Logo';
 import { PrivacyPolicyDialog } from '../../components/Dialog/PrivacyPolicyDialog';
 import { SignUpForm } from '../../forms/SignUpForm/SignUpForm';
@@ -56,7 +55,7 @@ export const SignUpView = (): React.JSX.Element => {
 
 	const render = () => {
 		return (
-			<LaunchView>
+			<>
 				<Logo />
 				<Typography variant='h5'>Sign Up</Typography>
 				<SignUpForm
@@ -96,7 +95,7 @@ export const SignUpView = (): React.JSX.Element => {
 					open={openPrivacyPolicyDialog}
 					onClose={handleAcceptPrivacyPolicy}
 				/>
-			</LaunchView>
+			</>
 		);
 	};
 

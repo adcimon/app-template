@@ -4,7 +4,6 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { ToastManager } from '../../managers/ToastManager/ToastManager';
 import { Copyright } from '../../components/Copyright/Copyright';
 import { ForgotPasswordForm } from '../../forms/ForgotPasswordForm/ForgotPasswordForm';
-import { LaunchView } from '../LaunchView/LaunchView';
 import { Logo } from '../LaunchView/Logo';
 import { useForgotPasswordForm } from '../../forms/ForgotPasswordForm/useForgotPasswordForm';
 import { useNavigator } from '../../core/router/useNavigator';
@@ -42,7 +41,7 @@ export const ForgotPasswordView = (): React.JSX.Element => {
 
 	const render = () => {
 		return (
-			<LaunchView>
+			<>
 				<Logo />
 				<Typography variant='h5'>Forgot Password</Typography>
 				<ForgotPasswordForm
@@ -69,7 +68,7 @@ export const ForgotPasswordView = (): React.JSX.Element => {
 					Back to Sign In
 				</Button>
 				<Copyright />
-			</LaunchView>
+			</>
 		);
 	};
 
