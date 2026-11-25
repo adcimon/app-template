@@ -1,11 +1,11 @@
 import React from 'react';
 import { Button, Card, CardActions, CardContent, CardHeader, Divider, Stack, Typography } from '@mui/material';
-import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
-import { VerificationBadge } from '../../../../core/components/Badge/VerificationBadge';
-import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
-import { ChangePhoneForm } from '../../../../forms/ChangePhoneForm/ChangePhoneForm';
-import { useChangePhoneForm } from '../../../../forms/ChangePhoneForm/useChangePhoneForm';
-import { useUserState } from '../../../../states/user/useUserState';
+import { ToastManager } from '../../../managers/ToastManager/ToastManager';
+import { VerificationBadge } from '../../../core/components/Badge/VerificationBadge';
+import { ConfirmationDialog } from '../../../core/components/Dialog/ConfirmationDialog';
+import { ChangePhoneForm } from '../../../forms/ChangePhoneForm/ChangePhoneForm';
+import { useChangePhoneForm } from '../../../forms/ChangePhoneForm/useChangePhoneForm';
+import { useUserState } from '../../../states/user/useUserState';
 
 export const ProfilePhoneCard = (): React.JSX.Element => {
 	const userState = useUserState();

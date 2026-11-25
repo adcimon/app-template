@@ -2,15 +2,9 @@ import React from 'react';
 import { Box, Card, Stack, Tab, Tabs, Typography } from '@mui/material';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import { UsersMenu } from './UsersMenu/UsersMenu';
-import { Window } from '../../../core/components/Window/Window';
-import { useBreakpointDown } from '../../../core/hooks/useBreakpoint';
+import { useBreakpointDown } from '../../core/hooks/useBreakpoint';
 
-interface ManagementWindowProps {
-	open: boolean;
-	onClose?: (event: any) => void;
-}
-
-export const ManagementWindow = (props: ManagementWindowProps): React.JSX.Element => {
+export const ManagementPanel = (): React.JSX.Element => {
 	const headerHeight = {
 		md: '190px',
 		lg: '290px',
@@ -22,13 +16,6 @@ export const ManagementWindow = (props: ManagementWindowProps): React.JSX.Elemen
 
 	const handleTabChange = (event: any, value: number) => {
 		setTab(value);
-	};
-
-	const handleClose = (event: any) => {
-		setTab(0);
-		if (props.onClose) {
-			props.onClose(event);
-		}
 	};
 
 	const renderHeader = () => {
@@ -85,13 +72,13 @@ export const ManagementWindow = (props: ManagementWindowProps): React.JSX.Elemen
 
 	const render = () => {
 		return (
-			<Window
-				label='Management'
-				open={props.open}
-				onClose={handleClose}>
+			<Stack
+				sx={{
+					gap: '1.5rem',
+				}}>
 				{renderHeader()}
 				{renderTab()}
-			</Window>
+			</Stack>
 		);
 	};
 

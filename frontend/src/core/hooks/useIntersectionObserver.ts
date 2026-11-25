@@ -109,7 +109,7 @@ export function useIntersectionObserver({
 		}
 	}, [ref, state.entry, freezeOnceVisible, frozen, initialIsIntersecting]);
 
-	const result: IntersectionReturn = [setRef, !!state.isIntersecting, state.entry] as IntersectionReturn;
+	const result: IntersectionReturn = [setRef, Boolean(state.isIntersecting), state.entry] as IntersectionReturn;
 
 	// Support object destructuring, by adding the specific values.
 	result.ref = result[0];

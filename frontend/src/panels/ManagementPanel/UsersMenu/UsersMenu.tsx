@@ -1,13 +1,13 @@
 import React from 'react';
 import { Avatar, Box, Container, InputAdornment, Stack, TextField, Typography } from '@mui/material';
-import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
-import { LocaleSelect } from '../../../../core/components/Select/LocaleSelect';
-import { Table } from '../../../../core/components/Table/Table';
-import { TimezoneSelect } from '../../../../core/components/Select/TimezoneSelect';
-import { VerificationBadge } from '../../../../core/components/Badge/VerificationBadge';
-import { User } from '../../../../api/api';
-import { useAdminState } from '../../../../states/admin/useAdminState';
-import { AppUtils } from '../../../../utils/appUtils';
+import { ToastManager } from '../../../managers/ToastManager/ToastManager';
+import { LocaleSelect } from '../../../core/components/Select/LocaleSelect';
+import { Table } from '../../../core/components/Table/Table';
+import { TimezoneSelect } from '../../../core/components/Select/TimezoneSelect';
+import { VerificationBadge } from '../../../core/components/Badge/VerificationBadge';
+import { User } from '../../../api/api';
+import { useAdminState } from '../../../states/admin/useAdminState';
+import { AppUtils } from '../../../utils/appUtils';
 
 export const UsersMenu = (): React.JSX.Element => {
 	const adminState = useAdminState();

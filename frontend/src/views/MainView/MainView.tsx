@@ -1,6 +1,9 @@
 import React from 'react';
 import { Box, Stack } from '@mui/material';
 import { ToastManager } from '../../managers/ToastManager/ToastManager';
+import { HelpWindow } from '../../windows/HelpWindow/HelpWindow';
+import { ManagementWindow } from '../../windows/ManagementWindow/ManagementWindow';
+import { SettingsWindow } from '../../windows/SettingsWindow/SettingsWindow';
 import { HomeView } from './HomeView/HomeView';
 import { MainBar } from '../../components/MainBar/MainBar';
 import { useUserState } from '../../states/user/useUserState';
@@ -41,6 +44,9 @@ export const MainView = (): React.JSX.Element => {
 					}}>
 					<HomeView />
 				</Box>
+				<SettingsWindow />
+				<ManagementWindow />
+				<HelpWindow />
 			</Stack>
 		);
 	};

@@ -11,17 +11,17 @@ import {
 	Stack,
 	Typography,
 } from '@mui/material';
-import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
-import { VerificationBadge } from '../../../../core/components/Badge/VerificationBadge';
-import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
-import { ChangeEmailForm } from '../../../../forms/ChangeEmailForm/ChangeEmailForm';
-import { ConfirmEmailForm } from '../../../../forms/ConfirmEmailForm/ConfirmEmailForm';
-import { VerifyEmailForm } from '../../../../forms/VerifyEmailForm/VerifyEmailForm';
-import { useAppState } from '../../../../states/app/useAppState';
-import { useUserState } from '../../../../states/user/useUserState';
-import { useChangeEmailForm } from '../../../../forms/ChangeEmailForm/useChangeEmailForm';
-import { useConfirmEmailForm } from '../../../../forms/ConfirmEmailForm/useConfirmEmailForm';
-import { useVerifyEmailForm } from '../../../../forms/VerifyEmailForm/useVerifyEmailForm';
+import { ToastManager } from '../../../managers/ToastManager/ToastManager';
+import { VerificationBadge } from '../../../core/components/Badge/VerificationBadge';
+import { ConfirmationDialog } from '../../../core/components/Dialog/ConfirmationDialog';
+import { ChangeEmailForm } from '../../../forms/ChangeEmailForm/ChangeEmailForm';
+import { ConfirmEmailForm } from '../../../forms/ConfirmEmailForm/ConfirmEmailForm';
+import { VerifyEmailForm } from '../../../forms/VerifyEmailForm/VerifyEmailForm';
+import { useAppState } from '../../../states/app/useAppState';
+import { useUserState } from '../../../states/user/useUserState';
+import { useChangeEmailForm } from '../../../forms/ChangeEmailForm/useChangeEmailForm';
+import { useConfirmEmailForm } from '../../../forms/ConfirmEmailForm/useConfirmEmailForm';
+import { useVerifyEmailForm } from '../../../forms/VerifyEmailForm/useVerifyEmailForm';
 
 export const ProfileEmailCard = (): React.JSX.Element => {
 	const appState = useAppState();

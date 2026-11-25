@@ -94,37 +94,39 @@ export const Dialog = (props: DialogProps): React.JSX.Element => {
 						onExited: props.onClosed,
 					},
 				}}>
-				<DialogTitle>
-					<Stack
-						direction='row'
-						sx={{
-							alignItems: 'center',
-							justifyContent: 'space-between',
-							width: '100%',
-						}}>
+				{(props.title || props.headerActions) && (
+					<DialogTitle>
 						<Stack
 							direction='row'
 							sx={{
 								alignItems: 'center',
+								justifyContent: 'space-between',
+								width: '100%',
 							}}>
-							{renderIcon()}
-							{props.title}
+							<Stack
+								direction='row'
+								sx={{
+									alignItems: 'center',
+								}}>
+								{renderIcon()}
+								{props.title}
+							</Stack>
+							<Stack
+								direction='row'
+								sx={{
+									alignItems: 'center',
+									gap: '0.5rem',
+								}}>
+								{props.headerActions}
+								{props.onClose && (
+									<IconButton onClick={props.onClose}>
+										<CloseIcon />
+									</IconButton>
+								)}
+							</Stack>
 						</Stack>
-						<Stack
-							direction='row'
-							sx={{
-								alignItems: 'center',
-								gap: '0.5rem',
-							}}>
-							{props.headerActions}
-							{props.onClose && (
-								<IconButton onClick={props.onClose}>
-									<CloseIcon />
-								</IconButton>
-							)}
-						</Stack>
-					</Stack>
-				</DialogTitle>
+					</DialogTitle>
+				)}
 				{props.divider && (
 					<Divider
 						sx={{

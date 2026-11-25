@@ -1,12 +1,12 @@
 import React from 'react';
 import { Box, Button, Card, CardContent, CardHeader, Divider, Grid, Typography } from '@mui/material';
-import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
-import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
-import { SignDownForm } from '../../../../forms/SignDownForm/SignDownForm';
-import { useNavigator } from '../../../../core/hooks/useNavigator';
-import { useAppState } from '../../../../states/app/useAppState';
-import { useSignDownForm } from '../../../../forms/SignDownForm/useSignDownForm';
-import { AppPath } from '../../../../types/appPath';
+import { ToastManager } from '../../../managers/ToastManager/ToastManager';
+import { ConfirmationDialog } from '../../../core/components/Dialog/ConfirmationDialog';
+import { SignDownForm } from '../../../forms/SignDownForm/SignDownForm';
+import { useNavigator } from '../../../core/router/useNavigator';
+import { useAppState } from '../../../states/app/useAppState';
+import { useSignDownForm } from '../../../forms/SignDownForm/useSignDownForm';
+import { AppPath } from '../../../types/appPath';
 
 export const ProfileDangerZoneCard = (): React.JSX.Element => {
 	const navigator = useNavigator();

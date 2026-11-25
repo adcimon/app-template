@@ -7,7 +7,7 @@ import { ForgotPasswordForm } from '../../forms/ForgotPasswordForm/ForgotPasswor
 import { LaunchView } from '../LaunchView/LaunchView';
 import { Logo } from '../LaunchView/Logo';
 import { useForgotPasswordForm } from '../../forms/ForgotPasswordForm/useForgotPasswordForm';
-import { useNavigator } from '../../core/hooks/useNavigator';
+import { useNavigator } from '../../core/router/useNavigator';
 import { useAppState } from '../../states/app/useAppState';
 import { AppPath } from '../../types/appPath';
 

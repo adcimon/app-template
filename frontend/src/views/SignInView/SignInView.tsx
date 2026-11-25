@@ -6,7 +6,7 @@ import { LaunchView } from '../LaunchView/LaunchView';
 import { Logo } from '../LaunchView/Logo';
 import { SignInForm } from '../../forms/SignInForm/SignInForm';
 import { useSignInForm } from '../../forms/SignInForm/useSignInForm';
-import { useNavigator } from '../../core/hooks/useNavigator';
+import { useNavigator } from '../../core/router/useNavigator';
 import { useAppState } from '../../states/app/useAppState';
 import { useUserState } from '../../states/user/useUserState';
 import { AppPath } from '../../types/appPath';

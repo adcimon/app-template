@@ -1,12 +1,12 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
+import { ToastManager } from '../../../managers/ToastManager/ToastManager';
 import { ProfileDangerZoneCard } from './ProfileDangerZoneCard';
 import { ProfileDetailsCard } from './ProfileDetailsCard';
 import { ProfileEmailCard } from './ProfileEmailCard';
 import { ProfilePasswordCard } from './ProfilePasswordCard';
 import { ProfilePhoneCard } from './ProfilePhoneCard';
-import { useUserState } from '../../../../states/user/useUserState';
+import { useUserState } from '../../../states/user/useUserState';
 
 export const ProfileMenu = (): React.JSX.Element => {
 	const userState = useUserState();

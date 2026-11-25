@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Card, CardContent, CardHeader, Grid, MenuItem, Typography } from '@mui/material';
-import { Select } from '../../../../core/components/Select/Select';
-import { useAppState } from '../../../../states/app/useAppState';
+import { Select } from '../../../core/components/Select/Select';
+import { useAppState } from '../../../states/app/useAppState';
 
 export const PreferencesMenu = (): React.JSX.Element => {
 	const appState = useAppState();

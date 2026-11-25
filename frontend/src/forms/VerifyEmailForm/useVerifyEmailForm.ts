@@ -6,7 +6,7 @@ export function useVerifyEmailForm() {
 	const [values, setValues] = React.useState<VerifyEmailDfo>(newVerifyEmailDfo());
 
 	const validate = (): boolean => {
-		return !!values.code;
+		return Boolean(values.code);
 	};
 
 	const reset = () => {

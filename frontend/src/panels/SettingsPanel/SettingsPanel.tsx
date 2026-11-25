@@ -2,20 +2,14 @@ import React from 'react';
 import { Box, Card, Stack, Tab, Tabs, Typography } from '@mui/material';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
-import { IdentityBadge } from '../../../core/components/Badge/IdentityBadge';
+import { IdentityBadge } from '../../core/components/Badge/IdentityBadge';
 import { PreferencesMenu } from './PreferencesMenu/PreferencesMenu';
 import { ProfileMenu } from './ProfileMenu/ProfileMenu';
 import { UserAvatar } from './UserAvatar/UserAvatar';
-import { Window } from '../../../core/components/Window/Window';
-import { useBreakpointDown } from '../../../core/hooks/useBreakpoint';
-import { useUserState } from '../../../states/user/useUserState';
+import { useBreakpointDown } from '../../core/hooks/useBreakpoint';
+import { useUserState } from '../../states/user/useUserState';
 
-interface SettingsWindowProps {
-	open: boolean;
-	onClose?: (event: any) => void;
-}
-
-export const SettingsWindow = (props: SettingsWindowProps): React.JSX.Element => {
+export const SettingsPanel = (): React.JSX.Element => {
 	const headerHeight = {
 		md: '190px',
 		lg: '290px',
@@ -46,11 +40,6 @@ export const SettingsWindow = (props: SettingsWindowProps): React.JSX.Element =>
 
 	const handleTabChange = (event: any, value: number) => {
 		setTab(value);
-	};
-
-	const handleClose = (event: any) => {
-		setTab(0);
-		props.onClose?.(event);
 	};
 
 	const renderHeader = () => {
@@ -156,13 +145,13 @@ export const SettingsWindow = (props: SettingsWindowProps): React.JSX.Element =>
 
 	const render = () => {
 		return (
-			<Window
-				label='Settings'
-				open={props.open}
-				onClose={handleClose}>
+			<Stack
+				sx={{
+					gap: '1.5rem',
+				}}>
 				{renderHeader()}
 				{renderTab()}
-			</Window>
+			</Stack>
 		);
 	};
 

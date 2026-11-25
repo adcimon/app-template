@@ -1,11 +1,11 @@
 import React from 'react';
 import { Avatar, Box, IconButton, Stack, TextField, Typography } from '@mui/material';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
-import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
-import { ChangeIconDfo } from '../../../../forms/dfos/changeIconDfo';
-import { useUserState } from '../../../../states/user/useUserState';
-import { AppUtils } from '../../../../utils/appUtils';
+import { ToastManager } from '../../../managers/ToastManager/ToastManager';
+import { ConfirmationDialog } from '../../../core/components/Dialog/ConfirmationDialog';
+import { ChangeIconDfo } from '../../../forms/dfos/changeIconDfo';
+import { useUserState } from '../../../states/user/useUserState';
+import { AppUtils } from '../../../utils/appUtils';
 
 export const UserAvatar = (): React.JSX.Element => {
 	const ref = React.useRef<HTMLDivElement>(null);

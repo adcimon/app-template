@@ -7,7 +7,7 @@ export function useSignInForm() {
 	const [values, setValues] = React.useState<SignInDfo>(newSignInDfo());
 
 	const validate = (): boolean => {
-		return AppUtils.EMAIL_REGEXP.test(values.email ?? '') && !!values.password;
+		return AppUtils.EMAIL_REGEXP.test(values.email ?? '') && Boolean(values.password);
 	};
 
 	const handleChange = (key: any, value: any) => {

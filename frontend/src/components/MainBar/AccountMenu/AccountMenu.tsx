@@ -1,18 +1,14 @@
 import React from 'react';
 import { Avatar, Box, Chip, Divider, MenuItem, MenuList, Skeleton, SxProps, Typography } from '@mui/material';
 import ExitToApp from '@mui/icons-material/ExitToApp';
-import HelpIcon from '@mui/icons-material/Help';
-import SecurityIcon from '@mui/icons-material/Security';
-import SettingsIcon from '@mui/icons-material/Settings';
 import { ToastManager } from '../../../managers/ToastManager/ToastManager';
 import { ConfirmationDialog } from '../../../core/components/Dialog/ConfirmationDialog';
-import { HelpWindow } from '../../Windows/HelpWindow/HelpWindow';
-import { ManagementWindow } from '../../Windows/ManagementWindow/ManagementWindow';
 import { Popover } from '../../../core/components/Popover/Popover';
-import { SettingsWindow } from '../../Windows/SettingsWindow/SettingsWindow';
+import { WindowMenuItem } from './WindowMenuItem';
 import { Role } from '../../../api/api';
 import { useAppState } from '../../../states/app/useAppState';
 import { useUserState } from '../../../states/user/useUserState';
+import { AppWindow } from '../../../types/appWindow';
 import { AppUtils } from '../../../utils/appUtils';
 
 export const AccountMenu = (): React.JSX.Element => {
@@ -22,9 +18,6 @@ export const AccountMenu = (): React.JSX.Element => {
 	const userState = useUserState();
 
 	const [open, setOpen] = React.useState<boolean>(false);
-	const [openSettingsWindow, setOpenSettingsWindow] = React.useState<boolean>(false);
-	const [openManagementWindow, setOpenManagementWindow] = React.useState<boolean>(false);
-	const [openHelpWindow, setOpenHelpWindow] = React.useState<boolean>(false);
 	const [openSignOutDialog, setOpenSignOutDialog] = React.useState<boolean>(false);
 
 	const handleClick = () => {
@@ -33,33 +26,6 @@ export const AccountMenu = (): React.JSX.Element => {
 
 	const handleClose = () => {
 		setOpen(false);
-	};
-
-	const handleClickSettings = () => {
-		setOpen(false);
-		setOpenSettingsWindow(true);
-	};
-
-	const handleCloseSettings = () => {
-		setOpenSettingsWindow(false);
-	};
-
-	const handleClickManagement = () => {
-		setOpen(false);
-		setOpenManagementWindow(true);
-	};
-
-	const handleCloseManagement = () => {
-		setOpenManagementWindow(false);
-	};
-
-	const handleClickHelp = () => {
-		setOpen(false);
-		setOpenHelpWindow(true);
-	};
-
-	const handleCloseHelp = () => {
-		setOpenHelpWindow(false);
 	};
 
 	const handleClickSignOut = () => {
@@ -173,20 +139,20 @@ export const AccountMenu = (): React.JSX.Element => {
 							padding: '5px',
 							paddingBottom: '10px',
 						}}>
-						<MenuItem onClick={handleClickSettings}>
-							<SettingsIcon sx={iconSx} />
-							<Typography>Settings</Typography>
-						</MenuItem>
+						<WindowMenuItem
+							id={AppWindow.Settings}
+							onClick={handleClose}
+						/>
 						{userState.user?.roles.includes(Role.Admin) && (
-							<MenuItem onClick={handleClickManagement}>
-								<SecurityIcon sx={iconSx} />
-								<Typography>Management</Typography>
-							</MenuItem>
+							<WindowMenuItem
+								id={AppWindow.Management}
+								onClick={handleClose}
+							/>
 						)}
-						<MenuItem onClick={handleClickHelp}>
-							<HelpIcon sx={iconSx} />
-							<Typography>Help</Typography>
-						</MenuItem>
+						<WindowMenuItem
+							id={AppWindow.Help}
+							onClick={handleClose}
+						/>
 						<MenuItem
 							onClick={handleClickSignOut}
 							sx={{
@@ -211,18 +177,6 @@ export const AccountMenu = (): React.JSX.Element => {
 						</MenuItem>
 					</MenuList>
 				</Popover>
-				<SettingsWindow
-					open={openSettingsWindow}
-					onClose={handleCloseSettings}
-				/>
-				<ManagementWindow
-					open={openManagementWindow}
-					onClose={handleCloseManagement}
-				/>
-				<HelpWindow
-					open={openHelpWindow}
-					onClose={handleCloseHelp}
-				/>
 				<ConfirmationDialog
 					title='Sign Out'
 					open={openSignOutDialog}

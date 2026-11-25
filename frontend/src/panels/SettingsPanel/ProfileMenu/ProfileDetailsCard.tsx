@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button, Card, CardActions, CardContent, CardHeader, Divider, Typography } from '@mui/material';
-import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
-import { UserForm } from '../../../../forms/UserForm/UserForm';
-import { useUserState } from '../../../../states/user/useUserState';
-import { useUserForm } from '../../../../forms/UserForm/useUserForm';
+import { ToastManager } from '../../../managers/ToastManager/ToastManager';
+import { UserForm } from '../../../forms/UserForm/UserForm';
+import { useUserState } from '../../../states/user/useUserState';
+import { useUserForm } from '../../../forms/UserForm/useUserForm';
 
 export const ProfileDetailsCard = (): React.JSX.Element => {
 	const userState = useUserState();

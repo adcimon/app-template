@@ -1,13 +1,16 @@
 import React from 'react';
+import { ToastManager } from '../../managers/ToastManager/ToastManager';
 import { ErrorView } from '../../views/ErrorView/ErrorView';
 import { ForgotPasswordView } from '../../views/ForgotPasswordView/ForgotPasswordView';
 import { LoadingView } from '../LoadingView/LoadingView';
 import { MainView } from '../../views/MainView/MainView';
 import { SignInView } from '../../views/SignInView/SignInView';
 import { SignUpView } from '../../views/SignUpView/SignUpView';
-import { Route } from '../../core/components/Router/Route';
-import { Router } from '../../core/components/Router/Router';
-import { useNavigator } from '../../core/hooks/useNavigator';
+import { Route } from '../../core/router/Route';
+import { Router } from '../../core/router/Router';
+import { WindowEvent, WindowEventType } from '../../core/windows/windowEvent';
+import { useNavigator } from '../../core/router/useNavigator';
+import { useWindowEvent } from '../../core/windows/useWindowEvent';
 import { useUserState } from '../../states/user/useUserState';
 import { AppPath } from '../../types/appPath';
 import { CryptoUtils } from '../../utils/cryptoUtils';
@@ -17,6 +20,12 @@ export const AppView = (): React.JSX.Element => {
 	const userState = useUserState();
 
 	const [initialized, setInitialized] = React.useState<boolean>(false);
+
+	useWindowEvent((event: WindowEvent) => {
+		if (event.type === WindowEventType.Blocked) {
+			ToastManager.error('Your browser blocked the window. Allow pop-ups for this site.');
+		}
+	});
 
 	React.useEffect(() => {
 		init();

@@ -6,7 +6,7 @@ export function useSignDownForm() {
 	const [values, setValues] = React.useState<SignDownDfo>(newSignDownDfo());
 
 	const validate = (): boolean => {
-		return !!values.password;
+		return Boolean(values.password);
 	};
 
 	const handleChange = (key: any, value: any) => {

@@ -7,7 +7,7 @@ export function useChangePasswordForm() {
 
 	const validate = (): boolean => {
 		return (
-			!!values.newPassword && values.currentPassword !== values.newPassword && values.newPassword === values.confirmPassword
+			Boolean(values.newPassword) && values.currentPassword !== values.newPassword && values.newPassword === values.confirmPassword
 		);
 	};
 

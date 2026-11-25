@@ -2,7 +2,7 @@ import React from 'react';
 import { ApiClient } from '../../clients/api/apiClient';
 import { ApiContext } from '../../clients/api/apiContext';
 import { useApi } from '../../clients/api/useApi';
-import { useNavigator } from '../../core/hooks/useNavigator';
+import { useNavigator } from '../../core/router/useNavigator';
 import { useUserState } from '../../states/user/useUserState';
 import { AppPath } from '../../types/appPath';
 import { AppUtils } from '../../utils/appUtils';

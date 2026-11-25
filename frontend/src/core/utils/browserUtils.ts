@@ -12,7 +12,7 @@ export namespace BrowserUtils {
 	export const isWebGLSupported = (): boolean => {
 		try {
 			const canvas: HTMLCanvasElement = document.createElement('canvas');
-			const supported: boolean = !!(window.WebGL2RenderingContext && canvas.getContext('webgl2'));
+			const supported: boolean = Boolean(window.WebGL2RenderingContext && canvas.getContext('webgl2'));
 			canvas.remove();
 			return supported;
 		} catch {
@@ -30,7 +30,7 @@ export namespace BrowserUtils {
 	};
 
 	export const isWebRTCSupported = (): boolean => {
-		const hasUserMedia: boolean = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+		const hasUserMedia: boolean = Boolean(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
 
 		const hasPeerConnection: boolean =
 			typeof RTCPeerConnection !== 'undefined' ||

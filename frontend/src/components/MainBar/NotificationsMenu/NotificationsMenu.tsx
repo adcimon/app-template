@@ -1,7 +1,8 @@
 import React from 'react';
-import { Badge, Divider, IconButton, MenuItem, MenuList, Tooltip, Typography } from '@mui/material';
+import { Divider, MenuItem, MenuList, Typography } from '@mui/material';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { NotificationItem } from './NotificationItem';
+import { MenuButton } from '../../../core/components/Button/MenuButton';
 import { Popover } from '../../../core/components/Popover/Popover';
 
 export const NotificationsMenu = (): React.JSX.Element => {
@@ -27,34 +28,16 @@ export const NotificationsMenu = (): React.JSX.Element => {
 	const render = () => {
 		return (
 			<>
-				<Tooltip
-					title='Notifications'
-					placement='bottom'
-					slotProps={{
-						popper: {
-							modifiers: [
-								{
-									name: 'offset',
-									options: {
-										offset: [0, -10],
-									},
-								},
-							],
-						},
-					}}>
-					<IconButton
-						ref={ref}
-						onClick={handleClick}
-						sx={{
-							color: 'inherit',
-						}}>
-						<Badge
-							color='error'
-							badgeContent={notifications.length}>
-							<NotificationsIcon />
-						</Badge>
-					</IconButton>
-				</Tooltip>
+				<MenuButton
+					ref={ref}
+					color='inherit'
+					tooltip='Notifications'
+					icon={<NotificationsIcon />}
+					count={notifications.length}
+					alert={true}
+					active={open}
+					onClick={handleClick}
+				/>
 				<Popover
 					title={
 						<Typography
@@ -100,7 +83,7 @@ export const NotificationsMenu = (): React.JSX.Element => {
 
 const defaultNotifications: object[] = [
 	{
-		icon: '/images/logo_white.png',
+		icon: '/images/logo_blue.png',
 		title: 'Welcome',
 		description: 'Thank you for using this template!',
 		date: new Date().toLocaleDateString(),

@@ -13,8 +13,8 @@ export function useForgotPasswordForm() {
 	const validateChange = (): boolean => {
 		return (
 			AppUtils.EMAIL_REGEXP.test(values.email ?? '') &&
-			!!values.code &&
-			!!values.password &&
+			Boolean(values.code) &&
+			Boolean(values.password) &&
 			values.password === values.confirmPassword
 		);
 	};

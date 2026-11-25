@@ -9,7 +9,7 @@ import { PrivacyPolicyDialog } from '../../components/Dialog/PrivacyPolicyDialog
 import { SignUpForm } from '../../forms/SignUpForm/SignUpForm';
 import { TermsOfServiceDialog } from '../../components/Dialog/TermsOfServiceDialog';
 import { useSignUpForm } from '../../forms/SignUpForm/useSignUpForm';
-import { useNavigator } from '../../core/hooks/useNavigator';
+import { useNavigator } from '../../core/router/useNavigator';
 import { useAppState } from '../../states/app/useAppState';
 import { AppPath } from '../../types/appPath';
 

@@ -9,9 +9,9 @@ export function useSignUpForm() {
 	const validate = (): boolean => {
 		return (
 			AppUtils.EMAIL_REGEXP.test(values.email ?? '') &&
-			!!values.password &&
+			Boolean(values.password) &&
 			values.password === values.confirmPassword &&
-			!!values.legalAccepted
+			Boolean(values.legalAccepted)
 		);
 	};
 

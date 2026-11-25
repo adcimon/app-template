@@ -1,18 +1,12 @@
 import React from 'react';
-import { Button, Grid, Typography } from '@mui/material';
-import { Card } from '../../../core/components/Card/Card';
-import { PrivacyPolicyDialog } from '../../Dialog/PrivacyPolicyDialog';
-import { TermsOfServiceDialog } from '../../Dialog/TermsOfServiceDialog';
-import { VersionBadge } from '../../../core/components/Badge/VersionBadge';
-import { Window } from '../../../core/components/Window/Window';
-import { AppUtils } from '../../../utils/appUtils';
+import { Button, Grid, Stack, Typography } from '@mui/material';
+import { Card } from '../../core/components/Card/Card';
+import { PrivacyPolicyDialog } from '../../components/Dialog/PrivacyPolicyDialog';
+import { TermsOfServiceDialog } from '../../components/Dialog/TermsOfServiceDialog';
+import { VersionBadge } from '../../core/components/Badge/VersionBadge';
+import { AppUtils } from '../../utils/appUtils';
 
-interface HelpWindowProps {
-	open: boolean;
-	onClose?: (event: any) => void;
-}
-
-export const HelpWindow = (props: HelpWindowProps): React.JSX.Element => {
+export const HelpPanel = (): React.JSX.Element => {
 	const [openTermsOfServiceDialog, setOpenTermsOfServiceDialog] = React.useState<boolean>(false);
 	const [openPrivacyPolicyDialog, setOpenPrivacyPolicyDialog] = React.useState<boolean>(false);
 
@@ -32,12 +26,6 @@ export const HelpWindow = (props: HelpWindowProps): React.JSX.Element => {
 		setOpenPrivacyPolicyDialog(false);
 	};
 
-	const handleClose = (event: any) => {
-		if (props.onClose) {
-			props.onClose(event);
-		}
-	};
-
 	const render = () => {
 		const size = {
 			xs: 10,
@@ -46,10 +34,10 @@ export const HelpWindow = (props: HelpWindowProps): React.JSX.Element => {
 			lg: 4,
 		};
 		return (
-			<Window
-				label='Help'
-				open={props.open}
-				onClose={handleClose}>
+			<Stack
+				sx={{
+					gap: '1.5rem',
+				}}>
 				<VersionBadge
 					version={AppUtils.getVersion()}
 					sx={{
@@ -135,7 +123,7 @@ export const HelpWindow = (props: HelpWindowProps): React.JSX.Element => {
 					open={openPrivacyPolicyDialog}
 					onClose={handleClosePrivacyPolicy}
 				/>
-			</Window>
+			</Stack>
 		);
 	};
 

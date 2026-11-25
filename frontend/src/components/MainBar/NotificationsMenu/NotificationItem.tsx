@@ -81,7 +81,6 @@ export const NotificationItem = (props: NotificationItemProps): React.JSX.Elemen
 								onClick={handleDelete}
 								size='small'
 								sx={{
-									color: 'neutral.light',
 									'&.MuiIconButton-root': {
 										marginLeft: 'auto',
 									},

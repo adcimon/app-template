@@ -2,6 +2,7 @@ import React from 'react';
 import { AppBar, Box, Toolbar } from '@mui/material';
 import { AccountMenu } from './AccountMenu/AccountMenu';
 import { NotificationsMenu } from './NotificationsMenu/NotificationsMenu';
+import { WindowsMenu } from './WindowsMenu/WindowsMenu';
 
 interface MainBarProps {
 	height?: string;
@@ -57,6 +58,7 @@ export const MainBar = (props: MainBarProps): React.JSX.Element => {
 							justifyContent: 'flex-end',
 						}}>
 						<NotificationsMenu />
+						<WindowsMenu />
 						<AccountMenu />
 					</Box>
 				</Toolbar>

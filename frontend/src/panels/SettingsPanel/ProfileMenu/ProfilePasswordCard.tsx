@@ -1,10 +1,10 @@
 import React from 'react';
 import { Box, Button, Card, CardActions, CardContent, CardHeader, Divider, Grid, Typography } from '@mui/material';
-import { ToastManager } from '../../../../managers/ToastManager/ToastManager';
-import { ConfirmationDialog } from '../../../../core/components/Dialog/ConfirmationDialog';
-import { ChangePasswordForm } from '../../../../forms/ChangePasswordForm/ChangePasswordForm';
-import { useAppState } from '../../../../states/app/useAppState';
-import { useChangePasswordForm } from '../../../../forms/ChangePasswordForm/useChangePasswordForm';
+import { ToastManager } from '../../../managers/ToastManager/ToastManager';
+import { ConfirmationDialog } from '../../../core/components/Dialog/ConfirmationDialog';
+import { ChangePasswordForm } from '../../../forms/ChangePasswordForm/ChangePasswordForm';
+import { useAppState } from '../../../states/app/useAppState';
+import { useChangePasswordForm } from '../../../forms/ChangePasswordForm/useChangePasswordForm';
 
 export const ProfilePasswordCard = (): React.JSX.Element => {
 	const appState = useAppState();

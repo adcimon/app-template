@@ -1,6 +1,6 @@
 import React from 'react';
 import { LinearProgress, Stack, Typography } from '@mui/material';
-import { Window } from './Window';
+import { Window, WindowMode } from '../../windows/Window';
 import { useBreakpointDown } from '../../hooks/useBreakpoint';
 
 interface LoadingWindowProps {
@@ -12,12 +12,7 @@ export const LoadingWindow = (props: LoadingWindowProps): React.JSX.Element => {
 
 	const render = () => {
 		return (
-			<Window
-				open={true}
-				sx={{
-					height: '100%',
-					width: '100%',
-				}}>
+			<Window mode={WindowMode.Overlay}>
 				<Stack
 					direction='column'
 					sx={{
