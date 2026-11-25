@@ -7,6 +7,7 @@ import { MainView } from '../../views/MainView/MainView';
 import { SignInView } from '../../views/SignInView/SignInView';
 import { SignUpView } from '../../views/SignUpView/SignUpView';
 import { Route } from '../../core/router/Route';
+import { RouteGroup } from '../../core/router/RouteGroup';
 import { Router } from '../../core/router/Router';
 import { WindowEvent, WindowEventType } from '../../core/windows/windowEvent';
 import { useNavigator } from '../../core/router/useNavigator';
@@ -39,9 +40,6 @@ export const AppView = (): React.JSX.Element => {
 	const autoAuth = async () => {
 		try {
 			await userState.get();
-			navigator.navigate(AppPath.Home, {
-				params: navigator.params,
-			});
 		} catch {}
 	};
 
@@ -61,15 +59,17 @@ export const AppView = (): React.JSX.Element => {
 						<SignInView />
 					)}
 				</Route>
-				<Route path={AppPath.SignIn}>
-					<SignInView />
-				</Route>
-				<Route path={AppPath.SignUp}>
-					<SignUpView />
-				</Route>
-				<Route path={AppPath.ForgotPassword}>
-					<ForgotPasswordView />
-				</Route>
+				<RouteGroup redirect={userState.user ? AppPath.Home : undefined}>
+					<Route path={AppPath.SignIn}>
+						<SignInView />
+					</Route>
+					<Route path={AppPath.SignUp}>
+						<SignUpView />
+					</Route>
+					<Route path={AppPath.ForgotPassword}>
+						<ForgotPasswordView />
+					</Route>
+				</RouteGroup>
 				<Route path={AppPath.Error}>
 					<ErrorView
 						message={CryptoUtils.decodeBase64(navigator.getParam('message'))}

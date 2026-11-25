@@ -160,6 +160,7 @@ export const WindowsMenu = (): React.JSX.Element => {
 					color='inherit'
 					tooltip='Windows'
 					icon={<DynamicFeedIcon />}
+					count={undockedWindows.length}
 					active={open}
 					onClick={handleClick}
 				/>

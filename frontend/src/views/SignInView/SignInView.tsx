@@ -22,7 +22,6 @@ export const SignInView = (): React.JSX.Element => {
 		try {
 			await appState.signIn(form.values);
 			await userState.get();
-			navigator.navigate(AppPath.Home);
 		} catch (error: any) {
 			ToastManager.error(error.message);
 		}
